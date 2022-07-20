@@ -19,7 +19,9 @@ Route::get('/', function () {
 Route::post('/process-login', 'App\Http\Controllers\Auth\AuthController@processLogin')->name('process.login');
 Route::get('/logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');
 
-Route::get('/dashboard/program-rup', 'App\Http\Controllers\DashboardController@get_program');
+Route::get('/dashboard/program-rup', 'App\Http\Controllers\DashboardController@get_program')->name('program.rup');
+Route::get('/dashboard/program-rup/card', 'App\Http\Controllers\DashboardController@get_dashboard_card')->name('get.dashboard.card');
+Route::get('/dashboard/program-rup/department', 'App\Http\Controllers\DashboardController@get_department')->name('get.department');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
