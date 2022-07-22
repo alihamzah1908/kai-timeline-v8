@@ -24,10 +24,6 @@
                                 <th>Nilai TAX</th>
                                 <th>Status</th>
                                 <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <!-- <th></th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -94,6 +90,15 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
             processing: true,
             serverSide: true,
             ajax: {

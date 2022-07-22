@@ -7,7 +7,7 @@
 </style>
 <div class="container-fluid">
     <div class="row mt-4">
-        <div class="col-12">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
@@ -17,7 +17,7 @@
                         <div class="col-md-6 d-flex justify-content-end">
                             <p class="sub-header">
                                 <button type="button" class="create-timeline d-flex justify-content-end btn btn-success btn-sm btn-rounded">
-                                    <i class="uil-plus-circle"></i> &nbsp; Create Timeline
+                                    <i class="uil-plus"></i> &nbsp; Create Timeline
                                 </button>
                             </p>
                         </div>
@@ -31,19 +31,15 @@
                                 <th>Judul Pengadaan</th>
                                 <th>No Pengadaan</th>
                                 <th>Sumber Dana</th>
-                                <th>Jenis Kontrak</th>
-                                <th>Beban Biaya</th>
-                                <th>PBJ</th>
                                 <th>Nilai PR</th>
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
+                                <th>PBJ</th>
+                                <th>Beban Biaya</th>
+                                <th>Jenis Kontrak</th>
                                 <th>Start Pengadaan</th>
                                 <th>End Pengadaan</th>
                                 <th>Status</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
                                 <!-- <th></th> -->
                             </tr>
                         </thead>
@@ -71,7 +67,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Judul Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan</label>
                                 <!-- <div id="summernote-editor">
                                     <p>Uraian Details</p>
                                 </div> end summernote-editor -->
@@ -86,7 +82,7 @@
                         </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Beban Biaya</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Beban Biaya</label>
                                 <select class="form-control" name="beban_biaya">
                                     <option value="CAPEX">Capex</option>
                                     <option value="OPEX">Opex</option>
@@ -139,7 +135,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">PBJ</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">PBJ</label>
                                 <select class="form-control" name="pbj">
                                     <option value="Sarana">Sarana</option>
                                     <option value="Non Sarana">Non Sarana</option>
@@ -149,7 +145,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Sumber Dana</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana</label>
                                 <select class="form-control" name="sumber_dana">
                                     <option value="2022">2021</option>
                                     <option value="2023">2022</option>
@@ -162,7 +158,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Jenis Kontrak</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Jenis Kontrak</label>
                                 <br />
                                 <input type="radio" class="jenis_kontrak" name="jenis_kontrak" value="single_year"> Single Year
                                 <input type="radio" class="jenis_kontrak" name="jenis_kontrak" value="multi_year"> Multi Year
@@ -170,7 +166,7 @@
                         </div>
                         <div class="col-md-6 jenis_kontrak_year" style="display: none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Total Year</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Total Year</label>
                                 <select class="form-control">
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -182,14 +178,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1">Nilai PR</label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai PR</label>
                             <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai_pr" name="nilai_pr">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Type TAX</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Type TAX</label>
                                 <select class="form-control type-tax" name="type_tax">
                                     <option value="">Pilih</option>/option>
                                     <option value="1">Pajak Tidak Dipungut</option>
@@ -200,7 +196,7 @@
                         </div>
                         <div class="col-md-4 nilai-tax border">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nilai TAX</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
                                 <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" disabled>
                                 <input type="hidden" class="form-control nilai-tax-insert" placeholder="Please insert nilai tax" name="nilai_tax">
                             </div>
@@ -209,13 +205,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Start Date Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Start Date Pengadaan</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">End Date Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">End Date Pengadaan</label>
                                 <input type="date" class="form-control" placeholder="Please insert end date" name="end_date">
                             </div>
                         </div>
@@ -223,7 +219,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Keterangan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Keterangan</label>
                                 <textarea class="form-control" placeholder="Please insert keterangan" name="keterangan"></textarea>
                             </div>
                         </div>
@@ -231,8 +227,8 @@
                     <div class="row">
                         <input type="hidden" name="save" id="save" value="">
                         <div class="col-md-12 d-flex justify-content-end">
-                            <button class="btn btn-warning btn-rounded save" data-bind="draft" type="button">Save as Draft</button>
-                            <button class="btn btn-primary btn-rounded ml-2 save" data-bind="submit" type="button">Submit</button>
+                            <button class="btn btn-sm btn-warning btn-rounded save" data-bind="draft" type="button">Save as Draft</button>
+                            <button class="btn btn-sm btn-primary btn-rounded ml-2 save" data-bind="submit" type="button">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -245,6 +241,15 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
@@ -267,15 +272,6 @@
                     data: 'sumber_dana'
                 },
                 {
-                    data: 'jenis_kontrak'
-                },
-                {
-                    data: 'beban_biaya'
-                },
-                {
-                    data: 'pbj'
-                },
-                {
                     data: 'nilai_pr'
                 },
                 {
@@ -283,6 +279,15 @@
                 },
                 {
                     data: 'nilai_tax'
+                },
+                {
+                    data: 'pbj'
+                },
+                {
+                    data: 'beban_biaya'
+                },
+                {
+                    data: 'jenis_kontrak'
                 },
                 {
                     data: 'start_date_pengadaan'

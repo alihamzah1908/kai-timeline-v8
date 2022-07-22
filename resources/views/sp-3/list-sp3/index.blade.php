@@ -12,7 +12,7 @@
                         <div class="col-md-6 d-flex justify-content-end">
                             <p class="sub-header">
                                 <button type="button" class="create-sp-3 d-flex justify-content-end btn btn-success btn-sm btn-rounded">
-                                    <i class="uil-plus-circle"></i> &nbsp; Create SP 3
+                                    <i class="uil-plus"></i> &nbsp; Create SP 3
                                 </button>
                             </p>
                         </div>
@@ -29,11 +29,6 @@
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
                                 <th>Status</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +54,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1">Realisasi</label><br />
+                            <label for="exampleInputEmail1" class="font-weight-bold">Realisasi</label><br />
                             <input type="radio" name="realisasi" class="realisasi" value="ya"> Timeline
                             <input type="radio" name="realisasi" class="realisasi" value="no"> Diluar Timeline
                         </div>
@@ -67,7 +62,7 @@
                     <div class="row row-timeline">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Timeline</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Timeline</label>
                                 @php
                                 $timeline = \App\Models\Timeline::select('timeline_id','judul_pengadaan')->where('proses_st', 'PROSES_AT')->get();
                                 @endphp
@@ -83,7 +78,7 @@
                     <div class="row judul-pengadaan">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Judul Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan</label>
                                 <input type="text" class="form-control" placeholder="Please insert judul pengadaan" name="judul_pengadaan">
                             </div>
                         </div>
@@ -94,7 +89,7 @@
                             <input type="text" name="nomor_sp3" class="form-control" placeholder="Please insert no sp3">
                         </div> -->
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1">Metode</label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Metode</label>
                             <select class="form-control type-metode" name="type_metode">
                                 <option value="1">Penunjukan Langsung</option>
                                 <option value="2">Pemilihan Langsung</option>
@@ -104,16 +99,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Vendor Name</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
                                 <input type="text" name="vendor_name" class="form-control" placeholder="Please insert vendor name">
                             </div>
                         </div>
                     </div>
-                    <div class="timeline">
+                    <div class="kolom-timeline">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nilai PR</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Nilai PR</label>
                                     <input type="text" class="form-control nilai-pr money" placeholder="Please insert nilai_pr" name="nilai_pr">
                                 </div>
                             </div>
@@ -121,7 +116,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Type TAX</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Type TAX</label>
                                     <select class="form-control type-tax" name="type_tax">
                                         <option value="1">Pajak Tidak Dipungut</option>
                                         <option value="2">Pajak Dipungut</option>
@@ -131,7 +126,7 @@
                             </div>
                             <div class="col-md-4 nilai-tax border">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nilai TAX</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
                                     <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" disabled>
                                 </div>
                             </div>
@@ -139,7 +134,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Keterangan</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Keterangan</label>
                                     <textarea class="form-control" placeholder="Please insert keterangan" name="keterangan"></textarea>
                                 </div>
                             </div>
@@ -148,13 +143,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No MI</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">No MI</label>
                                 <input type="text" name="no_mi" class="form-control" placeholder="Please insert no mi">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal MI</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal MI</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="date_mi">
                             </div>
                         </div>
@@ -162,13 +157,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No PR/IP</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">No PR/IP</label>
                                 <input type="text" name="no_pr_ip" class="form-control" placeholder="Please insert nomor pr/ip">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal PR/IP</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal PR/IP</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="date_pr">
                             </div>
                         </div>
@@ -176,13 +171,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No Justifikasi</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">No Justifikasi</label>
                                 <input type="text" name="no_justifikasi" class="form-control" placeholder="Please insert nomor justifikasi">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Justifikasi</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Justifikasi</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="date_justifikasi">
                             </div>
                         </div>
@@ -190,13 +185,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No RAB</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">No RAB</label>
                                 <input type="text" name="no_rab" class="form-control" placeholder="Please insert nomor rab">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal RAB</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal RAB</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="date_rab">
                             </div>
                         </div>
@@ -204,7 +199,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No KAK</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">No KAK</label>
                                 <!-- <div id="summernote-editor">
                                     <p>Uraian Details</p>
                                 </div> end summernote-editor -->
@@ -213,14 +208,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal KAK</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal KAK</label>
                                 <input type="date" class="form-control" placeholder="Please insert start date" name="date_kak">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="header-title">Upload File</h5>
+                            <h5 class="header-title" class="font-weight-bold">Upload File</h5>
                             <div class="fallback">
                                 <input name="file[]" type="file" id="file" multiple />
                             </div>
@@ -231,8 +226,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-end">
-                            <input class="btn btn-warning btn-rounded save" type="submit" name="save" value="Save As Draft">
-                            <input class="btn btn-primary btn-rounded save ml-2" type="submit" name="save" value="Submit">
+                            <input class="btn btn-sm btn-warning btn-rounded save" type="submit" name="save" value="Save As Draft">
+                            <input class="btn btn-sm btn-primary btn-rounded save ml-2" type="submit" name="save" value="Submit">
                         </div>
                     </div>
                 </form>
@@ -245,6 +240,15 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.sp3') }}",
@@ -289,11 +293,11 @@
             console.log(data)
             if (data == 'no') {
                 $(".row-timeline").hide();
-                $(".timeline").show();
+                $(".kolom-timeline").show();
                 $(".judul-pengadaan").show();
             } else if (data == 'ya') {
                 $(".row-timeline").show();
-                $(".timeline").hide();
+                $(".kolom-timeline").hide();
                 $(".judul-pengadaan").hide();
             }
         })

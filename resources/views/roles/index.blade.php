@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <a href="{{ route('roles.create') }}">
-                                <button type="button" class="d-flex justify-content-end btn btn-success btn-sm btn-rounded"><i class="uil-plus-circle"></i> &nbsp; Add Roles</button>
+                                <button type="button" class="d-flex justify-content-end btn btn-success btn-sm btn-rounded"><i class="uil-plus"></i> &nbsp; Add Roles</button>
                             </a>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                 <td>{{ ucfirst($val->name) }}</td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
+                                        <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                             <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                                                     <polyline points="6 9 12 15 18 9"></polyline>
                                                 </svg></i>

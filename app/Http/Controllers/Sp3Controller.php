@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DataTables;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class Sp3Controller extends Controller
@@ -158,6 +159,12 @@ class Sp3Controller extends Controller
         }
     }
 
+    public function generate_sp()
+    {
+        $pdf = PDF::loadView('sp-3.evaluasi.print-sp');
+        return $pdf->download('pelayanan-penumpang.pdf');
+    }
+
     public function evaluasi_store(Request $request)
     {
         foreach ($request["item_value"] as $key => $val) {
@@ -227,7 +234,7 @@ class Sp3Controller extends Controller
                 }
                 if ($row->proses_st == 'PROSES_ST') {
                     $btn = '<div class="dropdown">
-                            <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
+                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                 <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg></i>
@@ -239,14 +246,14 @@ class Sp3Controller extends Controller
                         </div>';
                 } elseif ($row->proses_st == 'PROSES_AT') {
                     $btn = '<div class="dropdown">
-                            <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
+                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                 <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg></i>
                                 <div></div>
                             </button>
                             <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item reject" role="presentation" href="javascript:void(0)"> <i class="uil uil-print"></i> Print SP </a>
+                                <a class="dropdown-item" role="presentation" href="' . route('evaluasi.print.sp') . '"> <i class="uil uil-print"></i> Print SP </a>
                             </div>
                         </div>';
                 } else {
