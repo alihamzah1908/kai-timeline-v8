@@ -23,10 +23,12 @@
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
                                 <th>Status</th>
+                                <!-- <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
+                                <th></th> -->
                                 <!-- <th></th> -->
                             </tr>
                         </thead>

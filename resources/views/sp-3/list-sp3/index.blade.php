@@ -148,6 +148,17 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                            <label for="exampleInputEmail1">Jenis Barang</label>
+                                    <select class="form-control type-tax" name="type_tax">
+                                        <option value="1">Local</option>
+                                        <option value="2">Impor</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">No MI</label>
                                 <input type="text" name="no_mi" class="form-control" placeholder="Please insert no mi">
                             </div>
