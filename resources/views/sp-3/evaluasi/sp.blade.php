@@ -89,6 +89,7 @@
                         <tbody>
                             @php
                             $evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', request()->sp_id)->get();
+							//$evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', request()->sp_id)->post();
                             $i = 1;
                             @endphp
                             @foreach($evaluasi as $val)
