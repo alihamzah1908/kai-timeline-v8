@@ -97,7 +97,7 @@
                         "Barryvdh\\DomPDF\\ServiceProvider"
                     ],
                     "aliases": {
-                        "Pdf": "Barryvdh\\DomPDF\\Facade\\Pdf",
+                        "Pdf": "Barryvdh\\DomPDF\\Facade\\Pdf"
                     }
                 }
             },
@@ -124,11 +124,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
-<<<<<<< HEAD
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/v1.0.0"
-=======
-                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v2.0.0"
->>>>>>> 501914100da11a2fed48ba8372cb87df3abfdd29
             },
             "funding": [
                 {
