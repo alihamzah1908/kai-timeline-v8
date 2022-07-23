@@ -331,7 +331,7 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="javascript:void(0)">Task Procurement</a>
+                                    <a href="{{ route('list.pbj') }}">List PBJ</a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)">History Procurement</a>
