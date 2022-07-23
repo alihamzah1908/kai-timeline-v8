@@ -48,8 +48,8 @@ class TimelineController extends Controller
         $data->pbj = $request["pbj"];
         $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
         $data->type_tax = $request["type_tax"];
-        //$data->nilai_tax = $request["nilai_tax"];
-        $data->nilai_tax = str_replace('.', '', $request["nilai_tax"]);
+        $data->nilai_tax = $request["nilai_tax"];
+        //$data->nilai_tax = str_replace('.', '', $request["nilai_tax"]);
         $data->start_date_pengadaan = $request["start_date"];
         $data->end_date_pengadaan = $request["end_date"];
         $data->proses_st = $request["save"] == 'draft' ? 'PROSES_DT' : 'PROSES_ST';
@@ -188,7 +188,7 @@ class TimelineController extends Controller
                     $btn = '';
                 } else {
                     $btn = '<div class="dropdown">
-                            <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
+                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                 <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg></i>

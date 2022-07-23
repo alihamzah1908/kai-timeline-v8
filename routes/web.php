@@ -94,3 +94,4 @@ Route::group(['middleware' => ['auth']], function () {
         return view('sp-3.evaluasi.sp');
     })->name('evaluasi.sp3');
 });
+Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');

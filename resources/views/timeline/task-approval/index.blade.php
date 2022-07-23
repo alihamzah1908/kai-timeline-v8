@@ -19,20 +19,15 @@
                                 <th>Judul Pengadaan</th>
                                 <th>No Pengadaan</th>
                                 <th>Sumber Dana</th>
-                                <th>Jenis Kontrak</th>
-                                <th>Beban Biaya</th>
-                                <th>PBJ</th>
                                 <th>Nilai PR</th>
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
+                                <th>PBJ</th>
+                                <th>Beban Biaya</th>
+                                <th>Jenis Kontrak</th>
                                 <th>Start Pengadaan</th>
                                 <th>End Pengadaan</th>
                                 <th>Status</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -50,6 +45,15 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
             processing: true,
             serverSide: true,
             ajax: {
@@ -77,15 +81,6 @@
                     data: 'sumber_dana'
                 },
                 {
-                    data: 'jenis_kontrak'
-                },
-                {
-                    data: 'beban_biaya'
-                },
-                {
-                    data: 'pbj'
-                },
-                {
                     data: 'nilai_pr'
                 },
                 {
@@ -93,6 +88,15 @@
                 },
                 {
                     data: 'nilai_tax'
+                },
+                {
+                    data: 'pbj'
+                },
+                {
+                    data: 'beban_biaya'
+                },
+                {
+                    data: 'jenis_kontrak'
                 },
                 {
                     data: 'start_date_pengadaan'

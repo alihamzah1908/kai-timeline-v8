@@ -5,6 +5,7 @@
         <div class="col-md-12">
             <nav aria-label="breadcrumb" class="float-left mt-1">
                 <ol class="breadcrumb">
+                    <li><i class="uil uil-chart-infographic"></i></li>
                     <li class="breadcrumb-item"><a href="{{ route('sp3.task.approval') }}">SP3 Task Approval</a></li>
                     <li class="breadcrumb-item"><a href="#">Evaluasi</a></li>
                 </ol>

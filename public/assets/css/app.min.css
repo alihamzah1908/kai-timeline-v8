@@ -31,7 +31,8 @@ body {
 
 .nav-second-level li>a.active,
 .nav-thrid-level li>a.active {
-    color: #5369f8
+    /* color: #5369f8 */
+    color: #ff3333
 }
 
 #wrapper {
@@ -133,13 +134,18 @@ body {
 }
 
 #sidebar-menu>ul>li>a.active {
-    border-left: 3px solid #5369f8;
+    /* border-left: 3px solid #5369f8;
     color: #5369f8;
-    background-color: #f7f7ff
+    background-color: #f7f7ff */
+
+    border-left: 3px solid #ff4d4d;
+    color: #fff;
+    background-color: #ff4d4d;
 }
 
 #sidebar-menu>ul>li>a.active svg {
-    color: #5369f8;
+    color: #fff;
+    /* color: #5369f8; */
     fill: rgba(83, 105, 248, .1)
 }
 
