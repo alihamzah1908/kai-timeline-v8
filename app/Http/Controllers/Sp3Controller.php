@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
-use DataTables;
-use PDF;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class Sp3Controller extends Controller
 {
@@ -68,7 +68,7 @@ class Sp3Controller extends Controller
         $data->no_justifikasi = $request["no_justifikasi"];
         $data->no_kak = $request["no_kak"];
         $data->no_pr = $request["no_pr_ip"];
-        $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DT' : 'PROSES_ST';
+        $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
         $data->keterangan = 'KETERANGAN';
         $data->created_by = Auth::user()->id;
         $data->updated_by = Auth::user()->id;
@@ -138,7 +138,7 @@ class Sp3Controller extends Controller
         $data = \App\Models\SP3::where('sp3_id', $request["sp3_id"])->first();
         if ($data) {
             $timeline = \App\Models\SP3::find($request["sp3_id"]);
-            $timeline->proses_st = 'PROSES_AT';
+            $timeline->proses_st = 'PROSES_ASP3';
             $timeline->save();
             return response()->json(['status' => '200']);
         } else {
@@ -151,7 +151,7 @@ class Sp3Controller extends Controller
         $data = \App\Models\Timeline::where('sp3_id', $request["sp3_id"])->first();
         if ($data) {
             $timeline = \App\Models\Timeline::find($request["sp3_id"]);
-            $timeline->proses_st = 'PROSES_CT';
+            $timeline->proses_st = 'PROSES_RSP3';
             $timeline->save();
             return response()->json(['status' => '200']);
         } else {
@@ -161,7 +161,7 @@ class Sp3Controller extends Controller
 
     public function generate_sp()
     {
-        $pdf = PDF::loadView('sp-3.evaluasi.print-sp');
+        $pdf = FacadePdf::loadView('sp-3.evaluasi.print-sp');
         return $pdf->download('pelayanan-penumpang.pdf');
     }
 
@@ -183,11 +183,11 @@ class Sp3Controller extends Controller
     {
         $sp3 = \App\Models\SP3::orderBy('sp3_id', 'desc');
         if ($request["timeline_type"] == 'approval') {
-            $sp3->where('proses_st', 'PROSES_ST');
-            $sp3->orWhere('proses_st', 'PROSES_AT');
+            $sp3->where('proses_st', 'PROSES_SSP3');
+            $sp3->orWhere('proses_st', 'PROSES_ASP3');
         }
         $data = $sp3->get();
-        return Datatables::of($data)
+        return FacadesDataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 2);
             })

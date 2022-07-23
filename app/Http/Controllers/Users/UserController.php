@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
-use Hash;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class UserController extends Controller
 {
@@ -27,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data["roles"] = Role::pluck('name','name')->all();
+        $data["roles"] = Role::pluck('name', 'name')->all();
+        $data["user"] = false;
         return view('users.form', $data);
     }
 
@@ -40,9 +41,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-        $user = \App\Models\User::create($input);
-
+        if ($request["id"]) {
+            $user = \App\Models\User::findOrFail($request["id"]);
+        } else {
+            $user = \App\Models\User::create($input);
+            $input['password'] = FacadesHash::make($input['password']);
+        }
         $user->assignRole($request->input('roles'));
         return redirect(route('users.index'));
     }
@@ -66,7 +70,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data["user"] = \App\Models\User::findOrFail($id);
+        $data["roles"] = Role::pluck('name', 'name')->all();
+        return view('users.form', $data);
     }
 
     /**

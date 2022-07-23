@@ -23,9 +23,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $i = 0;
-                            @endphp
                             @foreach($roles as $key => $val)
                             <tr>
                                 <td>{{ ucfirst($val->name) }}</td>

@@ -11,22 +11,25 @@
                         </p>
                         <form action="{{ route('users.store') }}" method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $user ? $user->id : '' }}">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Fullname</label>
-                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter fullname">
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter fullname" value="{{ $user ? $user->name : '' }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
-                                <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                                <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" value="{{ $user ? $user->username : '' }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+                                <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email" value="{{ $user ? $user->email : '' }}">
                             </div>
+                            @if(request()->id == '')
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                                <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password" value="{{ $user ? $user->password : '' }}">
                             </div>
+                            @endif
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Role</label> <br />
                                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}

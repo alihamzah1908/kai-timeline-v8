@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DataTables;
+// use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class TimelineController extends Controller
 {
@@ -142,7 +143,7 @@ class TimelineController extends Controller
             $timeline->orWhere('proses_st', 'PROSES_CT');
         }
         $data = $timeline->get();
-        return Datatables::of($data)
+        return FacadesDataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 0);
             })

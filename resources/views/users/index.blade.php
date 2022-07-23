@@ -22,6 +22,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Roles</th>
+                                <th>Action </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,9 +34,14 @@
                                 <td>
                                     @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $v)
-                                        <label class="badge badge-success">{{ $v }}</label>
+                                    <label class="badge badge-success">{{ $v }}</label>
                                     @endforeach
                                     @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('users.edit', $user->id) }}">
+                                        <button class="btn btn-sm btn-primary btn-rounded">Edit</button>
+                                    </a>
                                 </td>
                             </tr>
 

@@ -41,7 +41,7 @@
         <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
             <div class="container-fluid">
                 <!-- LOGO -->
-                <a href="index.html" class="navbar-brand mr-0 mr-md-2 logo">
+                <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
                     <span class="logo-lg">
                         <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
                         <span class="d-inline h5 ml-1 text-logo"></span>
@@ -298,9 +298,11 @@
                             </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('timeline-list')
                                 <li>
                                     <a href="{{ route('list.timeline') }}">List Timeline</a>
                                 </li>
+                                @endcan
                                 <li>
                                     <a href="{{ route('task.approval') }}">Task Approval</a>
                                 </li>

@@ -40,6 +40,7 @@ class RoleController extends Controller
     public function create()
     {
         $data["permission"] = Permission::get();
+        // dd($data["permission"]->pluck('name'));
         return view('roles.form', $data);
     }
 
