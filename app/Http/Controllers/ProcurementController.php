@@ -131,7 +131,7 @@ class ProcurementController extends Controller
                 return $row->timeline_id != '' ? 'YES (TIMELINE)' : 'NO (TIMELINE)';
             })
             ->addColumn('proses_st', function ($row) {
-                if ($row->proses_st == 'PROSES_DRKS') {
+                if ($row->proses_st == 'PROSES_DPBJ') {
                     return '<badges class="badge badge-warning">Draft RKS</badges>';
                 } else if ($row->proses_st == 'PROSES_ASP3') {
                     return '<badges class="badge badge-success">Approved SP3</badges>';

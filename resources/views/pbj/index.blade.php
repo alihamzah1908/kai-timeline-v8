@@ -48,59 +48,46 @@
                         <li class="nav-item">
                             <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                <span class="d-none d-sm-block">Components</span>
+                                <span class="d-none d-sm-block">Jadwal Pelaksanaan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#berita" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            <a href="#rks" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                <span class="d-none d-sm-block">Berita Acara</span>
+                                <span class="d-none d-sm-block">RKS</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#pemasukan-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
+                            <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                <span class="d-none d-sm-block">Pemasukan Dokumen</span>
+                                <span class="d-none d-sm-block">Peserta Tender</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#profile" data-toggle="tab" aria-expanded="false" class="nav-link">
+                            <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Evaluasi Dokumenn</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#klarifikasi-negoisasi" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Klarifikasi dan Negoisasi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contract" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                <span class="d-none d-sm-block">File Draft RKS</span>
+                                <span class="d-none d-sm-block">Contract</span>
                             </a>
                         </li>
                     </ul>
                     <div class="tab-content p-3 text-muted col-md-12">
                         <div class="tab-pane show active" id="home">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengumuman Pengadaan </label>
-                                        <select name="pengumuman" class="form-control">
-                                            <option value="">Select Pengumuman</option>
-                                            <option value="Pengumuman Pengadaan">Pengumuman Pengadaan</option>
-                                            <option value="Pengumuman Ulang Pengadaan">Pengumuman Ulang Pengadaan</option>
-                                            <option value="Pengumuman Gagal Lelang">Pengumuman Gagal Lelang</option>
-                                            <option value="Pengumuman Batal Lelang">Pengumuman Batal Lelang</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Vendor List</label>
-                                        <select data-plugin="customselect" class="form-control" name="vendor_name">
-                                            <option value="">Select Vendor</option>
-                                            <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
-                                            <option value="RK100002">PT. SARANA MULTI CORPORA</option>
-                                            <option value="RK10002">PT. SARANA MULTI CORPORA</option>
-                                            <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row mb-2">
                                 <div class="col-md-6 border-bottom border-danger ">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Aanwidjzing</label>
+                                    <input type="date" name="jadwal_start_aanwidjzing" class="form-control" placeholder="Please insert jadwal pemasukan">
                                 </div>
                             </div>
                             <div class="row">

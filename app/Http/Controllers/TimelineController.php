@@ -139,9 +139,10 @@ class TimelineController extends Controller
         $timeline = \App\Models\Timeline::orderBy('timeline_id', 'desc');
         if ($request["timeline_type"] == 'approval') {
             $timeline->where('proses_st', 'PROSES_ST');
-            $timeline->orWhere('proses_st', 'PROSES_AT');
-            $timeline->orWhere('proses_st', 'PROSES_CT');
+            // $timeline->orWhere('proses_st', 'PROSES_AT');
+            // $timeline->orWhere('proses_st', 'PROSES_CT');
         }
+        else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
         $data = $timeline->get();
         return FacadesDataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {

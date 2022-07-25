@@ -297,6 +297,7 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
+                            
                                 @can('timeline-list')
                                 <li>
                                     <a href="{{ route('list.timeline') }}">List Timeline</a>
@@ -307,6 +308,7 @@
                                     <a href="{{ route('task.approval') }}">Task Approval</a>
                                 </li>
                                 @endcan
+                            
                             </ul>
                         </li>
                         <li>
