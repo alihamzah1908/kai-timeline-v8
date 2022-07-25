@@ -216,13 +216,13 @@ class Sp3Controller extends Controller
                 if ($row->proses_st == 'PROSES_DSP3') {
                     return '<badges class="badge badge-warning">Draft SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_SSP3') {
-                    return '<badges class="badge badge-success">Submited SP3</badges>';
+                    return '<badges class="badge badge-primary">Submited SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_ESP3') {
-                    return '<badges class="badge badge-danger">Evaluated SP3</badges>';
+                    return '<badges class="badge badge-warning">Evaluated SP3</badges>';
                 }else if ($row->proses_st == 'PROSES_ASP3') {
-                        return '<badges class="badge badge-danger">Approved SP3</badges>';
+                        return '<badges class="badge badge-success">Approved SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_RSP3') {
-                    return '<badges class="badge badge-primary">Rejected SP3</badges>';
+                    return '<badges class="badge badge-danger">Rejected SP3</badges>';
                 }
             })
             ->addColumn('action', function ($row) {

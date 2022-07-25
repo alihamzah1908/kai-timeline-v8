@@ -9,147 +9,252 @@
                         <div class="col-md-6">
                             <h5 class="header-title mt-0 mb-1">List PBJ</h4>
                         </div>
-                        <div class="col-md-6 d-flex justify-content-end">
-                            <p class="sub-header">
-                                <button type="button" class="create-timeline d-flex justify-content-end btn btn-success btn-sm btn-rounded">
-                                    <i class="uil-plus"></i> &nbsp; Create Timeline
-                                </button>
-                            </p>
-                        </div>
                     </div>
-                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <table id="datatable" class="table dt-responsive nowrap">
                         <thead>
                             <tr>
                                 <th>Directorate</th>
                                 <th>Division</th>
                                 <th>Department</th>
+                                <th>Realisasi</th>
                                 <th>Judul Pengadaan</th>
-                                <th>No Pengadaan</th>
-                                <th>Sumber Dana</th>
                                 <th>Nilai PR</th>
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
-                                <th>PBJ</th>
-                                <th>Beban Biaya</th>
-                                <th>Jenis Kontrak</th>
-                                <th>Start Pengadaan</th>
-                                <th>End Pengadaan</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>CT</td>
-                                <td>CTI</td>
-                                <td>CTIO</td>
-                                <td>TEST</td>
-                                <td>OP/CTI/2022/30</td>
-                                <td>RKAP 2022</td>
-                                <td>10,000</td>
-                                <td>Pajak Tidak Dipungut</td>
-                                <td>Nilai TAX</td>
-                                <td>Sarana</td>
-                                <td>CAPEX</td>
-                                <td>SINGLE YEAR</td>
-                                <td>20 Jul 2022</td>
-                                <td>20 Jul 2022</td>
-                                <td>
-                                    <badges class="badge badge-success">Approved Timeline</badges>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm btn-rounded detail">Show Detail</button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
-
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
     </div>
 </div> <!-- container-fluid -->
-<div class="modal fade" id="modal-pbj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-approve" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Detail PBJ</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Approve RKS</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="header-title mb-3 mt-0">Nav Tabs</h5>
-
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                            <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                            <span class="d-none d-sm-block">Home</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
-                                            <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                            <span class="d-none d-sm-block">Profile</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                            <span class="d-block d-sm-none"><i class="uil-envelope"></i></span>
-                                            <span class="d-none d-sm-block">Messages</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content p-3 text-muted">
-                                    <div class="tab-pane" id="home">
-                                        <p>Vakal text here dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                                            Nulla consequat massa quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate
-                                            eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                            tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
-                                            vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
-                                            consequat vitae, eleifend ac, enim.</p>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Components</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#berita" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Berita Acara</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#pemasukan-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Pemasukan Dokumen</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                <span class="d-none d-sm-block">File Draft RKS</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3 text-muted col-md-12">
+                        <div class="tab-pane show active" id="home">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengumuman Pengadaan </label>
+                                        <select name="pengumuman" class="form-control">
+                                            <option value="">Select Pengumuman</option>
+                                            <option value="Pengumuman Pengadaan">Pengumuman Pengadaan</option>
+                                            <option value="Pengumuman Ulang Pengadaan">Pengumuman Ulang Pengadaan</option>
+                                            <option value="Pengumuman Gagal Lelang">Pengumuman Gagal Lelang</option>
+                                            <option value="Pengumuman Batal Lelang">Pengumuman Batal Lelang</option>
+                                        </select>
                                     </div>
-                                    <div class="tab-pane show active" id="profile">
-                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                                            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                                            Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras
-                                            dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
-                                            tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                                            ac, enim.</p>
-                                        <p class="mb-0">Vakal text here dolor sit amet, consectetuer adipiscing
-                                            elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                            natoque penatibus et magnis dis parturient montes, nascetur
-                                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-                                            pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                    </div>
-                                    <div class="tab-pane" id="messages">
-                                        <p>Vakal text here dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-                                            Nulla consequat massa quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate
-                                            eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                                            justo. Nullam dictum felis eu pede mollis pretium. Integer
-                                            tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
-                                            vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
-                                            consequat vitae, eleifend ac, enim.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Vendor List</label>
+                                        <select data-plugin="customselect" class="form-control" name="vendor_name">
+                                            <option value="">Select Vendor</option>
+                                            <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
+                                            <option value="RK100002">PT. SARANA MULTI CORPORA</option>
+                                            <option value="RK10002">PT. SARANA MULTI CORPORA</option>
+                                            <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 border-bottom border-danger ">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Aanwidjzing</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemasukan </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dok.Penawaran</label>
+                                        <input type="date" name="pembukaan_penawaran" class="form-control" placeholder="Please insert pembukaan dok.penawaran">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pelaksanaan_aanwidjzing">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pelaksanaan Aanwidjzing</label>
+                                        <input type="date" name="pelaksanaan_aanwidjzing[]" class="form-control" placeholder="Please insert pembukaan dok.penawaran">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-sm add-form-pelaksanaan">Add Form</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="berita">
+                            <form action="{{ route('procurement.store') }}" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Berita Acara</label>
+                                        <textarea name="berita_acara" class="form-control" placeholder="Please insert berita acara"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
+                                            <input type="date" name="tanggal_acara" class="form-control" placeholder="Please insert tanggal">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="pemasukan-dokumen">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Sampul</label>
+                                    <select class="form-control">
+                                        <option value="">Select Sampul</option>
+                                        <option value="">Penunjukan Langsung</option>
+                                        <option value="">Pemilihan Langsung</option>
+                                        <option value="">Lelang Terbuka</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Dokumen Admin</label>
+                                        <input type="file" name="file" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Harga</label>
+                                        <input type="text" name="harga" class="form-control" placeholder="please insert harga">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            <table id="datatable" class="table dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Judul Pengadaan</th>
+                                        <th>Tanggal RKS</th>
+                                        <th>File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $files = DB::table('draft_rks_file as a')
+                                    ->join('trx_sp3 as b','a.sp3_id','b.sp3_id')
+                                    ->get();
+                                    @endphp
+                                    @foreach($files as $file)
+                                    <td>{{ $file->judul_pengadaan }}</td>
+                                    <td>{{ $file->tanggal_rks }}</td>
+                                    <td>
+                                        <a href="{{ asset('file/rks/' . $file->file) }}" target="_blank">
+                                            <i class="uil uil-file"></i>
+                                        </a>
+                                    </td>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-rks" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Draft RKS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('procurement.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="sp3_id" id="sp3_id" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Upload Template/Proposal</label>
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
+                                <input type="date" name="tanggal_rks" class="form-control" placeholder="Please insert tanggal rks">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -158,8 +263,71 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('body').on('click','.detail', function(){
-            $("#modal-pbj").modal('show')
+        var timeline = $('#datatable').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('data.procurement') }}",
+            columns: [{
+                    data: 'directorate_cd'
+                },
+                {
+                    data: 'division_cd'
+                },
+                {
+                    data: 'department_cd'
+                },
+                {
+                    data: 'realisasi'
+                },
+                {
+                    data: 'judul_pengadaan'
+                },
+                {
+                    data: 'nilai_pr'
+                },
+                {
+                    data: 'type_tax'
+                },
+                {
+                    data: 'nilai_tax'
+                },
+                {
+                    data: 'proses_st'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
+        $('body').on('click', '.draft-rks', function() {
+            var id = $(this).attr('data-id')
+            $('#sp3_id').val(id)
+            $("#modal-rks").modal('show')
+        })
+
+        $('body').on('click', '.approve-rks', function() {
+            var id = $(this).attr('data-id')
+            $("#modal-approve").modal('show')
+        })
+
+        $('body').on('click', '.add-form-pelaksanaan', function() {
+            var body = '<div class="form-group">'
+            body += '<input type="date" name="pelaksanaan_aanwidjzing[]" class="form-control" placeholder="please insert item">'
+            body += '</div>'
+            $(".pelaksanaan_aanwidjzing").append(body)
         })
     })
 </script>

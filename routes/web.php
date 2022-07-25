@@ -31,20 +31,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users/create', 'App\Http\Controllers\Users\UserController@create')->name('users.create');
     Route::get('/users/edit/{id}', 'App\Http\Controllers\Users\UserController@edit')->name('users.edit');
     Route::post('/users/store', 'App\Http\Controllers\Users\UserController@store')->name('users.store');
-    
+
     // ROLES
     Route::get('/roles', 'App\Http\Controllers\Auth\RoleController@index')->name('roles.index');
     Route::get('/roles/create', 'App\Http\Controllers\Auth\RoleController@create')->name('roles.create');
     Route::get('/roles/{id}', 'App\Http\Controllers\Auth\RoleController@show')->name('roles.show');
     Route::post('/roles/store', 'App\Http\Controllers\Auth\RoleController@store')->name('roles.store');
-    
+
 
     // TIMELINE
     Route::get('/data/timeline', 'App\Http\Controllers\TimelineController@data')->name('data.timeline');
     Route::get('/data/timeline/approve', 'App\Http\Controllers\TimelineController@approve')->name('timeline.approve');
     Route::get('/data/timeline/reject', 'App\Http\Controllers\TimelineController@reject')->name('timeline.reject');
     Route::post('/data/timeline/store', 'App\Http\Controllers\TimelineController@store')->name('timeline.store');
-    
+
     // SP3
     Route::get('/data/sp-3', 'App\Http\Controllers\Sp3Controller@data')->name('data.sp3');
     Route::get('/data/sp-3/approve', 'App\Http\Controllers\Sp3Controller@approve')->name('sp3.approve');
@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/sp-3/store', 'App\Http\Controllers\Sp3Controller@store')->name('sp3.store');
     Route::post('/data/sp-3/evaluasi/store', 'App\Http\Controllers\Sp3Controller@evaluasi_store')->name('evaluasi.store');
 
+    // Procurement
+    Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
+    Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
     //DASHBOARD
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
@@ -77,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/monitoring-warehouse', function () {
         return view('dashboard.monitoring-warehouse.index');
     })->name('monitoring.warehouse');
-    
+
     //MENU-TRX
     Route::get('/timeline/task-approval', function () {
         return view('timeline.task-approval.index');
