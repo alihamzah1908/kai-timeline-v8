@@ -34,10 +34,10 @@
     </div>
 </div> <!-- container-fluid -->
 <div class="modal fade" id="modal-approve" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Approve RKS</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Detail Pengadaan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -85,38 +85,124 @@
                     <div class="tab-content p-3 text-muted col-md-12">
                         <div class="tab-pane show active" id="home">
                             <div class="row mb-2">
-                                <div class="col-md-6 border-bottom border-danger ">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Aanwidjzing</label>
-                                    <input type="date" name="jadwal_start_aanwidjzing" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemasukan </label>
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
                                         <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dok.Penawaran</label>
-                                        <input type="date" name="pembukaan_penawaran" class="form-control" placeholder="Please insert pembukaan dok.penawaran">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 pelaksanaan_aanwidjzing">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Pelaksanaan Aanwidjzing</label>
-                                        <input type="date" name="pelaksanaan_aanwidjzing[]" class="form-control" placeholder="Please insert pembukaan dok.penawaran">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-rounded btn-sm add-form-pelaksanaan">Add Form</button>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran</label>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis, dan Harga </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak  </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-rounded btn-sm add-form-pelaksanaan">Add Form</button>
+                                </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
