@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Procurement
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
+    Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
     Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
     //DASHBOARD
     Route::get('/dashboard/monitoring-rup', function () {

@@ -99,6 +99,14 @@ class ProcurementController extends Controller
         //
     }
 
+    public function getSp3(Request $request)
+    {
+        $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
+            ->where('sp3_id', $request["id"])
+            ->first();
+        return response()->json($data);
+    }
+
     public function data(Request $request)
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
