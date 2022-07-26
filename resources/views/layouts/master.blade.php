@@ -507,6 +507,8 @@
         $('.mask-date').mask('00/00/0000');
         $('.mask-time').mask('00:00');
         $('.mask-phone').mask('00000000000');
+        
+        $(".datepicker").flatpickr()
     </script>
     @stack('scripts')
 

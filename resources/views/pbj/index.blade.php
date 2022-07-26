@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-<link href="https://repo.rachmat.id/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col-md-12">
@@ -399,10 +398,8 @@
 </div>
 @endsection
 @push('scripts')
-<script type="text/javascript" src="https://repo.rachmat.id/jquery-ui-1.12.1/jquery-ui.js"></script>
 <script>
     $(document).ready(function() {
-        $(".datepicker").flatpickr()
         var timeline = $('#datatable').DataTable({
             language: {
                 paginate: {

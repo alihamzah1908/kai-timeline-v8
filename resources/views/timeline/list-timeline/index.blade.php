@@ -206,13 +206,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Start Date Pengadaan</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="start_date">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">End Date Pengadaan</label>
-                                <input type="date" class="form-control" placeholder="Please insert end date" name="end_date">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert end date" name="end_date">
                             </div>
                         </div>
                     </div>
