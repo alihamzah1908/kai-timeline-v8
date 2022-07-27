@@ -108,7 +108,7 @@ body {
 #sidebar-menu>ul>li>a:active,
 #sidebar-menu>ul>li>a:focus,
 #sidebar-menu>ul>li>a:hover {
-    color: #5369f8;
+    color: #ff4d4d;
     text-decoration: none;
     background-color: #f7f7ff
 }
@@ -116,7 +116,7 @@ body {
 #sidebar-menu>ul>li>a:active svg,
 #sidebar-menu>ul>li>a:focus svg,
 #sidebar-menu>ul>li>a:hover svg {
-    color: #5369f8;
+    color: #ff4d4d;
     fill: rgba(83, 105, 248, .1)
 }
 

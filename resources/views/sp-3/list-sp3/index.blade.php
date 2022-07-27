@@ -25,6 +25,7 @@
                                 <th>Department</th>
                                 <th>Realisasi</th>
                                 <th>Judul Pengadaan</th>
+                                <th>No SP3</th>
                                 <th>Nilai PR</th>
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
@@ -154,7 +155,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No MI</label>
                                 <label for="exampleInputEmail1" class="font-weight-bold">No MI</label>
                                 <input type="text" name="no_mi" class="form-control" placeholder="Please insert no mi">
                             </div>
@@ -278,6 +278,9 @@
                 },
                 {
                     data: 'judul_pengadaan'
+                },
+                {
+                    data: 'no_sp3'
                 },
                 {
                     data: 'nilai_pr'

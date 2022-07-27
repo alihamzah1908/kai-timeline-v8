@@ -73,6 +73,11 @@ class Sp3Controller extends Controller
         $data->created_by = Auth::user()->id;
         $data->updated_by = Auth::user()->id;
         $data->save();
+        if ($data) {
+            $data2 = \App\Models\SP3::find($data->sp3_id);
+            $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+            $data2->save();
+        }
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             foreach ($file as $val) {
@@ -219,8 +224,8 @@ class Sp3Controller extends Controller
                     return '<badges class="badge badge-primary">Submited SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_ESP3') {
                     return '<badges class="badge badge-warning">Evaluated SP3</badges>';
-                }else if ($row->proses_st == 'PROSES_ASP3') {
-                        return '<badges class="badge badge-success">Approved SP3</badges>';
+                } else if ($row->proses_st == 'PROSES_ASP3') {
+                    return '<badges class="badge badge-success">Approved SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_RSP3') {
                     return '<badges class="badge badge-danger">Rejected SP3</badges>';
                 }

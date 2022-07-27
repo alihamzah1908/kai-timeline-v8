@@ -50,6 +50,12 @@
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="judul-pengadaan">Judul Pengadaan</span></label>
                     </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Vendor Name</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="vendor-name"></span></label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -57,6 +63,12 @@
                     </div>
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="no-sp3"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Type Tax</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="type-tax"></span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -66,6 +78,12 @@
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="no-pr"></span></label>
                     </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No MI</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-mi"></span></label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -74,40 +92,80 @@
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="nilai-pr"></span></label>
                     </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-pr"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No RAB</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-rab"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal RAB</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-rab"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No KAK</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-kak"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal KAK</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-kak"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal Justifikasi</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-justifikasi"></span></label>
+                    </div>
                 </div>
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
+                        <li class="nav-item tab-jadwal-pelaksanaan">
                             <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Jadwal Pelaksanaan</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-rks">
                             <a href="#rks" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">RKS</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-peserta-tender">
                             <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Peserta Tender</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-evaluasi-dokumen">
                             <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Evaluasi Dokumenn</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-klarifikasi">
                             <a href="#klarifikasi-negoisasi" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Klarifikasi dan Negoisasi</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-contract">
                             <a href="#contract" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-user"></i></span>
                                 <span class="d-none d-sm-block">Contract</span>
@@ -117,6 +175,7 @@
                     <div class="tab-content p-3 text-muted col-md-12">
                         <div class="tab-pane show active" id="home">
                             <form action="#" id="jadwal-pelaksanaan">
+                                <input type="hidden" name="sp3_id" id="sp3_id" />
                                 <input type="hidden" name="penjadwalan" value="penjadwalan">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="row mb-2">
@@ -432,11 +491,50 @@
                     'id': id
                 }
             }).done(function(response) {
+                var reverse = response.nilai_pr.toString().split('').reverse().join(''),
+                    ribuan = reverse.match(/\d{1,3}/g);
+                ribuan = ribuan.join('.').split('').reverse().join('');
+                // FORMAT DATE
+                const tanggal_kak = response.tanggal_kak.split(/[- :]/);
+                const wanted1 = `${tanggal_kak[2]}/${tanggal_kak[1]}/${tanggal_kak[0]}`;
+                const tanggal_rab = response.tanggal_rab.split(/[- :]/);
+                const wanted2 = `${tanggal_rab[2]}/${tanggal_rab[1]}/${tanggal_rab[0]}`;
+                const tanggal_pr = response.tanggal_pr.split(/[- :]/);
+                const wanted3 = `${tanggal_pr[2]}/${tanggal_pr[1]}/${tanggal_pr[0]}`;
+                const tanggal_justifikasi = response.tanggal_pr.split(/[- :]/);
+                const wanted4 = `${tanggal_justifikasi[2]}/${tanggal_justifikasi[1]}/${tanggal_justifikasi[0]}`;
                 $("#sp3_id").val(response.sp3_id)
                 $(".judul-pengadaan").html(response.judul_pengadaan)
                 $(".no-sp3").html(response.no_sp3)
                 $(".no-pr").html(response.no_pr)
-                $(".nilai-pr").html(response.nilai_pr)
+                $(".nilai-pr").html(ribuan)
+                $(".vendor-name").html(response.nama_vendor)
+                $(".no-rab").html(response.no_rab)
+                $(".tanggal-rab").html(wanted2)
+                $(".no-kak").html(response.no_kak)
+                $(".tanggal-kak").html(wanted1)
+                if (response.type_tax == '1') {
+                    var type = 'Pajak Tidak Dipungut';
+                } else if (response.type_tax == '2') {
+                    var type = 'Pajak Dipungut';
+                } else {
+                    var type = 'Pajak Dipungut Sebagian';
+                }
+                $(".type-tax").html(type)
+                $(".tanggal-pr").html(wanted3)
+                $(".tanggal-justifikasi").html(wanted4)
+                $(".no-mi").html(response.no_mi)
+
+                // CONDITION STATUS FOR TAB
+                if(response.proses_st == 'PROSES_DRKS'){
+                    $("#peserta-tender").attr('style','display:none')
+                    $("#evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-peserta-tender").attr('style','display:none')
+                    $(".tab-evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-klarifikasi").attr('style','display:none')
+                    $(".tab-contract").attr('style','display:none')
+                }
+                
             })
             $("#modal-approve").modal('show')
         })
@@ -489,7 +587,19 @@
                 dataType: 'JSON',
                 data: formData,
             }).done(function(response) {
-                console.log(response)
+                if (response.status == 200) {
+                    Swal.fire(
+                        'Jadwal Pelaksanaan Saved!',
+                        'Your Jadwal Pelaksanaan has saved.',
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Jadwal Pelaksanaan failed Save!',
+                        'Your Jadwal Pelaksanaan has failed save.',
+                        'error'
+                    )
+                }
             })
         })
 
