@@ -533,6 +533,7 @@
                     $(".tab-evaluasi-dokumen").attr('style','display:none')
                     $(".tab-klarifikasi").attr('style','display:none')
                     $(".tab-contract").attr('style','display:none')
+                    $(".tab-draftrks").removeAttr('style','display:none')
                 }else if(response.proses_st == 'PROSES_RRKS'){
                     $("#peserta-tender").attr('style','display:none')
                     $("#evaluasi-dokumen").attr('style','display:none')
@@ -541,6 +542,7 @@
                     $(".tab-evaluasi-dokumen").attr('style','display:none')
                     $(".tab-klarifikasi").attr('style','display:none')
                     $(".tab-contract").attr('style','display:none')
+                    $(".tab-reviewrks").removeAttr('style','display:none')
                 }
                 
             })
