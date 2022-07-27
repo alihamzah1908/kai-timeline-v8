@@ -319,12 +319,16 @@
                             </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
+                                 @can('sp3-list')
                                 <li>
                                     <a href="{{ route('list.sp3') }}">List SP3</a>
                                 </li>
+                                @endcan
+                                @can('sp3.approval-list')
                                 <li>
                                     <a href="{{ route('sp3.task.approval') }}">Task Approval</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
