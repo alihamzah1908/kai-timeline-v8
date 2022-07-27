@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class ProcurementController extends Controller
 {
@@ -50,8 +51,29 @@ class ProcurementController extends Controller
             } else {
                 return response()->json(["status" => 400]);
             }
-        }elseif($request["data"]){
-            dd($request->all());
+        }elseif($request["penjadwalan"]){
+            $jadwal = new \App\Models\TrxJadwalPelaksaan();
+            $jadwal->sp3_id = $request["sp3_id"];
+            $jadwal->penjelasan_start_date = $request["penjelasan_start_date"];
+            $jadwal->penjelasan_end_date = $request["penjelasan_end_date"];
+            $jadwal->pemasukan_start_date = $request["pemasukan_start_date"];
+            $jadwal->pemasukan_end_date = $request["pemasukan_end_date"];
+            $jadwal->penawaran_start_date = $request["penawaran_start_date"];
+            $jadwal->penawaran_end_date = $request["penawaran_end_date"];
+            $jadwal->evaluasi_start_date = $request["evaluasi_start_date"];
+            $jadwal->evaluasi_end_date = $request["evaluasi_end_date"];
+            $jadwal->pengumuman_start_date = $request["pengumuman_start_date"];
+            $jadwal->pengumuman_end_date = $request["pengumuman_end_date"];
+            $jadwal->tandatangan_start_date = $request["tandatangan_start_date"];
+            $jadwal->tandatangan_end_date = $request["tandatangan_end_date"];
+            $jadwal->created_by = Auth::user()->id;
+            $jadwal->updated_by = Auth::user()->id;
+            $jadwal->save();
+            if ($jadwal) {
+                return response()->json(["status" => 200]);
+            } else {
+                return response()->json(["status" => 400]);
+            }
         }
     }
 
