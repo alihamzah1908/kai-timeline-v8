@@ -162,7 +162,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal MI</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="date_mi">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_mi">
                             </div>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal PR/IP</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="date_pr">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_pr">
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Justifikasi</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="date_justifikasi">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_justifikasi">
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal RAB</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="date_rab">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_rab">
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal KAK</label>
-                                <input type="date" class="form-control" placeholder="Please insert start date" name="date_kak">
+                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_kak">
                             </div>
                         </div>
                     </div>

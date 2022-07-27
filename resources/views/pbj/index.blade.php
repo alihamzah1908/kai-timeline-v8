@@ -44,6 +44,38 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Judul Pengadaan</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="judul-pengadaan">Judul Pengadaan</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No SP3</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-sp3"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-pr"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Nilai PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="nilai-pr"></span></label>
+                    </div>
+                </div>
+                <div class="row">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
@@ -84,153 +116,216 @@
                     </ul>
                     <div class="tab-content p-3 text-muted col-md-12">
                         <div class="tab-pane show active" id="home">
-                            <div class="row mb-2">
-                                <div class="col-md-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                            <form action="#" id="jadwal-pelaksanaan">
+                                <input type="hidden" name="penjadwalan" value="penjadwalan">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan</label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 pelaksanaan_aanwidjzing">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6 pelaksanaan_aanwidjzing">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran</label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran</label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis, dan Harga </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis, dan Harga </label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang </label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="pengumuman_enddate" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak  </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak </label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                        <input type="date" name="jadwal_pemasukan" class="form-control" placeholder="Please insert jadwal pemasukan">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
+                                            <input type="text" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
+                                            <input type="text" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- <div class="row">
+                                <!-- <div class="row">
                                 <div class="col-md-6">
                                     <button type="button" class="btn btn-primary btn-rounded btn-sm add-form-pelaksanaan">Add Form</button>
                                 </div>
                             </div> -->
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-jadwal">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="rks">
+                            <form action="#" id="form-rks" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="sp3_id" id="sp3_id" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Upload Template/Proposal</label>
+                                            <input type="file" name="file" class="form-control" id="file">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
+                                            <input type="text" name="tanggal_rks" id="tanggal-rks" class="form-control datepicker" placeholder="Please insert tanggal rks">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="peserta-tender">
+                            <div class="add-vendor">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
+                                            <select data-plugin="customselect" class="form-control" name="vendor_code[]">
+                                                <option value="">Select Vendor</option>
+                                                <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
+                                                <option value="RK100002">PT. SARANA MULTI CORPORA</option>
+                                                <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">PIC Name</label>
+                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Email Corporate</label>
+                                            <input type="text" name="email[]" class="form-control" placeholder="Please insert email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Phone Number</label>
+                                            <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Vendor Address</label>
+                                            <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="berita">
-                            <form action="{{ route('procurement.store') }}" method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Berita Acara</label>
-                                        <textarea name="berita_acara" class="form-control" placeholder="Please insert berita acara"></textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
-                                            <input type="date" name="tanggal_acara" class="form-control" placeholder="Please insert tanggal">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="pemasukan-dokumen">
+                        <div class="tab-pane" id="evaluasi-dokumen">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Sampul</label>
@@ -262,72 +357,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="profile">
-                            <table id="datatable" class="table dt-responsive nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>Judul Pengadaan</th>
-                                        <th>Tanggal RKS</th>
-                                        <th>File</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                    $files = DB::table('draft_rks_file as a')
-                                    ->join('trx_sp3 as b','a.sp3_id','b.sp3_id')
-                                    ->get();
-                                    @endphp
-                                    @foreach($files as $file)
-                                    <td>{{ $file->judul_pengadaan }}</td>
-                                    <td>{{ $file->tanggal_rks }}</td>
-                                    <td>
-                                        <a href="{{ asset('file/rks/' . $file->file) }}" target="_blank">
-                                            <i class="uil uil-file"></i>
-                                        </a>
-                                    </td>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modal-rks" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Draft RKS</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('procurement.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="sp3_id" id="sp3_id" />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Upload Template/Proposal</label>
-                                <input type="file" name="file" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
-                                <input type="date" name="tanggal_rks" class="form-control" placeholder="Please insert tanggal rks">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -393,6 +424,20 @@
 
         $('body').on('click', '.approve-rks', function() {
             var id = $(this).attr('data-id')
+            $.ajax({
+                url: '{{ route("procurement.sp3") }}',
+                dataType: 'json',
+                method: 'get',
+                data: {
+                    'id': id
+                }
+            }).done(function(response) {
+                $("#sp3_id").val(response.sp3_id)
+                $(".judul-pengadaan").html(response.judul_pengadaan)
+                $(".no-sp3").html(response.no_sp3)
+                $(".no-pr").html(response.no_pr)
+                $(".nilai-pr").html(response.nilai_pr)
+            })
             $("#modal-approve").modal('show')
         })
 
@@ -401,6 +446,90 @@
             body += '<input type="date" name="pelaksanaan_aanwidjzing[]" class="form-control" placeholder="please insert item">'
             body += '</div>'
             $(".pelaksanaan_aanwidjzing").append(body)
+        })
+
+        // SAVE DATA RKS
+        $('body').on('click', '.save-rks', function() {
+            var file = $("#file")[0].files;
+            var tanggal_rks = $("#tanggal-rks").val();
+            var formData = new FormData();
+            formData.append('file', file[0])
+            formData.append('tanggal_rks', tanggal_rks)
+            formData.append('_token', '{{ csrf_token() }}');
+            $.ajax({
+                url: "{{ route('procurement.store') }}",
+                method: "POST",
+                dataType: 'JSON',
+                data: formData,
+                processData: false,
+                contentType: false,
+            }).done(function(response) {
+                if (response.status == 200) {
+                    Swal.fire(
+                        'RKS Saved!',
+                        'Your RKS has saved.',
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'RKS failed Save!',
+                        'Your RKS has failed save.',
+                        'error'
+                    )
+                }
+            })
+        })
+
+        // SAVE JADWAL PELAKSANAAN
+        $('body').on('click', '.save-jadwal', function() {
+            var formData = $("#jadwal-pelaksanaan").serialize()
+            $.ajax({
+                url: "{{ route('procurement.store') }}",
+                method: "POST",
+                dataType: 'JSON',
+                data: formData,
+            }).done(function(response) {
+                console.log(response)
+            })
+        })
+
+        $('body').on('click', '.add-button-vendor', function() {
+            var body = '<div class="row mb-3">'
+            body += '<div class="col-md-6">'
+            body += '<label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>'
+            body += '<select data-plugin="customselect" class="form-control" name="vendor_code[]">'
+            body += '<option value="">Select Vendor</option>'
+            body += '<option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>'
+            body += '<option value="RK100002">PT. SARANA MULTI CORPORA</option>'
+            body += '<option value="RK10003">PT. TRIINTI INTERNATIONAL</option>'
+            body += '</select>'
+            body += '</div>'
+            body += '<div class="col-md-6">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1" class="font-weight-bold">PIC Name</label>'
+            body += '<input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-6">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1" class="font-weight-bold">Email Corporate</label>'
+            body += '<input type="text" name="email[]" class="form-control" placeholder="Please insert email">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-6">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1" class="font-weight-bold">Phone Number</label>'
+            body += '<input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-6">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1" class="font-weight-bold">Vendor Address</label>'
+            body += '<textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            $(".add-vendor").append(body)
         })
     })
 </script>
