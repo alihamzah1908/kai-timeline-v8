@@ -92,38 +92,44 @@
                     </div>
                 </div>
                 <div class="row">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
+                <ul class="nav nav-tabs">
+                        <li class="nav-item tab-jadwal-pelaksanaan">
                             <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Jadwal Pelaksanaan</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#rks" data-toggle="tab" aria-expanded="true" class="nav-link">
+                        <li class="nav-item tab-draftrks">
+                            <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                <span class="d-none d-sm-block">RKS</span>
+                                <span class="d-none d-sm-block">Draft RKS</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-reviewrks">
+                            <a href="#reviewrks" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Review RKS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item tab-peserta-tender">
                             <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Peserta Tender</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-evaluasi-dokumen">
                             <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Evaluasi Dokumenn</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-klarifikasi">
                             <a href="#klarifikasi-negoisasi" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                 <span class="d-none d-sm-block">Klarifikasi dan Negoisasi</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tab-contract">
                             <a href="#contract" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-user"></i></span>
                                 <span class="d-none d-sm-block">Contract</span>
@@ -233,8 +239,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane" id="rks">
-                            <form action="#" id="form-rks" enctype="multipart/form-data">
+                        <div class="tab-pane" id="draftrks">
+                            <form action="#" id="form-draftrks" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="sp3_id" id="sp3_id" />
                                 <div class="row">
@@ -272,7 +278,50 @@
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="reviewrks">
+                            <form action="#" id="form-reviewrks" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="sp3_id" id="sp3_id" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Template Proposal/Dokumen Penawaran:</label>
+                                            <input type="file" name="file" class="form-control" id="file">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Draft RKS:</label>
+                                            <input type="file" name="file" class="form-control" id="file">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Metode Submit Dokumen:</label>
+                                            <select class="form-control">
+                                                <option value="">Select Sampul</option>
+                                                <option value="">1 Sampul</option>
+                                                <option value="">2 Sampul</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Reject</button>
                                     </div>
                                 </div>
                             </form>
@@ -439,13 +488,61 @@
                     'id': id
                 }
             }).done(function(response) {
+                var reverse = response.nilai_pr.toString().split('').reverse().join(''),
+                    ribuan = reverse.match(/\d{1,3}/g);
+                ribuan = ribuan.join('.').split('').reverse().join('');
+                // FORMAT DATE
+                const tanggal_kak = response.tanggal_kak.split(/[- :]/);
+                const wanted1 = `${tanggal_kak[2]}/${tanggal_kak[1]}/${tanggal_kak[0]}`;
+                const tanggal_rab = response.tanggal_rab.split(/[- :]/);
+                const wanted2 = `${tanggal_rab[2]}/${tanggal_rab[1]}/${tanggal_rab[0]}`;
+                const tanggal_pr = response.tanggal_pr.split(/[- :]/);
+                const wanted3 = `${tanggal_pr[2]}/${tanggal_pr[1]}/${tanggal_pr[0]}`;
+                const tanggal_justifikasi = response.tanggal_pr.split(/[- :]/);
+                const wanted4 = `${tanggal_justifikasi[2]}/${tanggal_justifikasi[1]}/${tanggal_justifikasi[0]}`;
                 $("#sp3_id").val(response.sp3_id)
                 $(".judul-pengadaan").html(response.judul_pengadaan)
                 $(".department").html(response.department_cd)
                 $(".no-sp3").html(response.no_sp3)
                 $(".no-pr").html(response.no_pr)
-                $(".nilai-pr").html(response.nilai_pr)
-                $(".nilai-tax").html(response.nilai_tax)
+                $(".nilai-pr").html(ribuan)
+                $(".nilai-tax").html(ribuan)
+                $(".vendor-name").html(response.nama_vendor)
+                $(".no-rab").html(response.no_rab)
+                $(".tanggal-rab").html(wanted2)
+                $(".no-kak").html(response.no_kak)
+                $(".tanggal-kak").html(wanted1)
+                if (response.type_tax == '1') {
+                    var type = 'Pajak Tidak Dipungut';
+                } else if (response.type_tax == '2') {
+                    var type = 'Pajak Dipungut';
+                } else {
+                    var type = 'Pajak Dipungut Sebagian';
+                }
+                $(".type-tax").html(type)
+                $(".tanggal-pr").html(wanted3)
+                $(".tanggal-justifikasi").html(wanted4)
+                $(".no-mi").html(response.no_mi)
+
+                // CONDITION STATUS FOR TAB
+                if(response.proses_st == 'PROSES_DRKS'){
+                    $("#peserta-tender").attr('style','display:none')
+                    $("#evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-reviewrks").attr('style','display:none')
+                    $(".tab-peserta-tender").attr('style','display:none')
+                    $(".tab-evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-klarifikasi").attr('style','display:none')
+                    $(".tab-contract").attr('style','display:none')
+                }else if(response.proses_st == 'PROSES_RRKS'){
+                    $("#peserta-tender").attr('style','display:none')
+                    $("#evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-draftrks").attr('style','display:none')
+                    $(".tab-peserta-tender").attr('style','display:none')
+                    $(".tab-evaluasi-dokumen").attr('style','display:none')
+                    $(".tab-klarifikasi").attr('style','display:none')
+                    $(".tab-contract").attr('style','display:none')
+                }
+                
             })
             $("#modal-approve").modal('show')
         })

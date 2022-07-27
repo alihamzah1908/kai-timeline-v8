@@ -133,7 +133,7 @@ class ProcurementController extends Controller
     public function data(Request $request)
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
-            ->where('proses_st', 'PROSES_ASP3')
+            ->where('proses_st', 'PROSES_RRKS')
             ->orWhere('proses_st', 'PROSES_DRKS')
             ->get();
         return DataTables::of($data)
@@ -163,15 +163,17 @@ class ProcurementController extends Controller
             })
             ->addColumn('proses_st', function ($row) {
                 if ($row->proses_st == 'PROSES_DRKS') {
-                    return '<badges class="badge badge-warning">Draft RKS</badges>';
-                } else if ($row->proses_st == 'PROSES_ASP3') {
-                    return '<badges class="badge badge-success">Approved SP3</badges>';
+                    return '<badges class="badge badge-warning">Drafting RKS</badges>';
+                } else if ($row->proses_st == 'PROSES_RRKS') {
+                    return '<badges class="badge badge-success">Reviewing RKS</badges>';
                 }
             })
             ->addColumn('action', function ($row) {
                 if ($row->proses_st == 'PROSES_DRKS') {
                     $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>Drafting RKS</a>';
-                } 
+                }else if ($row->proses_st == 'PROSES_RRKS') {
+                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>Reviewing RKS</a>';
+                }
                 $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                 <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
