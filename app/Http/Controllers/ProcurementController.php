@@ -46,11 +46,12 @@ class ProcurementController extends Controller
             $files->file = $new_name;
             $files->save();
             if ($files) {
-                $sp3 = \App\Models\SP3::find($request["sp3_id"]);
-                $sp3->proses_st = 'PROSES_DPBJ';
-                $sp3->save();
+                return response()->json(["status" => 200]);
+            } else {
+                return response()->json(["status" => 400]);
             }
-            return redirect(route('list.pbj'));
+        }elseif($request["data"]){
+            dd($request->all());
         }
     }
 
