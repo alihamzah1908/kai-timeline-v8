@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5 class="header-title mt-0 mb-1">Task Contract</h4>
+                            <h5 class="header-title mt-0 mb-1">List Procurement</h4>
                         </div>
                     </div>
                     <table id="datatable" class="table dt-responsive nowrap">
