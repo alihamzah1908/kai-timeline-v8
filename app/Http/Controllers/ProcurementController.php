@@ -112,7 +112,7 @@ class ProcurementController extends Controller
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
             ->where('proses_st', 'PROSES_ASP3')
-            ->orWhere('proses_st', 'PROSES_DPBJ')
+            ->orWhere('proses_st', 'PROSES_DRKS')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -147,11 +147,9 @@ class ProcurementController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
-                if ($row->proses_st == 'PROSES_DPBJ') {
-                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>  Approve RKS</a>';
-                } else {
-                    $action = '<a class="dropdown-item draft-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS </a>';
-                }
+                if ($row->proses_st == 'PROSES_DRKS') {
+                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>Drafting RKS</a>';
+                } 
                 $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
                                 <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">

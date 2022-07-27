@@ -340,10 +340,13 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="{{ route('list.pbj') }}">List PBJ</a>
+                                    <a href="{{ route('list.taskpbj') }}">Task Approval PBJ</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">History Procurement</a>
+                                    <a href="{{ route('list.taskcontract') }}">Task Approval Contract</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('list.procurement') }}">List Procurement</a>
                                 </li>
                             </ul>
                         </li>

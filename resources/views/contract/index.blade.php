@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5 class="header-title mt-0 mb-1">Task PBJ</h4>
+                            <h5 class="header-title mt-0 mb-1">Task Contract</h4>
                         </div>
                     </div>
                     <table id="datatable" class="table dt-responsive nowrap">
@@ -51,7 +51,6 @@
                         <label class="font-weight-bold">: <span class="judul-pengadaan">Judul Pengadaan</span></label>
                     </div>
                 </div>
-                
                 <div class="row">
                     <div class="col-md-3">
                         <label class="font-weight-bold">No SP3</label>
