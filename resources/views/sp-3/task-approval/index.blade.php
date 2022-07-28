@@ -23,6 +23,7 @@
                                 <th>Type Tax</th>
                                 <th>Nilai TAX</th>
                                 <th>Status</th>
+                                <th>Evaluasi</th>
                                 <!-- <th></th> -->
                                 <th></th>
                             </tr>
@@ -50,6 +51,8 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="hidden" name="sp3_id" id="sp3_id" value="{{ csrf_token() }}" />
                     <div class="row-evaluasi">
+                        @for($i = 1; $i < 10; $i++)
+                        <label class="font-weight-bold">{{ $i }}</label>
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
@@ -72,11 +75,12 @@
                                 </div>
                             </div>
                         </div>
+                        @endfor
                     </div>
                     <div class="row">
-                        <div class="col-md-12 d-flex justify-content-start">
+                        <!-- <div class="col-md-12 d-flex justify-content-start">
                             <button class="btn btn-success btn-rounded add-form btn-sm" type="button">Add Form</button>
-                        </div>
+                        </div> -->
                         <div class="col-md-12 d-flex justify-content-end">
                             <input class="btn btn-primary btn-rounded save ml-2" type="submit" name="save" value="Submit">
                         </div>
@@ -136,6 +140,9 @@
                     data: 'proses_st'
                 },
                 {
+                    data: 'evaluasi'
+                },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,
@@ -145,13 +152,13 @@
         });
         $('body').on('click', '.approve', function() {
             Swal.fire({
-                title: 'Are you sure approve timeline?',
+                title: 'Are you sure send Draft RKS SP3?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Approve'
+                confirmButtonText: 'Ya'
             }).then((result) => {
                 if (result.isConfirmed) {
                     var sp_3_id = $(this).attr('data-bind');
@@ -165,15 +172,15 @@
                     }).done(function(response) {
                         if (response.status == '200') {
                             Swal.fire(
-                                'Approved!',
-                                'Your timeline has approved.',
+                                'congratulations!',
+                                'Your SP3 has updated Draft RKS.',
                                 'success'
                             )
                             timeline.ajax.reload()
                         } else {
                             Swal.fire(
                                 'Failed!',
-                                'Your timeline failed approved.',
+                                'Your SP3 failed updated Draft RKS.',
                                 'success'
                             )
                         }

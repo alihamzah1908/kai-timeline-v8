@@ -65,7 +65,9 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
+    Route::get('/data/procurement/review/rks', 'App\Http\Controllers\ProcurementController@data_rks')->name('data.view.rks');
     Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
+    Route::post('/data/procurement/status/reviewing', 'App\Http\Controllers\ProcurementController@reviewing')->name('procurement.reviewing');
 
     //DASHBOARD
     Route::get('/dashboard/monitoring-rup', function () {

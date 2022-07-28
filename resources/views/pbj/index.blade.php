@@ -50,37 +50,11 @@
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="judul-pengadaan">Judul Pengadaan</span></label>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3">
-                        <label class="font-weight-bold">Department</label>
+                        <label class="font-weight-bold">Vendor Name</label>
                     </div>
                     <div class="col-md-3">
-                        <label class="font-weight-bold">: <span class="department"></span></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">No PR</label>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">: <span class="no-pr"></span></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">Nilai PR</label>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">: <span class="nilai-pr"></span></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">Nilai Tax</label>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="font-weight-bold">: <span class="nilai-tax"></span></label>
+                        <label class="font-weight-bold">: <span class="vendor-name"></span></label>
                     </div>
                 </div>
                 <div class="row">
@@ -90,9 +64,77 @@
                     <div class="col-md-3">
                         <label class="font-weight-bold">: <span class="no-sp3"></span></label>
                     </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Type Tax</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="type-tax"></span></label>
+                    </div>
                 </div>
                 <div class="row">
-                <ul class="nav nav-tabs">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-pr"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No MI</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-mi"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Nilai PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="nilai-pr"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal PR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-pr"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No RAB</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-rab"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal RAB</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-rab"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">No KAK</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="no-kak"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal KAK</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-kak"></span></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">Tanggal Justifikasi</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="font-weight-bold">: <span class="tanggal-justifikasi"></span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="nav nav-tabs">
                         <li class="nav-item tab-jadwal-pelaksanaan">
                             <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -141,19 +183,19 @@
                             <form action="#" id="jadwal-pelaksanaan">
                                 <input type="hidden" name="penjadwalan" value="penjadwalan">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                
+
                                 <div class="row mb-2">
                                     <div class="col-md-3">
                                         <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="penjelasan_end_date" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -162,13 +204,13 @@
                                         <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="pemasukan_start_date" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="pemasukan_end_date" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -177,13 +219,13 @@
                                         <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="penawaran_start_date" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="penawaran_end_date" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -192,13 +234,13 @@
                                         <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis dan Harga:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="evaluasi_start_date" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="evaluasi_end_date" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -207,13 +249,13 @@
                                         <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="pengumuman_start_date" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="pengumuman_enddate" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="pengumuman_end_date" name="pengumuman_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -222,13 +264,13 @@
                                         <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                        <input type="text" id="tandatangan_start_date" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
                                     <div class="col-md-1">
                                         <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
                                     </div>
                                     <div class="col-md-3">
-                                        <input type="text" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
+                                        <input type="text" id="tandatangan_end_date" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
 
@@ -253,7 +295,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" class="font-weight-bold">Upload Draft RKS:</label>
-                                            <input type="file" name="file" class="form-control" id="file">
+                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                         </div>
                                     </div>
                                 </div>
@@ -284,46 +326,19 @@
                         </div>
                         <div class="tab-pane" id="reviewrks">
                             <form action="#" id="form-reviewrks" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="sp3_id" id="sp3_id" />
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Template Proposal/Dokumen Penawaran:</label>
-                                            <input type="file" name="file" class="form-control" id="file">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Draft RKS:</label>
-                                            <input type="file" name="file" class="form-control" id="file">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Metode Submit Dokumen:</label>
-                                            <select class="form-control">
-                                                <option value="">Select Sampul</option>
-                                                <option value="">1 Sampul</option>
-                                                <option value="">2 Sampul</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Reject</button>
-                                    </div>
-                                </div>
+                                <table id="review-rks" class="table dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul Pengadaan</th>
+                                            <th>Metode Submit Dokumen</th>
+                                            <th>File Proposal/Template</th>
+                                            <th>Draft RKS</th>
+                                            <th>Catatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </form>
                         </div>
                         <div class="tab-pane" id="peserta-tender">
@@ -472,6 +487,38 @@
             ]
         });
 
+        // review rks
+        var viewrks = $('#review-rks').DataTable({
+            language: {
+                paginate: {
+                    previous: "<i class='uil uil-angle-left'>",
+                    next: "<i class='uil uil-angle-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            },
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('data.view.rks') }}",
+            columns: [{
+                    data: 'judul_pengadaan'
+                },
+                {
+                    data: 'metode_submit'
+                },
+                {
+                    data: 'file'
+                },
+                {
+                    data: 'file_draft'
+                },
+                {
+                    data: 'catatan'
+                },
+            ]
+        });
+
         $('body').on('click', '.draft-rks', function() {
             var id = $(this).attr('data-id')
             $('#sp3_id').val(id)
@@ -488,33 +535,33 @@
                     'id': id
                 }
             }).done(function(response) {
-                var reverse = response.nilai_pr.toString().split('').reverse().join(''),
+                var reverse = response.data.nilai_pr.toString().split('').reverse().join(''),
                     ribuan = reverse.match(/\d{1,3}/g);
                 ribuan = ribuan.join('.').split('').reverse().join('');
                 // FORMAT DATE
-                const tanggal_kak = response.tanggal_kak.split(/[- :]/);
+                const tanggal_kak = response.data.tanggal_kak.split(/[- :]/);
                 const wanted1 = `${tanggal_kak[2]}/${tanggal_kak[1]}/${tanggal_kak[0]}`;
-                const tanggal_rab = response.tanggal_rab.split(/[- :]/);
+                const tanggal_rab = response.data.tanggal_rab.split(/[- :]/);
                 const wanted2 = `${tanggal_rab[2]}/${tanggal_rab[1]}/${tanggal_rab[0]}`;
-                const tanggal_pr = response.tanggal_pr.split(/[- :]/);
+                const tanggal_pr = response.data.tanggal_pr.split(/[- :]/);
                 const wanted3 = `${tanggal_pr[2]}/${tanggal_pr[1]}/${tanggal_pr[0]}`;
-                const tanggal_justifikasi = response.tanggal_pr.split(/[- :]/);
+                const tanggal_justifikasi = response.data.tanggal_pr.split(/[- :]/);
                 const wanted4 = `${tanggal_justifikasi[2]}/${tanggal_justifikasi[1]}/${tanggal_justifikasi[0]}`;
-                $("#sp3_id").val(response.sp3_id)
-                $(".judul-pengadaan").html(response.judul_pengadaan)
-                $(".department").html(response.department_cd)
-                $(".no-sp3").html(response.no_sp3)
-                $(".no-pr").html(response.no_pr)
+                $("#sp3_id").val(response.data.sp3_id)
+                $(".judul-pengadaan").html(response.data.judul_pengadaan)
+                $(".department").html(response.data.department_cd)
+                $(".no-sp3").html(response.data.no_sp3)
+                $(".no-pr").html(response.data.no_pr)
                 $(".nilai-pr").html(ribuan)
                 $(".nilai-tax").html(ribuan)
-                $(".vendor-name").html(response.nama_vendor)
-                $(".no-rab").html(response.no_rab)
+                $(".vendor-name").html(response.data.nama_vendor)
+                $(".no-rab").html(response.data.no_rab)
                 $(".tanggal-rab").html(wanted2)
-                $(".no-kak").html(response.no_kak)
+                $(".no-kak").html(response.data.no_kak)
                 $(".tanggal-kak").html(wanted1)
-                if (response.type_tax == '1') {
+                if (response.data.type_tax == '1') {
                     var type = 'Pajak Tidak Dipungut';
-                } else if (response.type_tax == '2') {
+                } else if (response.data.type_tax == '2') {
                     var type = 'Pajak Dipungut';
                 } else {
                     var type = 'Pajak Dipungut Sebagian';
@@ -522,29 +569,43 @@
                 $(".type-tax").html(type)
                 $(".tanggal-pr").html(wanted3)
                 $(".tanggal-justifikasi").html(wanted4)
-                $(".no-mi").html(response.no_mi)
+                $(".no-mi").html(response.data.no_mi)
 
                 // CONDITION STATUS FOR TAB
-                if(response.proses_st == 'PROSES_DRKS'){
-                    $("#peserta-tender").attr('style','display:none')
-                    $("#evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-reviewrks").attr('style','display:none')
-                    $(".tab-peserta-tender").attr('style','display:none')
-                    $(".tab-evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-klarifikasi").attr('style','display:none')
-                    $(".tab-contract").attr('style','display:none')
-                    $(".tab-draftrks").removeAttr('style','display:none')
-                }else if(response.proses_st == 'PROSES_RRKS'){
-                    $("#peserta-tender").attr('style','display:none')
-                    $("#evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-draftrks").attr('style','display:none')
-                    $(".tab-peserta-tender").attr('style','display:none')
-                    $(".tab-evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-klarifikasi").attr('style','display:none')
-                    $(".tab-contract").attr('style','display:none')
-                    $(".tab-reviewrks").removeAttr('style','display:none')
+                if (response.data.proses_st == 'PROSES_DRKS') {
+                    $("#peserta-tender").attr('style', 'display:none')
+                    $("#evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-reviewrks").attr('style', 'display:none')
+                    $(".tab-peserta-tender").attr('style', 'display:none')
+                    $(".tab-evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-klarifikasi").attr('style', 'display:none')
+                    $(".tab-contract").attr('style', 'display:none')
+                    $(".tab-draftrks").removeAttr('style', 'display:none')
+                } else if (response.data.proses_st == 'PROSES_RRKS') {
+
+                    $("#penjelasan_start_date").val(response.jadwal.penjelasan_start_date)
+                    $("#penjelasan_end_date").val(response.jadwal.penjelasan_end_date)
+                    $("#pemasukan_start_date").val(response.jadwal.pemasukan_start_date)
+                    $("#pemasukan_end_date").val(response.jadwal.pemasukan_end_date)
+                    $("#penawaran_start_date").val(response.jadwal.penawaran_start_date)
+                    $("#penawaran_end_date").val(response.jadwal.penawaran_end_date)
+                    $("#evaluasi_start_date").val(response.jadwal.evaluasi_start_date)
+                    $("#evaluasi_end_date").val(response.jadwal.evaluasi_end_date)
+                    $("#pengumuman_start_date").val(response.jadwal.pengumuman_start_date)
+                    $("#pengumuman_end_date").val(response.jadwal.pengumuman_end_date)
+                    $("#tandatangan_start_date").val(response.jadwal.tandatangan_start_date)
+                    $("#tandatangan_end_date").val(response.jadwal.tandatangan_end_date)
+
+                    $("#peserta-tender").attr('style', 'display:none')
+                    $("#evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-draftrks").attr('style', 'display:none')
+                    $(".tab-peserta-tender").attr('style', 'display:none')
+                    $(".tab-evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-klarifikasi").attr('style', 'display:none')
+                    $(".tab-contract").attr('style', 'display:none')
+                    $(".tab-reviewrks").removeAttr('style', 'display:none')
                 }
-                
+
             })
             $("#modal-approve").modal('show')
         })
@@ -559,9 +620,11 @@
         // SAVE DATA RKS
         $('body').on('click', '.save-rks', function() {
             var file = $("#file")[0].files;
+            var file_draft = $("#file-draft")[0].files;
             var tanggal_rks = $("#tanggal-rks").val();
             var formData = new FormData();
             formData.append('file', file[0])
+            formData.append('file_draft', file_draft[0])
             formData.append('tanggal_rks', tanggal_rks)
             formData.append('_token', '{{ csrf_token() }}');
             $.ajax({
@@ -573,11 +636,33 @@
                 contentType: false,
             }).done(function(response) {
                 if (response.status == 200) {
-                    Swal.fire(
-                        'RKS Saved!',
-                        'Your RKS has saved.',
-                        'success'
-                    )
+                    Swal.fire({
+                        title: 'RKS Saved !',
+                        text: "Are you send RKS to Reviewing RKS ?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "{{ route('procurement.reviewing') }}",
+                                method: "POST",
+                                dataType: 'JSON',
+                                data: {
+                                    '_token': '{{ csrf_token() }}',
+                                    'sp3_id': $("#sp3_id").val(),
+                                    'status': 'PROSES_RRKS'
+                                },
+                            }).done(function(response) {
+                                Swal.fire(
+                                    'RKS status is Reviewing RKS!',
+                                    'error'
+                                )
+                            })
+                        }
+                    })
                 } else {
                     Swal.fire(
                         'RKS failed Save!',
@@ -597,7 +682,19 @@
                 dataType: 'JSON',
                 data: formData,
             }).done(function(response) {
-                console.log(response)
+                if (response.status == 200) {
+                    Swal.fire(
+                        'Jadwal Pelaksanaan Saved!',
+                        'Your Jadwal Pelaksanaan has saved.',
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Jadwal Pelaksanaan failed Save!',
+                        'Your Jadwal Pelaksanaan has failed save.',
+                        'error'
+                    )
+                }
             })
         })
 

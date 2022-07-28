@@ -141,10 +141,16 @@
                                 <span class="d-none d-sm-block">Jadwal Pelaksanaan</span>
                             </a>
                         </li>
-                        <li class="nav-item tab-rks">
-                            <a href="#rks" data-toggle="tab" aria-expanded="true" class="nav-link">
+                        <li class="nav-item tab-draftrks">
+                            <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                <span class="d-none d-sm-block">RKS</span>
+                                <span class="d-none d-sm-block">Draft RKS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item tab-reviewrks">
+                            <a href="#reviewrks" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                <span class="d-none d-sm-block">Review RKS</span>
                             </a>
                         </li>
                         <li class="nav-item tab-peserta-tender">
@@ -175,128 +181,99 @@
                     <div class="tab-content p-3 text-muted col-md-12">
                         <div class="tab-pane show active" id="home">
                             <form action="#" id="jadwal-pelaksanaan">
-                                <input type="hidden" name="sp3_id" id="sp3_id" />
                                 <input type="hidden" name="penjadwalan" value="penjadwalan">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                 <div class="row mb-2">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan</label>
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="penjelasan_end_date" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran:</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="pemasukan_start_date" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 pelaksanaan_aanwidjzing">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran</label>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="pemasukan_end_date" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran:</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="penawaran_start_date" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran</label>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="penawaran_end_date" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis dan Harga:</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="evaluasi_start_date" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis, dan Harga </label>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="evaluasi_end_date" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang:</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="pengumuman_start_date" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang </label>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="pengumuman_end_date" name="pengumuman_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak:</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="pengumuman_enddate" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="tandatangan_start_date" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak </label>
+                                    <div class="col-md-1">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="tandatangan_end_date" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date </label>
-                                            <input type="text" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date </label>
-                                            <input type="text" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-rounded btn-sm add-form-pelaksanaan">Add Form</button>
-                                </div>
-                            </div> -->
+
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded save-jadwal">Submit</button>
@@ -304,21 +281,39 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane" id="rks">
-                            <form action="#" id="form-rks" enctype="multipart/form-data">
+                        <div class="tab-pane" id="draftrks">
+                            <form action="#" id="form-draftrks" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="sp3_id" id="sp3_id" />
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Upload Template/Proposal</label>
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Upload Template Proposal/Dokumen Penawaran:</label>
                                             <input type="file" name="file" class="form-control" id="file">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal</label>
-                                            <input type="text" name="tanggal_rks" id="tanggal-rks" class="form-control datepicker" placeholder="Please insert tanggal rks">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Upload Draft RKS:</label>
+                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Metode Submit Dokumen:</label>
+                                            <select class="form-control">
+                                                <option value="">Select Sampul</option>
+                                                <option value="">1 Sampul</option>
+                                                <option value="">2 Sampul</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -327,6 +322,23 @@
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
                                     </div>
                                 </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="reviewrks">
+                            <form action="#" id="form-reviewrks" enctype="multipart/form-data">
+                                <table id="review-rks" class="table dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul Pengadaan</th>
+                                            <th>Metode Submit Dokumen</th>
+                                            <th>File Proposal/Template</th>
+                                            <th>Draft RKS</th>
+                                            <th>Catatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </form>
                         </div>
                         <div class="tab-pane" id="peserta-tender">
@@ -491,31 +503,33 @@
                     'id': id
                 }
             }).done(function(response) {
-                var reverse = response.nilai_pr.toString().split('').reverse().join(''),
+                var reverse = response.data.nilai_pr.toString().split('').reverse().join(''),
                     ribuan = reverse.match(/\d{1,3}/g);
                 ribuan = ribuan.join('.').split('').reverse().join('');
                 // FORMAT DATE
-                const tanggal_kak = response.tanggal_kak.split(/[- :]/);
+                const tanggal_kak = response.data.tanggal_kak.split(/[- :]/);
                 const wanted1 = `${tanggal_kak[2]}/${tanggal_kak[1]}/${tanggal_kak[0]}`;
-                const tanggal_rab = response.tanggal_rab.split(/[- :]/);
+                const tanggal_rab = response.data.tanggal_rab.split(/[- :]/);
                 const wanted2 = `${tanggal_rab[2]}/${tanggal_rab[1]}/${tanggal_rab[0]}`;
-                const tanggal_pr = response.tanggal_pr.split(/[- :]/);
+                const tanggal_pr = response.data.tanggal_pr.split(/[- :]/);
                 const wanted3 = `${tanggal_pr[2]}/${tanggal_pr[1]}/${tanggal_pr[0]}`;
-                const tanggal_justifikasi = response.tanggal_pr.split(/[- :]/);
+                const tanggal_justifikasi = response.data.tanggal_pr.split(/[- :]/);
                 const wanted4 = `${tanggal_justifikasi[2]}/${tanggal_justifikasi[1]}/${tanggal_justifikasi[0]}`;
-                $("#sp3_id").val(response.sp3_id)
-                $(".judul-pengadaan").html(response.judul_pengadaan)
-                $(".no-sp3").html(response.no_sp3)
-                $(".no-pr").html(response.no_pr)
+                $("#sp3_id").val(response.data.sp3_id)
+                $(".judul-pengadaan").html(response.data.judul_pengadaan)
+                $(".department").html(response.data.department_cd)
+                $(".no-sp3").html(response.data.no_sp3)
+                $(".no-pr").html(response.data.no_pr)
                 $(".nilai-pr").html(ribuan)
-                $(".vendor-name").html(response.nama_vendor)
-                $(".no-rab").html(response.no_rab)
+                $(".nilai-tax").html(ribuan)
+                $(".vendor-name").html(response.data.nama_vendor)
+                $(".no-rab").html(response.data.no_rab)
                 $(".tanggal-rab").html(wanted2)
-                $(".no-kak").html(response.no_kak)
+                $(".no-kak").html(response.data.no_kak)
                 $(".tanggal-kak").html(wanted1)
-                if (response.type_tax == '1') {
+                if (response.data.type_tax == '1') {
                     var type = 'Pajak Tidak Dipungut';
-                } else if (response.type_tax == '2') {
+                } else if (response.data.type_tax == '2') {
                     var type = 'Pajak Dipungut';
                 } else {
                     var type = 'Pajak Dipungut Sebagian';
@@ -523,18 +537,43 @@
                 $(".type-tax").html(type)
                 $(".tanggal-pr").html(wanted3)
                 $(".tanggal-justifikasi").html(wanted4)
-                $(".no-mi").html(response.no_mi)
+                $(".no-mi").html(response.data.no_mi)
 
                 // CONDITION STATUS FOR TAB
-                if(response.proses_st == 'PROSES_DRKS'){
-                    $("#peserta-tender").attr('style','display:none')
-                    $("#evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-peserta-tender").attr('style','display:none')
-                    $(".tab-evaluasi-dokumen").attr('style','display:none')
-                    $(".tab-klarifikasi").attr('style','display:none')
-                    $(".tab-contract").attr('style','display:none')
+                if (response.data.proses_st == 'PROSES_DRKS') {
+                    $("#peserta-tender").attr('style', 'display:none')
+                    $("#evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-reviewrks").attr('style', 'display:none')
+                    $(".tab-peserta-tender").attr('style', 'display:none')
+                    $(".tab-evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-klarifikasi").attr('style', 'display:none')
+                    $(".tab-contract").attr('style', 'display:none')
+                    $(".tab-draftrks").removeAttr('style', 'display:none')
+                } else if (response.data.proses_st == 'PROSES_RRKS') {
+
+                    $("#penjelasan_start_date").val(response.jadwal.penjelasan_start_date)
+                    $("#penjelasan_end_date").val(response.jadwal.penjelasan_end_date)
+                    $("#pemasukan_start_date").val(response.jadwal.pemasukan_start_date)
+                    $("#pemasukan_end_date").val(response.jadwal.pemasukan_end_date)
+                    $("#penawaran_start_date").val(response.jadwal.penawaran_start_date)
+                    $("#penawaran_end_date").val(response.jadwal.penawaran_end_date)
+                    $("#evaluasi_start_date").val(response.jadwal.evaluasi_start_date)
+                    $("#evaluasi_end_date").val(response.jadwal.evaluasi_end_date)
+                    $("#pengumuman_start_date").val(response.jadwal.pengumuman_start_date)
+                    $("#pengumuman_end_date").val(response.jadwal.pengumuman_end_date)
+                    $("#tandatangan_start_date").val(response.jadwal.tandatangan_start_date)
+                    $("#tandatangan_end_date").val(response.jadwal.tandatangan_end_date)
+
+                    $("#peserta-tender").attr('style', 'display:none')
+                    $("#evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-draftrks").attr('style', 'display:none')
+                    $(".tab-peserta-tender").attr('style', 'display:none')
+                    $(".tab-evaluasi-dokumen").attr('style', 'display:none')
+                    $(".tab-klarifikasi").attr('style', 'display:none')
+                    $(".tab-contract").attr('style', 'display:none')
+                    $(".tab-reviewrks").removeAttr('style', 'display:none')
                 }
-                
+
             })
             $("#modal-approve").modal('show')
         })

@@ -37,21 +37,29 @@ class ProcurementController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('file')) {
+            // PROPOSAL/TEMPLATE FILE
             $file = $request->file('file');
             $files = new \App\Models\DraftRks();
             $files->sp3_id = $request["sp3_id"];
-            $files->tanggal_rks = $request["tanggal_rks"];
             $extension = $file->getClientOriginalExtension();
             $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
             $file->move(public_path('file/rks'), $new_name);
             $files->file = $new_name;
+
+            // DRAFT FILE
+            $file_draft = $request->file('file_draft');
+            // dd($file_draft);
+            $extension_draft = $file_draft->getClientOriginalExtension();
+            $new_name_draft = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_draft;
+            $file_draft->move(public_path('file/rks'), $new_name_draft);
+            $files->file_draft = $new_name_draft;
             $files->save();
             if ($files) {
                 return response()->json(["status" => 200]);
             } else {
                 return response()->json(["status" => 400]);
             }
-        }elseif($request["penjadwalan"]){
+        } elseif ($request["penjadwalan"]) {
             $jadwal = new \App\Models\TrxJadwalPelaksaan();
             $jadwal->sp3_id = $request["sp3_id"];
             $jadwal->penjelasan_start_date = $request["penjelasan_start_date"];
@@ -75,6 +83,13 @@ class ProcurementController extends Controller
                 return response()->json(["status" => 400]);
             }
         }
+    }
+
+    public function reviewing(Request $request)
+    {
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_RRKS';
+        $status->save();
     }
 
     /**
@@ -127,7 +142,33 @@ class ProcurementController extends Controller
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
             ->where('sp3_id', $request["id"])
             ->first();
-        return response()->json($data);
+        $jadwal = \App\Models\TrxJadwalPelaksaan::where('sp3_id', $data->sp3_id)->first();
+        return response()->json(['data' => $data, 'jadwal' => $jadwal]);
+    }
+
+    public function data_rks(Request $request)
+    {
+        $data = \App\Models\DraftRks::orderBy('sp3_id', 'desc')
+            ->where('sp3_id', $request["sp3_id"])
+            ->get();
+        return DataTables::of($data)
+            ->addColumn('judul_pengadaan', function ($row) {
+                return 'CONTOH JUDUL PENGADAAN';
+            })
+            ->addColumn('metode_submit', function ($row) {
+                return 'Sampul 1';
+            })
+            ->addColumn('file', function ($row) {
+                return '<a href='. asset('file/rks/' . $row->file) .'><i class="uil uil-file"></i></a>';
+            })
+            ->addColumn('file_draft', function ($row) {
+                return '<a href='. asset('file/rks/' . $row->file_draft) .'><i class="uil uil-file"></i></a>';
+            })
+            ->addColumn('catatan', function ($row) {
+                return 'catatan';
+            })
+            ->rawColumns(['action', 'proses_st','file','file_draft'])
+            ->make(true);
     }
 
     public function data(Request $request)
@@ -170,9 +211,9 @@ class ProcurementController extends Controller
             })
             ->addColumn('action', function ($row) {
                 if ($row->proses_st == 'PROSES_DRKS') {
-                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>Drafting RKS</a>';
-                }else if ($row->proses_st == 'PROSES_RRKS') {
-                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i>Reviewing RKS</a>';
+                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
+                } else if ($row->proses_st == 'PROSES_RRKS') {
+                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
                 }
                 $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action

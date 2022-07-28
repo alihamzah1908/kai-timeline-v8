@@ -143,7 +143,7 @@ class Sp3Controller extends Controller
         $data = \App\Models\SP3::where('sp3_id', $request["sp3_id"])->first();
         if ($data) {
             $timeline = \App\Models\SP3::find($request["sp3_id"]);
-            $timeline->proses_st = 'PROSES_ASP3';
+            $timeline->proses_st = 'PROSES_DRKS';
             $timeline->save();
             return response()->json(['status' => '200']);
         } else {
@@ -196,6 +196,14 @@ class Sp3Controller extends Controller
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 2);
             })
+            ->addColumn('evaluasi', function ($row) {
+                $evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->count();
+                if ($evaluasi > 0) {
+                    return '<span class="text-danger">Evaluated</span>';
+                } else {
+                    return '<span class="text-warning">Not Evaluated</span>';
+                }
+            })
             ->addColumn('type_tax', function ($row) {
                 if ($row->type_tax == '1') {
                     return 'Pajak Tidak Dipungut';
@@ -232,10 +240,10 @@ class Sp3Controller extends Controller
             })
             ->addColumn('action', function ($row) {
                 $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
+                // <a class="dropdown-item reject" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-multiply"></i> Reject</a>
                 if ($check->count() > 0) {
                     $action = '<a class="dropdown-item show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> <i class="uil uil-eye"></i> Show Evaluasi</a>
-                               <a class="dropdown-item approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-check"></i> Approve</a>
-                               <a class="dropdown-item reject" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-multiply"></i> Reject</a>';
+                               <a class="dropdown-item approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-check"></i> Approve</a>';
                 } else {
                     $action = '<a class="dropdown-item evaluasi" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-check"></i> Evaluasi</a>';
                 }
@@ -268,7 +276,7 @@ class Sp3Controller extends Controller
                 }
                 return $btn;
             })
-            ->rawColumns(['action', 'proses_st'])
+            ->rawColumns(['action', 'proses_st','evaluasi'])
             ->make(true);
     }
 }
