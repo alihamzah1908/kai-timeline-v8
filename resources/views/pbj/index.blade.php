@@ -183,7 +183,7 @@
                             <form action="#" id="jadwal-pelaksanaan">
                                 <input type="hidden" name="penjadwalan" value="penjadwalan">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                                <input type="hidden" name="sp3_id" id="sp3_id" value="">
                                 <div class="row mb-2">
                                     <div class="col-md-3">
                                         <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan:</label>
@@ -622,10 +622,12 @@
             var file = $("#file")[0].files;
             var file_draft = $("#file-draft")[0].files;
             var tanggal_rks = $("#tanggal-rks").val();
+            var sp3_id = $("#sp3_id").val();
             var formData = new FormData();
             formData.append('file', file[0])
             formData.append('file_draft', file_draft[0])
             formData.append('tanggal_rks', tanggal_rks)
+            formData.append('sp3_id', sp3_id)
             formData.append('_token', '{{ csrf_token() }}');
             $.ajax({
                 url: "{{ route('procurement.store') }}",
