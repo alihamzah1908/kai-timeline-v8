@@ -36,6 +36,7 @@ class ProcurementController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('file_draft'));
         if ($request->hasFile('file')) {
             // PROPOSAL/TEMPLATE FILE
             $file = $request->file('file');
