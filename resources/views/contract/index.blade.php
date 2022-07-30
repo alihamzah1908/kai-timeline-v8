@@ -450,7 +450,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data.procurement') }}",
+            ajax: "{{ route('data.contract') }}",
             columns: [{
                     data: 'directorate_cd'
                 },

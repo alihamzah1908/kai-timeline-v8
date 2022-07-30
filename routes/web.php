@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // PBJ & CONTRACT
     Route::get('/procurement/task-pbj', function () {
-        return view('pbj.index');
+        return view('procurement.index');
     })->name('list.taskpbj');
     Route::get('/procurement/task-contract', function () {
         return view('contract.index');
@@ -67,8 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('list.contract');
     
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
+    Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
     Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show');
+    Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
     Route::get('/data/procurement/review/rks', 'App\Http\Controllers\ProcurementController@data_rks')->name('data.view.rks');
     Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
     Route::post('/data/procurement/status/reviewing', 'App\Http\Controllers\ProcurementController@reviewing')->name('procurement.reviewing');
