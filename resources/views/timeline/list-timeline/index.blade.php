@@ -22,31 +22,22 @@
                             </p>
                         </div>
                     </div>
-                    <table id="datatable" class="table dt-responsive nowrap">
+                    <table id="datatable" class="table table-striped mb-0 nowrap">
                         <thead>
                             <tr>
+                                <th>No. Timeline</th>
+                                <th>Procurement Title</th>
+                                <th>RKAP Value</th>
                                 <th>Department</th>
-                                <th>Judul Pengadaan</th>
-                                <th>No Pengadaan</th>
-                                <th>Nilai RKAP</th>
-                                <th>Nilai TAX</th>
-                                <th>Status</th>
-                                <th>Directorate</th>
-                                <th>Division</th>
-                                <th>Sumber Dana</th>
-                                <th>Type Tax</th>
                                 <th>PBJ</th>
-                                <th>Beban Biaya</th>
-                                <th>Jenis Kontrak</th>
-                                <th>Start Pengadaan</th>
-                                <th>End Pengadaan</th>
-                                <!-- <th></th> -->
+                                <th>Cost</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
-
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
@@ -91,47 +82,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Beban Biaya</label>
-                                <select class="form-control" name="beban_biaya">
-                                    <option value="Penunjukan Langsung">Penunjukan Langsung</option>
-                                    <option value="Pemilihan Langsung">Pemilihan Langsung</option>
-                                    <option value="Pelelangan Terbuka">Pelelangan Terbuka</option>
-                                </select>
-                                <input type="text" class="form-control" placeholder="Please insert metode" name="metode">
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nilai RUP</label>
-                                <input type="text" class="form-control" placeholder="Please insert nilai rkap" name="nilai_rkap">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No PROC ID</label>
-                                <input type="text" class="form-control" placeholder="Please insert no proc id" name="proc_id">
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No SP 3</label>
-                                <input type="text" class="form-control" placeholder="Please insert no sp 3" name="no_sp_3">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">TGL SP 3</label>
-                                <input type="text" class="form-control" placeholder="Please insert tgl sp 3" name="tgl_sp_3">
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -253,36 +203,17 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
-            columns: [
-                {
-                    data: 'department_cd'
+            columns: [{
+                    data: 'no_pengadaan'
                 },
                 {
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'no_pengadaan'
-                },
-                {
                     data: 'nilai_pr'
                 },
                 {
-                    data: 'nilai_tax'
-                },
-                {
-                    data: 'proses_st'
-                },
-                {
-                    data: 'directorate_cd'
-                },
-                {
-                    data: 'division_cd'
-                },
-                {
-                    data: 'sumber_dana'
-                },
-                {
-                    data: 'type_tax'
+                    data: 'department_cd'
                 },
                 {
                     data: 'pbj'
@@ -291,20 +222,14 @@
                     data: 'beban_biaya'
                 },
                 {
-                    data: 'jenis_kontrak'
+                    data: 'proses_st'
                 },
                 {
-                    data: 'start_date_pengadaan'
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
                 },
-                {
-                    data: 'end_date_pengadaan'
-                },
-                // {
-                //     data: 'action',
-                //     name: 'action',
-                //     orderable: false,
-                //     searchable: false
-                // },
             ]
         });
         $('body').on('click', '.create-timeline', function() {

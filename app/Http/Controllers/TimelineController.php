@@ -141,8 +141,7 @@ class TimelineController extends Controller
             $timeline->where('proses_st', 'PROSES_ST');
             $timeline->orWhere('proses_st', 'PROSES_AT');
             // $timeline->orWhere('proses_st', 'PROSES_CT');
-        }
-        else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
+        } else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
         $data = $timeline->get();
         return FacadesDataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -159,7 +158,7 @@ class TimelineController extends Controller
             })
             ->addColumn('nilai_tax', function ($row) {
                 //return $row->nilai_tax . '%';
-				return number_format($row->nilai_tax, 0);
+                return number_format($row->nilai_tax, 0);
             })
             ->addColumn('start_date_pengadaan', function ($row) {
                 return date('d M Y', strtotime($row->start_date_pengadaan));
@@ -188,6 +187,9 @@ class TimelineController extends Controller
             ->addColumn('action', function ($row) {
                 if ($row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
                     $btn = '';
+                } else if ($row->proses_st == 'PROSES_ST') {
+                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
+                    <i class="uil uil-search"></i> Show Detail</button>';
                 } else {
                     $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
