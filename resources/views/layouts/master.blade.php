@@ -233,28 +233,25 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="{{ route('monitoring.rup') }}">Monitoring RUP</a>
+                                    <a href="{{ route('monitoring.rup') }}">RUP Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.realisasi') }}">Program - Realisasi Investasi & Biaya</a>
+                                    <a href="{{ route('monitoring.pbj') }}">PBJ Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.pbj') }}">Monitoring PBJ & Kontrak</a>
+                                    <a href="{{ route('monitoring.contract') }}">Contract Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.klaring') }}">Monitoring Import Inklaring</a>
+                                    <a href="{{ route('monitoring.rab') }}">RAB Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.rab') }}">Monitoring Evaluasi RAB</a>
+                                    <a href="{{ route('monitoring.vendor') }}">Vendor Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.vendor') }}">Monitoring Vendor</a>
+                                    <a href="{{ route('monitoring.klaring') }}">Import Inklaring Monitoring</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('monitoring.program') }}">Monitoring Program</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('monitoring.warehouse') }}">Warehouse</a>
+                                    <a href="{{ route('monitoring.warehouse') }}">Warehouse Monitoring</a>
                                 </li>
                             </ul>
                         </li>
@@ -297,18 +294,31 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
-                            
-                                @can('timeline-list')
-                                <li>
-                                    <a href="{{ route('list.timeline') }}">List Timeline</a>
-                                </li>
-                                @endcan
                                 @can('timeline.approval-list')
                                 <li>
                                     <a href="{{ route('task.approval') }}">Task Approval</a>
                                 </li>
                                 @endcan
-                            
+                                @can('timeline-list')
+                                <li>
+                                    <a href="{{ route('list.timeline') }}">List Timeline</a>
+                                </li>
+                                @endcan
+                                <li>
+                                    <a href="{{ route('signed.timeline') }}">Upload Timeline Signed</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="bookmark"></i>
+                                <span> NPP </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
+                                    <a href="{{ route('list.npp') }}">List NPP</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -317,16 +327,15 @@
                                 <span> SP3 </span>
                                 <span class="menu-arrow"></span>
                             </a>
-
                             <ul class="nav-second-level" aria-expanded="false">
-                                 @can('sp3-list')
-                                <li>
-                                    <a href="{{ route('list.sp3') }}">List SP3</a>
-                                </li>
-                                @endcan
                                 @can('sp3.approval-list')
                                 <li>
                                     <a href="{{ route('sp3.task.approval') }}">Task Approval</a>
+                                </li>
+                                @endcan 
+                                @can('sp3-list')
+                                <li>
+                                    <a href="{{ route('list.sp3') }}">List SP3</a>
                                 </li>
                                 @endcan
                             </ul>
@@ -334,19 +343,30 @@
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark"></i>
-                                <span> Procurement </span>
+                                <span> PBJ </span>
                                 <span class="menu-arrow"></span>
                             </a>
-
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
                                     <a href="{{ route('list.taskpbj') }}">Task Approval PBJ</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('list.procurement') }}">List PBJ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="bookmark"></i>
+                                <span> Contract </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
                                     <a href="{{ route('list.taskcontract') }}">Task Approval Contract</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('list.procurement') }}">List Procurement</a>
+                                    <a href="{{ route('list.contract') }}">List Contract</a>
                                 </li>
                             </ul>
                         </li>

@@ -5,7 +5,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <div class="card-title"><h5>Dashboard Monitoring PBJ dan Kontrak</h5></div>
+            <div class="card-title"><h5>PBJ Monitoring Dashboard</h5></div>
         </div>
         <div class="card-body">
             <div class="row">

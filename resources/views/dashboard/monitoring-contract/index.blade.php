@@ -1,39 +1,12 @@
 @extends('layouts.master')
-@section('content')
-<style>
-    .highcharts-figure {
-        height: 400px;
-    }
-</style>
-<div class="container-fluid">
-    <div class="row page-title align-items-center">
-        <div class="col-sm-4 col-xl-6">
-            <h5 class="mb-1 mt-0">Dashboard Monitoring Program Realisasi Investasi dan Biaya</h4>
-        </div>
-        <div class="col-sm-8 col-xl-6">
-            <form class="form-inline float-sm-right mt-3 mt-sm-0">
-                <div class="btn-group">
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item notify-item">
-                            <i data-feather="mail" class="icon-dual icon-xs mr-2"></i>
-                            <span>Email</span>
-                        </a>
-                        <a href="#" class="dropdown-item notify-item">
-                            <i data-feather="printer" class="icon-dual icon-xs mr-2"></i>
-                            <span>Print</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item notify-item">
-                            <i data-feather="file" class="icon-dual icon-xs mr-2"></i>
-                            <span>Re-Generate</span>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
+@section('content')
     <div class="card">
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title"><h5>Contract Monitoring Dashboard</h5></div>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -51,6 +24,25 @@
                 <div class="col">
                     <figure class="highcharts-figure">
                         <div id="column_chart"></div>
+                    </figure>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="donut_chart_1"></div>
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="donut_chart_2"></div>
+                    </figure>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="bar_chart"></div>
                     </figure>
                 </div>
             </div>
@@ -232,6 +224,46 @@
 
         });
 
+        Highcharts.chart('donut_chart_1', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Berdasarkan Jenis'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: '60%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'Jumlah',
+                    data: [
+                        ['Reguler', getRandomInt(100)],
+                        ['Tanggap Darurat', getRandomInt(100)],
+                    ]
+                }
+            ]
+        });
+
         Highcharts.chart('column_chart', {
             chart: {
                 type: 'column'
@@ -285,6 +317,105 @@
                 name: 'Jumlah',
                 data: [getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100)]
             }]
+        });
+
+        Highcharts.chart('donut_chart_2', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Berdasarkan Asnaf'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: '60%',
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'Jumlah',
+                    data: [
+                        ['Pelayanan Ibadah Haji', getRandomInt(100)],
+                        ['Pendidikan dan Dakwah', getRandomInt(100)],
+                        ['Kesehatan', getRandomInt(100)],
+                        ['Sosial Keagamaan', getRandomInt(100)],
+                        ['Ekonomi Umat', getRandomInt(100)],
+                        ['Sarana dan Prasarana Ibadah', getRandomInt(100)],
+                    ]
+                }
+            ]
+        });
+
+        const mitraLinks = {
+            'Mitra A': '/dashboard-pelaksanaan-monev-mitra/mitra-a',
+            'Mitra B': '/dashboard-pelaksanaan-monev-mitra/mitra-b',
+            'Mitra Z': '/dashboard-pelaksanaan-monev-mitra/mitra-z',
+        };
+
+        Highcharts.chart('bar_chart', {
+            chart: {
+                type: 'bar'
+            },
+            colors: ['#c9962f'],
+            title: {
+                text: 'Berdasarkan Mitra'
+            },
+            xAxis: {
+                categories: ['Mitra A', 'Mitra B', 'Mitra Z'],
+                title: {
+                    text: null
+                },
+                labels: {
+                    formatter: function() {
+                        return '<a href="'+ mitraLinks[this.value] +'">'+
+                            this.value +'</a>';
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah  ',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ''
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Jumlah',
+                data: [getRandomInt(100), getRandomInt(100), getRandomInt(100)]
+            }, ]
         });
 
     </script>

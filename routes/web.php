@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/sp-3/store', 'App\Http\Controllers\Sp3Controller@store')->name('sp3.store');
     Route::post('/data/sp-3/evaluasi/store', 'App\Http\Controllers\Sp3Controller@evaluasi_store')->name('evaluasi.store');
 
-    // Procurement
+    // PBJ & CONTRACT
     Route::get('/procurement/task-pbj', function () {
         return view('pbj.index');
     })->name('list.taskpbj');
@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/procurement/list-procurement', function () {
         return view('procurement.index');
     })->name('list.procurement');
+    Route::get('/procurement/list-contract', function () {
+        return view('contract.index');
+    })->name('list.contract');
     
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
@@ -74,9 +77,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');
-    Route::get('/dashboard/monitoring-realisasi', function () {
-        return view('dashboard.monitoring-realisasi.index');
-    })->name('monitoring.realisasi');
+    Route::get('/dashboard/monitoring-contract', function () {
+        return view('dashboard.monitoring-contract.index');
+    })->name('monitoring.contract');
     Route::get('/dashboard/monitoring-pbj', function () {
         return view('dashboard.monitoring-pbj.index');
     })->name('monitoring.pbj');
@@ -103,6 +106,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/timeline/list-timeline', function () {
         return view('timeline.list-timeline.index');
     })->name('list.timeline');
+    Route::get('/timeline/signed-timeline', function () {
+        return view('timeline.signed-timeline.index');
+    })->name('signed.timeline');
+    Route::get('/npp/list-npp', function () {
+        return view('npp.list-npp.index');
+    })->name('list.npp');
     Route::get('/sp-3/task-approval', function () {
         return view('sp-3.task-approval.index');
     })->name('sp3.task.approval');
