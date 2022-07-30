@@ -101,7 +101,9 @@ class ProcurementController extends Controller
      */
     public function show($id)
     {
-        //
+        $data["data"] = \App\Models\SP3::find($id);
+        // dd($data);
+        return view('procurement.show', $data);
     }
 
     /**
@@ -160,15 +162,15 @@ class ProcurementController extends Controller
                 return 'Sampul 1';
             })
             ->addColumn('file', function ($row) {
-                return '<a href='. asset('file/rks/' . $row->file) .'><i class="uil uil-file"></i></a>';
+                return '<a href=' . asset('file/rks/' . $row->file) . '><i class="uil uil-file"></i></a>';
             })
             ->addColumn('file_draft', function ($row) {
-                return '<a href='. asset('file/rks/' . $row->file_draft) .'><i class="uil uil-file"></i></a>';
+                return '<a href=' . asset('file/rks/' . $row->file_draft) . '><i class="uil uil-file"></i></a>';
             })
             ->addColumn('catatan', function ($row) {
                 return 'catatan';
             })
-            ->rawColumns(['action', 'proses_st','file','file_draft'])
+            ->rawColumns(['action', 'proses_st', 'file', 'file_draft'])
             ->make(true);
     }
 
@@ -212,9 +214,11 @@ class ProcurementController extends Controller
             })
             ->addColumn('action', function ($row) {
                 if ($row->proses_st == 'PROSES_DRKS') {
-                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
+                    $action = '<a class="dropdown-item" role="presentation" href="' . route('procurement.show', $row->sp3_id) . '"><i class="uil uil-eye"></i> Show PBJ</a>
+                               <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
                 } else if ($row->proses_st == 'PROSES_RRKS') {
-                    $action = '<a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
+                    $action = '<a class="dropdown-item" role="presentation" href="' . route('procurement.show', $row->sp3_id) . '"><i class="uil uil-eye"></i> Show PBJ</a>
+                               <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
                 }
                 $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
