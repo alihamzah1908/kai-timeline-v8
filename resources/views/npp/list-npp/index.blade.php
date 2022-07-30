@@ -43,7 +43,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Create SP 3</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Create NPP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -151,87 +151,148 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">No MI</label>
-                                <input type="text" name="no_mi" class="form-control" placeholder="Please insert no mi">
+                                <label for="exampleInputEmail1">No MI</label>
+                                <input type="text" name="no_mi" class="form-control" placeholder="Please Insert No. MI">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal MI</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_mi">
+                                <label for="exampleInputEmail1">Tanggal MI</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_mi">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">No PR/IP</label>
-                                <input type="text" name="no_pr_ip" class="form-control" placeholder="Please insert nomor pr/ip">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal PR/IP</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_pr">
+                                <label for="exampleInputEmail1">Dokumen MI</label>
+                                <input name="file[]" type="file" id="file_mi" multiple />                               
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">No Justifikasi</label>
-                                <input type="text" name="no_justifikasi" class="form-control" placeholder="Please insert nomor justifikasi">
+                                <label for="exampleInputEmail1">No PR/IP</label>
+                                <input type="text" name="no_pr_ip" class="form-control" placeholder="Please Insert No. PR/IP">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Justifikasi</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_justifikasi">
+                                <label for="exampleInputEmail1">Tanggal PR/IP</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">No RAB</label>
-                                <input type="text" name="no_rab" class="form-control" placeholder="Please insert nomor rab">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal RAB</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_rab">
+                                <label for="exampleInputEmail1">Dokumen PR/IP</label>
+                                <input name="file[]" type="file" id="file_pr" multiple />                               
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">No KAK</label>
-                                <!-- <div id="summernote-editor">
-                                    <p>Uraian Details</p>
-                                </div> end summernote-editor -->
-                                <input type="text" name="no_kak" class="form-control" placeholder="Please insert nomor kak">
+                                <label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang</label>
+                                <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal KAK</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="date_kak">
+                                <label for="exampleInputEmail1">Tanggal Justifikasi</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dokumen Justifikasi</label>
+                                <input name="file[]" type="file" id="file_just_brg" multiple />                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
+                                <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                <input name="file[]" type="file" id="file_just_langsung" multiple />                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">No RAB</label>
+                                <input type="text" name="no_rab" class="form-control" placeholder="Please Insert No. RAB">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal RAB</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_rab">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dokumen RAB</label>
+                                <input name="file[]" type="file" id="file_rab" multiple />                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">No KAK</label>
+                                <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal KAK</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dokumen KAK</label>
+                                <input name="file[]" type="file" id="file_kak" multiple />                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">No. Lainnya</label>
+                                <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tanggal</label>
+                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dokumen Lainnya</label>
+                                <input name="file[]" type="file" id="file_lainnya" multiple />                               
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="header-title" class="font-weight-bold">Upload File</h5>
-                            <div class="fallback">
-                                <input name="file[]" type="file" id="file" multiple />
-                            </div>
-                            <div class="dz-message needsclick">
-                                <i class="h1 text-muted  uil-cloud-upload"></i>
-                            </div>
+                            <label for="exampleInputEmail1" class="font-weight-medium">* Dokumen Lainnya meliputi Spesifikasi Teknis/DED/Kajian Resiko</label>
                         </div>
                     </div>
                     <div class="row">
