@@ -22,22 +22,24 @@
                             </p>
                         </div>
                     </div>
-                    <table id="datatable" class="table table-striped mb-0 nowrap">
-                        <thead>
-                            <tr>
-                                <th>No. Timeline</th>
-                                <th>Procurement Title</th>
-                                <th>RKAP Value</th>
-                                <th>Department</th>
-                                <th>PBJ</th>
-                                <th>Cost</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped mb-0 nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No. Timeline</th>
+                                    <th>Procurement Title</th>
+                                    <th>RKAP Value</th>
+                                    <th>Department</th>
+                                    <th>PBJ</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->

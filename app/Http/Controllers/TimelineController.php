@@ -186,10 +186,11 @@ class TimelineController extends Controller
             })
             ->addColumn('action', function ($row) {
                 if ($row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
-                    $btn = '';
+                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
+                            <i class="uil uil-search"></i> Show Detail</button>';
                 } else if ($row->proses_st == 'PROSES_ST') {
                     $btn = '<button class="btn btn-primary btn-rounded btn-sm">
-                    <i class="uil uil-search"></i> Show Detail</button>';
+                            <i class="uil uil-search"></i> Show Detail</button>';
                 } else {
                     $btn = '<div class="dropdown">
                             <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action

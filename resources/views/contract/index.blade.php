@@ -10,24 +10,24 @@
                             <h5 class="header-title mt-0 mb-1">List Contract</h4>
                         </div>
                     </div>
-                    <table id="datatable" class="table dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>Directorate</th>
-                                <th>Division</th>
-                                <th>Department</th>
-                                <th>Realisasi</th>
-                                <th>Judul Pengadaan</th>
-                                <th>Nilai PR</th>
-                                <th>Type Tax</th>
-                                <th>Nilai TAX</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table m-0 nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No. SP3</th>
+                                    <th>Procurement Title</th>
+                                    <th>RKAP Value</th>
+                                    <th>Department</th>
+                                    <th>Tax Value</th>
+                                    <th>Realization</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
@@ -452,16 +452,7 @@
             serverSide: true,
             ajax: "{{ route('data.contract') }}",
             columns: [{
-                    data: 'directorate_cd'
-                },
-                {
-                    data: 'division_cd'
-                },
-                {
-                    data: 'department_cd'
-                },
-                {
-                    data: 'realisasi'
+                    data: 'no_sp3'
                 },
                 {
                     data: 'judul_pengadaan'
@@ -470,10 +461,13 @@
                     data: 'nilai_pr'
                 },
                 {
-                    data: 'type_tax'
+                    data: 'department_cd'
                 },
                 {
                     data: 'nilai_tax'
+                },
+                {
+                    data: 'realisasi'
                 },
                 {
                     data: 'proses_st'

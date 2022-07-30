@@ -22,22 +22,23 @@
                             </p>
                         </div>
                     </div>
-                    <table id="datatable" class="table dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>Judul Upload Signed</th>
-                                <th>Upload By</th>
-                                <th>Signed By</th>
-                                <th>Upload Date</th>
-                                <th>File</th>
-                                <th>Keterangan</th>
-                                <!-- <th></th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="datatable" class="table nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Upload Signed Title</th>
+                                    <th>Upload By</th>
+                                    <th>Signed By</th>
+                                    <th>Upload Date</th>
+                                    <th>File</th>
+                                    <th>Notes</th>
+                                    <!-- <th>Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
@@ -64,7 +65,7 @@
                                 </div> end summernote-editor -->
                                 <textarea name="judul_pengadaan" class="form-control" placeholder="Please insert judul pengadaan"></textarea>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Signed By</label>
@@ -81,7 +82,7 @@
                                 <label for="exampleInputEmail1" class="font-weight-bold">Keterangan</label>
                                 <textarea class="form-control" placeholder="Please insert keterangan" name="keterangan"></textarea>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="col-md-6">
                             <h5 class="header-title" class="font-weight-bold">Upload Timeline Signed</h5>
                             <div class="fallback">
@@ -120,26 +121,25 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
-            columns: [
-                {
+            columns: [{
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'no_pengadaan'
+                    data: 'created_by'
                 },
                 {
                     data: 'nilai_pr'
                 },
-                
+
                 {
-                    data: 'beban_biaya'
+                    data: 'created_at'
                 },
                 {
                     data: 'jenis_kontrak'
                 },
                 {
                     data: 'start_date_pengadaan'
-                }
+                },
                 // {
                 //     data: 'action',
                 //     name: 'action',

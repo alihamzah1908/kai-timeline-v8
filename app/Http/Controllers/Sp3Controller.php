@@ -272,7 +272,8 @@ class Sp3Controller extends Controller
                             </div>
                         </div>';
                 } else {
-                    $btn = '';
+                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
+                    <i class="uil uil-search"></i> Show Detail</button>';
                 }
                 return $btn;
             })

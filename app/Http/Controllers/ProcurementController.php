@@ -213,26 +213,18 @@ class ProcurementController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
+                // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
                 if ($row->proses_st == 'PROSES_DRKS') {
-                    $action = '<a class="dropdown-item" role="presentation" href="' . route('procurement.show', $row->sp3_id) . '"><i class="uil uil-eye"></i> Show PBJ</a>
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
+                               </a>
                                <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
                 } else if ($row->proses_st == 'PROSES_RRKS') {
-                    $action = '<a class="dropdown-item" role="presentation" href="' . route('procurement.show', $row->sp3_id) . '"><i class="uil uil-eye"></i> Show PBJ</a>
-                               <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
+                               </a>';
                 }
-                $btn = '<div class="dropdown">
-                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
-                                <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg></i>
-                                <div></div>
-                            </button>
-                            <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                ' . $action . '
-                            </div>
-                        </div>';
-
-                return $btn;
+                return $action;
             })
             ->rawColumns(['action', 'proses_st'])
             ->make(true);
