@@ -25,21 +25,21 @@
                     <table id="datatable" class="table dt-responsive nowrap">
                         <thead>
                             <tr>
-                                <th>Directorate</th>
-                                <th>Division</th>
                                 <th>Department</th>
                                 <th>Judul Pengadaan</th>
                                 <th>No Pengadaan</th>
-                                <th>Sumber Dana</th>
-                                <th>Nilai PR</th>
-                                <th>Type Tax</th>
+                                <th>Nilai RKAP</th>
                                 <th>Nilai TAX</th>
+                                <th>Status</th>
+                                <th>Directorate</th>
+                                <th>Division</th>
+                                <th>Sumber Dana</th>
+                                <th>Type Tax</th>
                                 <th>PBJ</th>
                                 <th>Beban Biaya</th>
                                 <th>Jenis Kontrak</th>
                                 <th>Start Pengadaan</th>
                                 <th>End Pengadaan</th>
-                                <th>Status</th>
                                 <!-- <th></th> -->
                             </tr>
                         </thead>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai PR</label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP</label>
                             <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai_pr" name="nilai_pr">
                         </div>
                     </div>
@@ -253,12 +253,7 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
-            columns: [{
-                    data: 'directorate_cd'
-                },
-                {
-                    data: 'division_cd'
-                },
+            columns: [
                 {
                     data: 'department_cd'
                 },
@@ -269,16 +264,25 @@
                     data: 'no_pengadaan'
                 },
                 {
-                    data: 'sumber_dana'
-                },
-                {
                     data: 'nilai_pr'
                 },
                 {
-                    data: 'type_tax'
+                    data: 'nilai_tax'
                 },
                 {
-                    data: 'nilai_tax'
+                    data: 'proses_st'
+                },
+                {
+                    data: 'directorate_cd'
+                },
+                {
+                    data: 'division_cd'
+                },
+                {
+                    data: 'sumber_dana'
+                },
+                {
+                    data: 'type_tax'
                 },
                 {
                     data: 'pbj'
@@ -294,9 +298,6 @@
                 },
                 {
                     data: 'end_date_pengadaan'
-                },
-                {
-                    data: 'proses_st'
                 },
                 // {
                 //     data: 'action',

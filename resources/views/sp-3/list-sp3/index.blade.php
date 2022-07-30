@@ -316,6 +316,15 @@
                 $(".judul-pengadaan").hide();
             }
         })
+        $('body').on('click', '.type_metode', function() {
+            var jenis = $(this).val()
+            if (jenis == '3') {
+                $(".vendor_name").hide()
+            } else {
+                $(".vendor_name").show()
+            }
+        })
+
         $('body').on('click', '.save', function() {
             $("#form-timeline").submit(); // Submit the form
         });

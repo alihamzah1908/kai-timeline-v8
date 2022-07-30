@@ -500,7 +500,12 @@
             },
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data.view.rks') }}",
+            ajax: {
+                url: "{{ route('data.view.rks') }}",
+                data: {
+                    "sp3_id": $("#sp3_id").val()
+                }
+            },
             columns: [{
                     data: 'judul_pengadaan'
                 },
