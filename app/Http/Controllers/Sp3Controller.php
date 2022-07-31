@@ -101,7 +101,8 @@ class Sp3Controller extends Controller
      */
     public function show($id)
     {
-        //
+        $data["data"] = \App\Models\SP3::find($id);
+        return view('sp-3.list-sp3.show', $data);
     }
 
     /**
@@ -138,6 +139,12 @@ class Sp3Controller extends Controller
         //
     }
 
+    public function form_evaluasi($id)
+    {
+        $data["data"] = \App\Models\SP3::find($id);
+        return view('sp-3.evaluasi.form', $data);
+    }
+
     public function approve(Request $request)
     {
         $data = \App\Models\SP3::where('sp3_id', $request["sp3_id"])->first();
@@ -172,11 +179,15 @@ class Sp3Controller extends Controller
 
     public function evaluasi_store(Request $request)
     {
-        foreach ($request["item_value"] as $key => $val) {
+        dd($request->all());
+        foreach ($request["pemenuhan"] as $key => $val) {
             $data = new \App\Models\EvaluasiSp3();
             $data->sp3_id = $request["sp3_id"];
-            $data->item_cd = $request["item_cd"][$key];
-            $data->item_value = $val;
+            $data->tanggal_evaluasi = $request["tanggal"][$key];
+            $data->nomor_evaluasi = $request["nomor"][$key];
+            // $data->item_cd = $request["item_cd"][$key];
+            $data->item_value = $request["item_value"][$key];
+            $data->pemenuhan = $val;
             $data->keterangan = $request["keterangan"][$key];
             $data->created_by = Auth::user()->id;
             $data->save();
@@ -239,45 +250,50 @@ class Sp3Controller extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
-                $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
-                // <a class="dropdown-item reject" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-multiply"></i> Reject</a>
-                if ($check->count() > 0) {
-                    $action = '<a class="dropdown-item show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> <i class="uil uil-eye"></i> Show Evaluasi</a>
-                               <a class="dropdown-item approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-check"></i> Approve</a>';
+                if (auth()->user()->can('sp3-list')) {
+                    $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                                <button class="btn btn-primary btn-rounded btn-sm">
+                                <i class="uil uil-search"></i> Show Detail</button>
+                            </a>';
+                    return $btn;
                 } else {
-                    $action = '<a class="dropdown-item evaluasi" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> <i class="uil uil-check"></i> Evaluasi</a>';
+                    $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
+                    if ($check->count() > 0) {
+                        $action = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                                        <button class="btn btn-primary btn-rounded btn-sm">
+                                            <i class="uil uil-search"></i> Show Detail
+                                        </button>
+                                   </a>
+                                   <a class="show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> 
+                                        <button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-search"></i> Show Evaluasi </button>
+                                   </a>
+                                   <a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
+                                        <button class="btn btn-warning btn-sm btn-rounded">
+                                        <i class="uil uil-check"></i> Approve</button>
+                                   </a>';
+                    } else {
+                        $action = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                                        <button class="btn btn-primary btn-rounded btn-sm">
+                                            <i class="uil uil-search"></i> Show Detail
+                                        </button>
+                                   </a>
+                                   <a role="presentation" href="' . route('evaluasi.form', $row->sp3_id) . '">
+                                        <button class="btn btn-success btn-sm btn-rounded">
+                                            <i class="uil uil-table"></i> Evaluasi
+                                        </button>
+                                   </a>';
+                    }
+                    if ($row->proses_st == 'PROSES_SSP3') {
+                        $btn = $action;
+                        return $btn;
+                    } elseif ($row->proses_st == 'PROSES_ASP3') {
+                        $btn = '<a href="' . route('evaluasi.print.sp') . '"><button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-print"></i> Print SP </button></a>';
+                        return $btn;
+                    }
                 }
-                if ($row->proses_st == 'PROSES_SSP3') {
-                    $btn = '<div class="dropdown">
-                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
-                                <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg></i>
-                                <div></div>
-                            </button>
-                            <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                ' . $action . '
-                            </div>
-                        </div>';
-                } elseif ($row->proses_st == 'PROSES_ASP3') {
-                    $btn = '<div class="dropdown">
-                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
-                                <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg></i>
-                                <div></div>
-                            </button>
-                            <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item" role="presentation" href="' . route('evaluasi.print.sp') . '"> <i class="uil uil-print"></i> Print SP </a>
-                            </div>
-                        </div>';
-                } else {
-                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
-                    <i class="uil uil-search"></i> Show Detail</button>';
-                }
-                return $btn;
             })
-            ->rawColumns(['action', 'proses_st','evaluasi'])
+
+            ->rawColumns(['action', 'proses_st', 'evaluasi'])
             ->make(true);
     }
 }

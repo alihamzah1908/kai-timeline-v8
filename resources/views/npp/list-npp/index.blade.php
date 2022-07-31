@@ -17,23 +17,24 @@
                             </p>
                         </div>
                     </div>
-                    <table id="datatable" class="table nowrap">
-                        <thead>
-                            <tr>
-                                <th>No. SP3</th>
-                                <th>Procurement Title</th>
-                                <th>RKAP Value</th>
-                                <th>Department</th>
-                                <th>Tax Value</th>
-                                <th>Realization</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="datatable" class="table m-0 nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No. SP3</th>
+                                    <th>Procurement Title</th>
+                                    <th>RKAP Value</th>
+                                    <th>Department</th>
+                                    <th>Tax Value</th>
+                                    <th>Realization</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
@@ -142,11 +143,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="exampleInputEmail1">Jenis Barang</label>
-                                    <select class="form-control type-tax" name="type_tax">
-                                        <option value="1">Local</option>
-                                        <option value="2">Impor</option>
-                                    </select>
+                                <label for="exampleInputEmail1">Jenis Barang</label>
+                                <select class="form-control type-tax" name="type_tax">
+                                    <option value="1">Local</option>
+                                    <option value="2">Impor</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen MI</label>
-                                <input name="file[]" type="file" id="file_mi" multiple />                               
+                                <input name="file[]" type="file" id="file_mi" multiple />
                             </div>
                         </div>
                     </div>
@@ -186,7 +187,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen PR/IP</label>
-                                <input name="file[]" type="file" id="file_pr" multiple />                               
+                                <input name="file[]" type="file" id="file_pr" multiple />
                             </div>
                         </div>
                     </div>
@@ -206,7 +207,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen Justifikasi</label>
-                                <input name="file[]" type="file" id="file_just_brg" multiple />                               
+                                <input name="file[]" type="file" id="file_just_brg" multiple />
                             </div>
                         </div>
                     </div>
@@ -226,7 +227,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                <input name="file[]" type="file" id="file_just_langsung" multiple />                               
+                                <input name="file[]" type="file" id="file_just_langsung" multiple />
                             </div>
                         </div>
                     </div>
@@ -246,7 +247,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen RAB</label>
-                                <input name="file[]" type="file" id="file_rab" multiple />                               
+                                <input name="file[]" type="file" id="file_rab" multiple />
                             </div>
                         </div>
                     </div>
@@ -266,7 +267,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen KAK</label>
-                                <input name="file[]" type="file" id="file_kak" multiple />                               
+                                <input name="file[]" type="file" id="file_kak" multiple />
                             </div>
                         </div>
                     </div>
@@ -286,7 +287,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Dokumen Lainnya</label>
-                                <input name="file[]" type="file" id="file_lainnya" multiple />                               
+                                <input name="file[]" type="file" id="file_lainnya" multiple />
                             </div>
                         </div>
                     </div>

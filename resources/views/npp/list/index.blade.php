@@ -17,25 +17,26 @@
                             </p>
                         </div>
                     </div>
-                    <table id="datatable" class="table dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>Directorate</th>
-                                <th>Division</th>
-                                <th>Department</th>
-                                <th>Realisasi</th>
-                                <th>Judul Pengadaan</th>
-                                <th>No SP3</th>
-                                <th>Nilai PR</th>
-                                <th>Type Tax</th>
-                                <th>Nilai TAX</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-
+                    <div class="table-responsive">
+                        <table id="datatable" class="table nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Directorate</th>
+                                    <th>Division</th>
+                                    <th>Department</th>
+                                    <th>Realisasi</th>
+                                    <th>Judul Pengadaan</th>
+                                    <th>No SP3</th>
+                                    <th>Nilai PR</th>
+                                    <th>Type Tax</th>
+                                    <th>Nilai TAX</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
@@ -144,11 +145,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="exampleInputEmail1">Jenis Barang</label>
-                                    <select class="form-control type-tax" name="type_tax">
-                                        <option value="1">Local</option>
-                                        <option value="2">Impor</option>
-                                    </select>
+                                <label for="exampleInputEmail1">Jenis Barang</label>
+                                <select class="form-control type-tax" name="type_tax">
+                                    <option value="1">Local</option>
+                                    <option value="2">Impor</option>
+                                </select>
                             </div>
                         </div>
                     </div>

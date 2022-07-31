@@ -70,7 +70,8 @@ class TimelineController extends Controller
      */
     public function show($id)
     {
-        //
+        $data["data"] = \App\Models\Timeline::find($id);
+        return view('timeline.list-timeline.show', $data);
     }
 
     /**
@@ -185,27 +186,23 @@ class TimelineController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
-                if ($row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
-                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
-                            <i class="uil uil-search"></i> Show Detail</button>';
-                } else if ($row->proses_st == 'PROSES_ST') {
-                    $btn = '<button class="btn btn-primary btn-rounded btn-sm">
-                            <i class="uil uil-search"></i> Show Detail</button>';
+                if (auth()->user()->can('timeline-list') || $row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
+                    $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
+                                <button class="btn btn-primary btn-rounded btn-sm">
+                                    <i class="uil uil-search"></i> Show Detail
+                                </button>
+                            </a>';
+                    return $btn;
                 } else {
-                    $btn = '<div class="dropdown">
-                            <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
-                                <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg></i>
-                                <div></div>
-                            </button>
-                            <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->timeline_id . '> <i class="uil uil-check"></i> Approve</a>
-                                <a class="dropdown-item reject" role="presentation" href="javascript:void(0)" data-bind=' . $row->timeline_id . '> <i class="uil uil-multiply"></i> Reject</a>
-                            </div>
-                        </div>';
+                    $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
+                                <button class="btn btn-primary btn-rounded btn-sm">
+                                    <i class="uil uil-search"></i> Show Detail
+                                </button>
+                            </a>
+                            <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="' . $row->timeline_id . '"><i class="uil uil-check"></i> Approve </button></a>
+                            <button class="btn btn-primary btn-rounded btn-sm reject" data-bind="' . $row->timeline_id . '"><i class="uil uil-multiply"></i> Reject </button></a>';
+                    return $btn;
                 }
-                return $btn;
             })
             ->rawColumns(['action', 'proses_st'])
 
