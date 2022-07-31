@@ -10,30 +10,24 @@
                             <h5 class="header-title mt-0 mb-1">Task Approval</h5>
                         </div>
                     </div>
-                    <table id="datatable" class="table dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>Department</th>
-                                <th>Judul Pengadaan</th>
-                                <th>No Pengadaan</th>
-                                <th>Nilai PR</th>
-                                <th>Nilai TAX</th>
-                                <th>Status</th>
-                                <th>Directorate</th>
-                                <th>Division</th>
-                                <th>Sumber Dana</th>
-                                <th>Type Tax</th>
-                                <th>PBJ</th>
-                                <th>Beban Biaya</th>
-                                <th>Jenis Kontrak</th>
-                                <th>Start Pengadaan</th>
-                                <th>End Pengadaan</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped mb-0 nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No. Timeline</th>
+                                    <th>Procurement Title</th>
+                                    <th>RKAP Value</th>
+                                    <th>Department</th>
+                                    <th>PBJ</th>
+                                    <th>Cost</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div> <!-- end card body-->
             </div> <!-- end card -->
@@ -64,34 +58,16 @@
             },
             columns: [
                 {
-                    data: 'department_cd'
+                    data: 'no_pengadaan'
                 },
                 {
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'no_pengadaan'
-                },
-                {
                     data: 'nilai_pr'
                 },
                 {
-                    data: 'nilai_tax'
-                },
-                {
-                    data: 'proses_st'
-                },
-                {
-                    data: 'directorate_cd'
-                },
-                {
-                    data: 'division_cd'
-                },
-                {
-                    data: 'sumber_dana'
-                },
-                {
-                    data: 'type_tax'
+                    data: 'department_cd'
                 },
                 {
                     data: 'pbj'
@@ -100,13 +76,7 @@
                     data: 'beban_biaya'
                 },
                 {
-                    data: 'jenis_kontrak'
-                },
-                {
-                    data: 'start_date_pengadaan'
-                },
-                {
-                    data: 'end_date_pengadaan'
+                    data: 'proses_st'
                 },
                 {
                     data: 'action',
