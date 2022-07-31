@@ -214,11 +214,11 @@ class ProcurementController extends Controller
             })
             ->addColumn('action', function ($row) {
                 // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
+                // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
                 if ($row->proses_st == 'PROSES_DRKS') {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
-                               </a>
-                               <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
+                               </a>';
                 } else if ($row->proses_st == 'PROSES_RRKS') {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>

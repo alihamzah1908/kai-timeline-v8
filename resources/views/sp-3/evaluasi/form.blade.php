@@ -27,6 +27,7 @@
                 <div class="card-body">
                     <form action='{{ route("evaluasi.store") }}' id="form-evaluasi" enctype="multipart/form-data" method="post">
                         @csrf
+                        <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                         <div class="row">
                             <div class="table-responsive">
                                 <table class="table">

@@ -30,7 +30,7 @@
                     <div class="float-sm-left">
                         <dl class="row mb-2 mt-1">
                             <dt class="col-sm-3 font-weight-bold">No. SP3 :</dt>
-                            <dd class="col-sm-9 font-weight-normal">{{ $data->no_pengadaan }}</dd>
+                            <dd class="col-sm-9 font-weight-normal">{{ $data->no_sp3 }}</dd>
 
                             <dt class="col-sm-3 font-weight-bold">Procurement Title :</dt>
                             <dd class="col-sm-9 font-weight-normal">{{ $data->judul_pengadaan }}</dd>
@@ -50,7 +50,7 @@
                             <dd class="col-sm-9 font-weight-normal">{{ $data->division_cd }}</dd>
 
                             <dt class="col-sm-3 font-weight-bold">No. PR :</dt>
-                            <dd class="col-sm-9 font-weight-normal">{{ $data->pbj }}</dd>
+                            <dd class="col-sm-9 font-weight-normal">{{ $data->no_pr }}</dd>
 
                             <dt class="col-sm-3 font-weight-bold">PR Date :</dt>
                             <dd class="col-sm-9 font-weight-normal">{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</dd>

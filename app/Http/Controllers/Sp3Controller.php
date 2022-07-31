@@ -179,7 +179,7 @@ class Sp3Controller extends Controller
 
     public function evaluasi_store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         foreach ($request["pemenuhan"] as $key => $val) {
             $data = new \App\Models\EvaluasiSp3();
             $data->sp3_id = $request["sp3_id"];
@@ -201,6 +201,8 @@ class Sp3Controller extends Controller
         if ($request["timeline_type"] == 'approval') {
             $sp3->where('proses_st', 'PROSES_SSP3');
             $sp3->orWhere('proses_st', 'PROSES_ASP3');
+            $sp3->orWhere('proses_st', 'PROSES_DRKS');
+            $sp3->orWhere('proses_st', 'PROSES_RRKS');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)
@@ -239,6 +241,12 @@ class Sp3Controller extends Controller
             ->addColumn('proses_st', function ($row) {
                 if ($row->proses_st == 'PROSES_DSP3') {
                     return '<badges class="badge badge-warning">Draft SP3</badges>';
+                }
+                if ($row->proses_st == 'PROSES_DRKS') {
+                    return '<badges class="badge badge-warning">Draft RKS</badges>';
+                }
+                if ($row->proses_st == 'PROSES_RRKS') {
+                    return '<badges class="badge badge-warning">Reviewing RKS</badges>';
                 } else if ($row->proses_st == 'PROSES_SSP3') {
                     return '<badges class="badge badge-primary">Submited SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_ESP3') {
@@ -258,33 +266,40 @@ class Sp3Controller extends Controller
                     return $btn;
                 } else {
                     $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
-                    if ($check->count() > 0) {
-                        $action = '<a href="' . route('sp3.show', $row->sp3_id) . '">
-                                        <button class="btn btn-primary btn-rounded btn-sm">
-                                            <i class="uil uil-search"></i> Show Detail
-                                        </button>
-                                   </a>
-                                   <a class="show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> 
-                                        <button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-search"></i> Show Evaluasi </button>
-                                   </a>
-                                   <a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
-                                        <button class="btn btn-warning btn-sm btn-rounded">
-                                        <i class="uil uil-check"></i> Approve</button>
-                                   </a>';
-                    } else {
-                        $action = '<a href="' . route('sp3.show', $row->sp3_id) . '">
-                                        <button class="btn btn-primary btn-rounded btn-sm">
-                                            <i class="uil uil-search"></i> Show Detail
-                                        </button>
-                                   </a>
-                                   <a role="presentation" href="' . route('evaluasi.form', $row->sp3_id) . '">
-                                        <button class="btn btn-success btn-sm btn-rounded">
-                                            <i class="uil uil-table"></i> Evaluasi
-                                        </button>
-                                   </a>';
-                    }
+                    $action = '<a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
+                                    <button class="btn btn-warning btn-sm btn-rounded">
+                                    <i class="uil uil-check"></i> Approve</button>
+                               </a>
+                               <a href="' . route('sp3.show', $row->sp3_id) . '">
+                                    <button class="btn btn-primary btn-rounded btn-sm">
+                                        <i class="uil uil-search"></i> Show Detail
+                                    </button>
+                               </a>
+                               <a role="presentation" href="' . route('evaluasi.form', $row->sp3_id) . '">
+                                    <button class="btn btn-success btn-sm btn-rounded">
+                                        <i class="uil uil-table"></i> Form Evaluasi
+                                    </button>
+                               </a>
+                               <a class="show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> 
+                                    <button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-search"></i> Show Evaluasi </button>
+                               </a>';
                     if ($row->proses_st == 'PROSES_SSP3') {
                         $btn = $action;
+                        return $btn;
+                    } elseif ($row->proses_st == 'PROSES_DRKS') {
+                        $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                                    <button class="btn btn-primary btn-rounded btn-sm">
+                                        <i class="uil uil-search"></i> Show Detail
+                                    </button>
+                                </a>
+                                <a role="presentation" href="' . route('evaluasi.form', $row->sp3_id) . '">
+                                    <button class="btn btn-success btn-sm btn-rounded">
+                                        <i class="uil uil-table"></i> Form Evaluasi
+                                    </button>
+                                </a>
+                                <a class="show-evaluasi" role="presentation" href="' . route('evaluasi.sp3') . '?sp_id=' . $row->sp3_id . '"> 
+                                    <button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-search"></i> Show Evaluasi </button>
+                                </a>';
                         return $btn;
                     } elseif ($row->proses_st == 'PROSES_ASP3') {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '"><button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-print"></i> Print SP </button></a>';
