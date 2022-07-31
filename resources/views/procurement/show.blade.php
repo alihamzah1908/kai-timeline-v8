@@ -106,6 +106,12 @@
                                     <span class="d-none d-sm-block">Aanwidjzing</span>
                                 </a>
                             </li>
+                            <li class="nav-item tab-dokumen-penawaran">
+                                <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Dokumen Penawaran</span>
+                                </a>
+                            </li>
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -129,28 +135,52 @@
                             <div class="tab-pane show active" id="draftrks">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Draft RKS:</label>
+                                        <label for="exampleInputEmail1" class="font-weight-bold"></label>
                                         <form action="#" id="form-draftrks" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="sp3_id" id="sp3_id" />
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
-                                                        <input type="file" name="file" class="form-control" id="file">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Draf Dokumen RKS:</label>
                                                         <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Template Dokumen RKS:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
                                                         <select class="form-control">
                                                             <option value="">Select Sampul</option>
                                                             <option value="1">1 Sampul</option>
@@ -158,9 +188,15 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Catatan:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
                                                         <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
                                                     </div>
                                                 </div>
@@ -168,63 +204,6 @@
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="exampleInputEmail1" class="font-weight-bold">Review RKS:</label>
-                                        <form action="#" id="form-draftrks" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="sp3_id" id="sp3_id" />
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="30" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Dokumen RKS:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="30" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
-                                                        <select class="form-control">
-                                                            <option value="">Select Sampul</option>
-                                                            <option value="1">1 Sampul</option>
-                                                            <option value="2">2 Sampul</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan:</label>
-                                                        <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
                                                     <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
                                                 </div>
@@ -237,43 +216,70 @@
                             <div class="tab-pane" id="peserta-tender">
                                 <div class="add-vendor">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
-                                                <select data-plugin="customselect" class="form-control" name="vendor_code[]">
-                                                    <option value="">Select Vendor</option>
-                                                    <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
-                                                    <option value="RK100002">PT. SARANA MULTI CORPORA</option>
-                                                    <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
-                                                </select>
+                                                <label for="exampleInputEmail1"></label>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">PIC Name</label>
-                                                <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Vendor Name:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select data-plugin="customselect" class="form-control" name="vendor_code[]">
+                                                            <option value="">Select Vendor</option>
+                                                            <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
+                                                            <option value="RK100002">PT. SARANA MULTI CORPORA</option>
+                                                            <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Phone Number:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Email Corporate</label>
-                                                <input type="text" name="email[]" class="form-control" placeholder="Please insert email">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">PIC Name:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Email Corporate:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="text" name="email[]" class="form-control" placeholder="Please insert email">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Phone Number</label>
-                                                <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Vendor Address</label>
-                                                <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Vendor Address:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -377,10 +383,19 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Berita Acara Aanwidjzing:</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                         </div>
                                     </div>
                                 </div>
@@ -389,6 +404,398 @@
                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="tab-pane" id="dokumen-penawaran">
+                                <div class="add-dokumen-penawaran">
+                                    <div class="row">
+                                    <label for="exampleInputEmail1">if 1 Sampul:</label>
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead  style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="4">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="20%" rowspan="2">DOKUMEN (Admin, Teknis, Harga)</th>
+                                                        <th width="20%" rowspan="2">TANGGAL SUBMIT</th>
+                                                        <th width="30%" rowspan="2">KETERANGAN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 3
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pemasukan Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead  style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="4">PEMBUKAAN DOKUMEN PENAWARAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="20%" rowspan="2">DOKUMEN (Admin, Teknis dan Harga)</th>
+                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN DOKUMEN</th>
+                                                        <th width="30%" rowspan="2">KETERANGAN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 3
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <label for="exampleInputEmail1">if 2 Sampul:</label>
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead  style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="6">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="15%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                        <th width="15%" rowspan="2">TANGGAL SUBMIT (Admin & Teknis)</th>
+                                                        <th width="15%" rowspan="2">DOKUMEN (Harga)</th>
+                                                        <th width="15%" rowspan="2">TANGGAL SUBMIT (Harga)</th>
+                                                        <th width="20%" rowspan="2">KETERANGAN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 3
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pemasukan Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead  style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="6">PEMBUKAAN DOKUMEN PENAWARAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="15%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                        <th width="15%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
+                                                        <th width="15%" rowspan="2">DOKUMEN (Harga)</th>
+                                                        <th width="15%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
+                                                        <th width="20%" rowspan="2">KETERANGAN</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 3
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
 
 
