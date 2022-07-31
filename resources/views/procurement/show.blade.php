@@ -88,28 +88,22 @@
                     </div>
                     <div class="row">
                         <ul class="nav nav-tabs">
-                            <li class="nav-item tab-jadwal-pelaksanaan">
-                                <a href="#home" data-toggle="tab" aria-expanded="true" class="nav-link active">
-                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                    <span class="d-none d-sm-block">Jadwal Pelaksanaan</span>
-                                </a>
-                            </li>
                             <li class="nav-item tab-draftrks">
-                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                    <span class="d-none d-sm-block">Draft RKS</span>
-                                </a>
-                            </li>
-                            <li class="nav-item tab-reviewrks">
-                                <a href="#reviewrks" data-toggle="tab" aria-expanded="true" class="nav-link">
-                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
-                                    <span class="d-none d-sm-block">Review RKS</span>
+                                    <span class="d-none d-sm-block">RKS</span>
                                 </a>
                             </li>
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Peserta Tender</span>
+                                </a>
+                            </li>
+                            <li class="nav-item tab-aanwidjzing">
+                                <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Aanwidjzing</span>
                                 </a>
                             </li>
                             <li class="nav-item tab-evaluasi-dokumen">
@@ -132,168 +126,114 @@
                             </li>
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
-                            <div class="tab-pane show active" id="home">
-                                <form action="#" id="jadwal-pelaksanaan">
-                                    <input type="hidden" name="penjadwalan" value="penjadwalan">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Jadwal Pemberian Penjelasan:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="penjelasan_end_date" name="penjelasan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                            <div class="tab-pane show active" id="draftrks">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Draft RKS:</label>
+                                        <form action="#" id="form-draftrks" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="sp3_id" id="sp3_id" />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
+                                                        <input type="file" name="file" class="form-control" id="file">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Draf Dokumen RKS:</label>
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
+                                                        <select class="form-control">
+                                                            <option value="">Select Sampul</option>
+                                                            <option value="1">1 Sampul</option>
+                                                            <option value="2">2 Sampul</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Catatan:</label>
+                                                        <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Pemasukan Dokumen Penawaran:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="pemasukan_start_date" name="pemasukan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="pemasukan_end_date" name="pemasukan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="exampleInputEmail1" class="font-weight-bold">Review RKS:</label>
+                                        <form action="#" id="form-draftrks" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="sp3_id" id="sp3_id" />
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="30" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Dokumen RKS:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="30" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
+                                                        <select class="form-control">
+                                                            <option value="">Select Sampul</option>
+                                                            <option value="1">1 Sampul</option>
+                                                            <option value="2">2 Sampul</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Catatan:</label>
+                                                        <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Pembukaan Dokumen Penawaran:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="penawaran_start_date" name="penawaran_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="penawaran_end_date" name="penawaran_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Evaluasi Administrasi, Teknis dan Harga:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="evaluasi_start_date" name="evaluasi_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="evaluasi_end_date" name="evaluasi_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Penetapan dan Pengumuman Pemenang:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="pengumuman_start_date" name="pengumuman_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="pengumuman_end_date" name="pengumuman_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-2">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1" class="font-weight-bold">Penandatanganan Kontrak:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="tandatangan_start_date" name="tandatangan_start_date" class="form-control datepicker" placeholder="Please insert start date">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"> To </label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="tandatangan_end_date" name="tandatangan_end_date" class="form-control datepicker" placeholder="Please insert end date">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-primary btn-sm btn-rounded save-jadwal">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-                            <div class="tab-pane" id="draftrks">
-                                <form action="#" id="form-draftrks" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="sp3_id" id="sp3_id" />
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Upload Template Proposal/Dokumen Penawaran:</label>
-                                                <input type="file" name="file" class="form-control" id="file">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Upload Draft RKS:</label>
-                                                <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Metode Submit Dokumen:</label>
-                                                <select class="form-control">
-                                                    <option value="">Select Sampul</option>
-                                                    <option value="">1 Sampul</option>
-                                                    <option value="">2 Sampul</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="tab-pane" id="reviewrks">
-                                <form action="#" id="form-reviewrks" enctype="multipart/form-data">
-                                    <table id="review-rks" class="table dt-responsive nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th>Judul Pengadaan</th>
-                                                <th>Metode Submit Dokumen</th>
-                                                <th>File Proposal/Template</th>
-                                                <th>Draft RKS</th>
-                                                <th>Catatan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>
+                            
                             <div class="tab-pane" id="peserta-tender">
                                 <div class="add-vendor">
                                     <div class="row">
@@ -349,6 +289,109 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="tab-pane" id="aanwidjzing">
+                                <div class="add-aanwidjzing">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead  style="text-align: center">
+                                                    <tr>
+                                                        <th width="10%" rowspan="2">N0</th>
+                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="20%" colspan="2">KEHADIRAN</th>
+                                                        <th width="40%" rowspan="2">KETERANGAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="10%">YA</th>
+                                                        <th width="10%">TIDAK</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>1.</td>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
+                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
+                                                            </div>        
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2.</td>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_2_value" id="verif_2_ya" value="2" checked="">
+                                                                <label class="custom-control-label" for="verif_2_ya">Ya</label>
+                                                            </div>        
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_2_value" id="verif_2_tidak"  value="0">
+                                                                <label class="custom-control-label" for="verif_2_tidak">Tidak</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_2_note" id="verif_2_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="3">3.</td>
+                                                        <td>
+                                                            Peserta Tender 3
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_3a_value" id="verif_3a_ya" value="3" checked="">
+                                                                <label class="custom-control-label" for="verif_3a_ya">Ya</label>
+                                                            </div>        
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" name="verif_3a_value" id="verif_3a_tidak"  value="0">
+                                                                <label class="custom-control-label" for="verif_3a_tidak">Tidak</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_3a_note" id="verif_3a_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Berita Acara Aanwidjzing:</label>
+                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="tab-pane" id="evaluasi-dokumen">
                                 <div class="row">
                                     <div class="col-md-6">
