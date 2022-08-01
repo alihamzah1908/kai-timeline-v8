@@ -76,9 +76,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
     Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show');
     Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
+    Route::get('/data/procurement/approve', 'App\Http\Controllers\ProcurementController@approve')->name('procurement.approve'); 
     Route::get('/data/procurement/review/rks', 'App\Http\Controllers\ProcurementController@data_rks')->name('data.view.rks');
     Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
     Route::post('/data/procurement/status/reviewing', 'App\Http\Controllers\ProcurementController@reviewing')->name('procurement.reviewing');
+    Route::post('/data/procurement/save-tender', 'App\Http\Controllers\ProcurementController@save_tender')->name('save.tender');
+    Route::post('/data/procurement/save-aandwidjzing', 'App\Http\Controllers\ProcurementController@save_aanwidjzing')->name('save.aanwidjzing');
+    
 
     //DASHBOARD
     Route::get('/dashboard/monitoring-rup', function () {

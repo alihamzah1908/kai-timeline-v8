@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Svg\Tag\Rect;
 
 class ProcurementController extends Controller
 {
@@ -36,26 +37,32 @@ class ProcurementController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->file('file_draft'));
-        if ($request->hasFile('file')) {
+        // dd($request->hasFile('file_penawaran'));
+        if ($request->hasFile('file_penawaran')) {
             // PROPOSAL/TEMPLATE FILE
-            $file = $request->file('file');
+            $file_penawaran = $request->file('file_penawaran');
             $files = new \App\Models\DraftRks();
             $files->sp3_id = $request["sp3_id"];
-            $extension = $file->getClientOriginalExtension();
+            $extension = $file_penawaran->getClientOriginalExtension();
             $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-            $file->move(public_path('file/rks'), $new_name);
-            $files->file = $new_name;
+            $file_penawaran->move(public_path('file/rks'), $new_name);
+            $files->file_penawaran = $new_name;
 
             // DRAFT FILE
-            $file_draft = $request->file('file_draft');
+            $file_dokumen = $request->file('file_dokumen');
             // dd($file_draft);
-            $extension_draft = $file_draft->getClientOriginalExtension();
+            $extension_draft = $file_dokumen->getClientOriginalExtension();
             $new_name_draft = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_draft;
-            $file_draft->move(public_path('file/rks'), $new_name_draft);
-            $files->file_draft = $new_name_draft;
+            $file_dokumen->move(public_path('file/rks'), $new_name_draft);
+            $files->file_dokumen = $new_name_draft;
+            $files->metode = $request["metode_dokumen"];
+            $files->catatan = $request["catatan_rks"];
+            $files->created_by = Auth::user()->id;
             $files->save();
             if ($files) {
+                $sp3 = \App\Models\SP3::findOrFail($request["sp3_id"]);
+                $sp3->proses_st = 'PROSES_RRKS';
+                $sp3->save();
                 return response()->json(["status" => 200]);
             } else {
                 return response()->json(["status" => 400]);
@@ -84,13 +91,6 @@ class ProcurementController extends Controller
                 return response()->json(["status" => 400]);
             }
         }
-    }
-
-    public function reviewing(Request $request)
-    {
-        $status = \App\Models\SP3::find($request["sp3_id"]);
-        $status->proses_st = 'PROSES_RRKS';
-        $status->save();
     }
 
     /**
@@ -140,6 +140,61 @@ class ProcurementController extends Controller
         //
     }
 
+    public function reviewing(Request $request)
+    {
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_RRKS';
+        $status->save();
+    }
+
+    public function approve(Request $request)
+    {
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        if ($request["type"] == 'approve') {
+            if ($request["proses_st"] == 'PROSES_RRKS') {
+                $status->proses_st = 'PROSES_PP';
+            }
+            $status->save();
+            if ($status) {
+                return response()->json(['status' => 200]);
+            }
+        }
+    }
+
+    public function save_tender(Request $request)
+    {
+        foreach ($request["vendor_code"] as $key => $val) {
+            $tender = new \App\Models\TrxPesertaTender();
+            $tender->sp3_id = $request["sp3_id"];
+            $tender->vendor_code = $val;
+            $tender->phone_number = $request["phone_number"][$key];
+            $tender->pic_name = $request["pic_name"][$key];
+            $tender->email_corporate = $request["email"][$key];
+            $tender->address = $request["vendor_address"][$key];
+            $tender->created_by = Auth::user()->id;
+            $tender->save();
+        }
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        if ($status->proses_st == 'PROSES_PP') {
+            $status->proses_st = 'PROSES_AL';
+        }
+        $status->save();
+        return response()->json(['status' => 200]);
+    }
+    public function save_aanwidjzing(Request $request)
+    {
+        // dd($request->all());
+        foreach ($request["vendor_code"] as $key => $val) {
+            $aanwidjzing = new \App\Models\TrxAanwidjzing();
+            $aanwidjzing->sp3_id = $request["sp3_id"];
+            $aanwidjzing->vendor_code = $val;
+            $aanwidjzing->verif_value = $request["verif_value"][$key];
+            $aanwidjzing->verif_note = $request["verif_note"][$key];
+            $aanwidjzing->save();
+        }
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
     public function getSp3(Request $request)
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
@@ -179,6 +234,8 @@ class ProcurementController extends Controller
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
             ->where('proses_st', 'PROSES_RRKS')
             ->orWhere('proses_st', 'PROSES_DRKS')
+            ->orWhere('proses_st', 'PROSES_PP')
+            ->orWhere('proses_st', 'PROSES_AL')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -210,20 +267,24 @@ class ProcurementController extends Controller
                     return '<badges class="badge badge-warning">Drafting RKS</badges>';
                 } else if ($row->proses_st == 'PROSES_RRKS') {
                     return '<badges class="badge badge-success">Reviewing RKS</badges>';
+                } else if ($row->proses_st == 'PROSES_PP') {
+                    return '<badges class="badge badge-success">Pengumuman Pengadaan</badges>';
+                } else if ($row->proses_st == 'PROSES_AL') {
+                    return '<badges class="badge badge-success">Pelaksanaan Aanwidjzing</badges>';
                 }
             })
             ->addColumn('action', function ($row) {
                 // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
                 // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
-                if ($row->proses_st == 'PROSES_DRKS') {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                // if ($row->proses_st == 'PROSES_DRKS') {
+                //     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
+                //                </a>';
+                // } else if ($row->proses_st == 'PROSES_RRKS') {
+                $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
                                </a>';
-                } else if ($row->proses_st == 'PROSES_RRKS') {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
-                               </a>';
-                }
+                // }
                 return $action;
             })
             ->rawColumns(['action', 'proses_st'])

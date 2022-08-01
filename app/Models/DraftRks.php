@@ -14,7 +14,10 @@ class DraftRks extends Model
         'rks_id',
         'sp3_id',
         'tanggal_rks',
-        'file',
+        'file_penawaran',
+        'file_dokumen',
+        'metode',
+        'catatan',
         'created_by',
         'updated_by'
     ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class Sp3Controller extends Controller
@@ -46,11 +47,6 @@ class Sp3Controller extends Controller
                 $data->division_cd = $timeline ? $timeline->division_cd : Auth::user()->division_cd;
                 $data->department_cd =  $timeline ? $timeline->department_cd : Auth::user()->department_cd;;
                 $data->judul_pengadaan = $timeline ? $timeline->judul_pengadaan : $request["judul_pengadaan"];
-                $data->no_sp3 = $request["nomor_sp3"];
-                // $data->sumber_dana =  $timeline ? $timeline->sumber_dana : $request["sumber_dana"];
-                // $data->jenis_kontrak =  $timeline ? $timeline->jenis_kontrak : $request["jenis_kontrak"];
-                // $data->beban_biaya =  $timeline ? $timeline->beban_biaya : $request["beban_biaya"];
-                // $data->pbj =  $timeline ? $timeline->pbj : $request["pbj"];
                 $data->nilai_pr =  $timeline ? $timeline->nilai_pr : str_replace('.', '', $request["nilai_pr"]);
                 $data->type_tax =  $timeline ? $timeline->type_tax : str_replace('.', '', $request["nilai_tax"]);
                 $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
@@ -69,7 +65,6 @@ class Sp3Controller extends Controller
                 $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
                 $data->keterangan = 'KETERANGAN';
                 $data->created_by = Auth::user()->id;
-                $data->updated_by = Auth::user()->id;
                 $data->save();
                 if ($request->hasFile('file')) {
                     $file = $request->file('file');
@@ -249,10 +244,8 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
         } elseif ($request["timeline_type"] == 'npp') {
-            $sp3->where('proses_st', 'PROSES_SSP3');
-            // $sp3->groupBy(
-            //     'timeline_id',
-            // );
+            $sp3->select("*", DB::raw("sum(nilai_pr) as nilai_pr"));
+            $sp3->groupBy('timeline_id', 'sp3_id');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)

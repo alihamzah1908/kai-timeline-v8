@@ -88,24 +88,30 @@
                     </div>
                     <div class="row">
                         <ul class="nav nav-tabs">
+                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">RKS</span>
                                 </a>
                             </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Peserta Tender</span>
                                 </a>
                             </li>
+                            @if($data->proses_st == 'PROSES_AL')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Aanwidjzing</span>
                                 </a>
                             </li>
+                            @endif
+                            @else
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -136,15 +142,17 @@
                                     <span class="d-none d-sm-block">Summary PBJ</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
                             <div class="tab-pane show active" id="draftrks">
+                                @if($data->proses_st == 'PROSES_DRKS')
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="exampleInputEmail1" class="font-weight-bold"></label>
                                         <form action="#" id="form-draftrks" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="hidden" name="sp3_id" id="sp3_id" />
+                                            <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -153,7 +161,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -170,7 +178,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -187,10 +195,10 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <select class="form-control">
+                                                        <select class="form-control" name="metode_dokumen" id="metode-dokumen">
                                                             <option value="">Select Sampul</option>
-                                                            <option value="1">1 Sampul</option>
-                                                            <option value="2">2 Sampul</option>
+                                                            <option value="1_sampul">1 Sampul</option>
+                                                            <option value="2_sampul">2 Sampul</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -203,93 +211,211 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert RKS note"></textarea>
+                                                        <textarea name="catatan_rks" id="catatan-rks" class="form-control" placeholder="Please insert RKS note"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
+                                                    @if($data->proses_st == 'PROSES_DRKS')
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="tab-pane" id="peserta-tender">
-                                <div class="add-vendor">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1"></label>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Vendor Name:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <select data-plugin="customselect" class="form-control" name="vendor_code[]">
-                                                            <option value="">Select Vendor</option>
-                                                            <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
-                                                            <option value="RK100002">PT. SARANA MULTI CORPORA</option>
-                                                            <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Phone Number:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">PIC Name:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Email Corporate:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="text" name="email[]" class="form-control" placeholder="Please insert email">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Vendor Address:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                @elseif($data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Template Proposal/Dokumen</th>
+                                                        <th>Template Dokumen RKS</th>
+                                                        <th>Metode Submit Dokumen</th>
+                                                        <th>Catatan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                    $rks = \App\Models\DraftRks::where('sp3_id', $data->sp3_id)->get();
+                                                    @endphp
+                                                    @foreach($rks as $val)
+                                                    <tr>
+                                                        <td>
+                                                            <a href="{{ asset('file/rks/' . $val->file_penawaran) }}" target="_blank"><img src="{{ asset('assets/images/preview.png') }}" height="25"></a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ asset('file/rks/' . $val->file_dokumen) }}" target="_blank"><img src="{{ asset('assets/images/preview.png') }}" height="25"></a>
+                                                        </td>
+                                                        <th>{{ $val->metode == '1_sampul' ? '1 Sampul' : '2 Sampul' }}</th>
+                                                        <th>{{ $val->catatan }}</th>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
+                                        @if($data->proses_st == 'PROSES_RRKS')
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="button" class="btn btn-warning btn-sm btn-rounded approve mr-2" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded reject" data-bind="{{ $data->proses_st }}"><i class="uil uil-reject"></i>Reject</button>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
+                                @endif
+                            </div>
+                            <div class="tab-pane" id="peserta-tender">
+                                <form action="{{ route('save.tender') }}" method="post" id="tender">
+                                    <div class="add-vendor">
+                                        <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <div class="row">
+                                            @php
+                                            $tender = \App\Models\TrxPesertaTender::where('sp3_id', $data->sp3_id)->get();
+                                            @endphp
+                                            @if($tender->count() > 0)
+                                            @foreach($tender as $val)
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Vendor Name:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select data-plugin="customselect" class="form-control" name="vendor_code[{{$val->peserta_tender_id}}]">
+                                                                <option value="">Select Vendor</option>
+                                                                <option value="RK10047" {{ $val->vendor_code == 'RK10047' ? ' selected' : '' }}>PT. TEKNOKRAT MITRA DATA</option>
+                                                                <option value="RK100002" {{ $val->vendor_code == 'RK100002' ? ' selected' : '' }}>PT. SARANA MULTI CORPORA</option>
+                                                                <option value="RK10003" {{ $val->vendor_code == 'RK10003' ? ' selected' : '' }}>PT. TRIINTI INTERNATIONAL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Phone Number:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="phone_number[{{$val->peserta_tender_id}}]" class="form-control" placeholder="Please insert phone number" value="{{ $val->phone_number }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">PIC Name:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="pic_name[{{$val->peserta_tender_id}}]" class="form-control" placeholder="Please insert pic name" value="{{ $val->pic_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email Corporate:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="email[{{$val->peserta_tender_id}}]" class="form-control" placeholder="Please insert email" value="{{ $val->email_corporate }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Vendor Address:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="vendor_address[{{$val->peserta_tender_id}}]" class="form-control" placeholder="Please insert vendor addres" value="{{ $val->address }}">{{ $val->address }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @else
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Vendor Name:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select data-plugin="customselect" class="form-control" name="vendor_code[]">
+                                                                <option value="">Select Vendor</option>
+                                                                <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
+                                                                <option value="RK100002">PT. SARANA MULTI CORPORA</option>
+                                                                <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Phone Number:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">PIC Name:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email Corporate:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="email[]" class="form-control" placeholder="Please insert email" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Vendor Address:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres" value=""></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </form>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
@@ -297,128 +423,96 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-tender" data-bind="{{ $data->proses_st }}">Submit</button>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="tab-pane" id="aanwidjzing">
-                                <div class="add-aanwidjzing">
+                                <form id="form-aanwidjzing" enctype="multipart/form-data" method="post" action="{{ route('save.aanwidjzing') }}">
+                                    @csrf
+                                    <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" /> 
+                                    <div class="add-aanwidjzing">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="10%" rowspan="2">N0</th>
+                                                            <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="20%" colspan="2">KEHADIRAN</th>
+                                                            <th width="40%" rowspan="2">KETERANGAN</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="10%">YA</th>
+                                                            <th width="10%">TIDAK</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @php
+                                                        $tender_list = \App\Models\TrxPesertaTender::where('sp3_id', $data->sp3_id)->get();
+                                                        $i = 1;
+                                                        @endphp
+                                                        @foreach($tender_list as $val)
+                                                        <tr>
+                                                            <td>{{ $i++ }}</td>
+                                                            <td>
+                                                                {{ $val->vendor_code }}
+                                                                <input type="hidden" id="vendor_code" name="vendor_code[{{$val->peserta_tender_id}}]" value="{{ $val->vendor_code }}" />
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="verif_value[{{$val->peserta_tender_id}}]" id="verif_{{$val->peserta_tender_id}}_ya" value="1">
+                                                                    <label class="custom-control-label" for="verif_{{$val->peserta_tender_id}}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="verif_value[{{$val->peserta_tender_id}}]" id="verif_{{$val->peserta_tender_id}}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="verif_{{$val->peserta_tender_id}}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="verif_note[{{$val->peserta_tender_id}}]" id="verif_{{ $val->peserta_tender_id}}_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
-                                                    <tr>
-                                                        <th width="10%" rowspan="2">N0</th>
-                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="20%" colspan="2">KEHADIRAN</th>
-                                                        <th width="40%" rowspan="2">KETERANGAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="10%">YA</th>
-                                                        <th width="10%">TIDAK</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    <tr>
-                                                        <td>1.</td>
-                                                        <td>
-                                                            Peserta Tender 1
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2.</td>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_2_value" id="verif_2_ya" value="2" checked="">
-                                                                <label class="custom-control-label" for="verif_2_ya">Ya</label>
-                                                            </div>        
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_2_value" id="verif_2_tidak"  value="0">
-                                                                <label class="custom-control-label" for="verif_2_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_2_note" id="verif_2_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td rowspan="3">3.</td>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_3a_value" id="verif_3a_ya" value="3" checked="">
-                                                                <label class="custom-control-label" for="verif_3a_ya">Ya</label>
-                                                            </div>        
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_3a_value" id="verif_3a_tidak"  value="0">
-                                                                <label class="custom-control-label" for="verif_3a_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_3a_note" id="verif_3a_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Aanwidjzing:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="file" name="file_berita_acara" class="form-control" id="file-draft">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Berita Acara Aanwidjzing:</label>
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-rounded save-aanwidjzing">Submit</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
-
                             <div class="tab-pane" id="dokumen-penawaran">
                                 <div class="add-dokumen-penawaran">
                                     <div class="row">
-                                    <label for="exampleInputEmail1">if 1 Sampul:</label>
+                                        <label for="exampleInputEmail1">if 1 Sampul:</label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="3">PEMASUKAN DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -434,10 +528,10 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -445,10 +539,10 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -456,10 +550,10 @@
                                                             Peserta Tender 3
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -503,7 +597,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="3">PEMBUKAAN DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -522,7 +616,7 @@
                                                             Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -533,7 +627,7 @@
                                                             Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -544,7 +638,7 @@
                                                             Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -587,10 +681,10 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <label for="exampleInputEmail1">if 2 Sampul:</label>
+                                        <label for="exampleInputEmail1">if 2 Sampul:</label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="5">PEMASUKAN DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -608,16 +702,16 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -625,16 +719,16 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -642,16 +736,16 @@
                                                             Peserta Tender 3
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">    
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -720,7 +814,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -741,13 +835,13 @@
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -758,13 +852,13 @@
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -775,13 +869,13 @@
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -854,10 +948,10 @@
                             <div class="tab-pane" id="evaluasi-dokumen">
                                 <div class="add-evaluasi-dokumen">
                                     <div class="row">
-                                    <label for="exampleInputEmail1">if 1 Sampul:</label>
+                                        <label for="exampleInputEmail1">if 1 Sampul:</label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="5">EVALUASI DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -875,17 +969,17 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -898,17 +992,17 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -921,17 +1015,17 @@
                                                             Peserta Tender 3
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -967,10 +1061,10 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <label for="exampleInputEmail1">if 2 Sampul:</label>
+                                        <label for="exampleInputEmail1">if 2 Sampul:</label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="9">EVALUASI DOKUMEN PENAWARAN</th>
                                                     </tr>
@@ -992,17 +1086,17 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1010,17 +1104,17 @@
                                                             <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1033,17 +1127,17 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1051,17 +1145,17 @@
                                                             <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1074,17 +1168,17 @@
                                                             Peserta Tender 3
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1092,17 +1186,17 @@
                                                             <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
                                                                 <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>        
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak"  value="0">
+                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
                                                                 <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
                                                             </div>
                                                         </td>
@@ -1143,7 +1237,7 @@
                                                         <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                     </div>
                                                 </div>
-                                            </div>                                    
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
@@ -1158,10 +1252,10 @@
                             <div class="tab-pane" id="klarifikasi">
                                 <div class="add-klarifikasi">
                                     <div class="row">
-                                    <label for="exampleInputEmail1"></label>
+                                        <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="5">KLARIFIKASI, KONFIRMASI DAN NEGOISASI</th>
                                                     </tr>
@@ -1179,10 +1273,10 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">       
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
@@ -1196,10 +1290,10 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">       
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
@@ -1267,7 +1361,7 @@
                             <div class="tab-pane" id="pemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
-                                    <label for="exampleInputEmail1"></label>
+                                        <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
                                             <form action="#" id="form-draftrks" enctype="multipart/form-data">
@@ -1332,10 +1426,10 @@
                             <div class="tab-pane" id="summary">
                                 <div class="add-summary">
                                     <div class="row">
-                                    <label for="exampleInputEmail1"></label>
+                                        <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead  style="text-align: center">
+                                                <thead style="text-align: center">
                                                     <tr>
                                                         <th width="100%" colspan="6">SUMMARY PENGADAAN BARANG DAN JASA</th>
                                                     </tr>
@@ -1354,10 +1448,10 @@
                                                             Peserta Tender 1
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">       
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
@@ -1371,10 +1465,10 @@
                                                             Peserta Tender 2
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">  
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">       
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
@@ -1442,7 +1536,7 @@
                             <div class="tab-pane" id="summary">
                                 <div class="add-summary">
                                     <div class="row">
-                                    <label for="exampleInputEmail1"></label>
+                                        <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
                                             <form action="#" id="form-draftrks" enctype="multipart/form-data">
@@ -1518,5 +1612,194 @@
             </div> <!-- end card -->
         </div><!-- end col-->
     </div>
-</div> 
+</div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        // SAVE DATA RKS
+        $('body').on('click', '.save-rks', function() {
+            var file_penawaran = $("#file-penawaran")[0].files;
+            var file_dokumen = $("#file-dokumen")[0].files;
+            var sp3_id = $("#sp3-id").val();
+            var tanggal_rks = $("#tanggal-rks").val();
+            var metode_dokumen = $("#metode-dokumen").val();
+            var catatan_rks = $("#catatan-rks").val();
+            var formData = new FormData();
+            formData.append('file_penawaran', file_penawaran[0])
+            formData.append('file_dokumen', file_dokumen[0])
+            formData.append('tanggal_rks', tanggal_rks)
+            formData.append('metode_dokumen', metode_dokumen)
+            formData.append('catatan_rks', catatan_rks)
+            formData.append('sp3_id', sp3_id)
+            formData.append('_token', '{{ csrf_token() }}');
+            $.ajax({
+                url: "{{ route('procurement.store') }}",
+                method: "POST",
+                dataType: 'JSON',
+                data: formData,
+                processData: false,
+                contentType: false,
+            }).done(function(response) {
+                if (response.status == 200) {
+                    Swal.fire({
+                        title: 'RKS Saved',
+                        text: "File change status to Reviewing RKS!",
+                        confirmButtonText: 'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload()
+                        }
+                    })
+                } else {
+                    Swal.fire(
+                        'RKS failed Save!',
+                        'Your RKS has failed save.',
+                        'error'
+                    )
+                }
+            })
+        })
+
+        // APPROVE RKS
+        $('body').on('click', '.approve', function() {
+            Swal.fire({
+                title: 'Are you sure approve RKS?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Approve'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('procurement.approve') }}",
+                        method: "GET",
+                        dataType: 'JSON',
+                        data: {
+                            type: 'approve',
+                            sp3_id: '{{ $data->sp3_id }}',
+                            proses_st: $(this).attr('data-bind')
+                        },
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            location.reload();
+                        }
+                    })
+                }
+            })
+        })
+
+        // SAVE AANDWIDJZING
+        $("#form-aanwidjzing").submit(function(e) {
+            alert("Aaanwidjing saved !")
+        });
+
+        // ADD FORM TENDER
+        $('body').on('click', '.add-button-vendor', function() {
+            var body = '<div class="row border-top">'
+            body += '<div class="col-md-12">'
+            body += '<div class="form-group">'
+            body += '<div class="row">'
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Vendor Name:</label>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-3">'
+            body += '<div class="form-group">'
+            body += '<select data-plugin="customselect" class="form-control" name="vendor_code[]">'
+            body += '<option value="">Select Vendor</option>'
+            body += '<option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>'
+            body += '<option value="RK100002">PT. SARANA MULTI CORPORA</option>'
+            body += '<option value="RK10003">PT. TRIINTI INTERNATIONAL</option>'
+            body += '</select>'
+            body += '</div>'
+            body += '</div>'
+
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Phone Number:</label>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">PIC Name:</label>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-3">'
+            body += '<div class="form-group">'
+            body += '<input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Email Corporate:</label>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-3">'
+            body += '<div class="form-group">'
+            body += '<input type="text" name="email[]" class="form-control" placeholder="Please insert email">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-2">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Vendor Address:</label>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-3">'
+            body += '<div class="form-group">'
+            body += '<textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            $(".add-vendor").append(body)
+        })
+
+        // SAVE FORM TENDER
+        $('body').on('click', '.save-tender', function() {
+            Swal.fire({
+                title: 'Are you sure save Tender?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('save.tender') }}",
+                        method: "post",
+                        dataType: 'JSON',
+                        data: $("#tender").serializeArray()
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: 'Peserta Tender Saved',
+                                text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        })
+    })
+</script>
+@endpush
