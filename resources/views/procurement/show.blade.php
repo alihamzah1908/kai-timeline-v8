@@ -88,7 +88,8 @@
                     </div>
                     <div class="row">
                         <ul class="nav nav-tabs">
-                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
+                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || 
+                            $data->proses_st == 'PROSES_PDP')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -96,14 +97,14 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
+                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Peserta Tender</span>
                                 </a>
                             </li>
-                            @if($data->proses_st == 'PROSES_AL')
+                            @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -111,13 +112,15 @@
                                 </a>
                             </li>
                             @endif
-                            @else
+                            @if($data->proses_st == 'PROSES_PDP')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Dokumen Penawaran</span>
                                 </a>
                             </li>
+                            @endif
+                            @else
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -225,7 +228,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                @elseif($data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL')
+                                @elseif($data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
@@ -450,14 +453,18 @@
                                                     </thead>
                                                     <tbody style="vertical-align: top">
                                                         @php
-                                                        $tender_list = \App\Models\TrxPesertaTender::where('sp3_id', $data->sp3_id)->get();
+                                                        $tender_list = DB::table('public.trx_peserta_tender as a')
+                                                            ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
+                                                                    'a.address','b.i_lifnr','b.e_name')
+                                                            ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                            ->get();
                                                         $i = 1;
                                                         @endphp
                                                         @foreach($tender_list as $val)
                                                         <tr>
                                                             <td>{{ $i++ }}</td>
                                                             <td>
-                                                                {{ $val->vendor_code }}
+                                                                {{ $val->e_name }}
                                                                 <input type="hidden" id="vendor_code" name="vendor_code[{{$val->peserta_tender_id}}]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>

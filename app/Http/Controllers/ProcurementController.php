@@ -190,8 +190,23 @@ class ProcurementController extends Controller
             $aanwidjzing->vendor_code = $val;
             $aanwidjzing->verif_value = $request["verif_value"][$key];
             $aanwidjzing->verif_note = $request["verif_note"][$key];
+            $aanwidjzing->created_by = Auth::user()->id;
             $aanwidjzing->save();
         }
+        if ($request->hasFile('file_berita_acara')) {
+            $file = $request->file('file_berita_acara');
+            $files = new \App\Models\TrxAanwidjzingFileBerita();
+            $files->aanwidjzing_id = $aanwidjzing->aanwidjzing_id;
+            $extension = $file->getClientOriginalExtension();
+            $new_name = 'berita-acara-aanwidjzing' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+            $file->move(public_path('file/sp3'), $new_name);
+            $files->file_berita_acara = $new_name;
+            $files->created_at = Auth::user()->id;
+            $files->save();
+        }
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_PDP';
+        $status->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
@@ -236,6 +251,7 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_DRKS')
             ->orWhere('proses_st', 'PROSES_PP')
             ->orWhere('proses_st', 'PROSES_AL')
+            ->orWhere('proses_st', 'PROSES_PDP')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {

@@ -10,7 +10,7 @@ class TrxAanwidjzingFileBerita extends Model
     use HasFactory;
 
     protected $table = 'public.trx_file_berita_acara_aanwidjzing';
-    protected $primaryKey = 'aanwidjzing_id';
+    protected $primaryKey = 'berita_acara_id';
     protected $fillable = [
         'berita_acara_id',
         'aanwidjzing_id',
