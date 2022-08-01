@@ -66,12 +66,17 @@
                                 @php
                                 $timeline = \App\Models\Timeline::select('timeline_id','judul_pengadaan')->where('proses_st', 'PROSES_AT')->get();
                                 @endphp
-                                <select data-plugin="customselect" class="form-control" name="timeline_id">
+                                <select data-plugin="customselect" class="form-control" name="timeline_id[]">
                                     @foreach($timeline as $val)
                                     <option value="{{ $val->timeline_id }}">{{ $val->judul_pengadaan}}</option>
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <button class="btn btn-sm btn-primary btn-rounded add-timeline" type="button"><i class="uil uil-plus"></i> add timeline</button>
                         </div>
                     </div>
 
@@ -127,7 +132,7 @@
                             <div class="col-md-4 nilai-tax border">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
-                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" disabled>
+                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readlonly>
                                 </div>
                             </div>
                         </div>
@@ -323,7 +328,12 @@
             },
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data.sp3') }}",
+            ajax: {
+                url: "{{ route('data.sp3') }}",
+                data: {
+                    timeline_type: 'npp'
+                }
+            },
             columns: [{
                     data: 'no_sp3'
                 },
@@ -359,12 +369,14 @@
             console.log(data)
             if (data == 'no') {
                 $(".row-timeline").hide();
+                $(".add-timeline").hide();
                 $(".kolom-timeline").show();
                 $(".judul-pengadaan").show();
             } else if (data == 'ya') {
                 $(".row-timeline").show();
                 $(".kolom-timeline").hide();
                 $(".judul-pengadaan").hide();
+                $(".add-timeline").show();
             }
         })
         $('body').on('click', '.type_metode', function() {
@@ -449,8 +461,8 @@
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").val('0')
-                $(".nilai-pr").val(rupiah)
+                $(".nilai-tax-value").val(rupiah)
+                // $(".nilai-pr").val(rupiah)
                 $(".nilai-tax-value").prop('disabled', true)
             } else if (jenis == '2') {
                 var persen = (11 / 100);
@@ -460,15 +472,15 @@
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").val('11')
+                $(".nilai-tax-value").val(rupiah)
                 $(".nilai-tax-percent").html('%')
-                $(".nilai-pr").val(rupiah)
+                // $(".nilai-pr").val(rupiah)
                 $(".nilai-tax-value").prop('disabled', true)
             } else if (jenis == '3') {
                 $(".nilai-tax").show()
                 $(".nilai-tax-value").prop('disabled', false)
                 $(".nilai-tax-value").val(' ')
-                $(".nilai-pr").val(nilai_pr)
+                // $(".nilai-pr").val(nilai_pr)
             }
         })
         $('body').on('keyup', '.nilai-tax-value', function() {
@@ -520,6 +532,26 @@
                     })
 
                 }
+            })
+        })
+        $('body').on('click', '.add-timeline', function() {
+            $.ajax({
+                url: '{{ route("get.timeline") }}',
+                dataType: 'json',
+                method: 'get'
+            }).done(function(response) {
+                var option = []
+                $.each(response, function(index, value) {
+                    option.push('<option value="">Pilih Timeline</option><option value=' + value.timeline_id + '>' + value.judul_pengadaan + '</option>')
+                })
+                var body = '<div class="col-md-12">';
+                body += '<div class="form-group">'
+                body += '<select data-plugin="customselect" class="form-control" name="timeline_id[]">'
+                body += option
+                body += '</select>'
+                body += '</div>'
+                body += '</div>'
+                $(".row-timeline").append(body)
             })
         })
     })

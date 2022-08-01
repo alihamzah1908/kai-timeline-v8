@@ -38,58 +38,103 @@ class Sp3Controller extends Controller
     public function store(Request $request)
     {
         if ($request["realisasi"] == 'ya') {
-            $timeline = \App\Models\Timeline::where('timeline_id', $request["timeline_id"])->first();
+            foreach ($request["timeline_id"] as $val) {
+                $timeline = \App\Models\Timeline::where('timeline_id', $val)->first();
+                $data = new \App\Models\SP3();
+                $data->timeline_id = $timeline ? $timeline->timeline_id : NULL;
+                $data->directorate_cd = $timeline ? $timeline->directorate_cd : Auth::user()->directorate_cd;
+                $data->division_cd = $timeline ? $timeline->division_cd : Auth::user()->division_cd;
+                $data->department_cd =  $timeline ? $timeline->department_cd : Auth::user()->department_cd;;
+                $data->judul_pengadaan = $timeline ? $timeline->judul_pengadaan : $request["judul_pengadaan"];
+                $data->no_sp3 = $request["nomor_sp3"];
+                // $data->sumber_dana =  $timeline ? $timeline->sumber_dana : $request["sumber_dana"];
+                // $data->jenis_kontrak =  $timeline ? $timeline->jenis_kontrak : $request["jenis_kontrak"];
+                // $data->beban_biaya =  $timeline ? $timeline->beban_biaya : $request["beban_biaya"];
+                // $data->pbj =  $timeline ? $timeline->pbj : $request["pbj"];
+                $data->nilai_pr =  $timeline ? $timeline->nilai_pr : str_replace('.', '', $request["nilai_pr"]);
+                $data->type_tax =  $timeline ? $timeline->type_tax : str_replace('.', '', $request["nilai_tax"]);
+                $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
+                $data->tanggal_pr =  date('Y-m-d H:i:s');
+                $data->type_metode =  $request["type_metode"];
+                $data->tanggal_justifikasi = date('Y-m-d H:i:s');
+                $data->tanggal_rab =  date('Y-m-d H:i:s');
+                $data->tanggal_pr =  date('Y-m-d H:i:s');
+                $data->tanggal_kak =  date('Y-m-d H:i:s');
+                $data->nama_vendor = $request["vendor_name"];
+                $data->no_mi = $request["no_mi"];
+                $data->no_rab = $request["no_mi"];
+                $data->no_justifikasi = $request["no_justifikasi"];
+                $data->no_kak = $request["no_kak"];
+                $data->no_pr = $request["no_pr_ip"];
+                $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
+                $data->keterangan = 'KETERANGAN';
+                $data->created_by = Auth::user()->id;
+                $data->updated_by = Auth::user()->id;
+                $data->save();
+                if ($request->hasFile('file')) {
+                    $file = $request->file('file');
+                    foreach ($file as $val) {
+                        $files = new \App\Models\SP3_File();
+                        $files->sp3_id = $data->sp3_id;
+                        $extension = $val->getClientOriginalExtension();
+                        $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                        $val->move(public_path('file/sp3'), $new_name);
+                        $files->file = $new_name;
+                        $files->save();
+                    }
+                }
+            }
+            if ($data) {
+                $data2 = \App\Models\SP3::find($data->sp3_id);
+                $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+                $data2->save();
+            }
         } else {
-            $timeline = false;
-        }
-        $data = new \App\Models\SP3();
-        $data->timeline_id = $timeline ? $timeline->timeline_id : NULL;
-        $data->directorate_cd = $timeline ? $timeline->directorate_cd : Auth::user()->directorate_cd;
-        $data->division_cd = $timeline ? $timeline->division_cd : Auth::user()->division_cd;
-        $data->department_cd =  $timeline ? $timeline->department_cd : Auth::user()->department_cd;;
-        $data->judul_pengadaan = $timeline ? $timeline->judul_pengadaan : $request["judul_pengadaan"];
-        $data->no_sp3 = $request["nomor_sp3"];
-        // $data->sumber_dana =  $timeline ? $timeline->sumber_dana : $request["sumber_dana"];
-        // $data->jenis_kontrak =  $timeline ? $timeline->jenis_kontrak : $request["jenis_kontrak"];
-        // $data->beban_biaya =  $timeline ? $timeline->beban_biaya : $request["beban_biaya"];
-        // $data->pbj =  $timeline ? $timeline->pbj : $request["pbj"];
-        $data->nilai_pr =  $timeline ? $timeline->nilai_pr : $request["nilai_pr"];
-        $data->type_tax =  $timeline ? $timeline->type_tax : $request["type_tax"];
-        $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
-        $data->tanggal_pr =  date('Y-m-d H:i:s');
-        $data->type_metode =  $request["type_metode"];
-        $data->tanggal_justifikasi = date('Y-m-d H:i:s');
-        $data->tanggal_rab =  date('Y-m-d H:i:s');
-        $data->tanggal_pr =  date('Y-m-d H:i:s');
-        $data->tanggal_kak =  date('Y-m-d H:i:s');
-        $data->nama_vendor = $request["vendor_name"];
-        $data->no_mi = $request["no_mi"];
-        $data->no_rab = $request["no_mi"];
-        $data->no_justifikasi = $request["no_justifikasi"];
-        $data->no_kak = $request["no_kak"];
-        $data->no_pr = $request["no_pr_ip"];
-        $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
-        $data->keterangan = 'KETERANGAN';
-        $data->created_by = Auth::user()->id;
-        $data->updated_by = Auth::user()->id;
-        $data->save();
-        if ($data) {
-            $data2 = \App\Models\SP3::find($data->sp3_id);
-            $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
-            $data2->save();
-        }
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            foreach ($file as $val) {
-                $files = new \App\Models\SP3_File();
-                $files->sp3_id = $data->sp3_id;
-                $extension = $val->getClientOriginalExtension();
-                $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-                $val->move(public_path('file/sp3'), $new_name);
-                $files->file = $new_name;
-                $files->save();
+            $data = new \App\Models\SP3();
+            $data->directorate_cd = Auth::user()->directorate_cd;
+            $data->division_cd = Auth::user()->division_cd;
+            $data->department_cd =  Auth::user()->department_cd;;
+            $data->judul_pengadaan = $request["judul_pengadaan"];
+            $data->no_sp3 = $request["nomor_sp3"];
+            $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
+            $data->type_tax =  $request["type_tax"];
+            $data->nilai_tax =  str_replace('.', '', $request["nilai_tax"]);;
+            $data->tanggal_pr =  date('Y-m-d H:i:s');
+            $data->type_metode =  $request["type_metode"];
+            $data->tanggal_justifikasi = date('Y-m-d H:i:s');
+            $data->tanggal_rab =  date('Y-m-d H:i:s');
+            $data->tanggal_pr =  date('Y-m-d H:i:s');
+            $data->tanggal_kak =  date('Y-m-d H:i:s');
+            $data->nama_vendor = $request["vendor_name"];
+            $data->no_mi = $request["no_mi"];
+            $data->no_rab = $request["no_mi"];
+            $data->no_justifikasi = $request["no_justifikasi"];
+            $data->no_kak = $request["no_kak"];
+            $data->no_pr = $request["no_pr_ip"];
+            $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
+            $data->keterangan = 'KETERANGAN';
+            $data->created_by = Auth::user()->id;
+            $data->updated_by = Auth::user()->id;
+            $data->save();
+            if ($data) {
+                $data2 = \App\Models\SP3::find($data->sp3_id);
+                $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+                $data2->save();
+            }
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                foreach ($file as $val) {
+                    $files = new \App\Models\SP3_File();
+                    $files->sp3_id = $data->sp3_id;
+                    $extension = $val->getClientOriginalExtension();
+                    $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $val->move(public_path('file/sp3'), $new_name);
+                    $files->file = $new_name;
+                    $files->save();
+                }
             }
         }
+
         return redirect(route('list.sp3'));
     }
 
@@ -203,6 +248,11 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_ASP3');
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
+        } elseif ($request["timeline_type"] == 'npp') {
+            $sp3->where('proses_st', 'PROSES_SSP3');
+            // $sp3->groupBy(
+            //     'timeline_id',
+            // );
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)

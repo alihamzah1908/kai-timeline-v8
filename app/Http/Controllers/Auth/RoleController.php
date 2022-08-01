@@ -105,6 +105,19 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = \App\Models\Roles::find($id);
+        if ($data) {
+            $model_has_roles = \App\Models\ModelHasRoles::where('role_id', $id)->delete();
+            $role_has_permission = \App\Models\RoleHasPermission::where('role_id', $id)->get();
+            if ($role_has_permission) {
+                foreach ($role_has_permission as $val) {
+                    \App\Models\RoleHasPermission::whereIn('role_id', explode(",", $val->role_id))->delete();
+                }
+            }
+            $data->delete();
+            return response()->json(['status' => 200]);
+        } else {
+            return response()->json(['status' => 400]);
+        }
     }
 }

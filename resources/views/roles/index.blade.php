@@ -36,7 +36,7 @@
                                         </button>
                                         <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
                                             <a class="dropdown-item" role="presentation" href="javascript:void(0)"> <i class="uil uil-edit-alt"></i> Edit</a>
-                                            <a class="dropdown-item" role="presentation" href="javascript:void(0)"> <i class="uil uil-trash-alt"></i> Delete</a>
+                                            <a class="dropdown-item delete" data-bind="{{ $val->id }}" role="presentation" href="javascript:void(0)"> <i class="uil uil-trash-alt"></i> Delete</a>
                                         </div>
                                     </div>
                                 </td>
@@ -50,3 +50,40 @@
     </div>
 </div> <!-- container-fluid -->
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('body').on('click', '.delete', function() {
+            Swal.fire({
+                title: 'Are you sure delete roles?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id = $(this).attr('data-bind');
+                    var url = "{{ route('roles.delete',':id') }}";
+                    url = url.replace(':id', id)
+                    $.ajax({
+                        url: url,
+                        dataType: 'json',
+                        method: 'GET',
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            location.reload()
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Your roles failed delete.',
+                                'error'
+                            )
+                        }
+                    })
+                }
+            })
+        })
+    })
+</script>
+@endpush

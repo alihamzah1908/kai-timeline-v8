@@ -36,11 +36,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/roles', 'App\Http\Controllers\Auth\RoleController@index')->name('roles.index');
     Route::get('/roles/create', 'App\Http\Controllers\Auth\RoleController@create')->name('roles.create');
     Route::get('/roles/{id}', 'App\Http\Controllers\Auth\RoleController@show')->name('roles.show');
+    Route::get('/roles/delete/{id}', 'App\Http\Controllers\Auth\RoleController@destroy')->name('roles.delete');
     Route::post('/roles/store', 'App\Http\Controllers\Auth\RoleController@store')->name('roles.store');
 
 
     // TIMELINE
     Route::get('/data/timeline', 'App\Http\Controllers\TimelineController@data')->name('data.timeline');
+    Route::get('/data/timeline/get-timeline', 'App\Http\Controllers\TimelineController@get_timeline')->name('get.timeline');
     Route::get('/data/timeline/show/{id}', 'App\Http\Controllers\TimelineController@show')->name('timeline.show');
     Route::get('/data/timeline/approve', 'App\Http\Controllers\TimelineController@approve')->name('timeline.approve');
     Route::get('/data/timeline/reject', 'App\Http\Controllers\TimelineController@reject')->name('timeline.reject');

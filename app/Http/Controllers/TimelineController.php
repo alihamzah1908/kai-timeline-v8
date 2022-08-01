@@ -134,6 +134,12 @@ class TimelineController extends Controller
         }
     }
 
+    public function get_timeline()
+    {
+        $data = \App\Models\Timeline::where('proses_st', 'PROSES_AT')->get();
+        return response()->json($data);
+    }
+
     public function data(Request $request)
     {
 
