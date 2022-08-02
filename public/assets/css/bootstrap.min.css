@@ -12763,7 +12763,8 @@ input:focus {
 }
 
 .nav-tabs li a.active {
-    border-bottom: 2px solid #5369f8 !important
+    /* border-bottom: 2px solid #5369f8 !important */
+    border-bottom: 2px solid red !important
 }
 
 .nav-pills>li>a,

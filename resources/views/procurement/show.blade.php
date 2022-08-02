@@ -88,8 +88,9 @@
                     </div>
                     <div class="row">
                         <ul class="nav nav-tabs">
-                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || 
-                            $data->proses_st == 'PROSES_PDP')
+                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
+                            $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
+                            || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -97,14 +98,17 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
+                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Peserta Tender</span>
                                 </a>
                             </li>
-                            @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
+                            @endif
+                            @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -112,7 +116,8 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PDP')
+                            @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -120,19 +125,22 @@
                                 </a>
                             </li>
                             @endif
-                            @else
+                            @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Evaluasi Penawaran</span>
                                 </a>
                             </li>
+                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Klarifikasi, Konfirmasi dan Negoisasi</span>
                                 </a>
                             </li>
+                            @endif
+                            @else
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
@@ -149,7 +157,6 @@
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
                             <div class="tab-pane show active" id="draftrks">
-                                @if($data->proses_st == 'PROSES_DRKS')
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="exampleInputEmail1" class="font-weight-bold"></label>
@@ -228,45 +235,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                @elseif($data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP')
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Template Proposal/Dokumen</th>
-                                                        <th>Template Dokumen RKS</th>
-                                                        <th>Metode Submit Dokumen</th>
-                                                        <th>Catatan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @php
-                                                    $rks = \App\Models\DraftRks::where('sp3_id', $data->sp3_id)->get();
-                                                    @endphp
-                                                    @foreach($rks as $val)
-                                                    <tr>
-                                                        <td>
-                                                            <a href="{{ asset('file/rks/' . $val->file_penawaran) }}" target="_blank"><img src="{{ asset('assets/images/preview.png') }}" height="25"></a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/rks/' . $val->file_dokumen) }}" target="_blank"><img src="{{ asset('assets/images/preview.png') }}" height="25"></a>
-                                                        </td>
-                                                        <th>{{ $val->metode == '1_sampul' ? '1 Sampul' : '2 Sampul' }}</th>
-                                                        <th>{{ $val->catatan }}</th>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        @if($data->proses_st == 'PROSES_RRKS')
-                                        <div class="col-md-12 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-warning btn-sm btn-rounded approve mr-2" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
-                                            <button type="button" class="btn btn-primary btn-sm btn-rounded reject" data-bind="{{ $data->proses_st }}"><i class="uil uil-reject"></i>Reject</button>
-                                        </div>
-                                        @endif
-                                    </div>
+                                @if($data->proses_st == 'PROSES_RRKS')
+                                <div class="col-md-12 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-warning btn-sm btn-rounded approve mr-2" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                    <button type="button" class="btn btn-primary btn-sm btn-rounded reject" data-bind="{{ $data->proses_st }}"><i class="uil uil-reject"></i>Reject</button>
                                 </div>
                                 @endif
                             </div>
@@ -434,7 +406,7 @@
                             <div class="tab-pane" id="aanwidjzing">
                                 <form id="form-aanwidjzing" enctype="multipart/form-data" method="post" action="{{ route('save.aanwidjzing') }}">
                                     @csrf
-                                    <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" /> 
+                                    <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                                     <div class="add-aanwidjzing">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -454,10 +426,10 @@
                                                     <tbody style="vertical-align: top">
                                                         @php
                                                         $tender_list = DB::table('public.trx_peserta_tender as a')
-                                                            ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
-                                                                    'a.address','b.i_lifnr','b.e_name')
-                                                            ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
-                                                            ->get();
+                                                        ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
+                                                        'a.address','b.i_lifnr','b.e_name')
+                                                        ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                        ->get();
                                                         $i = 1;
                                                         @endphp
                                                         @foreach($tender_list as $val)
@@ -515,92 +487,91 @@
                             </div>
                             <div class="tab-pane" id="dokumen-penawaran">
                                 <div class="add-dokumen-penawaran">
+                                    @php
+                                    $rks = \App\Models\DraftRks::where('sp3_id', $data->sp3_id)->first();
+                                    @endphp
+                                    @if($rks->metode == '1_sampul')
+                                    @if($data->proses_st == 'PROSES_PDP')
                                     <div class="row">
-                                        <label for="exampleInputEmail1">if 1 Sampul:</label>
                                         <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="3">PEMASUKAN DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="30%" rowspan="2">DOKUMEN (Admin, Teknis, Harga)</th>
-                                                        <th width="30%" rowspan="2">TANGGAL SUBMIT</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 1
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pemasukan Dokumen:</label>
+                                            <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="100%" colspan="3">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="30%" rowspan="2">DOKUMEN (Admin, Teknis, Harga)</th>
+                                                            <th width="30%" rowspan="2">TANGGAL SUBMIT</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @php
+                                                        $tender_list = DB::table('public.trx_peserta_tender as a')
+                                                        ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
+                                                        'a.address','b.i_lifnr','b.e_name')
+                                                        ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                        ->get();
+                                                        $i = 1;
+                                                        @endphp
+                                                        @foreach($tender_list as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->e_name }}
+                                                                <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="file" name="file_dokumen[]" class="form-control" id="file-dokumen">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="dok_admin_date" name="dok_admin_date[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Pemasukan Dokumen:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_berita_acara" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan_berita_acara" id="catatan_berita_acara" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
+                                    @elseif($data->proses_st == 'PROSES_PPDP')
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
@@ -615,39 +586,28 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody style="vertical-align: top">
+                                                    @php
+                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
+                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                                    'a.tanggal_submit_dokumen','b.i_lifnr','b.e_name')
+                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->get();
+                                                    @endphp
+                                                    @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            Peserta Tender 1
+                                                            {{ $doc->e_name }}
                                                         </td>
                                                         <td>
-                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            <a href="{{ asset('file/sp3/', $doc->file_dokumen) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_dokumen }}">
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                             <div class="row">
@@ -682,108 +642,62 @@
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks ml-1">Reject</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @else
                                     <div class="row">
-                                        <label for="exampleInputEmail1">if 2 Sampul:</label>
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                 <thead style="text-align: center">
                                                     <tr>
-                                                        <th width="100%" colspan="5">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                        <th width="100%" colspan="3">PEMBUKAAN DOKUMEN PENAWARAN</th>
                                                     </tr>
                                                     <tr>
-                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL SUBMIT (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL SUBMIT (Harga)</th>
+                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="30%" rowspan="2">DOKUMEN (Admin, Teknis dan Harga)</th>
+                                                        <th width="30%" rowspan="2">TANGGAL PEMBUKAAN DOKUMEN</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style="vertical-align: top">
+                                                    @php
+                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
+                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                                    'a.tanggal_submit_dokumen','b.i_lifnr','b.e_name')
+                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->get();
+                                                    @endphp
+                                                    @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            Peserta Tender 1
+                                                            {{ $doc->e_name }}
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                            <a href="{{ asset('file/sp3/', $doc->file_dokumen) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_dokumen }}">
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Admin & Teknis:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
                                                         <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                     </div>
@@ -792,20 +706,10 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pemasukan Dok. Admin & Teknis:</label>
+                                                        <label for="exampleInputEmail1">Catatan:</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pemasukan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-5">
                                                     <div class="form-group">
                                                         <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                     </div>
@@ -813,11 +717,127 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks ml-1">Reject</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                    @elseif($rks->metode == '2_sampul')
+                                    @if($data->proses_st == 'PROSES_PDP')
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="100%" colspan="5">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                            <th width="20%" rowspan="2">TANGGAL SUBMIT (Admin & Teknis)</th>
+                                                            <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                            <th width="20%" rowspan="2">TANGGAL SUBMIT (Harga)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @php
+                                                        $tender_list = DB::table('public.trx_peserta_tender as a')
+                                                        ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
+                                                        'a.address','b.i_lifnr','b.e_name')
+                                                        ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                        ->get();
+                                                        @endphp
+                                                        @foreach($tender_list as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->e_name }}
+                                                                <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="file" name="file_teknis[]" class="form-control" id="file-draft">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_submit_teknis[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                            <td>
+                                                                <input type="file" name="file_harga[]" class="form-control" id="file-draft">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_submit_harga[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Harga:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan Pemasukan Dok. Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan Pemasukan Dok. Harga:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    @elseif($data->proses_st == 'PROSES_PPDP')
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table datatable-pagination" id="tabel-data" width="100%">
@@ -834,57 +854,36 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody style="vertical-align: top">
+                                                    @php
+                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
+                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.i_lifnr','b.e_name')
+                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->get();
+                                                    @endphp
+                                                    @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            Peserta Tender 1
+                                                            {{ $doc->e_name}}
                                                         </td>
                                                         <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
                                                         </td>
                                                         <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            Dokuemen File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                             <div class="row">
@@ -943,314 +942,308 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1">Reject</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @else
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                        <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
+                                                        <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    @php
+                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
+                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.i_lifnr','b.e_name')
+                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->get();
+                                                    @endphp
+                                                    @foreach($dokumen as $doc)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $doc->e_name}}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
+                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Admin & Teknis:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Admin & Teknis:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Harga:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="tab-pane" id="evaluasi-dokumen">
                                 <div class="add-evaluasi-dokumen">
                                     <div class="row">
-                                        <label for="exampleInputEmail1">if 1 Sampul:</label>
+                                        <!-- <label for="exampleInputEmail1">if 1 Sampul:</label> -->
                                         <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="5">EVALUASI DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
-                                                        <th width="10%" rowspan="2">LOLOS</th>
-                                                        <th width="10%" rowspan="2">TIDAK LOLOS</th>
-                                                        <th width="30%" rowspan="2">CATATAN EVALUASI</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 1
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Evaluasi Dokumen:</label>
+                                            <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
+                                                <input type="hidden" name="metode" value="1_sampul" />
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="100%" colspan="5">EVALUASI DOKUMEN PENAWARAN</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
+                                                            <th width="10%" rowspan="2">LOLOS</th>
+                                                            <th width="10%" rowspan="2">TIDAK LOLOS</th>
+                                                            <th width="30%" rowspan="2">CATATAN EVALUASI</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @foreach($tender_list as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->e_name }}
+                                                                <input type="hidden" name="vendor_code[{{$val->peserta_tender_id }}]" value="{{ $val->vendor_code}}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_evaluasi_dokumen[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->peserta_tender_id }}]" id="penilaian_{{$val->peserta_tender_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="penilaian_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->peserta_tender_id }}]" id="penilaian_{{$val->peserta_tender_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="penilaian_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="catatan_evaluasi[{{ $val->peserta_tender_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Dokumen:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
+                                                        <!-- <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button> -->
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label for="exampleInputEmail1">if 2 Sampul:</label>
                                         <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="9">EVALUASI DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="10%" rowspan="2">TANGGAL EVALUASI (Admin & Teknis)</th>
-                                                        <th width="5%" rowspan="2">LOLOS</th>
-                                                        <th width="5%" rowspan="2">TIDAK LOLOS</th>
-                                                        <th width="20%" rowspan="2">CATATAN EVALUASI (Admin & Teknis)</th>
-                                                        <th width="10%" rowspan="2">TANGGAL EVALUASI (Harga)</th>
-                                                        <th width="5%" rowspan="2">LOLOS</th>
-                                                        <th width="5%" rowspan="2">TIDAK LOLOS</th>
-                                                        <th width="20%" rowspan="2">CATATAN EVALUASI (Harga)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 1
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 2
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Peserta Tender 3
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_ya" value="1" checked="">
-                                                                <label class="custom-control-label" for="verif_1_ya">Ya</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" name="verif_1_value" id="verif_1_tidak" value="0">
-                                                                <label class="custom-control-label" for="verif_1_tidak">Tidak</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Evaluasi Admin & Teknis:</label>
+                                            <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-harga" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
+                                                <input type="hidden" name="metode" value="2_sampul" />
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="100%" colspan="9">EVALUASI DOKUMEN PENAWARAN</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="10%" rowspan="2">TANGGAL EVALUASI (Admin & Teknis)</th>
+                                                            <th width="5%" rowspan="2">LOLOS</th>
+                                                            <th width="5%" rowspan="2">TIDAK LOLOS</th>
+                                                            <th width="20%" rowspan="2">CATATAN EVALUASI (Admin & Teknis)</th>
+                                                            <th width="10%" rowspan="2">TANGGAL EVALUASI (Harga)</th>
+                                                            <th width="5%" rowspan="2">LOLOS</th>
+                                                            <th width="5%" rowspan="2">TIDAK LOLOS</th>
+                                                            <th width="20%" rowspan="2">CATATAN EVALUASI (Harga)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @foreach($tender_list as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->e_name }}
+                                                                <input type="hidden" name="vendor_code[{{$val->peserta_tender_id }}]" value="{{ $val->vendor_code}}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_admin[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->peserta_tender_id }}]" id="admin_{{$val->peserta_tender_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="admin_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->peserta_tender_id }}]" id="admin_{{$val->peserta_tender_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="admin_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="catatan_admin[{{$val->peserta_tender_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_harga[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->peserta_tender_id}}]" id="harga_{{$val->peserta_tender_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="harga_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->peserta_tender_id}}]" id="harga_{{$val->peserta_tender_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="harga_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="catatan_harga[{{$val->peserta_tender_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Harga:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded approve-rks">Submit</button>
+                                                        <!-- <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button> -->
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Evaluasi Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve-rks">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -1671,7 +1664,7 @@
         // APPROVE RKS
         $('body').on('click', '.approve', function() {
             Swal.fire({
-                title: 'Are you sure approve RKS?',
+                title: 'Are you sure approve ?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -1691,7 +1684,15 @@
                         },
                     }).done(function(response) {
                         if (response.status == 200) {
-                            location.reload();
+                            Swal.fire({
+                                title: 'Your penawaran is approved',
+                                text: "File change status to Evaluasi Penawaran!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
                         }
                     })
                 }
@@ -1702,6 +1703,89 @@
         $("#form-aanwidjzing").submit(function(e) {
             alert("Aaanwidjing saved !")
         });
+
+        // SAVE DOKUMEN PENAWARAN
+        $("#form-dokumen-penawaran").submit(function(e) {
+            alert("Dokumen Penawaran saved !")
+        });
+
+        // SAVE EVALUASI 
+        $("#form-evaluasi-penawaran").submit(function(e) {
+            alert("Evaluasi Penawaran saved !")
+        })
+        $("#form-evaluasi-harga").submit(function(e) {
+            alert("Evaluasi Penawaran saved !")
+        })
+        // SAVE FORM TENDER
+        $('body').on('click', '.save-tender', function() {
+            Swal.fire({
+                title: 'Are you sure save Tender?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('save.tender') }}",
+                        method: "post",
+                        dataType: 'JSON',
+                        data: $("#tender").serializeArray()
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: 'Peserta Tender Saved',
+                                text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        })
+
+        // SAVE DOKUMEN PENAWARAN
+        $("body").on('click', '.reject', function(e) {
+            Swal.fire({
+                title: 'Are you sure reject dokumen penawaran?',
+                text: "Your dokumen penawaran will back to pengumuman pengadaan !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reject.pengadaan') }}",
+                        method: "get",
+                        dataType: 'JSON',
+                        data: {
+                            sp3_id: '{{ $data->sp3_id }}'
+                        },
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: 'Success rejected',
+                                text: "File change status to Pengumuman Pengadaan!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        });
+
 
         // ADD FORM TENDER
         $('body').on('click', '.add-button-vendor', function() {
@@ -1772,40 +1856,6 @@
             body += '</div>'
             body += '</div>'
             $(".add-vendor").append(body)
-        })
-
-        // SAVE FORM TENDER
-        $('body').on('click', '.save-tender', function() {
-            Swal.fire({
-                title: 'Are you sure save Tender?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('save.tender') }}",
-                        method: "post",
-                        dataType: 'JSON',
-                        data: $("#tender").serializeArray()
-                    }).done(function(response) {
-                        if (response.status == 200) {
-                            Swal.fire({
-                                title: 'Peserta Tender Saved',
-                                text: "File change status to Pelaksanaan Aanwidjzing!",
-                                confirmButtonText: 'Yes'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload()
-                                }
-                            })
-                        }
-                    })
-                }
-            })
         })
     })
 </script>

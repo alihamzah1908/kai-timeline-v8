@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Svg\Tag\Rect;
 
 class ProcurementController extends Controller
@@ -102,7 +103,20 @@ class ProcurementController extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
-        // dd($data);
+        $data["tender_list"] = DB::table('public.trx_peserta_tender as a')
+            ->select(
+                'a.peserta_tender_id',
+                'a.sp3_id',
+                'a.vendor_code',
+                'a.phone_number',
+                'a.pic_name',
+                'a.email_corporate',
+                'a.address',
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->get();
         return view('procurement.show', $data);
     }
 
@@ -153,11 +167,23 @@ class ProcurementController extends Controller
         if ($request["type"] == 'approve') {
             if ($request["proses_st"] == 'PROSES_RRKS') {
                 $status->proses_st = 'PROSES_PP';
+            } elseif ($request["proses_st"] == 'PROSES_PPDP') {
+                $status->proses_st = 'PROSES_EP';
             }
             $status->save();
             if ($status) {
                 return response()->json(['status' => 200]);
             }
+        }
+    }
+
+    public function reject_penawaran(Request $request)
+    {
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_PP';
+        $status->save();
+        if ($status) {
+            return response()->json(['status' => 200]);
         }
     }
 
@@ -181,6 +207,7 @@ class ProcurementController extends Controller
         $status->save();
         return response()->json(['status' => 200]);
     }
+
     public function save_aanwidjzing(Request $request)
     {
         // dd($request->all());
@@ -207,6 +234,101 @@ class ProcurementController extends Controller
         $status = \App\Models\SP3::find($request["sp3_id"]);
         $status->proses_st = 'PROSES_PDP';
         $status->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
+    public function save_dokumen_penawaran(Request $request)
+    {
+        // dd($request->all());
+        foreach ($request["vendor_code"] as $key => $val) {
+            $dokumen = new \App\Models\TrxDocumentPenawaran();
+            $dokumen->sp3_id = $request["sp3_id"];
+            $dokumen->metode = $request["metode"];
+            $dokumen->vendor_code = $val;
+            if ($request["metode"] == '1_sampul') {
+                $dokumen->tanggal_submit_dokumen = $request["dok_admin_date"][$key];
+                $dokumen->created_by = Auth::user()->id;
+
+                $file = $request->file('file_dokumen')[$key];
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'dokumen-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/sp3'), $new_name);
+
+                $dokumen->file_dokumen = $new_name;
+                $dokumen->created_by = Auth::user()->id;
+            } else if ($request["metode"] == '2_sampul') {
+                $dokumen->tanggal_submit_teknis = $request["tanggal_submit_teknis"][$key];
+                $dokumen->tanggal_submit_harga = $request["tanggal_submit_harga"][$key];
+                $dokumen->created_by = Auth::user()->id;
+
+                $file = $request->file('file_teknis')[$key];
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'dokumen-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/sp3'), $new_name);
+
+                // SAVE FILE HARGA
+                $file1 = $request->file('file_harga')[$key];
+                $extension1 = $file1->getClientOriginalExtension();
+                $new_name1 = 'dokumen-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension1;
+                $file1->move(public_path('file/sp3'), $new_name1);
+
+                $dokumen->file_teknis = $new_name;
+                $dokumen->file_harga = $new_name1;
+                $dokumen->created_by = Auth::user()->id;
+            }
+            $dokumen->save();
+        }
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_PPDP';
+        $status->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
+    public function save_evaluasi_penawaran(Request $request)
+    {
+        // dd($request->all());
+        foreach ($request["vendor_code"] as $key => $val) {
+            $dokumen = new \App\Models\TrxEvaluasiPenawaran();
+            $dokumen->sp3_id = $request["sp3_id"];
+            $dokumen->metode = $request["metode"];
+            $dokumen->vendor_code = $val;
+            if ($request["metode"] == '1_sampul') {
+                $dokumen->tanggal_evaluasi_dokumen = $request["tanggal_evaluasi_dokumen"][$key];
+                $dokumen->penilaian_dokumen = $request["penilaian_dokumen"][$key];
+                $dokumen->keterangan_evaluasi_dokumen = $request["catatan_evaluasi"][$key];
+                $dokumen->created_by = Auth::user()->id;
+                $dokumen->save();
+                // UPDATE STATUS
+                $status = \App\Models\SP3::find($request["sp3_id"]);
+                $status->proses_st = 'PROSES_KKN';
+                $status->save();
+            } else if ($request["metode"] == '2_sampul') {
+                if ($request["tanggal_admin"] || $request["penilaian_admin"] || $request["catatan_admin"]) {
+                    $dokumen->tanggal_evaluasi_admin = $request["tanggal_admin"][$key];
+                    $dokumen->penilaian_admin = $request["penilaian_admin"][$key];
+                    $dokumen->keterangan_evaluasi_admin = $request["catatan_admin"][$key];
+                    $dokumen->tanggal_evaluasi_harga = $request["tanggal_harga"][$key];
+                    $dokumen->penilaian_harga = $request["penilaian_harga"][$key];
+                    $dokumen->keterangan_evaluasi_harga = $request["catatan_harga"][$key];
+                    $dokumen->created_by = Auth::user()->id;
+                    $dokumen->save();
+                    // UPDATE STATUS
+                    $status = \App\Models\SP3::find($request["sp3_id"]);
+                    $status->proses_st = 'PROSES_EDH';
+                    $status->save();
+                } else {
+                    $dokumen->tanggal_evaluasi_harga = $request["tanggal_harga"][$key];
+                    $dokumen->penilaian_harga = $request["penilaian_harga"][$key];
+                    $dokumen->keterangan_evaluasi_harga = $request["catatan_harga"][$key];
+                    $dokumen->created_by = Auth::user()->id;
+                    $dokumen->save();
+                    // UPDATE STATUS
+                    $status = \App\Models\SP3::find($request["sp3_id"]);
+                    $status->proses_st = 'PROSES_KKN';
+                    $status->save();
+                }
+            }
+        }
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
@@ -252,6 +374,9 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_PP')
             ->orWhere('proses_st', 'PROSES_AL')
             ->orWhere('proses_st', 'PROSES_PDP')
+            ->orWhere('proses_st', 'PROSES_PPDP')
+            ->orWhere('proses_st', 'PROSES_EP')
+            ->orWhere('proses_st', 'PROSES_EDH')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -287,8 +412,10 @@ class ProcurementController extends Controller
                     return '<badges class="badge badge-success">Pengumuman Pengadaan</badges>';
                 } else if ($row->proses_st == 'PROSES_AL') {
                     return '<badges class="badge badge-success">Pelaksanaan Aanwidjzing</badges>';
-                }else if ($row->proses_st == 'PROSES_PDP') {
+                } else if ($row->proses_st == 'PROSES_PDP') {
                     return '<badges class="badge badge-success">Pemasukan Dokumen Penawaran</badges>';
+                }else {
+                    return $row->proses_st;
                 }
             })
             ->addColumn('action', function ($row) {
