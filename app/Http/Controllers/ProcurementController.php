@@ -287,6 +287,8 @@ class ProcurementController extends Controller
                     return '<badges class="badge badge-success">Pengumuman Pengadaan</badges>';
                 } else if ($row->proses_st == 'PROSES_AL') {
                     return '<badges class="badge badge-success">Pelaksanaan Aanwidjzing</badges>';
+                }else if ($row->proses_st == 'PROSES_PDP') {
+                    return '<badges class="badge badge-success">Pemasukan Dokumen Penawaran</badges>';
                 }
             })
             ->addColumn('action', function ($row) {
