@@ -195,18 +195,18 @@ class TimelineController extends Controller
                 if (auth()->user()->can('timeline-list') || $row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
                                 <button class="btn btn-primary btn-rounded btn-sm">
-                                    <i class="uil uil-search"></i> Show Detail
+                                    <i class="uil uil-search"></i>
                                 </button>
                             </a>';
                     return $btn;
                 } else {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
-                                <button class="btn btn-primary btn-rounded btn-sm">
-                                    <i class="uil uil-search"></i> Show Detail
+                                <button class="btn btn-primary btn-rounded">
+                                    <i class="uil uil-search"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="' . $row->timeline_id . '"><i class="uil uil-check"></i> Approve </button></a>
-                            <button class="btn btn-primary btn-rounded btn-sm reject" data-bind="' . $row->timeline_id . '"><i class="uil uil-multiply"></i> Reject </button></a>';
+                            <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="' . $row->timeline_id . '"><i class="uil uil-check"></i> </button></a>
+                            <button class="btn btn-primary btn-rounded btn-sm reject" data-bind="' . $row->timeline_id . '"><i class="uil uil-multiply"></i> </button></a>';
                     return $btn;
                 }
             })

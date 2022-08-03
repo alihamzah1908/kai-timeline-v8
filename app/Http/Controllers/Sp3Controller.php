@@ -304,18 +304,20 @@ class Sp3Controller extends Controller
                 if (auth()->user()->can('sp3-list')) {
                     $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
                                 <button class="btn btn-primary btn-rounded btn-sm">
-                                <i class="uil uil-search"></i> Show Detail</button>
+                                    <i class="uil uil-search"></i> 
+                                </button>
                             </a>';
                     return $btn;
                 } else {
                     $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
                     $action = '<a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
                                     <button class="btn btn-warning btn-sm btn-rounded">
-                                    <i class="uil uil-check"></i> Approve</button>
+                                        <i class="uil uil-check"></i> 
+                                    </button>
                                </a>
                                <a href="' . route('sp3.show', $row->sp3_id) . '">
                                     <button class="btn btn-primary btn-rounded btn-sm">
-                                        <i class="uil uil-search"></i> Show Detail
+                                        <i class="uil uil-search"></i> 
                                     </button>
                                </a>';
                     if ($row->proses_st == 'PROSES_SSP3') {
@@ -324,12 +326,15 @@ class Sp3Controller extends Controller
                     } elseif ($row->proses_st == 'PROSES_DRKS') {
                         $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
                                     <button class="btn btn-primary btn-rounded btn-sm">
-                                        <i class="uil uil-search"></i> Show Detail
+                                        <i class="uil uil-search"></i> 
                                     </button>
                                 </a>';
                         return $btn;
                     } elseif ($row->proses_st == 'PROSES_ASP3') {
-                        $btn = '<a href="' . route('evaluasi.print.sp') . '"><button class="btn btn-primary btn-sm btn-rounded"><i class="uil uil-print"></i> Print SP </button></a>';
+                        $btn = '<a href="' . route('evaluasi.print.sp') . '">
+                        <button class="btn btn-primary btn-sm btn-rounded">
+                            <i class="uil uil-print"></i> 
+                        </button></a>';
                         return $btn;
                     }
                 }
