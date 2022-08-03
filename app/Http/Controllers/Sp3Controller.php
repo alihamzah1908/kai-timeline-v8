@@ -243,9 +243,9 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_ASP3');
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
-        } elseif ($request["timeline_type"] == 'npp') {
-            $sp3->select("*", DB::raw("sum(nilai_pr) as nilai_pr"));
-            $sp3->groupBy('timeline_id', 'sp3_id');
+        // } elseif ($request["timeline_type"] == 'npp') {
+        //     $sp3->select("*", DB::raw("sum(nilai_pr) as nilai_pr"));
+        //     $sp3->groupBy('timeline_id', 'sp3_id');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)
