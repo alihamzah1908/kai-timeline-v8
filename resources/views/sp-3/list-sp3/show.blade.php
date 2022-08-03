@@ -477,6 +477,15 @@
                                 </table>
                             </div>
                         </div>
+                        @if($data->proses_st == 'PROSES_SSP3')
+                        @can('sp3.approval-list')
+                        <a class="approve" role="presentation" href="javascript:void(0)" data-bind="{{ $data->sp3_id }}">
+                            <button class="btn btn-warning btn-sm btn-rounded">
+                                <i class="uil uil-check"></i> Approve
+                            </button>
+                        </a>
+                        @endcan
+                        @endif
                     </div>
                 </div>
             </div>

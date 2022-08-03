@@ -427,7 +427,9 @@ class ProcurementController extends Controller
                 //                </a>';
                 // } else if ($row->proses_st == 'PROSES_RRKS') {
                 $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
+                                    <button class="btn btn-rounded btn-primary btn-sm">
+                                        <i class="uil uil-search"></i> 
+                                    </button>
                                </a>';
                 // }
                 return $action;
