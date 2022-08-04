@@ -4,10 +4,91 @@
     <div class="card">
     </div>
     <div class="card">
-        <div class="card-header">
-            <div class="card-title"><h5>PBJ Monitoring Dashboard</h5></div>
+        <!-- <div class="col-md-6"> -->
+            <div class="card-header">
+                <div class="card-title"><h5>PBJ Monitoring Dashboard</h5></div>
+            <!-- </div> -->
+        </div>
+        <div class="col-md-2">
+            <!-- <label for="exampleInputEmail1" class="font-weight-bold">Tahun</label> -->
+            <select class="form-control type-metode" name="type_metode">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <!-- <option value="3">Pelelangan Terbuka</option> -->
+            </select>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="media p-3">
+                                <div class="media-body">
+                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
+                                        Pembukaan & Evaluasi Penawaran</span>
+                                    <h6 class="mb-0">23</h6>
+                                </div>
+                                <div class="align-self-center">
+                                    <div id="today-revenue-chart" class="apex-charts"></div>
+                                    <!-- <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 10.21%</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="media p-3">
+                                <div class="media-body">
+                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
+                                        Klarifikasi Konfirmasi Negoisasi</span>
+                                    <h6 class="mb-0">65</h6>
+                                </div>
+                                <div class="align-self-center">
+                                    <div id="today-product-sold-chart" class="apex-charts"></div>
+                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="media p-3">
+                                <div class="media-body">
+                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
+                                        Gagal Lelang</span>
+                                    <h6 class="mb-0">11</h6>
+                                </div>
+                                <div class="align-self-center">
+                                    <div id="today-new-customer-chart" class="apex-charts"></div>
+                                    <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="media p-3">
+                                <div class="media-body">
+                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
+                                        Selesai/Kontrak</span>
+                                    <h6 class="mb-0">53</h6>
+                                </div>
+                                <div class="align-self-center">
+                                    <div id="today-new-visitors-chart" class="apex-charts"></div>
+                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col">
                     <figure class="highcharts-figure">
@@ -15,7 +96,20 @@
                     </figure>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row mt-4">
+                <div class="col-xl-6">
+                    <figure class="highcharts-figure">
+                        <div id="pbj-opex"></div>
+                    </figure>
+                </div>
+                <div class="col-xl-6">
+                    <figure class="highcharts-figure">
+                        <div id="pbj-capex"></div>
+                    </figure>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col">
                     <figure class="highcharts-figure">
                         <div id="line_chart"></div>
@@ -26,7 +120,7 @@
                         <div id="column_chart"></div>
                     </figure>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col">
                     <figure class="highcharts-figure">
@@ -101,8 +195,8 @@
             background: #f1f7ff;
         }
     </style>
-
 @endpush
+
 @push('scripts')
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -116,6 +210,254 @@
             return Math.floor(Math.random() * max);
         }
 
+        // PROGRAM & REALIZATION PBJ OPEX
+        Highcharts.chart('pbj-opex', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'PBJ Selesai (Non Sarana)'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'CUS',
+                    'CFH',
+                    'CTI',
+                    'CTP',
+                    'CTS',
+                    'COC',
+                    'COH',
+                    'COS',
+                    'COT',
+                    'COLA',
+                    'KERETA BANDARA',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ' Jumlah Pengadaan'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                series: {
+                    borderRadius: 3,
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Pemilihan/Penunjukan Langsung',
+                color: 'red',
+                data: [{
+                    y: 49.9,
+                    color: 'red'
+                }, {
+                    y: 71.5,
+                    color: 'red'
+                }, {
+                    y: 106.4,
+                    color: 'red'
+                }, {
+                    y: 129.2,
+                    color: 'red'
+                }, {
+                    y: 144.0,
+                    color: 'red'
+                }, {
+                    y: 135.6,
+                    color: 'red'
+                }, {
+                    y: 148.5,
+                    color: 'red'
+                }, {
+                    y: 216.4,
+                    color: 'red'
+                }, {
+                    y: 194.1,
+                    color: 'red'
+                }, {
+                    y: 95.6,
+                    color: 'red'
+                }],
+
+            }, {
+                name: 'Lelang Terbuka',
+                color: 'orange',
+                data: [{
+                        y: 83.6,
+                        color: 'orange'
+                    },
+                    {
+                        y: 78.8,
+                        color: 'orange'
+                    }, {
+                        y: 93.4,
+                        color: 'orange'
+                    }, {
+                        y: 98.5,
+                        color: 'orange'
+                    }, {
+                        y: 106.0,
+                        color: 'orange'
+                    }, {
+                        y: 84.5,
+                        color: 'orange'
+                    }, {
+                        y: 105.0,
+                        color: 'orange'
+                    }, {
+                        y: 91.2,
+                        color: 'orange'
+                    }, {
+                        y: 83.5,
+                        color: 'orange'
+                    }, {
+                        y: 106.6,
+                        color: 'orange'
+                    }
+                ]
+            }]
+        });
+
+        // PROGRAM & REALIZATION PBJ CAPEX
+        Highcharts.chart('pbj-capex', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'PBJ Selesai (Sarana)'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'CUS',
+                    'CFH',
+                    'CTI',
+                    'CTP',
+                    'CTS',
+                    'COC',
+                    'COH',
+                    'COS',
+                    'COT',
+                    'COLA',
+                    'KERETA BANDARA',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ' Jumlah Pengadaan'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                series: {
+                    borderRadius: 3
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Pemilihan/Penunjukan Langsung',
+                color: '#3385ff',
+                data: [{
+                        y: 83.6,
+                        color: '#3385ff'
+                    },
+                    {
+                        y: 78.8,
+                        color: '#3385ff'
+                    }, {
+                        y: 93.4,
+                        color: '#3385ff'
+                    }, {
+                        y: 98.5,
+                        color: '#3385ff'
+                    }, {
+                        y: 106.0,
+                        color: '#3385ff'
+                    }, {
+                        y: 84.5,
+                        color: '#3385ff'
+                    }, {
+                        y: 105.0,
+                        color: '#3385ff'
+                    }, {
+                        y: 91.2,
+                        color: '#3385ff'
+                    }, {
+                        y: 83.5,
+                        color: '#3385ff'
+                    }, {
+                        y: 106.6,
+                        color: '#3385ff'
+                    }
+                ]
+
+            }, {
+                name: 'Lelang Terbuka',
+                color: 'orange',
+                data: [{
+                    y: 49.9,
+                    color: 'orange'
+                }, {
+                    y: 71.5,
+                    color: 'orange'
+                }, {
+                    y: 106.4,
+                    color: 'orange'
+                }, {
+                    y: 129.2,
+                    color: 'orange'
+                }, {
+                    y: 144.0,
+                    color: 'orange'
+                }, {
+                    y: 135.6,
+                    color: 'orange'
+                }, {
+                    y: 148.5,
+                    color: 'orange'
+                }, {
+                    y: 216.4,
+                    color: 'orange'
+                }, {
+                    y: 194.1,
+                    color: 'orange'
+                }, {
+                    y: 95.6,
+                    color: 'orange'
+                }],
+            }]
+        });
+
 
         Highcharts.chart('progress_bar', {
             chart: {
@@ -123,7 +465,7 @@
                 height: 120
             },
             title: {
-                text: 'Progres',
+                text: 'PBJ Selesai vs On-Progress',
                 align: 'center',
                 margin: 0
             },
@@ -178,51 +520,51 @@
             ]
         });
 
-        Highcharts.chart('line_chart', {
-            title: {
-                text: ''
-            },
-            yAxis: {
-                title: {
-                    text: ''
-                }
-            },
+        // Highcharts.chart('line_chart', {
+        //     title: {
+        //         text: ''
+        //     },
+        //     yAxis: {
+        //         title: {
+        //             text: ''
+        //         }
+        //     },
 
-            xAxis: {
-                title: {
-                    text: ''
-                },
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                }
-            },
+        //     xAxis: {
+        //         title: {
+        //             text: ''
+        //         },
+        //         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        //     },
+        //     plotOptions: {
+        //         series: {
+        //             label: {
+        //                 connectorAllowed: false
+        //             },
+        //         }
+        //     },
 
-            series: [{
-                name: 'Nilai',
-                data: [getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100)]
-            }],
+        //     series: [{
+        //         name: 'Nilai',
+        //         data: [getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100)]
+        //     }],
 
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
+        //     responsive: {
+        //         rules: [{
+        //             condition: {
+        //                 maxWidth: 500
+        //             },
+        //             chartOptions: {
+        //                 legend: {
+        //                     layout: 'horizontal',
+        //                     align: 'center',
+        //                     verticalAlign: 'bottom'
+        //                 }
+        //             }
+        //         }]
+        //     }
 
-        });
+        // });
 
         Highcharts.chart('donut_chart_1', {
             chart: {
@@ -232,7 +574,7 @@
                 type: 'pie'
             },
             title: {
-                text: 'Berdasarkan Jenis'
+                text: 'Pengadaan Lokal/Impor'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -257,67 +599,68 @@
                 {
                     name: 'Jumlah',
                     data: [
-                        ['Reguler', getRandomInt(100)],
-                        ['Tanggap Darurat', getRandomInt(100)],
+                        ['Impor Internasional', getRandomInt(100)],
+                        ['Lokal', getRandomInt(100)],
+                        ['Impor Nasional', getRandomInt(100)],
                     ]
                 }
             ]
         });
 
-        Highcharts.chart('column_chart', {
-            chart: {
-                type: 'column'
-            },
-            colors: ['#678f34'],
-            title: {
-                text: 'Mingguan'
-            },
-            xAxis: {
-                categories: [
-                    'Senin',
-                    'Selasa',
-                    'Rabu',
-                    'Kamis',
-                    'Juma`t',
-                    'Sabtu',
-                    'Ahad'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: ''
-                },
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0,
-                    stacking: 'normal',
-                    dataLabels: {
-                        formatter: function () {
-                            if (this.y) {
-                                return this.y;
-                            }
-                        },
-                        enabled: true
-                    }
-                }
-            },
-            series: [{
-                name: 'Jumlah',
-                data: [getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100)]
-            }]
-        });
+        // Highcharts.chart('column_chart', {
+        //     chart: {
+        //         type: 'column'
+        //     },
+        //     colors: ['#678f34'],
+        //     title: {
+        //         text: 'Mingguan'
+        //     },
+        //     xAxis: {
+        //         categories: [
+        //             'Senin',
+        //             'Selasa',
+        //             'Rabu',
+        //             'Kamis',
+        //             'Juma`t',
+        //             'Sabtu',
+        //             'Ahad'
+        //         ],
+        //         crosshair: true
+        //     },
+        //     yAxis: {
+        //         min: 0,
+        //         title: {
+        //             text: ''
+        //         },
+        //     },
+        //     tooltip: {
+        //         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        //         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        //             '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        //         footerFormat: '</table>',
+        //         shared: true,
+        //         useHTML: true
+        //     },
+        //     plotOptions: {
+        //         column: {
+        //             pointPadding: 0.2,
+        //             borderWidth: 0,
+        //             stacking: 'normal',
+        //             dataLabels: {
+        //                 formatter: function () {
+        //                     if (this.y) {
+        //                         return this.y;
+        //                     }
+        //                 },
+        //                 enabled: true
+        //             }
+        //         }
+        //     },
+        //     series: [{
+        //         name: 'Jumlah',
+        //         data: [getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100), getRandomInt(100)]
+        //     }]
+        // });
 
         Highcharts.chart('donut_chart_2', {
             chart: {
@@ -327,7 +670,7 @@
                 type: 'pie'
             },
             title: {
-                text: 'Berdasarkan Asnaf'
+                text: 'Top 5 Vendor'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -352,12 +695,11 @@
                 {
                     name: 'Jumlah',
                     data: [
-                        ['Pelayanan Ibadah Haji', getRandomInt(100)],
-                        ['Pendidikan dan Dakwah', getRandomInt(100)],
-                        ['Kesehatan', getRandomInt(100)],
-                        ['Sosial Keagamaan', getRandomInt(100)],
-                        ['Ekonomi Umat', getRandomInt(100)],
-                        ['Sarana dan Prasarana Ibadah', getRandomInt(100)],
+                        ['PT. RESKA MULTI USAHA', getRandomInt(100)],
+                        ['PT. SIGMA CIPTA CARAKA', getRandomInt(100)],
+                        ['PT. ICON+', getRandomInt(100)],
+                        ['PT. TELKOM INDONESIA', getRandomInt(100)],
+                        ['PT. SURVEYOR INDONESIA', getRandomInt(100)],
                     ]
                 }
             ]
@@ -375,10 +717,10 @@
             },
             colors: ['#c9962f'],
             title: {
-                text: 'Berdasarkan Mitra'
+                text: 'Top 3 Out of SLA'
             },
             xAxis: {
-                categories: ['Mitra A', 'Mitra B', 'Mitra Z'],
+                categories: ['Pengadaan Asuransi (16165)', 'Pengadaan Infrastruktur DC dan DRC (16105)', 'Pengadaan Pemeliharaan Kereta (16092)'],
                 title: {
                     text: null
                 },
@@ -392,7 +734,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Jumlah  ',
+                    text: 'Hari  ',
                     align: 'high'
                 },
                 labels: {
@@ -413,7 +755,7 @@
                 enabled: false
             },
             series: [{
-                name: 'Jumlah',
+                name: 'Jumlah Hari',
                 data: [getRandomInt(100), getRandomInt(100), getRandomInt(100)]
             }, ]
         });

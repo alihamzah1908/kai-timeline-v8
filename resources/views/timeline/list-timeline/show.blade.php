@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb" class="float-left mt-1">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.sp3') }}">List SP3</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.timeline') }}">List Timeline</a></li>
                     <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
                 </ol>
             </nav>
