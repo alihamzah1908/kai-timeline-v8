@@ -85,7 +85,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-aandwidjzing', 'App\Http\Controllers\ProcurementController@save_aanwidjzing')->name('save.aanwidjzing');
     Route::post('/data/procurement/save-document-penawaran', 'App\Http\Controllers\ProcurementController@save_dokumen_penawaran')->name('save.document-penawaran');
     Route::post('/data/procurement/save-evaluasi-penawaran', 'App\Http\Controllers\ProcurementController@save_evaluasi_penawaran')->name('save.evaluasi-penawaran');
-    
+    Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
+    Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
 
     //DASHBOARD
     Route::get('/dashboard/monitoring-rup', function () {

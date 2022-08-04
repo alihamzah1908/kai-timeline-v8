@@ -46,7 +46,7 @@ class Sp3Controller extends Controller
                 $data->directorate_cd = $timeline ? $timeline->directorate_cd : Auth::user()->directorate_cd;
                 $data->division_cd = $timeline ? $timeline->division_cd : Auth::user()->division_cd;
                 $data->department_cd =  $timeline ? $timeline->department_cd : Auth::user()->department_cd;;
-                $data->judul_pengadaan = $timeline ? $timeline->judul_pengadaan : $request["judul_pengadaan"];
+                $data->judul_pengadaan = $request["judul_pengadaan"] ? $request["judul_pengadaan"] : $timeline->judul_pengadaan;
                 $data->nilai_pr =  $timeline ? $timeline->nilai_pr : str_replace('.', '', $request["nilai_pr"]);
                 $data->type_tax =  $timeline ? $timeline->type_tax : str_replace('.', '', $request["nilai_tax"]);
                 $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
@@ -330,7 +330,7 @@ class Sp3Controller extends Controller
                                     </button>
                                 </a>';
                         return $btn;
-                    } elseif ($row->proses_st == 'PROSES_ASP3') {
+                    } elseif ($row->proses_st == 'PROSES_PCP') {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '">
                         <button class="btn btn-primary btn-sm btn-rounded">
                             <i class="uil uil-print"></i> 

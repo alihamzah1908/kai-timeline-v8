@@ -115,8 +115,38 @@ class ProcurementController extends Controller
                 'b.i_lifnr',
                 'b.e_name'
             )
+            ->where('sp3_id', $id)
             ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
             ->get();
+        $data["rks"] = \App\Models\DraftRks::where('sp3_id', $id)->first();
+        $data["aandwidjzing"] = DB::table('trx_aanwidjzing as a')->where('sp3_id', $id)
+            ->select(
+                DB::raw('a.*'),
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->get();
+        $data["evaluasi_1_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->where('a.sp3_id', $id)
+            ->where('a.metode', '1_sampul')
+            ->get();
+        $data["klarifikasi"] = DB::table('trx_klasifikasi_konfirmasi_negosiasi as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->where('sp3_id', $id)
+            ->get();
+        $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
         return view('procurement.show', $data);
     }
 
@@ -332,6 +362,46 @@ class ProcurementController extends Controller
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
+    public function save_klarifikasi(Request $request)
+    {
+        foreach ($request["vendor_code"] as $key => $val) {
+            $data = new \App\Models\TrxKlarifikasiKonfirmasi();
+            $data->sp3_id = $request["sp3_id"];
+            $data->vendor_code = $val;
+            $data->tanggal_kkn = $request["tanggal_kkn"][$key];
+            $data->hps_pagu = $request["hps_pagu"][$key];
+            $data->harga_negosiasi = $request["harga_negosiasi"][$key];
+            $data->keterangan = $request["catatan_kkn"][$key];
+            $data->created_by = Auth::user()->id;
+            $data->save();
+        }
+        // UPDATE STATUS USULAN CALON PEMENANG
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_UPCP';
+        $status->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
+    public function save_pemenang(Request $request)
+    {
+        // dd($request->all());
+        $data = new \App\Models\TrxPenetapanPemenang();
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $new_name = 'dokumen-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+        $file->move(public_path('file/sp3'), $new_name);
+        $data->file_berita_acara = $new_name;
+        $data->catatan = $request["catatan"];
+        $data->vendor_code = $request["vendor_code"];
+        $data->sp3_id = $request["sp3_id"];
+        $data->save();
+        // UPDATE STATUS PENETAPAN PEMENANG
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_PCP';
+        $status->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
     public function getSp3(Request $request)
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
@@ -377,6 +447,8 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_PPDP')
             ->orWhere('proses_st', 'PROSES_EP')
             ->orWhere('proses_st', 'PROSES_EDH')
+            ->orWhere('proses_st', 'PROSES_UPCP')
+            ->orWhere('proses_st', 'PROSES_PCP')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -414,7 +486,7 @@ class ProcurementController extends Controller
                     return '<badges class="badge badge-success">Pelaksanaan Aanwidjzing</badges>';
                 } else if ($row->proses_st == 'PROSES_PDP') {
                     return '<badges class="badge badge-success">Pemasukan Dokumen Penawaran</badges>';
-                }else {
+                } else {
                     return $row->proses_st;
                 }
             })
@@ -426,11 +498,24 @@ class ProcurementController extends Controller
                 //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
                 //                </a>';
                 // } else if ($row->proses_st == 'PROSES_RRKS') {
-                $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                if ($row->proses_st == 'PROSES_PCP') {
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
-                               </a>';
+                                </a>
+                                <a href="' . route('evaluasi.print.sp') . '">
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
+                                    </button>
+                                </a>';
+                } else {
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                        <button class="btn btn-rounded btn-primary btn-sm">
+                            <i class="uil uil-search"></i> 
+                        </button>
+                   </a>';
+                }
                 // }
                 return $action;
             })

@@ -216,7 +216,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="no-justifikasi">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
@@ -366,16 +366,15 @@
 
         $('body').on('click', '.realisasi', function() {
             var data = $(this).val()
-            console.log(data)
             if (data == 'no') {
                 $(".row-timeline").hide();
                 $(".add-timeline").hide();
                 $(".kolom-timeline").show();
-                $(".judul-pengadaan").show();
+                // $(".judul-pengadaan").show();
             } else if (data == 'ya') {
                 $(".row-timeline").show();
                 $(".kolom-timeline").hide();
-                $(".judul-pengadaan").hide();
+                // $(".judul-pengadaan").hide();
                 $(".add-timeline").show();
             }
         })
@@ -553,6 +552,13 @@
                 body += '</div>'
                 $(".row-timeline").append(body)
             })
+        })
+        $('body').on('change', '.type-metode', function() {
+            if ($(this).val() == '3') {
+                $("#no-justifikasi").css('display','none')
+            }else{
+                $("#no-justifikasi").css('display','')
+            }
         })
     })
 </script>
