@@ -305,7 +305,7 @@
                                 </li>
                                 @endcan
                                 <li>
-                                    <a href="{{ route('signed.timeline') }}">Upload Timeline Signed</a>
+                                    <a href="{{ route('signed.timeline') }}">Upload Timeline Final</a>
                                 </li>
                             </ul>
                         </li>
@@ -399,6 +399,19 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
                                     <a href="javascript:void(0)">List Vendor</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="bookmark"></i>
+                                <span> Harga Satuan </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
+                                <a href="{{ route('list.hs') }}">List Harga Satuan</a>
                                 </li>
                             </ul>
                         </li>
