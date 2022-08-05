@@ -88,7 +88,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
 
-    //DASHBOARD
+    //DASHBOARD & HS
+    Route::get('/data/hs/list', 'App\Http\Controllers\HsController@data')->name('data.hs');
+
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');
@@ -139,5 +141,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pbj/list-pbj', function () {
         return view('pbj.index');
     })->name('list.pbj');
+    Route::get('/hs/list-hs', function () {
+        return view('hs.index');
+    })->name('list.hs');
 });
 Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');
