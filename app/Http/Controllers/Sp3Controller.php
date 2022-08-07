@@ -298,6 +298,8 @@ class Sp3Controller extends Controller
                     return '<badges class="badge badge-success">Approved SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_RSP3') {
                     return '<badges class="badge badge-danger">Rejected SP3</badges>';
+                }else{
+                    return $row->proses_st;
                 }
             })
             ->addColumn('action', function ($row) {
