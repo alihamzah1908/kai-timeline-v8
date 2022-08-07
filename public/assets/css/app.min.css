@@ -2436,7 +2436,8 @@ th.fc-day-header {
 }
 
 .select2-container .select2-selection--multiple .select2-selection__choice {
-    background-color: #5369f8;
+    /* background-color: #5369f8; */
+    background-color: #ff3333;
     border: none;
     color: #fff;
     border-radius: 3px;

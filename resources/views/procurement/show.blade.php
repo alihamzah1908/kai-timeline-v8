@@ -1,6 +1,17 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
+    <div class="row page-title">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-left mt-1">
+                <ol class="breadcrumb">
+                    <li><i class="uil uil-chart-infographic"></i></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List PBJ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
@@ -15,13 +26,13 @@
                             <label class="font-weight-bold">Judul Pengadaan</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
+                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Vendor Name</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
+                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -29,13 +40,13 @@
                             <label class="font-weight-bold">No PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
+                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">No MI</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-mi"></span>{{ $data->mi }}</label>
+                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->mi }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -43,13 +54,13 @@
                             <label class="font-weight-bold">Nilai PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
+                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -57,13 +68,13 @@
                             <label class="font-weight-bold">No RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
+                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -71,28 +82,28 @@
                             <label class="font-weight-bold">No KAK</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
+                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal KAK</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal Justifikasi</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Status </label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-4">
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
@@ -152,7 +163,7 @@
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                    <span class="d-none d-sm-block">Penetapan Pemenang</span>
+                                    <span class="d-none d-sm-block">Usulan & Penetapan Calon Pemenang</span>
                                 </a>
                             </li>
                             @endif
@@ -1364,10 +1375,10 @@
                                                                 <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_kkn }}">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
+                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
+                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
                                                             </td>
                                                             <td>
                                                                 <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"> {{ $val->keterangan }}</textarea>
@@ -1473,7 +1484,7 @@
                                                             <select class="form-control" name="vendor_code">
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_list as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->RK100002 ? ' selected' : '' }} @endif>{{ $val->e_name }}</option>
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == 'RK100002' ? ' selected' : '' }} @endif>{{ $val->e_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
