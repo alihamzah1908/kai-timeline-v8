@@ -143,7 +143,8 @@
                             <div class="col-md-4 nilai-tax border">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
-                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readlonly>
+                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readonly>
+                                    <!-- <input type="hidden" class="form-control nilai-tax-value" name="nilai_tax_x"> -->
                                 </div>
                             </div>
                         </div>
@@ -196,7 +197,15 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen PR/IP</label>
-                                        <input name="file[]" type="file" id="file_pr" multiple />
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="filePr">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" name="file_pr[]" class="custom-file-input" id="filePr" aria-describedby="filePr">
+                                                <label class="custom-file-label" for="filePr">Choose file</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +225,15 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen RAB</label>
-                                        <input name="file_rab[]" type="file" id="file_rab" multiple />
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="fileRab">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" name="file_rab[]" class="custom-file-input" id="fileRab" aria-describedby="fileRab">
+                                                <label class="custom-file-label" for="fileRab">Choose file</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +252,16 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Dokumen Justifikasi</label>
-                                        <input name="file[]" type="file" id="file_just_brg" multiple />
+                                        <label for="exampleInputEmail1">Dokumen Justifikasi Barang</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="fileJustifikasiBarang">Upload</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="file" name="file_jus_br[]" class="custom-file-input" id="fileJustifikasiBarang" aria-describedby="fileJustifikasiBarang">
+                                                <label class="custom-file-label" for="fileJustifikasiBarang">Choose file</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +272,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset>
+                    <fieldset class="mt-4">
                         <legend>Dokumen MI/Justifikasi Penunjukan/KAK/Lainya:</legend>
                         <div class="row">
                             <div class="col-md-4">
@@ -265,7 +290,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen MI</label>
-                                    <input name="file[]" type="file" id="file_mi" multiple />
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="doc_mi" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +318,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                    <input name="file[]" type="file" id="file_just_langsung" multiple />
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="file_just_langsung" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +346,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen KAK</label>
-                                    <input name="file[]" type="file" id="file_kak" multiple />
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="doc_kak" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -324,8 +373,16 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen Lainnya</label>
-                                    <input name="file[]" type="file" id="file_lainnya" multiple />
+                                    <label for="exampleInputEmail1">Dokumen Lainya</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="doc_lainya" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -512,7 +569,7 @@
                 $(".nilai-tax-insert").val(tax)
                 $(".nilai-tax-percent").html('%')
                 $(".nilai-pr").val(rupiah)
-                $(".nilai-tax-value").prop('disabled', true)
+                $(".nilai-tax-value").prop('disabled', false)
             } else if (jenis == '3') {
                 var pr = parseInt(new_nilai_pr)
                 const format = pr.toString().split('').reverse().join('');

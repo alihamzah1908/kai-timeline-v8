@@ -38,6 +38,7 @@ class Sp3Controller extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if ($request["realisasi"] == 'ya') {
             foreach ($request["timeline_id"] as $val) {
                 $timeline = \App\Models\Timeline::where('timeline_id', $val)->first();
@@ -50,23 +51,35 @@ class Sp3Controller extends Controller
                 $data->nilai_pr =  $timeline ? $timeline->nilai_pr : str_replace('.', '', $request["nilai_pr"]);
                 $data->type_tax =  $timeline ? $timeline->type_tax : str_replace('.', '', $request["nilai_tax"]);
                 $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
-                $data->tanggal_pr =  date('Y-m-d H:i:s');
+                // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->type_metode =  $request["type_metode"];
-                $data->tanggal_justifikasi = date('Y-m-d H:i:s');
-                $data->tanggal_rab =  date('Y-m-d H:i:s');
-                $data->tanggal_pr =  date('Y-m-d H:i:s');
+                // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
+                // $data->tanggal_rab =  date('Y-m-d H:i:s');
+                // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->tanggal_kak =  date('Y-m-d H:i:s');
                 $data->nama_vendor = $request["vendor_name"];
                 $data->no_mi = $request["no_mi"];
                 $data->no_rab = $request["no_mi"];
-                $data->no_justifikasi = $request["no_justifikasi"];
+                // $data->no_justifikasi = $request["no_justifikasi"];
                 $data->no_kak = $request["no_kak"];
-                $data->no_pr = $request["no_pr_ip"];
+                // $data->no_pr = $request["no_pr_ip"];
                 $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
                 $data->keterangan = 'KETERANGAN';
                 $data->created_by = Auth::user()->id;
                 $data->save();
-                if ($request->hasFile('file')) {
+                if ($data) {
+                    foreach ($request["no_pr_ip"] as $key => $val) {
+                        $npp = new \App\Models\TrxNpp();
+                        $npp->sp3_id = $data->sp3_id;
+                        $npp->no_pr = $request["no_pr_ip"][$key];
+                        $npp->no_rab = $request["no_rab"][$key];
+                        $npp->no_justifikasi = $request["no_justifikasi_kebutuhan"][$key];
+                        $npp->tanggal_pr = $request["date_pr"][$key];
+                        $npp->tanggal_rab = $request["date_rab"][$key];
+                        $npp->tanggal_justifikasi = $request["date_justifikasi"];
+                        $npp->save();
+                    }
+                } else if ($request->hasFile('file')) {
                     $file = $request->file('file');
                     foreach ($file as $val) {
                         $files = new \App\Models\SP3_File();
@@ -78,11 +91,12 @@ class Sp3Controller extends Controller
                         $files->save();
                     }
                 }
-            }
-            if ($data) {
-                $data2 = \App\Models\SP3::find($data->sp3_id);
-                $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
-                $data2->save();
+
+                if ($data) {
+                    $data2 = \App\Models\SP3::find($data->sp3_id);
+                    $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+                    $data2->save();
+                }
             }
         } else {
             $data = new \App\Models\SP3();
@@ -91,27 +105,39 @@ class Sp3Controller extends Controller
             $data->department_cd =  Auth::user()->department_cd;;
             $data->judul_pengadaan = $request["judul_pengadaan"];
             $data->no_sp3 = $request["nomor_sp3"];
+            $data->coa = json_encode($request["coa"]);
             $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
             $data->type_tax =  $request["type_tax"];
-            $data->nilai_tax =  str_replace('.', '', $request["nilai_tax"]);;
-            $data->tanggal_pr =  date('Y-m-d H:i:s');
+            $data->nilai_tax =  str_replace('.', '', $request["nilai_tax"]);
+            // $data->tanggal_pr =  date('Y-m-d H:i:s');
             $data->type_metode =  $request["type_metode"];
-            $data->tanggal_justifikasi = date('Y-m-d H:i:s');
-            $data->tanggal_rab =  date('Y-m-d H:i:s');
-            $data->tanggal_pr =  date('Y-m-d H:i:s');
+            // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
+            // $data->tanggal_rab =  date('Y-m-d H:i:s');
+            // $data->tanggal_pr =  date('Y-m-d H:i:s');
             $data->tanggal_kak =  date('Y-m-d H:i:s');
             $data->nama_vendor = $request["vendor_name"];
             $data->no_mi = $request["no_mi"];
-            $data->no_rab = $request["no_mi"];
-            $data->no_justifikasi = $request["no_justifikasi"];
+            // $data->no_rab = $request["no_mi"];
+            // $data->no_justifikasi = $request["no_justifikasi"];
             $data->no_kak = $request["no_kak"];
-            $data->no_pr = $request["no_pr_ip"];
+            // $data->no_pr = $request["no_pr_ip"];
             $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
             $data->keterangan = 'KETERANGAN';
             $data->created_by = Auth::user()->id;
             $data->updated_by = Auth::user()->id;
             $data->save();
             if ($data) {
+                foreach ($request["no_pr_ip"] as $key => $val) {
+                    $npp = new \App\Models\TrxNpp();
+                    $npp->sp3_id = $data->sp3_id;
+                    $npp->no_pr = $request["no_pr_ip"][$key];
+                    $npp->no_rab = $request["no_rab"][$key];
+                    $npp->no_justifikasi = $request["no_justifikasi_kebutuhan"][$key];
+                    $npp->tanggal_pr = $request["date_pr"][$key];
+                    $npp->tanggal_rab = $request["date_rab"][$key];
+                    $npp->tanggal_justifikasi = $request["date_justifikasi"];
+                    $npp->save();
+                }
                 $data2 = \App\Models\SP3::find($data->sp3_id);
                 $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
                 $data2->save();
@@ -142,6 +168,7 @@ class Sp3Controller extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
+        $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
         return view('sp-3.list-sp3.show', $data);
     }
 
@@ -244,8 +271,8 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
         } elseif ($request["timeline_type"] == 'npp') {
-            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"),'department_cd','judul_pengadaan','no_sp3','nilai_tax','timeline_id','sp3_id','proses_st');
-            $sp3->groupBy('department_cd','nilai_pr','judul_pengadaan','no_sp3','nilai_tax','timeline_id', 'sp3_id', 'proses_st');
+            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
+            $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)
@@ -298,7 +325,7 @@ class Sp3Controller extends Controller
                     return '<badges class="badge badge-success">Approved SP3</badges>';
                 } else if ($row->proses_st == 'PROSES_RSP3') {
                     return '<badges class="badge badge-danger">Rejected SP3</badges>';
-                }else{
+                } else {
                     return $row->proses_st;
                 }
             })
@@ -334,9 +361,15 @@ class Sp3Controller extends Controller
                         return $btn;
                     } elseif ($row->proses_st == 'PROSES_PCP') {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '">
-                        <button class="btn btn-primary btn-sm btn-rounded">
-                            <i class="uil uil-print"></i> 
-                        </button></a>';
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
+                                    </button>
+                                </a>
+                                <a href="' . route('sp3.show', $row->sp3_id) . '">
+                                    <button class="btn btn-primary btn-rounded btn-sm">
+                                        <i class="uil uil-search"></i> 
+                                    </button>
+                                </a>';
                         return $btn;
                     }
                 }

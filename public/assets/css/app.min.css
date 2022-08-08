@@ -26,7 +26,8 @@ body {
 .nav-second-level li a:hover,
 .nav-thrid-level li a:focus,
 .nav-thrid-level li a:hover {
-    color: #5369f8
+    /* color: #5369f8 */
+    color: #ff3333
 }
 
 .nav-second-level li>a.active,
@@ -294,7 +295,8 @@ body {
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li>a:active,
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li>a:focus,
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li>a:hover {
-    color: #5369f8
+    /* color: #5369f8 */
+    color: #ff3333;
 }
 
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li>a svg {
@@ -314,7 +316,8 @@ body {
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li:hover>a {
     position: relative;
     width: calc(190px + 70px);
-    color: #5369f8 !important;
+    color: #ff3333 !important;
+    /* color: #5369f8 !important; */
     background-color: #f7f7ff;
     -webkit-transition: none;
     transition: none
@@ -354,7 +357,8 @@ body {
 }
 
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul>li:hover>ul a:hover {
-    color: #5369f8
+    /* color: #5369f8 */
+    color: #ff3333
 }
 
 .left-side-menu-condensed .left-side-menu #sidebar-menu>ul ul {
@@ -541,6 +545,7 @@ body {
 .left-side-menu-dark.left-side-menu-condensed .nav-second-level li.mm-active>a,
 .left-side-menu-dark.left-side-menu-condensed .nav-thrid-level li.mm-active>a {
     color: #5369f8
+    
 }
 
 .left-side-menu-dark .user-profile .pro-user-desc,
@@ -3251,7 +3256,8 @@ div.dt-button-info h2 {
 }
 
 .metismenu li a[aria-expanded=true] {
-    color: #5369f8 !important
+    /* color: #5369f8 !important */
+    color: #ff4d4d !important;
 }
 
 .metismenu ul {

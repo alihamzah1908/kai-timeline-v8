@@ -137,6 +137,25 @@ class ProcurementController extends Controller
             ->where('a.sp3_id', $id)
             ->where('a.metode', '1_sampul')
             ->get();
+        $data["evaluasi_2_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->where('a.sp3_id', $id)
+            ->where('a.metode', '2_sampul')
+            ->get();
+        $data["bahp"] = DB::table('trx_berita_acara_hasil_pelelangan as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.i_lifnr',
+                'b.e_name'
+            )
+            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->where('sp3_id', $id)
+            ->get();
         $data["klarifikasi"] = DB::table('trx_klasifikasi_konfirmasi_negosiasi as a')
             ->select(
                 DB::raw('a.*'),
@@ -369,15 +388,15 @@ class ProcurementController extends Controller
             $data->sp3_id = $request["sp3_id"];
             $data->vendor_code = $val;
             $data->tanggal_kkn = $request["tanggal_kkn"][$key];
-            $data->hps_pagu = $request["hps_pagu"][$key];
-            $data->harga_negosiasi = $request["harga_negosiasi"][$key];
+            $data->hps_pagu = str_replace('.', '', $request["hps_pagu"])[$key];
+            $data->harga_negosiasi = str_replace('.', '', $request["harga_negosiasi"])[$key];
             $data->keterangan = $request["catatan_kkn"][$key];
             $data->created_by = Auth::user()->id;
             $data->save();
         }
         // UPDATE STATUS USULAN CALON PEMENANG
         $status = \App\Models\SP3::find($request["sp3_id"]);
-        $status->proses_st = 'PROSES_UPCP';
+        $status->proses_st = 'PROSES_BAHP';
         $status->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
@@ -386,11 +405,6 @@ class ProcurementController extends Controller
     {
         // dd($request->all());
         $data = new \App\Models\TrxPenetapanPemenang();
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-        $new_name = 'dokumen-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-        $file->move(public_path('file/sp3'), $new_name);
-        $data->file_berita_acara = $new_name;
         $data->catatan = $request["catatan"];
         $data->vendor_code = $request["vendor_code"];
         $data->sp3_id = $request["sp3_id"];
@@ -398,6 +412,26 @@ class ProcurementController extends Controller
         // UPDATE STATUS PENETAPAN PEMENANG
         $status = \App\Models\SP3::find($request["sp3_id"]);
         $status->proses_st = 'PROSES_PCP';
+        $status->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
+    public function save_bahp(Request $request)
+    {
+        foreach ($request["vendor_code"] as $key => $val) {
+            $data = new \App\Models\TrxBeritaAcaraHasilPelelangan();
+            $file = $request->file('berita_acara')[$key];
+            $extension = $file->getClientOriginalExtension();
+            $new_name = 'dokumen-bahp' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+            $file->move(public_path('file/sp3'), $new_name);
+            $data->file_berita_acara = $new_name;
+            $data->vendor_code = $val;
+            $data->sp3_id = $request["sp3_id"];
+            $data->save();
+        }
+        // UPDATE STATUS PENETAPAN PEMENANG
+        $status = \App\Models\SP3::find($request["sp3_id"]);
+        $status->proses_st = 'PROSES_UPCP';
         $status->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }

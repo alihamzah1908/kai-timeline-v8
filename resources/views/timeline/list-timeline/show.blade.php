@@ -6,13 +6,17 @@
             <nav aria-label="breadcrumb" class="float-left mt-1">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
+                    @can('timeline.approval-list')
+                    <li class="breadcrumb-item"><a href="{{ route('task.approval') }}">List Approval Timeline</a></li>
+                    @else 
                     <li class="breadcrumb-item"><a href="{{ route('list.timeline') }}">List Timeline</a></li>
+                    @endcan
+                    
                     <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
                 </ol>
             </nav>
         </div>
     </div>
-
     <div class="row mt-4">
         <div class="col">
             <div class="card">
@@ -69,7 +73,7 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Status </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-9 font-weight-normal">
+                                            <dd class="col-sm-6 font-weight-bold">
                                                 @if($data->proses_st == 'PROSES_AT')
                                                 <span class="text-success">Approved Timeline</span>
                                                 @elseif($data->proses_st == 'PROSES_ST')

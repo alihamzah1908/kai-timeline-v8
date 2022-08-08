@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-evaluasi-penawaran', 'App\Http\Controllers\ProcurementController@save_evaluasi_penawaran')->name('save.evaluasi-penawaran');
     Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
+    Route::post('/data/procurement/save-bahp', 'App\Http\Controllers\ProcurementController@save_bahp')->name('save.bahp');
 
     //DASHBOARD & HS
     Route::get('/data/hs/list', 'App\Http\Controllers\HsController@data')->name('data.hs');
