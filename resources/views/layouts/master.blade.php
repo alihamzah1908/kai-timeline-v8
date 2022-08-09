@@ -233,6 +233,9 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
+                                    <a href="{{ route('monitoring.progreal') }}">Realisasi Program Monitoring</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('monitoring.rup') }}">RUP Monitoring</a>
                                 </li>
                                 <li>
@@ -399,6 +402,9 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
                                     <a href="javascript:void(0)">List Vendor</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">Vendor Blacklist</a>
                                 </li>
                             </ul>
                         </li>

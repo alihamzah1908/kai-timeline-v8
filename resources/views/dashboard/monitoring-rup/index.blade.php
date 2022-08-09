@@ -10,6 +10,16 @@
         <div class="col-sm-4 col-xl-6">
             <h5 class="mb-1 mt-0">Dashboard Monitoring RUP</h4>
         </div>
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-2">
+            <select class="form-control type-metode" name="type_metode">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                    <!-- <option value="3">Pelelangan Terbuka</option> -->
+            </select>
+        </div>
         <div class="col-sm-8 col-xl-6">
             <form class="form-inline float-sm-right mt-3 mt-sm-0">
                 <div class="btn-group">
