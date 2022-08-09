@@ -14,12 +14,13 @@
                         <table id="datatable" class="table m-0 nowrap">
                             <thead>
                                 <tr>
-                                    <th>No. SP3</th>
-                                    <th>Procurement Title</th>
-                                    <th>RKAP Value</th>
-                                    <th>Department</th>
-                                    <th>Contract Value</th>
-                                    <th>Status</th>
+                                    <th>Vendor Code</th>
+                                    <th>Name Of Vendor</th>
+                                    <th>Street</th>
+                                    <th>Country</th>
+                                    <th>Postal Code</th>
+                                    <th>City</th>
+                                    <th>Order Currency</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -27,11 +28,11 @@
                             </tbody>
                         </table>
                     </div>
-                </div> <!-- end card body-->
-            </div> <!-- end card -->
-        </div><!-- end col-->
+                </div>
+            </div>
+        </div>
     </div>
-</div> <!-- container-fluid -->
+</div>
 @endsection
 @push('scripts')
 <script>
@@ -48,24 +49,27 @@
             },
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data.contract') }}",
+            ajax: "{{ route('data.vendor') }}",
             columns: [{
-                    data: 'sp3_no'
+                    data: 'vendor_code'
                 },
                 {
-                    data: 'judul_pengadaan'
+                    data: 'vendor_name'
                 },
                 {
-                    data: 'nilai_rkap'
+                    data: 'street'
                 },
                 {
-                    data: 'department_cd'
+                    data: 'country'
                 },
                 {
-                    data: 'nilai_contract'
+                    data: 'postal_code'
                 },
                 {
-                    data: 'contract_status'
+                    data: 'city'
+                },
+                {
+                    data: 'order_currency'
                 },
                 {
                     data: 'action',

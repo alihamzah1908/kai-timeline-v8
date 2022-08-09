@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class ContractController extends Controller
 {
@@ -15,7 +16,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+        return view('contract.index');
     }
 
     /**
@@ -86,13 +87,6 @@ class ContractController extends Controller
         }
     }
 
-    public function reviewing(Request $request)
-    {
-        $status = \App\Models\SP3::find($request["sp3_id"]);
-        $status->proses_st = 'PROSES_RRKS';
-        $status->save();
-    }
-
     /**
      * Display the specified resource.
      *
@@ -140,93 +134,23 @@ class ContractController extends Controller
         //
     }
 
-    public function getSp3(Request $request)
-    {
-        $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
-            ->where('sp3_id', $request["id"])
-            ->first();
-        $jadwal = \App\Models\TrxJadwalPelaksaan::where('sp3_id', $data->sp3_id)->first();
-        return response()->json(['data' => $data, 'jadwal' => $jadwal]);
-    }
-
-    public function data_rks(Request $request)
-    {
-        $data = \App\Models\DraftRks::orderBy('sp3_id', 'desc')
-            ->where('sp3_id', $request["sp3_id"])
-            ->get();
-        return DataTables::of($data)
-            ->addColumn('judul_pengadaan', function ($row) {
-                return 'CONTOH JUDUL PENGADAAN';
-            })
-            ->addColumn('metode_submit', function ($row) {
-                return 'Sampul 1';
-            })
-            ->addColumn('file', function ($row) {
-                return '<a href=' . asset('file/rks/' . $row->file) . '><i class="uil uil-file"></i></a>';
-            })
-            ->addColumn('file_draft', function ($row) {
-                return '<a href=' . asset('file/rks/' . $row->file_draft) . '><i class="uil uil-file"></i></a>';
-            })
-            ->addColumn('catatan', function ($row) {
-                return 'catatan';
-            })
-            ->rawColumns(['action', 'proses_st', 'file', 'file_draft'])
-            ->make(true);
-    }
-
     public function data(Request $request)
     {
-        $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
-            ->where('proses_st', 'PROSES_RRKS')
-            ->orWhere('proses_st', 'PROSES_DRKS')
-            ->get();
-        return DataTables::of($data)
-            ->addColumn('nilai_pr', function ($row) {
-                return number_format($row->nilai_pr, 2);
-            })
-            ->addColumn('type_tax', function ($row) {
-                if ($row->type_tax == '1') {
-                    return 'Pajak Tidak Dipungut';
-                } else if ($row->type_tax == '2') {
-                    return 'Pajak Dipungut (11%)';
-                } else if ($row->type_tax == '3') {
-                    return 'Pajak Dipungut Sebagian';
-                }
-            })
-            ->addColumn('nilai_tax', function ($row) {
-                return number_format($row->nilai_tax, 2);
-            })
-            ->addColumn('start_date_pengadaan', function ($row) {
-                return date('d M Y', strtotime($row->start_date_pengadaan));
-            })
-            ->addColumn('end_date_pengadaan', function ($row) {
-                return date('d M Y', strtotime($row->end_date_pengadaan));
-            })
-            ->addColumn('realisasi', function ($row) {
-                return $row->timeline_id != '' ? 'YES (TIMELINE)' : 'NO (TIMELINE)';
-            })
-            ->addColumn('proses_st', function ($row) {
-                if ($row->proses_st == 'PROSES_DRKS') {
-                    return '<badges class="badge badge-warning">Drafting RKS</badges>';
-                } else if ($row->proses_st == 'PROSES_RRKS') {
-                    return '<badges class="badge badge-success">Reviewing RKS</badges>';
-                }
-            })
+        $data = DB::select('SELECT * FROM trx_pbj_contract_report');
+        return FacadesDataTables::of($data)
             ->addColumn('action', function ($row) {
-                // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
-                if ($row->proses_st == 'PROSES_DRKS') {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
-                               </a>
-                               <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
-                } else if ($row->proses_st == 'PROSES_RRKS') {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                                    <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
-                               </a>';
-                }
-                return $action;
+                $btn = '<button class="btn btn-sm btn-primary btn-rounded">
+                            <i class="uil uil-search"></i>
+                        </button>';
+                return $btn;
             })
-            ->rawColumns(['action', 'proses_st'])
+            ->addColumn('nilai_rkap', function ($row) {
+                return number_format($row->nilai_rkap, 2);
+            })
+            ->addColumn('nilai_contract', function ($row) {
+                return number_format($row->nilai_contract, 2);
+            })
+            ->rawColumns(['action'])
             ->make(true);
     }
 }

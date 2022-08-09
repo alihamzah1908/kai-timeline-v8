@@ -211,7 +211,6 @@ class TimelineController extends Controller
                 }
             })
             ->rawColumns(['action', 'proses_st'])
-
             ->make(true);
     }
 }

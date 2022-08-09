@@ -363,10 +363,10 @@
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="{{ route('list.taskcontract') }}">Task Approval Contract</a>
+                                    <a href="{{ route('contract.approval') }}">Task Approval Contract</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('list.contract') }}">List Contract</a>
+                                    <a href="{{ route('contract.index') }}">List Contract</a>
                                 </li>
                             </ul>
                         </li>
@@ -398,7 +398,7 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                    <a href="javascript:void(0)">List Vendor</a>
+                                    <a href="{{ route('vendor.index') }}">List Vendor</a>
                                 </li>
                             </ul>
                         </li>

@@ -163,9 +163,10 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Kurs</label>
                                 <select class="form-control kurs" name="kurs">
-                                    <option value="1"><i class="uil uil-money-stack"></i> IDR</option>
-                                    <option value="2"><i class="uil uil-dollar-sign"></i> YEN</option>
-                                    <option value="2"><i class="uil uil-yen"></i> USD</option>
+                                    <option value="IDR"><i class="uil uil-money-stack"></i> IDR</option>
+                                    <option value="JPY"><i class="uil uil-dollar-sign"></i> JPY</option>
+                                    <option value="EUR"><i class="uil uil-yen"></i> EUR</option>
+                                    <option value="USD"><i class="uil uil-yen"></i> USD</option>
                                 </select>
                             </div>
                         </div>
@@ -197,15 +198,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen PR/IP</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="filePr">Upload</span>
-                                            </div>
-                                            <div class="custom-file">
-                                                <input type="file" name="file_pr[]" class="custom-file-input" id="filePr" aria-describedby="filePr">
-                                                <label class="custom-file-label" for="filePr">Choose file</label>
-                                            </div>
-                                        </div>
+                                        <input type="file" name="file_pr[]" class="form-control" id="filePr" aria-describedby="filePr">
                                     </div>
                                 </div>
                             </div>
@@ -225,15 +218,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen RAB</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="fileRab">Upload</span>
-                                            </div>
-                                            <div class="custom-file">
-                                                <input type="file" name="file_rab[]" class="custom-file-input" id="fileRab" aria-describedby="fileRab">
-                                                <label class="custom-file-label" for="fileRab">Choose file</label>
-                                            </div>
-                                        </div>
+                                        <input type="file" name="file_rab[]" class="form-control" id="fileRab" aria-describedby="fileRab">
                                     </div>
                                 </div>
                             </div>
@@ -253,15 +238,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen Justifikasi Barang</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="fileJustifikasiBarang">Upload</span>
-                                            </div>
-                                            <div class="custom-file">
-                                                <input type="file" name="file_jus_br[]" class="custom-file-input" id="fileJustifikasiBarang" aria-describedby="fileJustifikasiBarang">
-                                                <label class="custom-file-label" for="fileJustifikasiBarang">Choose file</label>
-                                            </div>
-                                        </div>
+                                        <input type="file" name="file_jus_br[]" class="form-control" id="fileJustifikasiBarang" aria-describedby="fileJustifikasiBarang">
                                     </div>
                                 </div>
                             </div>
@@ -290,15 +267,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen MI</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="doc_mi" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        </div>
-                                    </div>
+                                    <input type="file" name="doc_mi" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
                         </div>
@@ -318,15 +287,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="file_just_langsung" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        </div>
-                                    </div>
+                                    <input type="file" name="file_just_langsung" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
                         </div>
@@ -346,15 +307,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen KAK</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="doc_kak" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        </div>
-                                    </div>
+                                    <input type="file" name="doc_kak" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
                         </div>
@@ -374,15 +327,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen Lainya</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="doc_lainya" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        </div>
-                                    </div>
+                                    <input type="file" name="doc_lainya" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
                         </div>
