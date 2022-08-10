@@ -24,10 +24,13 @@
     <link href="{{ asset('assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="{{ asset('assets/libs/smartwizard/smart_wizard.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/libs/smartwizard/smart_wizard_theme_arrows.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/libs/smartwizard/smart_wizard_theme_circles.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/libs/smartwizard/smart_wizard_theme_dots.min.css') }}" type="text/css" />
     <link href="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    
+
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -335,7 +338,7 @@
                                 <li>
                                     <a href="{{ route('sp3.task.approval') }}">Task Approval</a>
                                 </li>
-                                @endcan 
+                                @endcan
                                 @can('sp3-list')
                                 <li>
                                     <a href="{{ route('list.sp3') }}">List SP3</a>
@@ -417,7 +420,7 @@
 
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
-                                <a href="{{ route('list.hs') }}">List Harga Satuan</a>
+                                    <a href="{{ route('list.hs') }}">List Harga Satuan</a>
                                 </li>
                             </ul>
                         </li>
@@ -544,6 +547,8 @@
     <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
     <!-- <script src="{{ asset('assets/libs/select2/select2.min.js') }}"></script> -->
     <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/smartwizard/jquery.smartWizard.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
@@ -553,7 +558,7 @@
         $('.mask-date').mask('00/00/0000');
         $('.mask-time').mask('00:00');
         $('.mask-phone').mask('00000000000');
-        
+
         $(".datepicker").flatpickr()
     </script>
     @stack('scripts')
