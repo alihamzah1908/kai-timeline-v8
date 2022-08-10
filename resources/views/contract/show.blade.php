@@ -130,6 +130,12 @@
                                     <span class="d-none d-sm-block">Contract</span>
                                 </a>
                             </li>
+                            <li class="nav-item tab-approval">
+                                <a href="#approval" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Approval</span>
+                                </a>
+                            </li>
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
                             <div class="tab-pane show active" id="home">
@@ -381,6 +387,175 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="tab-pane" id="approval">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Legal:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Legal:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Sarana/Non-Sarana:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Sarana/Non-Sarana:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager User:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP User:</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker" placeholder="Please insert signed date">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div> <!-- end card body-->

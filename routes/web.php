@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('list.contract');
     
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
-    // Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
+    //Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
     Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show'); 
     Route::get('/data/procurement/approve', 'App\Http\Controllers\ProcurementController@approve')->name('procurement.approve'); 
