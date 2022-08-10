@@ -341,7 +341,7 @@
         })
         $('body').on('click', '.approve', function() {
             Swal.fire({
-                title: 'Are you sure approve timeline?',
+                title: 'Are you sure approve NPP?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -362,14 +362,14 @@
                         if (response.status == '200') {
                             Swal.fire(
                                 'Approved!',
-                                'Your timeline has approved.',
+                                'Your NPP has approved.',
                                 'success'
                             )
                             timeline.ajax.reload()
                         } else {
                             Swal.fire(
                                 'Failed!',
-                                'Your timeline failed approved.',
+                                'Your NPP failed approved.',
                                 'success'
                             )
                         }

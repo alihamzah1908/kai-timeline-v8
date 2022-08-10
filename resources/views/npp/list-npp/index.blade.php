@@ -153,9 +153,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Jenis Barang</label>
-                                <select class="form-control type-tax" name="type_tax">
-                                    <option value="1">Non-Import</option>
-                                    <option value="2">Impor</option>
+                                <select class="form-control type-tax" name="jenis_barang">
+                                    <option value="Non-Import">Non-Import</option>
+                                    <option value="Import">Import</option>
                                 </select>
                             </div>
                         </div>

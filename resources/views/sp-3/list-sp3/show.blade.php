@@ -98,42 +98,26 @@
 
                                             <dt class="col-sm-5 font-weight-bold">No PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ $pr->no_pr }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->no_pr }}, @endforeach
+                                            </dd>
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_pr)) }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_pr }}, @endforeach
+                                            </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No Justifikasi Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ $pr->no_justifikasi }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, @endforeach
+                                            </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_justifikasi)) }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_justifikasi ? date('d M Y', strtotime($pr->tanggal_justifikasi)) : '' }}, @endforeach
+                                            </dd>
                                         </dl>
                                     </div>
                                     <div class="col-md-6">
@@ -154,35 +138,30 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Justifikasi Date
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->tanggal_justifikasi)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_justifikasi ? date('d M Y', strtotime($data->tanggal_justifikasi)) : ''}}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ $pr->no_rab }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->no_rab }}, @endforeach
+                                            </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <table class="col-sm-3 ml-2">
-                                                @foreach($trx_npp as $pr)
-                                                <tr>
-                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_rab)) }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </table>
-
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }},@endforeach
+                                            </dd>
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->no_kak }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->tanggal_kak)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_kak ? date('d M Y', strtotime($data->tanggal_kak)) : '' }}</dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">COA : </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ str_replace(array( '"', '[', ']' ),'', $data->coa); }}</dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -321,7 +300,7 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No RAB, Tanggal RAB dan Judul Pengadaan di RAB">
                                                         </td>
                                                         <td>
-                                                            <p>307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022</p>
+                                                            @foreach($trx_npp as $pr){{ $pr->no_rab . '/' . $pr->tanggal_rab . '/' . $data->judul_pengadaan}} <br />@endforeach
                                                             <input type="hidden" name="nomor[]" class="form-control" value="307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022">
                                                         </td>
                                                         <td>
@@ -345,7 +324,7 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi">
                                                         </td>
                                                         <td>
-                                                            <p>307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022</p>
+                                                            @foreach($trx_npp as $pr){{ $pr->no_justifikasi . '/' . $pr->tanggal_justifikasi . '/' . $data->judul_pengadaan}} <br />@endforeach
                                                             <input type="hidden" name="nomor[]" class="form-control" value="307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022">
                                                         </td>
                                                         <td>
@@ -378,7 +357,7 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="METODE PEMBAYARAN">
                                                         </td>
                                                         <td>
-                                                            <p>054/COH/KCI/V/2022</p>
+                                                            <p>{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}</p>
                                                             <input type="hidden" name="nomor[]" class="form-control" value="054/COH/KCI/V/2022">
                                                         </td>
                                                         <td>
@@ -531,7 +510,7 @@
                         </div>
                         @if($data->proses_st == 'PROSES_SSP3')
                         @can('sp3.approval-list')
-                        <a class="approve" role="presentation" href="javascript:void(0)" data-bind="{{ $data->sp3_id }}">
+                        <a class="approve d-flex justify-content-end" role="presentation" href="javascript:void(0)" data-bind="{{ $data->sp3_id }}">
                             <button class="btn btn-warning btn-sm btn-rounded">
                                 <i class="uil uil-check"></i> Approve
                             </button>
@@ -545,3 +524,48 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('body').on('click', '.approve', function() {
+            Swal.fire({
+                title: 'Are you sure approve NPP?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Approve'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var sp_3_id = $(this).attr('data-bind');
+                    $.ajax({
+                        url: '{{ route("sp3.approve") }}',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            'sp3_id': sp_3_id
+                        }
+                    }).done(function(response) {
+                        if (response.status == '200') {
+                            Swal.fire(
+                                'Approved!',
+                                'Your NPP has approved.',
+                                'success'
+                            )
+                            timeline.ajax.reload()
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Your NPP failed approved.',
+                                'success'
+                            )
+                        }
+                    })
+
+                }
+            })
+        })
+    })
+</script>
+@endpush
