@@ -89,8 +89,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
     Route::post('/data/procurement/save-bahp', 'App\Http\Controllers\ProcurementController@save_bahp')->name('save.bahp');
 
-    // DASHBOARD & HS
+
+    //DASHBOARD & MasterData
     Route::get('/data/hs/list', 'App\Http\Controllers\HsController@data')->name('data.hs');
+
+    Route::get('/dashboard/monitoring-progreal', function () {
+        return view('dashboard.monitoring-progreal.index');
+    })->name('monitoring.progreal');
 
     // VENDOR
     Route::get('/data/vendor', 'App\Http\Controllers\VendorController@data')->name('data.vendor');
@@ -100,6 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/contract/list', 'App\Http\Controllers\ContractController@index')->name('contract.index');
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
+
 
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
