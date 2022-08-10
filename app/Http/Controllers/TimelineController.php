@@ -201,7 +201,7 @@ class TimelineController extends Controller
                     return $btn;
                 } else {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
-                                <button class="btn btn-primary btn-rounded">
+                                <button class="btn btn-sm btn-primary btn-rounded">
                                     <i class="uil uil-search"></i>
                                 </button>
                             </a>
@@ -211,7 +211,6 @@ class TimelineController extends Controller
                 }
             })
             ->rawColumns(['action', 'proses_st'])
-
             ->make(true);
     }
 }

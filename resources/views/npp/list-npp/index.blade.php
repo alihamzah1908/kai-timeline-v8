@@ -41,7 +41,7 @@
     </div>
 </div> <!-- container-fluid -->
 <div class="modal fade" id="modal-timeline" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="myLargeModalLabel">Create NPP</h5>
@@ -66,7 +66,7 @@
                                 @php
                                 $timeline = \App\Models\Timeline::select('timeline_id','judul_pengadaan')->where('proses_st', 'PROSES_AT')->get();
                                 @endphp
-                                <select data-plugin="customselect" class="form-control" name="timeline_id[]">
+                                <select data-plugin="customselect" class="form-control" name="timeline_id[]" multiple>
                                     @foreach($timeline as $val)
                                     <option value="{{ $val->timeline_id }}">{{ $val->judul_pengadaan}}</option>
                                     @endforeach
@@ -74,11 +74,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12">
                             <button class="btn btn-sm btn-primary btn-rounded add-timeline" type="button"><i class="uil uil-plus"></i> add timeline</button>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row judul-pengadaan">
                         <div class="col-md-12">
@@ -117,6 +117,17 @@
                                     <input type="text" class="form-control nilai-pr money" placeholder="Please insert nilai_pr" name="nilai_pr">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">COA</label>
+                                    <select class="form-control" name="coa[]" data-plugin="customselect" multiple placeholder="Please insert coa">
+                                        <option value="">Pilih COA</option>
+                                        <option value="default-1">Default 1</option>
+                                        <option value="default-2">Default 2</option>
+                                        <option value="default-3">Default 3</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -132,15 +143,8 @@
                             <div class="col-md-4 nilai-tax border">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
-                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readlonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Keterangan</label>
-                                    <textarea class="form-control" placeholder="Please insert keterangan" name="keterangan"></textarea>
+                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readonly>
+                                    <!-- <input type="hidden" class="form-control nilai-tax-value" name="nilai_tax_x"> -->
                                 </div>
                             </div>
                         </div>
@@ -150,152 +154,184 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Jenis Barang</label>
                                 <select class="form-control type-tax" name="type_tax">
-                                    <option value="1">Local</option>
+                                    <option value="1">Non-Import</option>
                                     <option value="2">Impor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kurs</label>
+                                <select class="form-control kurs" name="kurs">
+                                    <option value="IDR"><i class="uil uil-money-stack"></i> IDR</option>
+                                    <option value="JPY"><i class="uil uil-dollar-sign"></i> JPY</option>
+                                    <option value="EUR"><i class="uil uil-yen"></i> EUR</option>
+                                    <option value="USD"><i class="uil uil-yen"></i> USD</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No MI</label>
-                                <input type="text" name="no_mi" class="form-control" placeholder="Please Insert No. MI">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal MI</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_mi">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen MI</label>
-                                <input name="file[]" type="file" id="file_mi" multiple />
+                                <label for="exampleInputEmail1" class="font-weight-bold">Keterangan</label>
+                                <textarea class="form-control" placeholder="Please insert keterangan" name="keterangan"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No PR/IP</label>
-                                <input type="text" name="no_pr_ip" class="form-control" placeholder="Please Insert No. PR/IP">
+                    <fieldset>
+                        <legend>Dokumen PR/RAB/Justifikasi Barang:</legend>
+                        <div class="doc-pr-rab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">No PR/IP</label>
+                                        <input type="text" name="no_pr_ip[]" class="form-control" placeholder="Please Insert No. PR/IP">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tanggal PR/IP</label>
+                                        <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Dokumen PR/IP</label>
+                                        <input type="file" name="file_pr[]" class="form-control" id="filePr" aria-describedby="filePr">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">No RAB</label>
+                                        <input type="text" name="no_rab[]" class="form-control" placeholder="Please Insert No. RAB">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tanggal RAB</label>
+                                        <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_rab[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Dokumen RAB</label>
+                                        <input type="file" name="file_rab[]" class="form-control" id="fileRab" aria-describedby="fileRab">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang</label>
+                                        <input type="text" name="no_justifikasi_kebutuhan[]" class="form-control" placeholder="Please Insert No. Justifikasi">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tanggal Justifikasi</label>
+                                        <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Dokumen Justifikasi Barang</label>
+                                        <input type="file" name="file_jus_br[]" class="form-control" id="fileJustifikasiBarang" aria-describedby="fileJustifikasiBarang">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal PR/IP</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button class="btn btn-sm btn-primary btn-rounded add-pr-rab" type="button"><i class="uil uil-plus"></i> add form </button>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen PR/IP</label>
-                                <input name="file[]" type="file" id="file_pr" multiple />
+                    </fieldset>
+                    <fieldset class="mt-4">
+                        <legend>Dokumen MI/Justifikasi Penunjukan/KAK/Lainya:</legend>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">No MI</label>
+                                    <input type="text" name="no_mi" class="form-control" placeholder="Please Insert No. MI">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tanggal MI</label>
+                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_mi">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dokumen MI</label>
+                                    <input type="file" name="doc_mi" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang</label>
-                                <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
+                        <div class="row" id="no-justifikasi">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
+                                    <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                    <input type="file" name="file_just_langsung" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Justifikasi</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">No KAK</label>
+                                    <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tanggal KAK</label>
+                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dokumen KAK</label>
+                                    <input type="file" name="doc_kak" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen Justifikasi</label>
-                                <input name="file[]" type="file" id="file_just_brg" multiple />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">No. Lainnya</label>
+                                    <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tanggal</label>
+                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dokumen Lainya</label>
+                                    <input type="file" name="doc_lainya" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row" id="no-justifikasi">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
-                                <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                <input name="file[]" type="file" id="file_just_langsung" multiple />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No RAB</label>
-                                <input type="text" name="no_rab" class="form-control" placeholder="Please Insert No. RAB">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal RAB</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_rab">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen RAB</label>
-                                <input name="file[]" type="file" id="file_rab" multiple />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No KAK</label>
-                                <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal KAK</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen KAK</label>
-                                <input name="file[]" type="file" id="file_kak" multiple />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No. Lainnya</label>
-                                <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Tanggal</label>
-                                <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dokumen Lainnya</label>
-                                <input name="file[]" type="file" id="file_lainnya" multiple />
-                            </div>
-                        </div>
-                    </div>
+                    </fieldset>
                     <div class="row">
                         <div class="col-md-12">
                             <label for="exampleInputEmail1" class="font-weight-medium">* Dokumen Lainnya meliputi Spesifikasi Teknis/DED/Kajian Resiko</label>
@@ -460,35 +496,48 @@
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").val(rupiah)
-                // $(".nilai-pr").val(rupiah)
+                $(".nilai-tax-value").val('0')
+                $(".nilai-tax-insert").val('0')
+                $(".nilai-pr").val(rupiah)
                 $(".nilai-tax-value").prop('disabled', true)
             } else if (jenis == '2') {
                 var persen = (11 / 100);
-                var total = parseInt(new_nilai_pr) * persen
-                var totalFix = parseInt(new_nilai_pr) - total
-                const format = totalFix.toString().split('').reverse().join('');
+                var tax = parseInt(new_nilai_pr) * persen
+                var pr = parseInt(new_nilai_pr)
+                const format = pr.toString().split('').reverse().join('');
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").val(rupiah)
+                //$(".nilai-tax-value").val('11')
+                $(".nilai-tax-value").val(tax)
+                //$(".nilai-tax-insert").val('11')
+                $(".nilai-tax-insert").val(tax)
                 $(".nilai-tax-percent").html('%')
-                // $(".nilai-pr").val(rupiah)
-                $(".nilai-tax-value").prop('disabled', true)
+                $(".nilai-pr").val(rupiah)
+                $(".nilai-tax-value").prop('disabled', false)
             } else if (jenis == '3') {
+                var pr = parseInt(new_nilai_pr)
+                const format = pr.toString().split('').reverse().join('');
+                const convert = format.match(/\d{1,3}/g);
+                const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
                 $(".nilai-tax-value").prop('disabled', false)
-                $(".nilai-tax-value").val(' ')
-                // $(".nilai-pr").val(nilai_pr)
+                //$(".nilai-tax-value").val(' ')
+                $(".nilai-tax-value").val(tax)
+                //$(".nilai-tax-insert").val(' ')
+                $(".nilai-tax-insert").val(tax)
+                //$(".nilai-pr").val(nilai_pr)
+                $(".nilai-pr").val(rupiah)
             }
         })
         $('body').on('keyup', '.nilai-tax-value', function() {
             var persen = (parseInt($(this).val()) / 100)
             var nilai_pr = $(".nilai-pr").val()
             var new_nilai_pr = nilai_pr.replace(/\./g, '')
-            var hasil_kalkulasi = parseInt(new_nilai_pr) * persen;
-            var hasilFix = parseInt(new_nilai_pr) - parseInt(hasil_kalkulasi);
-            const format = hasilFix.toString().split('').reverse().join('');
+            //var hasil_kalkulasi = parseInt(new_nilai_pr) * persen;
+            //var hasilFix = parseInt(new_nilai_pr) - parseInt(hasil_kalkulasi);
+            //const format = hasilFix.toString().split('').reverse().join('');
+            const format = new_nilai_pr.toString().split('').reverse().join('');
             const convert = format.match(/\d{1,3}/g);
             const rupiah = convert.join('.').split('').reverse().join('')
             $('.nilai-pr').val(rupiah)
@@ -533,32 +582,97 @@
                 }
             })
         })
-        $('body').on('click', '.add-timeline', function() {
-            $.ajax({
-                url: '{{ route("get.timeline") }}',
-                dataType: 'json',
-                method: 'get'
-            }).done(function(response) {
-                var option = []
-                $.each(response, function(index, value) {
-                    option.push('<option value="">Pilih Timeline</option><option value=' + value.timeline_id + '>' + value.judul_pengadaan + '</option>')
-                })
-                var body = '<div class="col-md-12">';
-                body += '<div class="form-group">'
-                body += '<select data-plugin="customselect" class="form-control" name="timeline_id[]">'
-                body += option
-                body += '</select>'
-                body += '</div>'
-                body += '</div>'
-                $(".row-timeline").append(body)
-            })
-        })
+        // $('body').on('click', '.add-timeline', function() {
+        //     $.ajax({
+        //         url: '{{ route("get.timeline") }}',
+        //         dataType: 'json',
+        //         method: 'get'
+        //     }).done(function(response) {
+        //         var option = []
+        //         $.each(response, function(index, value) {
+        //             option.push('<option value="">Pilih Timeline</option><option value=' + value.timeline_id + '>' + value.judul_pengadaan + '</option>')
+        //         })
+        //         var body = '<div class="col-md-12">';
+        //         body += '<div class="form-group">'
+        //         body += '<select data-plugin="customselect" class="form-control" name="timeline_id[]">'
+        //         body += option
+        //         body += '</select>'
+        //         body += '</div>'
+        //         body += '</div>'
+        //         $(".row-timeline").append(body)
+        //     })
+        // })
+
         $('body').on('change', '.type-metode', function() {
             if ($(this).val() == '3') {
-                $("#no-justifikasi").css('display','none')
-            }else{
-                $("#no-justifikasi").css('display','')
+                $("#no-justifikasi").css('display', 'none')
+            } else {
+                $("#no-justifikasi").css('display', '')
             }
+        })
+
+        $('body').on('click', '.add-pr-rab', function() {
+            var body = '<div style="border-top: 1px solid #ff3333;">'
+            body += '<div class="row mt-2">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">No PR/IP</label>'
+            body += '<input type="text" name="no_pr_ip[]" class="form-control" placeholder="Please Insert No. PR/IP">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Tanggal PR/IP</label>'
+            body += '<input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr[]">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Dokumen PR/IP</label>'
+            body += '<input name="file[]" type="file" id="file_pr" multiple />'
+            body += '</div>'
+            body += '</div>'
+
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">No RAB</label>'
+            body += '<input type="text" name="no_rab[]" class="form-control" placeholder="Please Insert No. RAB">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Tanggal RAB</label>'
+            body += '<input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_rab[]">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Dokumen RAB</label>'
+            body += '<input name="file_rab[]" type="file" id="file_rab" multiple />'
+            body += '</div>'
+            body += '</div>'
+
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang</label>'
+            body += '<input type="text" name="no_justifikasi_kebutuhan[]" class="form-control" placeholder="Please Insert No. Justifikasi">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Tanggal Justifikasi</label>'
+            body += '<input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi[]">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Dokumen Justifikasi</label>'
+            body += '<input name="file[]" type="file" id="file_just_brg" multiple />'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            $('.doc-pr-rab').append(body)
         })
     })
 </script>

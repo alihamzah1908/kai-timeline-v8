@@ -95,6 +95,45 @@
                                                 <span class="text-warning">Reviewing RKS</span>
                                                 @endif
                                             </dd>
+
+                                            <dt class="col-sm-5 font-weight-bold">No PR </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ $pr->no_pr }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal PR </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_pr)) }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No Justifikasi Barang </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ $pr->no_justifikasi }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Barang </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_justifikasi)) }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
                                         </dl>
                                     </div>
                                     <div class="col-md-6">
@@ -115,15 +154,27 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Justifikasi Date
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->tanggal_justifikasi)) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->no_rab }}</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ $pr->no_rab }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</dd>
+                                            <table class="col-sm-3 ml-2">
+                                                @foreach($trx_npp as $pr)
+                                                <tr>
+                                                    <td>{{ date('d M Y', strtotime($pr->tanggal_rab)) }}</td>
+                                                </tr>
+                                                @endforeach
+                                            </table>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -131,7 +182,7 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->tanggal_kak)) }}</dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -437,7 +488,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 d-flex justify-content-end">
-                                            <input class="btn btn-primary btn-sm btn-rounded save ml-2" type="submit" name="save" value="Save">
+                                            <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="submit"><i class="uil uil-sim-card"></i>
+                                                Save
                                         </div>
                                     </div>
                                 </form>

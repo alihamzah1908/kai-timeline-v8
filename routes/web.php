@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('list.contract');
     
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
-    Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
+    // Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
     Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show');
     Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-evaluasi-penawaran', 'App\Http\Controllers\ProcurementController@save_evaluasi_penawaran')->name('save.evaluasi-penawaran');
     Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
+    Route::post('/data/procurement/save-bahp', 'App\Http\Controllers\ProcurementController@save_bahp')->name('save.bahp');
+
 
     //DASHBOARD & MasterData
     Route::get('/data/hs/list', 'App\Http\Controllers\HsController@data')->name('data.hs');
@@ -94,6 +96,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/monitoring-progreal', function () {
         return view('dashboard.monitoring-progreal.index');
     })->name('monitoring.progreal');
+
+    // VENDOR
+    Route::get('/data/vendor', 'App\Http\Controllers\VendorController@data')->name('data.vendor');
+    Route::get('/data/vendor/list', 'App\Http\Controllers\VendorController@index')->name('vendor.index');
+
+    // CONTRACT
+    Route::get('/data/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
+    Route::get('/data/contract/list', 'App\Http\Controllers\ContractController@index')->name('contract.index');
+    Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
+
+
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');

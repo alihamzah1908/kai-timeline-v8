@@ -1,6 +1,17 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
+    <div class="row page-title">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="float-left mt-1">
+                <ol class="breadcrumb">
+                    <li><i class="uil uil-chart-infographic"></i></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List PBJ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
@@ -15,13 +26,13 @@
                             <label class="font-weight-bold">Judul Pengadaan</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
+                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Vendor Name</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
+                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -29,13 +40,13 @@
                             <label class="font-weight-bold">No PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
+                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">No MI</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-mi"></span>{{ $data->mi }}</label>
+                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->mi }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -43,13 +54,13 @@
                             <label class="font-weight-bold">Nilai PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
+                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -57,13 +68,13 @@
                             <label class="font-weight-bold">No RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
+                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -71,28 +82,28 @@
                             <label class="font-weight-bold">No KAK</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
+                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal KAK</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal Justifikasi</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Status </label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-4">
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
@@ -105,7 +116,7 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -114,7 +125,7 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -123,7 +134,7 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
@@ -132,14 +143,15 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
+                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Evaluasi Penawaran</span>
                                 </a>
                             </li>
-                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP'
+                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link">
@@ -148,11 +160,20 @@
                                 </a>
                             </li>
                             @endif
+                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
+                            || $data->proses_st == 'PROSES_PCP')
+                            <li class="nav-item tab-klarifikasi">
+                                <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Berita Acara Hasil Pelelangan</span>
+                                </a>
+                            </li>
+                            @endif
                             @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                    <span class="d-none d-sm-block">Penetapan Pemenang</span>
+                                    <span class="d-none d-sm-block">Usulan & Penetapan Calon Pemenang</span>
                                 </a>
                             </li>
                             @endif
@@ -1238,6 +1259,52 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody style="vertical-align: top">
+                                                        @if($evaluasi_2_sampul->count() > 0)
+                                                        @foreach($evaluasi_2_sampul as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->e_name }}
+                                                                <input type="hidden" name="vendor_code[{{$val->document_evaluasi_id }}]" value="{{ $val->vendor_code}}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_admin[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_admin }}">
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_admin == '1') ' checked=""' : '' @endif>
+                                                                    <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_admin == '0') ' checked=""' : '' @endif>
+                                                                    <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="catatan_admin[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_admin }}</textarea>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="tanggal_harga[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_harga }}">
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_harga == '1') ' checked=""' : '' @endif>
+                                                                    <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_ya">Ya</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_harga == '0') ' checked=""' : '' @endif>
+                                                                    <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <textarea name="catatan_harga[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_harga }}</textarea>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        @else
                                                         @foreach($tender_list as $val)
                                                         <tr>
                                                             <td>
@@ -1282,6 +1349,7 @@
                                                             </td>
                                                         </tr>
                                                         @endforeach
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                                 <div class="row">
@@ -1364,10 +1432,10 @@
                                                                 <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_kkn }}">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
+                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
+                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
                                                             </td>
                                                             <td>
                                                                 <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"> {{ $val->keterangan }}</textarea>
@@ -1385,10 +1453,10 @@
                                                                 <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control" placeholder="Please insert hps/pagu">
+                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control" placeholder="Please insert harga negosiasi">
+                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi">
                                                             </td>
                                                             <td>
                                                                 <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"></textarea>
@@ -1452,7 +1520,62 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="tab-pane" id="bahp">
+                                <div class="row">
+                                    <label for="exampleInputEmail1"></label>
+                                    <div class="col-md-12">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                        <form action="{{ route('save.bahp') }}" id="form-bahp" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="5">BERITA ACARA HASIL PELELANGAN</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="20%">PESERTA TENDER</th>
+                                                        <th width="10%">BERITA ACARA</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    @if($bahp->count() > 0)
+                                                    @foreach($bahp as $doc)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $doc->e_name }}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ asset('file/sp3/'. $doc->file_berita_acara) }}" target="_blank">
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $doc->file_berita_acara }}
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                    @else
+                                                    @foreach($tender_list as $val)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $val->e_name }}
+                                                            <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="file" name="berita_acara[]" class="form-control">
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded save-bahp">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="tab-pane" id="pemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
@@ -1473,33 +1596,9 @@
                                                             <select class="form-control" name="vendor_code">
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_list as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->RK100002 ? ' selected' : '' }} @endif>{{ $val->e_name }}</option>
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == 'RK10003' || $val->vendor_code == 'RK100002' || $val->vendor_code == 'RK10047' ? ' selected' : '' }} @endif>{{ $val->e_name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            @if($pemenang)
-                                                            <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                            @else
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            @endif
-
                                                         </div>
                                                     </div>
                                                 </div>

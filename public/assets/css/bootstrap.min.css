@@ -321,10 +321,11 @@ textarea {
 }
 
 fieldset {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    border: 0
+    min-width: 100%;
+    padding: 12px;
+    /* margin: 0; */
+    margin-bottom: 10px;
+    border: 3px solid #ff3333
 }
 
 legend {
@@ -333,10 +334,11 @@ legend {
     max-width: 100%;
     padding: 0;
     margin-bottom: .5rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: inherit;
     color: inherit;
-    white-space: normal
+    white-space: normal;
+    font-weight: bold;
 }
 
 progress {
@@ -6799,7 +6801,8 @@ a.close.disabled {
 
 @media (min-width:576px) {
     .modal-dialog {
-        max-width: 500px;
+        /* max-width: 500px; */
+        max-width: 800px;
         margin: 1.75rem auto
     }
 
