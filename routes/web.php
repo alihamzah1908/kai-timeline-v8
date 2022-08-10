@@ -74,8 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/procurement/pbj', 'App\Http\Controllers\ProcurementController@data')->name('data.procurement');
     // Route::get('/data/procurement/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/procurement/sp3', 'App\Http\Controllers\ProcurementController@getSp3')->name('procurement.sp3');
-    Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show');
-    Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
+    Route::get('/data/procurement/show/{id}', 'App\Http\Controllers\ProcurementController@show')->name('procurement.show'); 
     Route::get('/data/procurement/approve', 'App\Http\Controllers\ProcurementController@approve')->name('procurement.approve'); 
     Route::get('/data/procurement/reject-penawaran', 'App\Http\Controllers\ProcurementController@reject_penawaran')->name('reject.pengadaan'); 
     Route::get('/data/procurement/review/rks', 'App\Http\Controllers\ProcurementController@data_rks')->name('data.view.rks');
@@ -104,8 +103,8 @@ Route::group(['middleware' => ['auth']], function () {
     // CONTRACT
     Route::get('/data/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
     Route::get('/data/contract/list', 'App\Http\Controllers\ContractController@index')->name('contract.index');
+    Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
-
 
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');

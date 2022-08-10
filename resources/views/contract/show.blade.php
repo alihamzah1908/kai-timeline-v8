@@ -21,10 +21,10 @@
                             <label class="font-weight-bold">Vendor Name</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
+                            <label class="font-weight-bold">: <span class="vendor-name"></span>{{ $data->vendor }}</label>
                         </div>
                     </div>
-                    <div class="row">
+                    {{--<div class="row">
                         <div class="col-md-3">
                             <label class="font-weight-bold">No PR</label>
                         </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-3">
                             <label class="font-weight-bold">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="row">
                         <ul class="nav nav-tabs">
                             <li class="nav-item tab-jadwal-pelaksanaan">
