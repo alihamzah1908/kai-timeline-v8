@@ -153,7 +153,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Jenis Barang</label>
-                                <select class="form-control type-tax" name="jenis_barang">
+                                <select class="form-control" name="jenis_barang">
                                     <option value="Non-Import">Non-Import</option>
                                     <option value="Import">Import</option>
                                 </select>
@@ -629,7 +629,7 @@
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Dokumen PR/IP</label>'
-            body += '<input name="file[]" type="file" id="file_pr" multiple />'
+            body += '<input name="file_pr[]" type="file" id="file_pr" multiple class="form-control" />'
             body += '</div>'
             body += '</div>'
 
@@ -648,7 +648,7 @@
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Dokumen RAB</label>'
-            body += '<input name="file_rab[]" type="file" id="file_rab" multiple />'
+            body += '<input name="file_rab[]" type="file" id="file_rab" multiple class="form-control"/>'
             body += '</div>'
             body += '</div>'
 
@@ -667,7 +667,7 @@
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Dokumen Justifikasi</label>'
-            body += '<input name="file[]" type="file" id="file_just_brg" multiple />'
+            body += '<input name="file_jus_br[]" type="file" id="file_just_brg" class="form-control" multiple />'
             body += '</div>'
             body += '</div>'
             body += '</div>'

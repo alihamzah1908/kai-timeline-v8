@@ -99,24 +99,24 @@
                                             <dt class="col-sm-5 font-weight-bold">No PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->no_pr }}, @endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach
                                             </dd>
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->tanggal_pr }}, @endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_pr }}, <br />@endforeach
                                             </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No Justifikasi Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, @endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach
                                             </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->tanggal_justifikasi ? date('d M Y', strtotime($pr->tanggal_justifikasi)) : '' }}, @endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_justifikasi ? date('d M Y', strtotime($pr->tanggal_justifikasi)) : '' }}, <br />@endforeach
                                             </dd>
                                         </dl>
                                     </div>
@@ -125,7 +125,7 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Type
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->type_tax}}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ ($data->type_tax == '1' ? 'Pajak Tidak Dipungut' : ($data->type_tax == '2' ? ' Pajak Dipungut' : 'Pajak Dipungut Biaya Sebagian')) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -135,21 +135,23 @@
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->no_mi }}</dd>
 
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Justifikasi Date
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_justifikasi ? date('d M Y', strtotime($data->tanggal_justifikasi)) : ''}}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                {{ $data->tanggal_justifikasi ? date('d M Y', strtotime($data->tanggal_justifikasi)) : '' }}
+                                            </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->no_rab }}, @endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach
                                             </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }},@endforeach
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }}, <br />@endforeach
                                             </dd>
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -158,10 +160,38 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_kak ? date('d M Y', strtotime($data->tanggal_kak)) : '' }}</dd>
-
+                                            @if($data->timeline_id == '')
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">COA : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ str_replace(array( '"', '[', ']' ),'', $data->coa); }}</dd>
+                                            @endif
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File PR : </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr)
+                                                <a href="{{ asset('file/sp3/'. $pr->file_pr) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $pr->file_pr }}
+                                                </a>
+                                                , <br />@endforeach
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File RAB : </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr)
+                                                <a href="{{ asset('file/sp3/'. $pr->file_rab) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $pr->file_rab }}
+                                                </a>
+                                                , <br />@endforeach
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File Justifikasi Barang : </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr)
+                                                <a href="{{ asset('file/sp3/'. $pr->file_justifikasi) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $pr->file_justifikasi }}
+                                                </a>
+                                                , <br />@endforeach
+                                            </dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -465,7 +495,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-4">
                                         <div class="col-md-12 d-flex justify-content-end">
                                             <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="submit"><i class="uil uil-sim-card"></i>
                                                 Save

@@ -52,6 +52,7 @@ class Sp3Controller extends Controller
                 $data->type_tax =  $timeline ? $timeline->type_tax : str_replace('.', '', $request["nilai_tax"]);
                 $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
                 $data->jenis_barang = $request["jenis_barang"];
+                $data->coa = json_encode($request["coa"]);
                 // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->type_metode =  $request["type_metode"];
                 // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
@@ -78,27 +79,28 @@ class Sp3Controller extends Controller
                         $npp->tanggal_pr = $request["date_pr"][$key];
                         $npp->tanggal_rab = $request["date_rab"][$key];
                         $npp->tanggal_justifikasi = $request["date_justifikasi"][$key];
+                        if ($request->file('file_pr') || $request->file('file_rab') || $request->file('file_jus_br')) {
+                            // INSERT FILE PR  
+                            $file_pr = $request->file('file_pr')[$key];
+                            $extension = $file_pr->getClientOriginalExtension();
+                            $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                            $file_pr->move(public_path('file/sp3'), $file_pr_name);
+                            $npp->file_pr = $file_pr_name;
 
-                        // INSERT FILE PR  
-                        $file_pr = $request->file('file_pr')[$key];
-                        $extension = $file_pr->getClientOriginalExtension();
-                        $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension . '.' . $data->sp3_id;
-                        $file_pr->move(public_path('file/sp3'), $file_pr_name);
-                        $npp->file_pr = $file_pr_name;
+                            // INSERT FILE RAB  
+                            $file_rab = $request->file('file_rab')[$key];
+                            $extension = $file_rab->getClientOriginalExtension();
+                            $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                            $file_rab->move(public_path('file/sp3'), $file_rab_name);
+                            $npp->file_rab = $file_rab_name;
 
-                        // INSERT FILE RAB  
-                        $file_rab = $request->file('file_rab')[$key];
-                        $extension = $file_rab->getClientOriginalExtension();
-                        $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension . '.' . $data->sp3_id;
-                        $file_rab->move(public_path('file/sp3'), $file_rab_name);
-                        $npp->file_rab = $file_rab_name;
-
-                        // INSERT FILE JUSTIFIKASI  
-                        $file_just = $request->file('file_jus_br')[$key];
-                        $extension = $file_just->getClientOriginalExtension();
-                        $file_just_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension . '.' . $data->sp3_id;
-                        $file_rab->move(public_path('file/sp3'), $file_just_name);
-                        $npp->file_justifikasi = $file_just_name;
+                            // INSERT FILE JUSTIFIKASI  
+                            $file_just = $request->file('file_jus_br')[$key];
+                            $extension = $file_just->getClientOriginalExtension();
+                            $file_just_name = 'PR-JUSTIFIKASI-BRG' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                            $file_just->move(public_path('file/sp3'), $file_just_name);
+                            $npp->file_justifikasi = $file_just_name;
+                        }
                         $npp->save();
                     }
                 } else if ($request->hasFile('file')) {
@@ -129,7 +131,7 @@ class Sp3Controller extends Controller
             $data->coa = json_encode($request["coa"]);
             $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
             $data->type_tax =  $request["type_tax"];
-            $data->nilai_tax =  str_replace('.', '', $request["nilai_tax"]);
+            $data->nilai_tax =  $request["nilai_tax"] ? str_replace('.', '', $request["nilai_tax"]) : 0;
             // $data->tanggal_pr =  date('Y-m-d H:i:s');
             $data->type_metode =  $request["type_metode"];
             // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
@@ -157,6 +159,28 @@ class Sp3Controller extends Controller
                     $npp->tanggal_pr = $request["date_pr"][$key];
                     $npp->tanggal_rab = $request["date_rab"][$key];
                     $npp->tanggal_justifikasi = $request["date_justifikasi"];
+                    if ($request->file('file_pr') || $request->file('file_rab') || $request->file('file_jus_br')) {
+                        // INSERT FILE PR  
+                        $file_pr = $request->file('file_pr')[$key];
+                        $extension_pr = $file_pr->getClientOriginalExtension();
+                        $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_pr;
+                        $file_pr->move(public_path('file/sp3'), $file_pr_name);
+                        $npp->file_pr = $file_pr_name;
+
+                        // INSERT FILE RAB  
+                        $file_rab = $request->file('file_rab')[$key];
+                        $extension_rab = $file_rab->getClientOriginalExtension();
+                        $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_rab;
+                        $file_rab->move(public_path('file/sp3'), $file_rab_name);
+                        $npp->file_rab = $file_rab_name;
+
+                        // INSERT FILE JUSTIFIKASI  
+                        $file_just = $request->file('file_jus_br')[$key];
+                        $extension_just = $file_just->getClientOriginalExtension();
+                        $file_just_name = 'PR-JUSTIFIKASI-BRG' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_just;
+                        $file_just->move(public_path('file/sp3'), $file_just_name);
+                        $npp->file_justifikasi = $file_just_name;
+                    }
                     $npp->save();
                 }
                 $data2 = \App\Models\SP3::find($data->sp3_id);

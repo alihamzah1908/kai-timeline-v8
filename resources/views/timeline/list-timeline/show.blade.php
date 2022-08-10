@@ -102,7 +102,7 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax type
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->type_tax }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ ($data->type_tax == '1' ? 'Pajak Tidak Dipungut' : ($data->type_tax == '2' ? ' Pajak Dipungut' : 'Pajak Dipungut Biaya Sebagian'))}}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -110,11 +110,11 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Start Date Procurement : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d/m/Y', strtotime($data->start_date_pengadaan)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->start_date_pengadaan)) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">End Date Procurement  : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ date('d/m/Y', strtotime($data->end_date_pengadaan)) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ date('d M Y', strtotime($data->end_date_pengadaan)) }}</dd>
                                         </dl>
                                     </div>
                                 </div>
