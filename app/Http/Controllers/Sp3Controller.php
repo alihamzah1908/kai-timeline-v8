@@ -285,8 +285,9 @@ class Sp3Controller extends Controller
 
     public function generate_sp()
     {
-        $pdf = FacadePdf::loadView('sp-3.evaluasi.print-sp');
-        return $pdf->download('pelayanan-penumpang.pdf');
+        $pdf = FacadePdf::loadView('sp-3.evaluasi.print-sp')->setOptions(['defaultFont' => 'roboto']);;
+        // return view('sp-3.evaluasi.print-sp');
+        return $pdf->download('dasdsa.pdf');
     }
 
     public function evaluasi_store(Request $request)

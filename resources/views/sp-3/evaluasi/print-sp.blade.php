@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <style>
         body,
         table {
@@ -23,101 +23,249 @@
             <th width="50">
                 <!-- <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="45" /> -->
             </th>
-            <th colspan="2"><img src="">SURAT PERINTAH PELAKSANAAN PENGADAAN FR.KCJ.00175</th>
-        </tr>
-        <tr>
-            <th>UNIT LOGISTIK</th>
-            <th align="right" width="70%">TGL TERBIT : </th>
-            <th align="left"> 09 NOVEMBER 2015</th>
-        </tr>
-        <tr>
-            <th> </th>
-            <th align="right" width="70%">NO.TERBIT : </th>
-            <th align="left"> 1</th>
-        </tr>
-        <tr>
-            <th> </th>
-            <th align="right">NO. REVISI : </th>
-            <th align="left"> 2</th>
-        </tr>
-        <tr>
-            <th> </th>
-            <th align="right">TGL REVISI : </th>
-            <th align="left"> 10 JULI 2019</th>
-        </tr>
-        <!-- <tr>
-            <th><img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" /></th>
-            <th><img src="">SURAT PERINTAH PELAKSANAAN PENGADAAN FR.KCJ.00175</th>
-        </tr> -->
-        <tr>
-            <th colspan="3">
-                <u>SURAT PERINTAH PELAKSANAAN PENGADAAN</u> <br />
-                NOMOR : 093/REN-LOG/KCI/VII/2022
+            <th colspan="2">SURAT KEPUTUSAN <br />
+                DIREKSI PT KERETA COMMUTER INDONESIA<br />
+                NOMOR : SK.01/SPR/LOG/KCI/VIII/2022 <br /><br />
+                TENTANG<br />
+                PENUNJUKAN REKANAN SELAKU PELAKSANA KEGIATAN <br />
+                KONSULTAN PENGAWAS PEKERJAAN RENOVASI BANGUNAN DI STASIUN JAKARTA KOTA UNTUK NEW GRIYA <br />
+                JAKARTA KOTA
             </th>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td align="right">
-                Jakarta, 18 - Juli - 2022 <br />
-                Kepada Yth., <br />
-                Panitia Pengadaan <br />
-                SARANA / NON SARANA <br />
-                Di Tempat
-            </td>
         </tr>
     </table>
     <table border="0" width="100%">
-        <tr>
-            <td> 1. Menunjuk : </td>
-        </tr>
-        <tr>
-            <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan “Pelayanan Penumpang Di Stasiun – Pengisian Ulang dan Pengadaan Tabung APAR Stasiun dan KRL;<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b. Ijin Prinsip/PR/NPD ACC*) No. 2100074947 tanggal 6 Juni 2022 senilai Rp. 710.188.121,- dan No.2100074949 tanggal 6 Juni 2022 senilai Rp.12.249.243,- dengan total Rp. 722.437.364 (tujuh ratus dua puluh dua juta empat ratus
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tiga puluh tujuh ribu tiga ratus enam puluh empat rupiah).
-            </td>
-        </tr>
-        <tr>
-            <td> 2. Sehubungan hal tersebut diatas, agar dilaksanakan proses : </td>
-        </tr>
-        <tr>
+        <thead>
+            <tr align="left">
+                <th style="width: 10%" valign="top">MENUNJUK </th>
+                <th style="width: 2%;" valign="top">: </th>
+                <td style="width: 70%" valign="top">Surat Penawaran Harga dari PT Surveyor Indonesia Nomor : SRT-229/INFRAS-VI/BAW/2022, tanggal 29 Juni
+                    2022.
+                </td>
+            </tr>
+            <tr align="left">
+                <th valign="top">MENINMBANG </th>
+                <th valign="top">: </th>
+                <td>Setelah diadakan penelitian dengan seksama dari harga penawaran setelah dilakukan negosiasi sebesar
+                    Rp151.707.252,00 (terbilang : seratus lima puluh satu juta tujuh ratus tujuh ribu dua ratus lima puluh dua
+                    Rupiah) merupakan harga yang wajar dan dapat diterima sesuai dengan spesifikasi yang sudah ditentukan
+                    dan sudah melalui tahapan pelelangan sesuai dengan ketentuan
+                </td>
+            </tr>
+            <tr align="left">
+                <th valign="top">MEMPERHATIKAN </th>
+                <th valign="top">: </th>
+                <td valign="top"></td>
+            </tr>
+        </thead>
+    </table>
+    <table border="0" width="100%" style="margin-left: 1%;">
+        <tr align="left">
+            <td>1. </th>
+            <td>Nama Kegiatan </td>
+            <th>:</th>
             <th>
-                Pelayanan Penumpang - Pengisian Ulang dan Pengadaan Tabung Apar Stasiun Dan KRL;
-                Pagu Dana Rp. 722.437.364,-
+                KONSULTAN PENGAWAS PEKERJAAN RENOVASI
+                BANGUNAN DI STASIUN JAKARTA KOTA UNTUK NEW
+                GRIYA KARYA JAKARTA KOTA
             </th>
         </tr>
-        <tr>
-            <td> 3. Terlampir kami sampaikan Dokumen Pendukung lainnya :</td>
+        <tr align="left">
+            <td>2. </th>
+            <td>Rencana Kerja dan Syarat Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
         </tr>
-        <tr>
-            <td>
-                a. RAB;<br />
-                b. Nota Persetujuan Dana<br />
-                c. Justifikasi Kebutuhan Barang/Jasa;<br />
-                d. KAK.;<br />
-            </td>
+        <tr align="left">
+            <td>3. </th>
+            <td>Undangan Pemilihan Langsung Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
         </tr>
-        <tr>
-            <td> 4. Dalam proses pengadaan mengacu kepada Petunjuk Pelaksanaan Pengadaan Barang/Jasa Nomor SK.016/CU/KCI/IV/2019 tanggal 02 April 2019 , SK.010/CU/KCI/II/2020 tanggal 14 Februari 2020 dan Peraturan Direksi PT KCI Nomor 030.1/PERDIR/AL.106/VII/KCI/2021 tanggal 26 Juli 2021.</td>
+        <tr align="left">
+            <td>4. </th>
+            <td>Berita Acara Rapat Penjelasan/Aanwijzing Nomor</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
         </tr>
-        <tr>
-            <td>
-                5. Mohon kabar setelah diperoleh hasil, terima kasih.
-            </td>
+        <tr align="left">
+            <td>5. </th>
+            <td>Berita Acara Pembukaan Dokumen Penawaran Nomor</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
         </tr>
-        <tr>
-            <td align="right">
-                PLT Logistic Planning, Evaluation, and <br />
-                Import Manager (unit pengusul)&nbsp;
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <p style="margin-right: 8%"><b><u>SUBAGYO</u></b></p>
-                <p style="margin-right: 8%">NIPP. 41264</p>
-            </td>
+        <tr align="left">
+            <td>6. </th>
+            <td>Undangan Ulang Pemilihan Langsung Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
         </tr>
+        <tr align="left">
+            <td>7. </th>
+            <td>Berita Acara Pembukaan Dokumen Penawaran Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>8. </th>
+            <td>Undangan Klarifikasi dan Konfirmasi Nomor</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>9. </th>
+            <td>Berita Acara Klarifikasi dan Konfirmasi Nomor</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>10. </th>
+            <td>Berita Acara Evaluasi Dokumen Penawaran Nomo</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>11. </th>
+            <td>Undangan Klarifikasi, Konfirmasi & Negosiasi Nomor</th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>12. </th>
+            <td>Berita Acara Klarifikasi, Konfirmasi dan Negosiasi Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>13. </th>
+            <td>Berita Acara Hasil Pelelangan Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>14. </th>
+            <td>Usulan dan Penetapan Calon Pemenang Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+        <tr align="left">
+            <td>15. </th>
+            <td>Pengumuman Pemenang Nomor </th>
+            <td>:</th>
+            <td>83/LL/NONSAR/KCI/RKS/VI/2022, tanggal 20 Juni 2022;</td>
+        </tr>
+    </table>
+    <table border="0" width="100%" style="margin-top: 20px;">
+        <thead>
+            <tr align="left">
+                <th style="width: 10%" valign="top">MENETAPKAN </th>
+                <th style="width: 2%;" valign="top">: </th>
+                <td style="width: 70%">
+                    Kepada <b>PT Surveyor Indonesia</b> yang beralamat di Gedung Surveyor Indonesia Lt. 4-11, Jl. Jend. Gatot
+                    Subroto Kav. 56, Kelurahan Kuningan Timur, Kecamatan Setiabudi, Kota Administrasi Jakarta Selatan, DKI
+                    Jakarta 12950, diberikan pekerjaan <b>KONSULTAN PENGAWAS PEKERJAAN RENOVASI BANGUNAN DI
+                        STASIUN JAKARTA KOTA UNTUK NEW GRIYA KARYA JAKARTA KOTA</b>, dengan harga sebesar
+                    <b>Rp151.707.252,00 (terbilang : seratus lima puluh satu juta tujuh ratus tujuh ribu dua ratus lima
+                        puluh dua Rupiah)</b> berdasarkan harga satuan yang telah ditentukan, dengan Jangka waktu pelaksanaan
+                    pekerjaan 180 (seratus delapan puluh) hari kalender dan atau masa pekerjaan konsultan pengawas mengikuti
+                    masa pekerjaan kontruksi, terhitung sejak Surat Perintah Mulai Pekerjaan atau Kontrak ditandatangani
+                </td>
+            </tr>
+            <tr align="left">
+                <th valign="top">PERTAMA </th>
+                <th valign="top">: </th>
+                <td valign="top">
+                    Berdasarkan usulan dan penetapan calon pemenang Nomor : 83/LL/NONSAR/KCI/UPP/VIII/2022, tanggal
+                    01 Agustus 2022 sambil menunggu terbitnya Surat Perjanjian/kontrak <b>KONSULTAN PENGAWAS
+                        PEKERJAAN RENOVASI BANGUNAN DI STASIUN JAKARTA KOTA UNTUK NEW GRIYA KARYA
+                        JAKARTA KOTA</b>, Penyedia Barang/Jasa dapat memulai melakukan persiapan pekerjaan dan menyerahkan
+                    Jaminan Pelaksanaan yang dikeluarkan oleh bank umum sesuai yang ditentukan dalam dokumen lelang,
+                    sekurang-kurangnya sebesar 5% dari nilai negosiasi atau setara dengan Rp7.585.363,00 (terbilang : tujuh juta
+                    lima ratus delapan puluh lima ribu tiga ratus enam puluh tiga ribu Rupiah) berlaku selama 360 (tiga ratus enam
+                    puluh) hari kalender.
+                </td>
+            </tr>
+            <tr align="left">
+                <th valign="top">KEDUA </th>
+                <th valign="top">: </th>
+                <td valign="top">
+                    Segala hal yang berhubungan dengan hak, kewajiban dan pelaksanaan di dalam pekerjaan ini akan diatur
+                    dalam Surat Perjanjian/Kontrak.
+                </td>
+            </tr>
+            <tr align="left">
+                <th valign="top">KETIGA </th>
+                <th valign="top">: </th>
+                <td valign="top">
+                    Surat Perjanjian dimaksud pada butir Kedua akan segera ditandatangani oleh kedua belah pihak.
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <table border="0" width="100%">
+        <thead>
+            <tr>
+                <td width="40%"></td>
+                <td width="20%">Petikan Surat Keputusan ini disampaikan kepada </td>
+                <td>:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Rekanan </td>
+                <td>:</td>
+                <td>PT Surveyor Indonesia</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Nomor NPWP </td>
+                <td>:</td>
+                <td>01.069.474.3-093.000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top">Alamat Rekanan </td>
+                <td valign="top">:</td>
+                <td valign="top">Gedung Surveyor Indonesia Lt. 4-11, Jl. Jend. Gatot Subroto
+                    Kav. 56, Kelurahan Kuningan Timur, Kecamatan Setiabudi,
+                    Kota Administrasi Jakarta Selatan, DKI Jakarta 12950
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <table border="0" width="100%">
+        <thead>
+            <tr>
+                <td width="50%"></td>
+                <td>Ditetapkan di </td>
+                <td>:</td>
+                <td>Jakarta</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Pada Tanggal </td>
+                <td>:</td>
+                <td>02 Agustus 2022</td>
+            </tr>
+        </thead>
+    </table>
+    <table border="0" width="100%">
+        <thead>
+            <tr>
+                <th width="50%">
+
+                </th>
+                <th>
+                    PT KERETA COMMUTER INDONESIA<br />
+                    a.n. Direksi PT Kereta Commuter Indonesia<br />
+                    Logistic Vice President<br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <u>KARINA AMANDA</u><br />
+                </th>
+            </tr>
+        </thead>
     </table>
 </body>
