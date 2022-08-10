@@ -95,8 +95,9 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        $data["data"] = \App\Models\SP3::find($id);
-        // dd($data);
+        $data["arr"] = DB::select('SELECT * FROM trx_pbj_contract_report WHERE report_pbj_contract_id=' . $id . '');
+        $data["data"] = $data["arr"][0];
+        // dd($data["data"]);
         return view('contract.show', $data);
     }
 
@@ -139,9 +140,11 @@ class ContractController extends Controller
         $data = DB::select('SELECT * FROM trx_pbj_contract_report');
         return FacadesDataTables::of($data)
             ->addColumn('action', function ($row) {
-                $btn = '<button class="btn btn-sm btn-primary btn-rounded">
-                            <i class="uil uil-search"></i>
-                        </button>';
+                $btn = '<a href="' . route('contract.show', $row->report_pbj_contract_id) .'">
+                            <button class="btn btn-sm btn-primary btn-rounded">
+                                <i class="uil uil-search"></i>
+                            </button>
+                        </a>';
                 return $btn;
             })
             ->addColumn('nilai_rkap', function ($row) {
