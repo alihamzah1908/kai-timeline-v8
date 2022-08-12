@@ -19,69 +19,139 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/rks.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Pembukaan & Evaluasi Penawaran</span>
-                                    <h6 class="mb-0">23</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">RKS</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">14</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-revenue-chart" class="apex-charts"></div>
-                                    <!-- <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 10.21%</span> -->
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/aan.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Klarifikasi Konfirmasi Negoisasi</span>
-                                    <h6 class="mb-0">65</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">AAN</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">26</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-product-sold-chart" class="apex-charts"></div>
-                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/pdp.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Gagal Lelang</span>
-                                    <h6 class="mb-0">11</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">PDP</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">9</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-new-customer-chart" class="apex-charts"></div>
-                                    <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/kkn.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Selesai/Kontrak</span>
-                                    <h6 class="mb-0">53</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">KKN</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">5</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-new-visitors-chart" class="apex-charts"></div>
-                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/pp.png" class="avatar rounded mr-3"alt="shreyu">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">PP</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">35</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/logo-kai-icon.png" class="avatar rounded mr-3"alt="shreyu">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">SPR</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">28</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +331,7 @@
                 }
             },
             series: [{
-                name: 'Pemilihan/Penunjukan Langsung',
+                name: 'Pemilihan Langsung',
                 color: 'red',
                 data: [{
                     y: 49.9,
@@ -296,39 +366,75 @@
                 }],
 
             }, {
-                name: 'Lelang Terbuka',
+                name: 'Penunjukan Langsung',
                 color: 'orange',
                 data: [{
-                        y: 83.6,
+                        y: 102.6,
                         color: 'orange'
                     },
                     {
-                        y: 78.8,
+                        y: 98.8,
                         color: 'orange'
+                    }, {
+                        y: 103.4,
+                        color: 'orange'
+                    }, {
+                        y: 111.5,
+                        color: 'orange'
+                    }, {
+                        y: 126.0,
+                        color: 'orange'
+                    }, {
+                        y: 104.5,
+                        color: 'orange'
+                    }, {
+                        y: 125.0,
+                        color: 'orange'
+                    }, {
+                        y: 111.2,
+                        color: 'orange'
+                    }, {
+                        y: 103.5,
+                        color: 'orange'
+                    }, {
+                        y: 126.6,
+                        color: 'orange'
+                    }
+                ]
+            }, {
+                name: 'Lelang Terbuka',
+                color: 'green',
+                data: [{
+                        y: 83.6,
+                        color: 'green'
+                    },
+                    {
+                        y: 78.8,
+                        color: 'green'
                     }, {
                         y: 93.4,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 98.5,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 106.0,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 84.5,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 105.0,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 91.2,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 83.5,
-                        color: 'orange'
+                        color: 'green'
                     }, {
                         y: 106.6,
-                        color: 'orange'
+                        color: 'green'
                     }
                 ]
             }]
@@ -385,7 +491,7 @@
                 }
             },
             series: [{
-                name: 'Pemilihan/Penunjukan Langsung',
+                name: 'Pemilihan Langsung',
                 color: '#3385ff',
                 data: [{
                         y: 83.6,
@@ -421,6 +527,42 @@
                     }
                 ]
 
+            }, {
+                name: 'Penunjukan Langsung',
+                color: 'green',
+                data: [{
+                        y: 83.6,
+                        color: 'green'
+                    },
+                    {
+                        y: 78.8,
+                        color: 'green'
+                    }, {
+                        y: 93.4,
+                        color: 'green'
+                    }, {
+                        y: 98.5,
+                        color: 'green'
+                    }, {
+                        y: 106.0,
+                        color: 'green'
+                    }, {
+                        y: 84.5,
+                        color: 'green'
+                    }, {
+                        y: 105.0,
+                        color: 'green'
+                    }, {
+                        y: 91.2,
+                        color: 'green'
+                    }, {
+                        y: 83.5,
+                        color: 'green'
+                    }, {
+                        y: 106.6,
+                        color: 'green'
+                    }
+                ]
             }, {
                 name: 'Lelang Terbuka',
                 color: 'orange',
@@ -599,9 +741,9 @@
                 {
                     name: 'Jumlah',
                     data: [
-                        ['Impor Internasional', getRandomInt(100)],
+                        ['Impor Inklaring', getRandomInt(100)],
                         ['Lokal', getRandomInt(100)],
-                        ['Impor Nasional', getRandomInt(100)],
+                        ['Impor Non-Inklaring', getRandomInt(100)],
                     ]
                 }
             ]

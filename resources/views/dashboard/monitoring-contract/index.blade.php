@@ -19,69 +19,140 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/jamlak.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Verifikasi Jamlak</span>
-                                    <h6 class="mb-0">12</h6>
+                                    <label>Menunggu Jamlak</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">10</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-revenue-chart" class="apex-charts"></div>
-                                    <!-- <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 10.21%</span> -->
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/legal.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Review Legal</span>
-                                    <h6 class="mb-0">14</h6>
+                                    <label>Review Legal</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">12</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-product-sold-chart" class="apex-charts"></div>
-                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/appLegal.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Approval (Manager, VP)</span>
-                                    <h6 class="mb-0">21</h6>
+                                    <!-- <h6 class="mt-1 mb-0 font-size-15">Approval</h6> -->
+                                    <label>Approval Legal</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">9</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-new-customer-chart" class="apex-charts"></div>
-                                    <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-xl-2">
                     <div class="card">
-                        <div class="card-body p-0">
-                            <div class="media p-3">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/appuser.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <span class="text-muted text-uppercase font-size-12 font-weight-bold">
-                                        Completed</span>
-                                    <h6 class="mb-0">52</h6>
+                                    <label>Approval User</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">5</h6>
                                 </div>
-                                <div class="align-self-center">
-                                    <div id="today-new-visitors-chart" class="apex-charts"></div>
-                                    <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i></span>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/sign.png" class="avatar rounded mr-3"alt="shreyu">
+                                <div class="media-body">
+                                    <label>TTD KAI & Vendor</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">35</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                            <img src="../assets/images/contract.png" class="avatar rounded mr-3"alt="shreyu">
+                                <div class="media-body">
+                                    <label>Contract Completed</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">28</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -174,16 +245,28 @@
         }
         var seriesData = [];
         seriesData.push({
-            name: "Pemilihan/Penunjukan Langsung",
+            name: "Pemilihan Langsung",
             data: [{
                 y: 19,
                 color: 'red'
             }, {
-                y: 21,
+                y: 16,
                 color: 'red'
             }],
             url: "{{ route('task.approval') }}",
             color: 'red'
+        });
+        seriesData.push({
+            name: "Penunjukan Langsung",
+            data: [{
+                y: 17,
+                color: 'blue'
+            }, {
+                y: 19,
+                color: 'blue'
+            }],
+            url: "{{ route('task.approval') }}",
+            color: 'blue'
         });
         seriesData.push({
             name: "Lelang Terbuka",
