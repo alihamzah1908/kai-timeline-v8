@@ -135,12 +135,26 @@ class ContractController extends Controller
         //
     }
 
+    public function draft_kontrak(Request $request)
+    {
+        $contract = \App\Models\TrxPbjReportContract::find($request["id"]);
+        if ($request["status"] == 'PROSES_DC') {
+            $contract->contract_status = 'PROSES_UJP';
+        } else if ($request["status"] == 'PROSES_UJP') {
+            $contract->contract_status = 'PROSES_VJP';
+        } else if ($request["status"] == 'PROSES_VJP') {
+            $contract->contract_status = 'PROSES_RDC';
+        }
+        $contract->save();
+        return response()->json(['status' => 200, 'proses_st' => $contract->contract_status]);
+    }
+
     public function data(Request $request)
     {
         $data = DB::select('SELECT * FROM trx_pbj_contract_report');
         return FacadesDataTables::of($data)
             ->addColumn('action', function ($row) {
-                $btn = '<a href="' . route('contract.show', $row->report_pbj_contract_id) .'">
+                $btn = '<a href="' . route('contract.show', $row->report_pbj_contract_id) . '">
                             <button class="btn btn-sm btn-primary btn-rounded">
                                 <i class="uil uil-search"></i>
                             </button>

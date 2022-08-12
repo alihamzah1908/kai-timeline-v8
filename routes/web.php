@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/contract/list', 'App\Http\Controllers\ContractController@index')->name('contract.index');
     Route::get('/data/contract/show/{id}', 'App\Http\Controllers\ContractController@show')->name('contract.show');
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
+    Route::get('/data/contract/draft-contract', 'App\Http\Controllers\ContractController@draft_kontrak')->name('save.draft-kontrak');
 
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
