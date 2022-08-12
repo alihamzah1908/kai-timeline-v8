@@ -545,7 +545,6 @@ body {
 .left-side-menu-dark.left-side-menu-condensed .nav-second-level li.mm-active>a,
 .left-side-menu-dark.left-side-menu-condensed .nav-thrid-level li.mm-active>a {
     color: #5369f8
-    
 }
 
 .left-side-menu-dark .user-profile .pro-user-desc,
@@ -2766,25 +2765,32 @@ th.fc-day-header {
 }
 
 .sw-theme-arrows>ul.step-anchor>li.active>a {
-    background: #5369f8 !important;
-    border-color: #5369f8 !important
+    /* background: #5369f8 !important;
+    border-color: #5369f8 !important */
+    background: red !important;
+    border-color: red !important
 }
 
 .sw-theme-arrows>ul.step-anchor>li.active>a:after {
-    border-left-color: #5369f8 !important
+    border-left-color: red !important
+    /* border-left-color: #5369f8 !important */
 }
 
 .sw-theme-arrows>ul.step-anchor>li.done>a {
-    background: #c9d0fd !important;
-    border-color: #c9d0fd !important
+    /* background: #c9d0fd !important;
+    border-color: #c9d0fd !important */
+    background: #ffe6e6 !important;
+    border-color: #ffe6e6 !important
 }
 
 .sw-theme-arrows>ul.step-anchor>li.done>a:after {
-    border-left-color: #c9d0fd !important
+    border-left-color: #ffe6e6 !important
+    /* border-left-color: #c9d0fd !important */
 }
 
 .sw-theme-arrows>ul.step-anchor>li.done>a::before {
-    border-left-color: #5369f8 !important
+    border-left-color: red !important
+    /* border-left-color: #5369f8 !important */
 }
 
 .sw-theme-circles>ul.step-anchor {

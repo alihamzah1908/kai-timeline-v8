@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb" class="float-left mt-1">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List PBJ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List Procurement</a></li>
                     <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
                 </ol>
             </nav>
@@ -103,6 +103,14 @@
                             <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mt-0 mb-1">PBJ Process</h4>
+                    <p class="sub-header">Procces of PBJ</p>
                     <div class="row mt-4">
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
@@ -1582,9 +1590,10 @@
                                         <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="form-pemenang" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang->pemenang_id }}" />
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1602,6 +1611,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if($data->proses_st == 'PROSES_PCP')
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">File Berita Acara Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endif
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1616,7 +1639,11 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
+                                                        @if($data->proses_st == 'PROSES_PCP')
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded save-rks">Submit Draft Contract</button>
+                                                        @else
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
@@ -1929,6 +1956,10 @@
         // FORM PEMENANG
         $("#form-pemenang").submit(function(e) {
             alert("Klarifikasi Penawaran saved !")
+        })
+
+        $("#form-submit-contract").submit(function(e) {
+            alert("Are you sure send to contract ?")
         })
         // SAVE FORM TENDER
         $('body').on('click', '.save-tender', function() {

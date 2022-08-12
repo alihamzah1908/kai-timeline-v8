@@ -97,7 +97,12 @@ class ContractController extends Controller
     {
         $data["arr"] = DB::select('SELECT * FROM trx_pbj_contract_report WHERE report_pbj_contract_id=' . $id . '');
         $data["data"] = $data["arr"][0];
-        // dd($data["data"]);
+        $data["trx_draft"] = \App\Models\TrxDraftContract::where('report_pbj_contract_id', $id)->get();
+        $data["trx_jaminan"] = \App\Models\TrxJaminanContract::where('report_pbj_contract_id', $id)->get();
+        $data["trx_verifikasi"] = \App\Models\TrxVerifikasiContract::where('report_pbj_contract_id', $id)->get();
+        $data["trx_review"] = \App\Models\TrxReviewContract::where('report_pbj_contract_id', $id)->get();
+        $data["trx_vendor"] = \App\Models\TrxVendorContract::where('report_pbj_contract_id', $id)->get();
+        $data["trx_kci"] = \App\Models\TrxKciContract::where('report_pbj_contract_id', $id)->get();
         return view('contract.show', $data);
     }
 
@@ -137,13 +142,111 @@ class ContractController extends Controller
 
     public function draft_kontrak(Request $request)
     {
+        // dd($request->all());
         $contract = \App\Models\TrxPbjReportContract::find($request["id"]);
         if ($request["status"] == 'PROSES_DC') {
-            $contract->contract_status = 'PROSES_UJP';
+            $trx_contract = new \App\Models\TrxDraftContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_draft')) {
+                $file = $request->file('file_draft');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-draft-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_draft_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_draft"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_UJP';
+            }
         } else if ($request["status"] == 'PROSES_UJP') {
-            $contract->contract_status = 'PROSES_VJP';
+            $trx_contract = new \App\Models\TrxJaminanContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_performance')) {
+                $file = $request->file('file_performance');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-jaminan-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_performance_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_performance"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_VJP';
+            }
         } else if ($request["status"] == 'PROSES_VJP') {
+            $trx_contract = new \App\Models\TrxVerifikasiContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_verifikasi')) {
+                $file = $request->file('file_verifikasi');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-verifikasi-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_verifikasi_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_verifikasi"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_VJP';
+            }
             $contract->contract_status = 'PROSES_RDC';
+        } else if ($request["status"] == 'PROSES_RDC') {
+            $trx_contract = new \App\Models\TrxReviewContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_review')) {
+                $file = $request->file('file_review');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-review-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_review_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_verifikasi"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_VAC';
+            }
+        }else if ($request["status"] == 'PROSES_VAC') {
+            $trx_contract = new \App\Models\TrxVendorContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_vendor')) {
+                $file = $request->file('file_vendor');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-vendor-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_vendor_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_vendor"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_KAC';
+            }
+        }else if ($request["status"] == 'PROSES_KAC') {
+            $trx_contract = new \App\Models\TrxKciContract();
+            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            if ($request->hasFile('file_kci')) {
+                $file = $request->file('file_kci');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-kci-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_kci_contract = $new_name;
+            }
+            $trx_contract->tanggal_submit = $request["tanggal_submit_kci"];
+            $trx_contract->created_by = Auth::user()->id;
+            $trx_contract->save();
+            if ($trx_contract) {
+                $contract->contract_status = 'PROSES_CR';
+            }
         }
         $contract->save();
         return response()->json(['status' => 200, 'proses_st' => $contract->contract_status]);

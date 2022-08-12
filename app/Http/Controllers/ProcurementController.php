@@ -403,16 +403,31 @@ class ProcurementController extends Controller
 
     public function save_pemenang(Request $request)
     {
-        // dd($request->all());
-        $data = new \App\Models\TrxPenetapanPemenang();
-        $data->catatan = $request["catatan"];
-        $data->vendor_code = $request["vendor_code"];
-        $data->sp3_id = $request["sp3_id"];
-        $data->save();
-        // UPDATE STATUS PENETAPAN PEMENANG
-        $status = \App\Models\SP3::find($request["sp3_id"]);
-        $status->proses_st = 'PROSES_PCP';
-        $status->save();
+        if ($request->file('berita_acara_pemenang')) {
+            $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
+            $file = $request->file('berita_acara_pemenang');
+            $extension = $file->getClientOriginalExtension();
+            $new_name = 'file-berita-acara-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+            $file->move(public_path('file/sp3'), $new_name);
+            $data->file_berita_acara = $new_name;
+            $data->save();
+            if ($data) {
+                $contract = new \App\Models\TrxPbjReportContract();
+                $contract->sp3_id = $request["sp3_id"];
+                $contract->contract_status = 'PROSES_DC';
+                $contract->save();
+            }
+        } else {
+            $data = new \App\Models\TrxPenetapanPemenang();
+            $data->catatan = $request["catatan"];
+            $data->vendor_code = $request["vendor_code"];
+            $data->sp3_id = $request["sp3_id"];
+            $data->save();
+            // UPDATE STATUS PENETAPAN PEMENANG
+            $status = \App\Models\SP3::find($request["sp3_id"]);
+            $status->proses_st = 'PROSES_PCP';
+            $status->save();
+        }
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
