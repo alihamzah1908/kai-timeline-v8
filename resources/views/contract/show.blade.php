@@ -126,7 +126,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-contract">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_draft)
+                                                            @if($trx_draft->count() > 0)
                                                             @foreach($trx_draft as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -175,7 +175,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_jaminan)
+                                                            @if($trx_jaminan->count() > 0)
                                                             @foreach($trx_jaminan as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -224,7 +224,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_verifikasi)
+                                                            @if($trx_verifikasi->count() > 0)
                                                             @foreach($trx_verifikasi as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -273,7 +273,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_review)
+                                                            @if($trx_review->count() > 0)
                                                             @foreach($trx_review as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -322,7 +322,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_vendor)
+                                                            @if($trx_vendor->count() > 0)
                                                             @foreach($trx_vendor as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -371,7 +371,7 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_kci)
+                                                            @if($trx_kci->count() > 0)
                                                             @foreach($trx_kci as $val)
                                                             <div class="row">
                                                                 <div class="col-md-6">

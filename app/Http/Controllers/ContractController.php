@@ -254,7 +254,7 @@ class ContractController extends Controller
 
     public function data(Request $request)
     {
-        $data = DB::select('SELECT * FROM trx_pbj_contract_report');
+        $data = DB::select('SELECT * FROM trx_pbj_contract_report ORDER BY report_pbj_contract_id DESC');
         return FacadesDataTables::of($data)
             ->addColumn('action', function ($row) {
                 $btn = '<a href="' . route('contract.show', $row->report_pbj_contract_id) . '">
