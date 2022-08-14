@@ -85,6 +85,21 @@ class VendorController extends Controller
         //
     }
 
+
+
+    public function autovendor(Request $request)
+    {
+        $data = DB::table('public.vendor')
+            ->select('vendor_name','vendor_code')
+            ->where('vendor_name', 'LIKE', '%' . $request->get('search') . '%')
+            ->get();
+        $response = array();
+        foreach ($data as $val) {
+            $response[] = array("vendor_code" => $val->vendor_code, "vendor_name" => $val->vendor_name);
+        }
+        return response()->json($response);
+    }
+
     public function data()
     {
         $data = DB::select('SELECT * FROM vendor');

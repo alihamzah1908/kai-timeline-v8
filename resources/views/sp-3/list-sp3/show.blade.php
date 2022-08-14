@@ -513,7 +513,7 @@
                                             <th>URAIAN DOKUMEN</th>
                                             <th>NOMOR</th>
                                             <th>TANGGAL</th>
-                                            <th></th>
+                                            <th>PEMENUHAN</th>
                                             <th></th>
                                             <th>KETERANGAN/KELENGKAPAN/KESESUAIAN</th>
                                         </tr>
@@ -529,7 +529,7 @@
                                             <td>{{ $val->item_value }}</td>
                                             <td></td>
                                             <td>{{ date('d M Y', strtotime($val->created_at)) }}</td>
-                                            <td></td>
+                                            <td>{{ $val->pemenuhan }}</td>
                                             <td></td>
                                             <td>{{ $val->keterangan }}</td>
                                         </tr>
@@ -583,7 +583,7 @@
                                 'Your NPP has approved.',
                                 'success'
                             )
-                            timeline.ajax.reload()
+                            window.location.href = '{{ route("sp3.task.approval") }}';
                         } else {
                             Swal.fire(
                                 'Failed!',

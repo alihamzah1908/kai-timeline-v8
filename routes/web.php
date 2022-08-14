@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
     // VENDOR
     Route::get('/data/vendor', 'App\Http\Controllers\VendorController@data')->name('data.vendor');
     Route::get('/data/vendor/list', 'App\Http\Controllers\VendorController@index')->name('vendor.index');
+    Route::get('/data/vendor/autovendor', 'App\Http\Controllers\VendorController@autovendor')->name('vendor.autocomplete');
 
     // CONTRACT
     Route::get('/data/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');

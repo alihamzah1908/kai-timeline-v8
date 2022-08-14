@@ -31,6 +31,7 @@
     <link href="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" rel="stylesheet" type="text/css" />
     <!-- App css -->
 
+    <link href="{{ asset('assets/css/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -550,6 +551,7 @@
     <script src="{{ asset('assets/libs/smartwizard/jquery.smartWizard.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
         $('.money').mask('000.000.000.000.000', {

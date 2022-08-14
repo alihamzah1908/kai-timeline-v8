@@ -105,7 +105,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
-                                <input type="text" name="vendor_name" class="form-control" placeholder="Please insert vendor name">
+                                <input type="text" id="vendor_name" name="vendor_name" class="form-control" placeholder="Please insert vendor name">
+                                <div id="loading"></div>
                             </div>
                         </div>
                     </div>
@@ -399,6 +400,33 @@
                 },
             ]
         });
+
+
+        // SEARCH VENDOR
+        $("#vendor_name").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{ route('vendor.autocomplete') }}",
+                    data: {
+                        search: request.term
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                        $('#loading').html('loading ...')
+                    },
+                    success: function(data) {
+                        $('#loading').html(' ')
+                        var resp = $.map(data, function(obj) {
+                            console.log(obj.vendor_name)
+                            return obj.vendor_name;
+                        });
+                        response(resp);
+                    }
+                });
+            },
+            minLength: 2
+        });
+
 
         $('body').on('click', '.realisasi', function() {
             var data = $(this).val()

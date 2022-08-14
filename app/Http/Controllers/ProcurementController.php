@@ -112,57 +112,70 @@ class ProcurementController extends Controller
                 'a.pic_name',
                 'a.email_corporate',
                 'a.address',
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
             ->where('sp3_id', $id)
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->get();
+        $data["tender_aanwidjzing"] = DB::table('public.trx_aanwidjzing as a')
+            ->select(
+                'a.aanwidjzing_id',
+                'a.sp3_id',
+                'a.vendor_code',
+                'a.verif_value',
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->where('a.sp3_id', $id)
+            ->where('a.verif_value', '=', '1')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->get();
         $data["rks"] = \App\Models\DraftRks::where('sp3_id', $id)->first();
         $data["aandwidjzing"] = DB::table('trx_aanwidjzing as a')->where('sp3_id', $id)
             ->select(
                 DB::raw('a.*'),
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->get();
         $data["evaluasi_1_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
             ->select(
                 DB::raw('a.*'),
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->where('a.sp3_id', $id)
             ->where('a.metode', '1_sampul')
             ->get();
         $data["evaluasi_2_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
             ->select(
                 DB::raw('a.*'),
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->where('a.sp3_id', $id)
             ->where('a.metode', '2_sampul')
             ->get();
         $data["bahp"] = DB::table('trx_berita_acara_hasil_pelelangan as a')
             ->select(
                 DB::raw('a.*'),
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->where('sp3_id', $id)
             ->get();
         $data["klarifikasi"] = DB::table('trx_klasifikasi_konfirmasi_negosiasi as a')
             ->select(
                 DB::raw('a.*'),
-                'b.i_lifnr',
-                'b.e_name'
+                'b.vendor_code',
+                'b.vendor_name'
             )
-            ->join('mst_mmpm.tm_vendor as b', 'a.vendor_code', 'b.i_lifnr')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->where('sp3_id', $id)
             ->get();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
@@ -242,6 +255,7 @@ class ProcurementController extends Controller
             $tender = new \App\Models\TrxPesertaTender();
             $tender->sp3_id = $request["sp3_id"];
             $tender->vendor_code = $val;
+            // $tender->peserta_tender = $val;
             $tender->phone_number = $request["phone_number"][$key];
             $tender->pic_name = $request["pic_name"][$key];
             $tender->email_corporate = $request["email"][$key];
