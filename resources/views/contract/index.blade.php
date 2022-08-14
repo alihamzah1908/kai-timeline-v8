@@ -20,6 +20,7 @@
                                     <th>Department</th>
                                     <th>Contract Value</th>
                                     <th>Status</th>
+                                    <th></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,9 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.contract') }}",
+            order: [
+                [6, 'desc']
+            ],
             columns: [{
                     data: 'sp3_no'
                 },
@@ -66,6 +70,11 @@
                 },
                 {
                     data: 'contract_status'
+                },
+                {
+                    data: 'created_at',
+                    visible: false,
+                    searchable: false,
                 },
                 {
                     data: 'action',

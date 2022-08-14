@@ -115,9 +115,9 @@
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
-                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-draftrks">
-                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">RKS</span>
                                 </a>
@@ -126,7 +126,7 @@
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-peserta-tender">
-                                <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Peserta Tender</span>
                                 </a>
@@ -135,7 +135,7 @@
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-aanwidjzing">
-                                <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Aanwidjzing</span>
                                 </a>
@@ -145,7 +145,7 @@
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-dokumen-penawaran">
-                                <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Dokumen Penawaran</span>
                                 </a>
@@ -154,7 +154,7 @@
                             @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
                             $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-evaluasi-dokumen">
-                                <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Evaluasi Penawaran</span>
                                 </a>
@@ -162,16 +162,16 @@
                             @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-klarifikasi">
-                                <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Klarifikasi, Konfirmasi dan Negoisasi</span>
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
+                            @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-klarifikasi">
-                                <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Berita Acara Hasil Pelelangan</span>
                                 </a>
@@ -179,7 +179,7 @@
                             @endif
                             @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-pemenang">
-                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
                                     <span class="d-none d-sm-block">Usulan & Penetapan Calon Pemenang</span>
                                 </a>
@@ -195,7 +195,7 @@
                             @endif
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
-                            <div class="tab-pane show active" id="draftrks">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'show' : '' }} {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}" id="draftrks">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="exampleInputEmail1" class="font-weight-bold"></label>
@@ -293,7 +293,7 @@
                                 </div>
                                 @endif
                             </div>
-                            <div class="tab-pane" id="peserta-tender">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}" id="peserta-tender">
                                 <form action="{{ route('save.tender') }}" method="post" id="tender">
                                     <div class="add-vendor">
                                         <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
@@ -454,7 +454,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="aanwidjzing">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}" id="aanwidjzing">
                                 <form id="form-aanwidjzing" enctype="multipart/form-data" method="post" action="{{ route('save.aanwidjzing') }}">
                                     @csrf
                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
@@ -561,7 +561,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane" id="dokumen-penawaran">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}" id="dokumen-penawaran">
                                 <div class="add-dokumen-penawaran">
                                     @php
                                     $rks = \App\Models\DraftRks::where('sp3_id', $data->sp3_id)->first();
@@ -1133,7 +1133,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="evaluasi-dokumen">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}" id="evaluasi-dokumen">
                                 <div class="add-evaluasi-dokumen">
                                     @if($rks)
                                     @if($rks->metode == '1_sampul')
@@ -1406,7 +1406,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="klarifikasi">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_KKN' ? 'active' : '' }}" id="klarifikasi">
                                 <div class="add-klarifikasi">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1528,7 +1528,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="bahp">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}" id="bahp">
                                 <div class="row">
                                     <label for="exampleInputEmail1"></label>
                                     <div class="col-md-12">
@@ -1584,7 +1584,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="pemenang">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="pemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1593,7 +1593,7 @@
                                             <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang->pemenang_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1640,9 +1640,9 @@
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
                                                         @if($data->proses_st == 'PROSES_PCP')
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded save-rks">Submit Draft Contract</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
                                                         @else
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1914,7 +1914,7 @@
                     }).done(function(response) {
                         if (response.status == 200) {
                             Swal.fire({
-                                title: 'Your penawaran is approved',
+                                title: 'Your RKS is approved',
                                 text: "File change status to Evaluasi Penawaran!",
                                 confirmButtonText: 'Yes'
                             }).then((result) => {
@@ -1930,17 +1930,95 @@
 
         // SAVE AANDWIDJZING
         $("#form-aanwidjzing").submit(function(e) {
-            alert("Aaanwidjing saved !")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Aanwidjzing ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.aanwidjzing') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
         });
 
         // SAVE DOKUMEN PENAWARAN
         $("#form-dokumen-penawaran").submit(function(e) {
-            alert("Dokumen Penawaran saved !")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save dokumen penawaran ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.document-penawaran') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
         });
 
         // SAVE EVALUASI 
         $("#form-evaluasi-penawaran").submit(function(e) {
-            alert("Evaluasi Penawaran saved !")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save evaluasi penawaran ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.evaluasi-penawaran') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
         })
 
         // SAVE EVALUASI HARGA
@@ -1948,18 +2026,135 @@
             alert("Evaluasi Penawaran saved !")
         })
 
+        // SAVE BAHP
+        $("#form-bahp").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Berita Acara Hasil Pelelangan ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.bahp') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
+        })
+
         // SAVE KLARIFIKASI
         $("#form-klarifikasi").submit(function(e) {
-            alert("Klarifikasi Penawaran saved !")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Klarifikasi, Konfirmasi dan Negosiasi ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.klarifikasi') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
         })
 
         // FORM PEMENANG
         $("#form-pemenang").submit(function(e) {
-            alert("Klarifikasi Penawaran saved !")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Usulan, Penetapan calon Pemenang ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
         })
 
         $("#form-submit-contract").submit(function(e) {
-            alert("Are you sure send to contract ?")
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Berita acara pemenang ?',
+                    text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your procurement sent to process Contract',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
         })
         // SAVE FORM TENDER
         $('body').on('click', '.save-tender', function() {

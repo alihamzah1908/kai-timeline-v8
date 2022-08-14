@@ -129,7 +129,7 @@
                                                             @if($trx_draft->count() > 0)
                                                             @foreach($trx_draft as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
                                                                         <input type="file" name="file_draft" class="form-control" id="file-draft-contract" disabled value="{{ $val->file_draft_contract }}">
@@ -138,26 +138,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Draft:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
                                                                         <input type="file" name="file_draft" class="form-control" id="file-draft-contract">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Draft:</label>
+                                                                        <textarea class="form-control" name="catatan_draft" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -178,7 +190,7 @@
                                                             @if($trx_jaminan->count() > 0)
                                                             @foreach($trx_jaminan as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Jaminan Pelaksanaan:</label>
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance" disabled>
@@ -187,26 +199,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
+                                                                        <textarea class="form-control" name="catatan_performance" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Jaminan Pelaksanaan:</label>
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
+                                                                        <textarea class="form-control" name="catatan_performance" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -227,7 +251,7 @@
                                                             @if($trx_verifikasi->count() > 0)
                                                             @foreach($trx_verifikasi as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
                                                                         <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi" disabled>
@@ -236,26 +260,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
                                                                         <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
+                                                                        <textarea class="form-control" name="catatan_verifikasi" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -276,7 +312,7 @@
                                                             @if($trx_review->count() > 0)
                                                             @foreach($trx_review as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Review:</label>
                                                                         <input type="file" name="file_review" class="form-control" id="file-review" disabled>
@@ -285,26 +321,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Review:</label>
                                                                         <input type="file" name="file_review" class="form-control" id="file-review">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Review:</label>
+                                                                        <textarea class="form-control" name="catatan_review" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -325,7 +373,7 @@
                                                             @if($trx_vendor->count() > 0)
                                                             @foreach($trx_vendor as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
                                                                         <input type="file" name="file_vendor" class="form-control" id="file-vendor">
@@ -334,26 +382,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Tanda Tangan Vendor:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
                                                                         <input type="file" name="file_vendor" class="form-control" id="file-vendor">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
+                                                                        <textarea class="form-control" name="catatan_vendor"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -374,7 +434,7 @@
                                                             @if($trx_kci->count() > 0)
                                                             @foreach($trx_kci as $val)
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan KCI:</label>
                                                                         <input type="file" name="file_kci" class="form-control" id="file-kci" disabled>
@@ -383,26 +443,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
                                                             <div class="row">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan KCI:</label>
                                                                         <input type="file" name="file_kci" class="form-control" id="file-kci">
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
+                                                                        <textarea class="form-control" name="catatan_ttd_vendor" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -648,150 +720,213 @@
                     console.log(status)
                     if (status == 'PROSES_DC') {
                         $('.performance').removeClass('active')
-                        if (confirm('Are you sure submit contract ? ')) {
-                            var file_draft = $("#file-draft-contract")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-contract").val();
-                            var formData = new FormData();
-                            formData.append('file_draft', file_draft[0])
-                            formData.append('tanggal_submit_draft', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('.performance').addClass('active')
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        Swal.fire({
+                            title: 'Are you sure save Draft Contract ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var file_draft = $("#file-draft-contract")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-contract").val();
+                                var formData = new FormData();
+                                formData.append('file_draft', file_draft[0])
+                                formData.append('tanggal_submit_draft', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.performance').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     } else if (status == 'PROSES_UJP') {
                         $('.verifikasi').removeClass('active')
-                        if (confirm('Are you sure submit contract ? ')) {
-                            var file_perform = $("#file-performance")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-performance").val();
-                            var formData = new FormData();
-                            formData.append('file_performance', file_perform[0])
-                            formData.append('tanggal_submit_performance', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData,
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('.verifikasi').addClass('active')
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        Swal.fire({
+                            title: 'Are you sure save Jaminan Pelaksanaan ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var file_perform = $("#file-performance")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-performance").val();
+                                var formData = new FormData();
+                                formData.append('file_performance', file_perform[0])
+                                formData.append('tanggal_submit_performance', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData,
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.verifikasi').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     } else if (status == 'PROSES_VJP') {
                         $('.review').removeClass('active')
-                        if (confirm('Are you sure submit contract ? ')) {
-                            var file_perform = $("#file-verifikasi")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-verifikasi").val();
-                            var formData = new FormData();
-                            formData.append('file_verifikasi', file_perform[0])
-                            formData.append('tanggal_submit_verifikasi', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('.review').addClass('active')
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        Swal.fire({
+                            title: 'Are you sure save Verifikasi Jaminan ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var file_perform = $("#file-verifikasi")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-verifikasi").val();
+                                var formData = new FormData();
+                                formData.append('file_verifikasi', file_perform[0])
+                                formData.append('tanggal_submit_verifikasi', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.review').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     } else if (status == 'PROSES_RDC') {
-                        if (confirm('Are you sure submit contract ? ')) {
-                            var file_perform = $("#file-review")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-review").val();
-                            var formData = new FormData();
-                            formData.append('file_review', file_perform[0])
-                            formData.append('tanggal_submit_review', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        $('.review').removeClass('active')
+                        Swal.fire({
+                            title: 'Are you sure save Review Legal ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var file_perform = $("#file-review")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-review").val();
+                                var formData = new FormData();
+                                formData.append('file_review', file_perform[0])
+                                formData.append('tanggal_submit_review', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.review').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     } else if (status == 'PROSES_VAC') {
-                        if (confirm('Are you sure submit contract ? ')) {
-                            $('.ttd-kci').removeClass('active')
-                            var file_perform = $("#file-vendor")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-vendor").val();
-                            var formData = new FormData();
-                            formData.append('file_vendor', file_perform[0])
-                            formData.append('tanggal_submit_vendor', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('.ttd-kci').addClass('active')
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        $('.ttd-kci').addClass('active')
+                        Swal.fire({
+                            title: 'Are you sure save Tanda Tangan Vendor ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                $('.ttd-kci').removeClass('active')
+                                var file_perform = $("#file-vendor")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-vendor").val();
+                                var formData = new FormData();
+                                formData.append('file_vendor', file_perform[0])
+                                formData.append('tanggal_submit_vendor', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.ttd-kci').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     } else if (status == 'PROSES_KAC') {
-                        if (confirm('Are you sure submit contract ? ')) {
-                            var file_perform = $("#file-kci")[0].files;
-                            var tanggal_submit = $("#tanggal-submit-kci").val();
-                            var formData = new FormData();
-                            formData.append('file_kci', file_perform[0])
-                            formData.append('tanggal_submit_kci', tanggal_submit)
-                            formData.append('_token', '{{ csrf_token() }}');
-                            formData.append('status', status);
-                            formData.append('id', id);
-                            $.ajax({
-                                url: '{{ route("save.kontrak") }}',
-                                method: 'POST',
-                                dataType: 'json',
-                                processData: false,
-                                contentType: false,
-                                data: formData
-                            }).done(function(response) {
-                                if (response.status == 200) {
-                                    $('#status').val(response.proses_st)
-                                }
-                            })
-                        }
+                        Swal.fire({
+                            title: 'Are you sure save Tanda Tangan Vendor ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var file_perform = $("#file-kci")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-kci").val();
+                                var formData = new FormData();
+                                formData.append('file_kci', file_perform[0])
+                                formData.append('tanggal_submit_kci', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
                     }
                     // console.log($(this).closest('#smartwizard-arrows').find('.performance').addClass('test'));
                 })
