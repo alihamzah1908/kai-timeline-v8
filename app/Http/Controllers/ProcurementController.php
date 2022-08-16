@@ -417,15 +417,25 @@ class ProcurementController extends Controller
 
     public function save_pemenang(Request $request)
     {
+        // dd($request->all());
         $sp3 = \App\Models\SP3::find($request["sp3_id"]);
         if ($request->file('berita_acara_pemenang')) {
-            $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
+            // $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
+            $data = new \App\Models\TrxPenetapanPemenang();
+            $data->vendor_code = $request["vendor_code"];
+            $data->sp3_id = $request["sp3_id"];
             $file = $request->file('berita_acara_pemenang');
             $extension = $file->getClientOriginalExtension();
             $new_name = 'file-berita-acara-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
             $file->move(public_path('file/sp3'), $new_name);
             $data->file_berita_acara = $new_name;
+            $data->created_by = Auth::user()->id;
             $data->save();
+
+            // UPDATE STATUS 
+            $status = \App\Models\SP3::find($request["sp3_id"]);
+            $status->proses_st = 'PROSES_PCP';
+            $status->save();
             if ($data) {
                 $sp3 = \App\Models\SP3::find($request["sp3_id"]);
                 if ($sp3) {
@@ -461,13 +471,16 @@ class ProcurementController extends Controller
 
     public function save_bahp(Request $request)
     {
+        // dd($request->all());
         foreach ($request["vendor_code"] as $key => $val) {
             $data = new \App\Models\TrxBeritaAcaraHasilPelelangan();
-            $file = $request->file('berita_acara')[$key];
-            $extension = $file->getClientOriginalExtension();
-            $new_name = 'dokumen-bahp' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-            $file->move(public_path('file/sp3'), $new_name);
-            $data->file_berita_acara = $new_name;
+            // $file = $request->file('berita_acara')[$key];
+            // $extension = $file->getClientOriginalExtension();
+            // $new_name = 'dokumen-bahp' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+            // $file->move(public_path('file/sp3'), $new_name);
+            // $data->file_berita_acara = $new_name;
+            $data->tanggal_berita_acara = $request["tanggal_berita_acara"][$key];
+            $data->catatan_berita_acara = $request["catatan_berita_acara"][$key];
             $data->vendor_code = $val;
             $data->sp3_id = $request["sp3_id"];
             $data->save();

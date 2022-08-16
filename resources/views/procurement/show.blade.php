@@ -100,7 +100,7 @@
                             <label class="font-weight-bold">Status </label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st == 'PROSES_PCP' ? 'MASA SANGGAH' : $data->proses_st }}</span></label>
                         </div>
                     </div>
                 </div>
@@ -1158,8 +1158,8 @@
                                                         <tr>
                                                             <th width="30%" rowspan="2">PESERTA TENDER</th>
                                                             <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
-                                                            <th width="10%" rowspan="2">LOLOS</th>
-                                                            <th width="10%" rowspan="2">TIDAK LOLOS</th>
+                                                            <th width="10%" rowspan="2">LULUS</th>
+                                                            <th width="10%" rowspan="2">GUGUR</th>
                                                             <th width="30%" rowspan="2">CATATAN EVALUASI</th>
                                                         </tr>
                                                     </thead>
@@ -1187,7 +1187,7 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
+                                                                <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_dokumen }}</textarea>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -1411,7 +1411,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="tab-pane {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}" id="klarifikasi">
                                 <div class="add-klarifikasi">
                                     <div class="row">
@@ -1548,21 +1547,23 @@
                                                         <th width="100%" colspan="5">BERITA ACARA HASIL PELELANGAN</th>
                                                     </tr>
                                                     <tr>
-                                                        <th width="20%">PESERTA TENDER</th>
-                                                        <th width="10%">BERITA ACARA</th>
+                                                        <th>PESERTA TENDER</th>
+                                                        <th>TANGGAL BERITA ACARA</th>
+                                                        <th>CATATAN HASIL PELELANGAN</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style="vertical-align: top">
                                                     @if($bahp->count() > 0)
-                                                    @foreach($bahp as $doc)
+                                                    @foreach($bahp as $val)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->vendor_name }}
+                                                            {{ $val->vendor_name }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ asset('file/sp3/'. $doc->file_berita_acara) }}" target="_blank">
-                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $doc->file_berita_acara }}
-                                                            </a>
+                                                            <input type="text" class="form-control datepicker" value="{{ $val->tanggal_berita_acara }}">
+                                                        </td>
+                                                        <td>
+                                                            <textarea class="form-control" value="{{ $val->catatan_berita_acara }}">{{ $val->catatan_berita_acara }}</textarea>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -1574,13 +1575,34 @@
                                                             <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="berita_acara[]" class="form-control">
+                                                            <input type="text" class="form-control datepicker" name="tanggal_berita_acara[]" placeholder="Please insert tanggal berita acara">
+                                                        </td>
+                                                        <td>
+                                                            <!-- <input type="file" name="berita_acara[]" class="form-control"> -->
+                                                            <textarea class="form-control" name="catatan_berita_acara[]" placeholder="please insert catatan"></textarea>
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="submit" class="btn btn-primary btn-sm btn-rounded save-bahp">Submit</button>
@@ -1617,17 +1639,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($data->proses_st == 'PROSES_PCP')
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">File Berita Acara Pemenang:</label>
                                                         </div>
                                                     </div>
-                                                    @if($pemenang->file_berita_acara)
-                                                    <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $doc->file_berita_acara }}
-                                                    </a>
+                                                    @if($pemenang)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
+                                                    </div>
                                                     @else
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1636,7 +1659,6 @@
                                                     </div>
                                                     @endif
                                                 </div>
-                                                @endif
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">

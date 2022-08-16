@@ -113,9 +113,12 @@
                                     <li class="nav-item performance status-pfm"><a href="#sw-arrows-step-2" class="nav-link">Performance Bond (Upload Jaminan Pelaksanaan)<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item verifikasi"><a href="#sw-arrows-step-3" class="nav-link">Verifikasi Jaminan Pelaksanaan<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item review"><a href="#sw-arrows-step-4" class="nav-link">Review Legal<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item ttd-vendor"><a href="#sw-arrows-step-5" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item ttd-kci"><a href="#sw-arrows-step-6" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item done"><a href="#sw-arrows-step-7" class="nav-link">Approval<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item approval-logistik"><a href="#sw-arrows-step-5" class="nav-link">Approval Logistik<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item approval-user"><a href="#sw-arrows-step-6" class="nav-link">Approval User<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item ttd-vendor"><a href="#sw-arrows-step-7" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item ttd-kci"><a href="#sw-arrows-step-8" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item mppl"><a href="#sw-arrows-step-9" class="nav-link">MPPL<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item done"><a href="#sw-arrows-step-10" class="nav-link">Approval<small class="d-block">Step description</small></a></li>
                                 </ul>
 
                                 <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">
@@ -133,17 +136,25 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
                                                                         <input type="file" name="file_draft" class="form-control" id="file-draft-contract" disabled value="{{ $val->file_draft_contract }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_draft_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_draft_contract }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Draft:</label>
@@ -160,12 +171,16 @@
                                                                         <input type="file" name="file_draft" class="form-control" id="file-draft-contract">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Draft:</label>
@@ -194,17 +209,26 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Jaminan Pelaksanaan:</label>
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance" disabled>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_performance_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_performance_contract }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
@@ -221,12 +245,16 @@
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
@@ -255,17 +283,25 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
                                                                         <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_verifikasi_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_verifikasi_contract }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
@@ -282,12 +318,16 @@
                                                                         <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
@@ -316,17 +356,25 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Review:</label>
                                                                         <input type="file" name="file_review" class="form-control" id="file-review" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem">
+                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_review_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_review_contract }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
@@ -343,12 +391,16 @@
                                                                         <input type="file" name="file_review" class="form-control" id="file-review">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Review:</label>
@@ -370,28 +422,36 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
-                                                            @if($trx_vendor->count() > 0)
-                                                            @foreach($trx_vendor as $val)
+                                                            @if($trx_approval->count() > 0)
+                                                            @foreach($trx_approval as $val)
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
-                                                                        <input type="file" name="file_vendor" class="form-control" id="file-vendor">
-                                                                        <a href="{{ asset('file/contract/' . $val->file_vendor_contract) }}">
-                                                                            <i class="uil uil-file"></i> {{ $val->file_vendor_contract }}
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
+                                                                        <input type="file" name="file_vendor" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem">
+                                                                    <div class="form-group">
+                                                                        <a href="{{ asset('file/contract/' . $val->file_approval_logistik) }}">
+                                                                            <i class="uil uil-file"></i> {{ $val->file_approval_logistik }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Tanda Tangan Vendor:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval Logistik:</label>
+                                                                        <textarea class="form-control" disabled>{{ $val->catatan_logistik }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -400,20 +460,24 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
-                                                                        <input type="file" name="file_vendor" class="form-control" id="file-vendor">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
+                                                                        <input type="file" name="file_approval_logistik" class="form-control" id="file-approval">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
+                                                                        <input type="text" name="tanggal_submit_logistik" class="form-control datepicker" id="tanggal-submit-approval" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
-                                                                        <textarea class="form-control" name="catatan_vendor"></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval Logistik:</label>
+                                                                        <textarea class="form-control" name="catatan_logistik"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -431,6 +495,152 @@
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-drarf-performance">
                                                             <input type="hidden" name="sp3_id" id="sp3_id">
+                                                            @if($trx_approval_user->count() > 0)
+                                                            @foreach($trx_approval_user as $val)
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
+                                                                        <input type="file" name="file_vendor" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
+                                                                        <a href="{{ asset('file/contract/' . $val->file_approval_user) }}">
+                                                                            <i class="uil uil-file"></i> {{ $val->file_approval_user }}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval Logistik:</label>
+                                                                        <textarea class="form-control" disabled>{{ $val->catatan_logistik }}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                            @else
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Approval User:</label>
+                                                                        <input type="file" name="file_approval_user" class="form-control" id="file-approval-user">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
+                                                                        <input type="text" name="tanggal_submit_user" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval User:</label>
+                                                                        <textarea class="form-control" name="catatan_logistik"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+                                    <div id="sw-arrows-step-7" class="tab-pane step-content">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12">
+                                                        <form action="#" id="form-drarf-performance">
+                                                            <input type="hidden" name="sp3_id" id="sp3_id">
+                                                            @if($trx_vendor->count() > 0)
+                                                            @foreach($trx_vendor as $val)
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
+                                                                        <input type="file" name="file_vendor" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
+                                                                        <a href="{{ asset('file/contract/' . $val->file_vendor_contract) }}">
+                                                                            <i class="uil uil-file"></i> {{ $val->file_vendor_contract }}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Tanda Tangan Vendor:</label>
+                                                                        <textarea class="form-control" disabled></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                            @else
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
+                                                                        <input type="file" name="file_vendor" class="form-control" id="file-vendor">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
+                                                                        <textarea class="form-control" name="catatan_vendor"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+                                    <div id="sw-arrows-step-8" class="tab-pane step-content">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12">
+                                                        <form action="#" id="form-drarf-performance">
+                                                            <input type="hidden" name="sp3_id" id="sp3_id">
                                                             @if($trx_kci->count() > 0)
                                                             @foreach($trx_kci as $val)
                                                             <div class="row">
@@ -438,17 +648,25 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan KCI:</label>
                                                                         <input type="file" name="file_kci" class="form-control" id="file-kci" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_kci_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_kci_contract }}
                                                                         </a>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
@@ -465,12 +683,16 @@
                                                                         <input type="file" name="file_kci" class="form-control" id="file-kci">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
                                                                         <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
@@ -485,177 +707,274 @@
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div>
-                                    <div id="sw-arrows-step-7" class="tab-pane step-content">
+                                    <div id="sw-arrows-step-9" class="tab-pane step-content">
                                         <div class="row">
                                             <div class="col-12">
-                                                @if($data->nilai_contract <= 500000000 || $data->nilai_contract <= 1000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Legal:</label>
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                    <input type="file" name="file" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                    <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                    <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12 d-flex justify-content-end">
-                                                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                            </div>
-                                                        </div>
-                                                        @endif
-                                                        @if($data->nilai_contract > 1000000000 || $data->nilai_contract <= 5000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Legal:</label>
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12">
+                                                        <form action="#" id="form-mppl">
+                                                            <input type="hidden" name="id" value="{{ $data->report_pbj_contract_id }}">
+                                                            <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}">
+                                                            <input type="hidden" name="status" value="{{ $data->contract_status }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                            @if($trx_mppl->count() > 0)
+                                                            @foreach($trx_mppl as $val)
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                        <input type="file" name="file" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                        <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                        <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
+                                                                        <input type="text" name="star_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit" value="{{ $val->start_date_mppl }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-12 d-flex justify-content-end">
-                                                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                    <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit" value="{{ $val->end_date_mppl }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Off Days:</label>
+                                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert off days" value="{{ $val->off_days }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
+                                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $val->uncontroll_days }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Penanggung Jawab:</label>
+                                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                            @else
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
+                                                                        <input type="text" name="star_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Off Days:</label>
+                                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert off days">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
+                                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Penanggung Jawab:</label>
+                                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             @endif
-                                                            @if($data->nilai_contract <= 500000000 || $data->nilai_contract <= 1000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Sarana/Non-Sarana:</label>
-                                                                    <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                                <input type="file" name="file" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                                <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                                <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12 d-flex justify-content-end">
-                                                                            <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                            <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    @endif
-                                                                    @if($data->nilai_contract > 1000000000 || $data->nilai_contract <= 5000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Sarana/Non-Sarana:</label>
-                                                                        <div class="row">
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                                    <input type="file" name="file" class="form-control">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                                    <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                                    <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-12 d-flex justify-content-end">
-                                                                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                                <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        @endif
-                                                                        @if($data->nilai_contract <= 500000000 || $data->nilai_contract <= 1000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager User:</label>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                                            <input type="file" name="file" class="form-control">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4">
-                                                                                        <div class="form-group">
-                                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                                @endif
-                                                                                @if($data->nilai_contract > 1000000000 || $data->nilai_contract <= 5000000000) <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP User:</label>
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4">
-                                                                                            <div class="form-group">
-                                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                                                                <input type="file" name="file" class="form-control">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-4">
-                                                                                            <div class="form-group">
-                                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                                                                <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-md-4">
-                                                                                            <div class="form-group">
-                                                                                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                                                                <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-12 d-flex justify-content-end">
-                                                                                            <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                                                            <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    @endif
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+                                    <div id="sw-arrows-step-10" class="tab-pane step-content">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Legal:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Legal:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Sarana/Non-Sarana:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Sarana/Non-Sarana:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager User:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP User:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
+                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
+                                                    </div>
+                                                </div>
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div>
@@ -696,12 +1015,38 @@
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                     $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                } else if (status == 'PROSES_ALG') {
+                    $('.draft-contract').addClass('done')
+                    $('.performance').addClass('done')
+                    $('.verifikasi').addClass('done')
+                    $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
+                } else if (status == 'PROSES_APU') {
+                    $('.draft-contract').addClass('done')
+                    $('.performance').addClass('done')
+                    $('.verifikasi').addClass('done')
+                    $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
                     $('.ttd-vendor').addClass('done')
+                } else if (status == 'PROSES_VAC') {
+                    $('.draft-contract').addClass('done')
+                    $('.performance').addClass('done')
+                    $('.verifikasi').addClass('done')
+                    $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
+                    $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_KAC') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                     $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
                     $('.ttd-vendor').addClass('done')
                     $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_CR') {
@@ -709,8 +1054,11 @@
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                     $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
                     $('.ttd-vendor').addClass('done')
                     $('.ttd-kci').addClass('done')
+                    $('.mppl').addClass('done')
                 }
                 $('body').on('click', '.sw-btn-next', function() {
                     // conditional contract prosess
@@ -859,7 +1207,79 @@
                             }
                         })
                     } else if (status == 'PROSES_VAC') {
-                        $('.ttd-kci').addClass('active')
+                        $('.approval-user').removeClass('active')
+                        Swal.fire({
+                            title: 'Are you sure save Approval Logistik ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                $('.ttd-kci').removeClass('active')
+                                var file_perform = $("#file-approval")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-approval").val();
+                                var formData = new FormData();
+                                formData.append('file_approval_logistik', file_perform[0])
+                                formData.append('tanggal_submit_logistik', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.approval-user').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
+                    } else if (status == 'PROSES_ALG') {
+                        $('.ttd-vendor').removeClass('active')
+                        Swal.fire({
+                            title: 'Are you sure save Approval User ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                $('.ttd-kci').removeClass('active')
+                                var file_perform = $("#file-approval-user")[0].files;
+                                var tanggal_submit = $("#tanggal-submit-user").val();
+                                var formData = new FormData();
+                                formData.append('file_approval_user', file_perform[0])
+                                formData.append('tanggal_submit_user', tanggal_submit)
+                                formData.append('_token', '{{ csrf_token() }}');
+                                formData.append('status', status);
+                                formData.append('id', id);
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    processData: false,
+                                    contentType: false,
+                                    data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('.ttd-vendor').addClass('active')
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
+                    } else if (status == 'PROSES_APU') {
+                        $('.ttd-kci').removeClass('active')
                         Swal.fire({
                             title: 'Are you sure save Tanda Tangan Vendor ?',
                             // text: 'Your procurement are send to contract!',
@@ -896,7 +1316,7 @@
                         })
                     } else if (status == 'PROSES_KAC') {
                         Swal.fire({
-                            title: 'Are you sure save Tanda Tangan Vendor ?',
+                            title: 'Are you sure save Tanda Tangan KCI ?',
                             // text: 'Your procurement are send to contract!',
                             icon: 'warning',
                             showCancelButton: true,
@@ -920,6 +1340,32 @@
                                     processData: false,
                                     contentType: false,
                                     data: formData
+                                }).done(function(response) {
+                                    if (response.status == 200) {
+                                        $('#status').val(response.proses_st)
+                                    }
+                                })
+                            }
+                        })
+                    } else if (status == 'PROSES_CR') {
+                        Swal.fire({
+                            title: 'Are you sure save MPPL ?',
+                            // text: 'Your procurement are send to contract!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                var data = $('#form-mppl').serialize()
+                                $.ajax({
+                                    url: '{{ route("save.kontrak") }}',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    // processData: false,
+                                    // contentType: false,
+                                    data: data
                                 }).done(function(response) {
                                     if (response.status == 200) {
                                         $('#status').val(response.proses_st)

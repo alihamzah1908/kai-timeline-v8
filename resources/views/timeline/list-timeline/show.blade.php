@@ -106,7 +106,7 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->beban_biaya }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->nilai_tax }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Start Date Procurement : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>

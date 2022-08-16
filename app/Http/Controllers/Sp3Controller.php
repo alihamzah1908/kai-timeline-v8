@@ -62,7 +62,8 @@ class Sp3Controller extends Controller
                 $data->nama_vendor = $request["vendor_name"];
                 $data->no_mi = $request["no_mi"];
                 $data->no_rab = $request["no_mi"];
-                // $data->no_justifikasi = $request["no_justifikasi"];
+                $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
+                $data->tanggal_justifikasi_pemilihan = $request["date_justifikasi_pemilihan"];
                 $data->no_kak = $request["no_kak"];
                 // $data->no_pr = $request["no_pr_ip"];
                 $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
@@ -141,7 +142,8 @@ class Sp3Controller extends Controller
             $data->nama_vendor = $request["vendor_name"];
             $data->no_mi = $request["no_mi"];
             // $data->no_rab = $request["no_mi"];
-            // $data->no_justifikasi = $request["no_justifikasi"];
+            $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
+            $data->tanggal_justifikasi_pemilihan = $request["date_justifikasi_pemilihan"];
             $data->no_kak = $request["no_kak"];
             // $data->no_pr = $request["no_pr_ip"];
             $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
@@ -158,7 +160,7 @@ class Sp3Controller extends Controller
                     $npp->no_justifikasi = $request["no_justifikasi_kebutuhan"][$key];
                     $npp->tanggal_pr = $request["date_pr"][$key];
                     $npp->tanggal_rab = $request["date_rab"][$key];
-                    $npp->tanggal_justifikasi = $request["date_justifikasi"];
+                    $npp->tanggal_justifikasi = $request["date_justifikasi"][$key];
                     if ($request->file('file_pr') || $request->file('file_rab') || $request->file('file_jus_br')) {
                         // INSERT FILE PR  
                         $file_pr = $request->file('file_pr')[$key];
@@ -317,7 +319,7 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
         } elseif ($request["timeline_type"] == 'npp') {
-            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
+            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st','created_at');
             $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
         }
         $data = $sp3->get();

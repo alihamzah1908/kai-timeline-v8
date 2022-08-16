@@ -139,7 +139,7 @@
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                {{ $data->tanggal_justifikasi ? date('d M Y', strtotime($data->tanggal_justifikasi)) : '' }}
+                                                {{ $data->tanggal_justifikasi_pemilihan ? date('d M Y', strtotime($data->tanggal_justifikasi_pemilihan)) : '' }}
                                             </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
