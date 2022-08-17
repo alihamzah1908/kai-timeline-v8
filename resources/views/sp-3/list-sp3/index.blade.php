@@ -63,9 +63,11 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Timeline</label>
-                                @php
-                                $timeline = \App\Models\Timeline::select('timeline_id','judul_pengadaan')->where('proses_st', 'PROSES_AT')->get();
-                                @endphp
+                                <?php
+                                $timeline = DB::select("select tt.timeline_id, tt.judul_pengadaan from trx_timeline tt
+                                    left join trx_sp3 ts on tt.timeline_id = ts.timeline_id
+                                    where tt.division_cd='". Auth::user()->division_cd ."' and tt.proses_st='PROSES_AT' and ts.timeline_id is null");
+                                ?>
                                 <select data-plugin="customselect" class="form-control" name="timeline_id">
                                     @foreach($timeline as $val)
                                     <option value="{{ $val->timeline_id }}">{{ $val->judul_pengadaan}}</option>

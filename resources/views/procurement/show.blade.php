@@ -34,33 +34,50 @@
                         <div class="col-md-3">
                             <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->mi }}</label>
-                        </div>
-                    </div>
+                    </div>  
+
                     <div class="row">
                         <div class="col-md-3">
                             <label class="font-weight-bold">Nilai PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
+                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 0); }}</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">Nilai Tax</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_tax, 0); }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">No PR</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">No MI</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_mi }}</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">Tanggal MI</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_mi)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -68,13 +85,41 @@
                             <label class="font-weight-bold">No RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
+                            <label class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">No Justifikasi Barang</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">Tanggal Justifikasi Barang</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">No Justifikasi Pemilihan/Penujukan Langsung</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_justifikasi }}</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-bold">Tanggal Justifikasi Pemilihan/Penunjukan Langsung</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi_pemilihan)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -90,11 +135,14 @@
                         <div class="col-md-3">
                             <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal Justifikasi</label>
+                            <label class="font-weight-bold">Tipe Pemilihan</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
+                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Status </label>
@@ -179,12 +227,28 @@
                             @endif
                             @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
                             <li class="nav-item tab-pemenang">
-                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
+                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                    <span class="d-none d-sm-block">Usulan & Penetapan Calon Pemenang</span>
+                                    <span class="d-none d-sm-block">Usulan Calon Pemenang</span>
                                 </a>
                             </li>
                             @endif
+                            @if($data->proses_st == 'PROSES_PCP')
+                            <li class="nav-item tab-penetapanpemenang">
+                                <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Penetapan Calon Pemenang</span>
+                                </a>
+                            </li>
+                            @endif
+                            <!-- @if($data->proses_st == 'PROSES_PCP') -->
+                            <li class="nav-item tab-spr">
+                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">SPR</span>
+                                </a>
+                            </li>
+                            <!-- @endif -->
                             @else
                             <!-- <li class="nav-item tab-summary">
                                 <a href="#summary" data-toggle="tab" aria-expanded="false" class="nav-link">
@@ -1612,20 +1676,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="pemenang">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}" id="pemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_UPCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
                                                 <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                            <label for="exampleInputEmail1">Calon Pemenang Tender:</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -1642,7 +1706,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">File Berita Acara Pemenang:</label>
+                                                            <label for="exampleInputEmail1">File Berita Acara Usulan Pemenang:</label>
                                                         </div>
                                                     </div>
                                                     @if($pemenang)
@@ -1673,11 +1737,187 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                        @if($data->proses_st == 'PROSES_PCP')
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
-                                                        @else
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="penetapanpemenang">
+                                <div class="add-pemenang">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="vendor_code">
+                                                                <option value="">Select Vendor</option>
+                                                                @foreach($tender_aanwidjzing as $val)
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">File Berita Acara Penetapan Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    @if($pemenangfinal)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
+                                                    </div>
+                                                    @else
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DC' ? 'active' : '' }}" id="spr">
+                                <div class="add-pemenang">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="vendor_code">
+                                                                <option value="">Select Vendor</option>
+                                                                @foreach($tender_aanwidjzing as $val)
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>
+                                                        </div>
+                                                    </div>
+                                                    @if($pemenang)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
+                                                    </div>
+                                                    @else
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Total Hari Kalender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
+                                                            25 days
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Total Hari Kerja:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Uncontrolled Days:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                     </div>
                                                 </div>
                                             </form>
