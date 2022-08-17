@@ -163,7 +163,8 @@
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
-                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -172,7 +173,8 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -181,7 +183,8 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -191,7 +194,7 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -200,7 +203,7 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
-                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -208,7 +211,7 @@
                                 </a>
                             </li>
                             @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -217,7 +220,7 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -225,7 +228,8 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR')
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
@@ -233,7 +237,7 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PCP')
+                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
                             <li class="nav-item tab-penetapanpemenang">
                                 <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
@@ -241,14 +245,14 @@
                                 </a>
                             </li>
                             @endif
-                            <!-- @if($data->proses_st == 'PROSES_PCP') -->
+                            @if($data->proses_st == 'SPR')
                             <li class="nav-item tab-spr">
-                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'SPR' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
                                     <span class="d-none d-sm-block">SPR</span>
                                 </a>
                             </li>
-                            <!-- @endif -->
+                            @endif
                             @else
                             <!-- <li class="nav-item tab-summary">
                                 <a href="#summary" data-toggle="tab" aria-expanded="false" class="nav-link">
@@ -1752,7 +1756,7 @@
                                         <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('save.pemenang') }}" id="form-penetapan-pemenang" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
                                                 <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
@@ -1816,7 +1820,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DC' ? 'active' : '' }}" id="spr">
+                            <div class="tab-pane {{ $data->proses_st == 'SPR' ? 'active' : '' }}" id="spr">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1872,8 +1876,16 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
-                                                            25 days
-                                                        </div>
+                                                            @php 
+                                                            $rks = \App\Models\DraftRks::select('created_at')->first();
+                                                            $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->first();
+                                                            $rksNew = new DateTime($rks->created_at);
+                                                            $pcpNew = new DateTime($pcp->created_at);
+                                                            $interval = $rksNew->diff($pcpNew);
+                                                            $days = $interval->days;
+                                                            @endphp
+                                                            {{ $days }} Days
+                                                        </div> 
                                                     </div>
                                                 </div>
 
@@ -2418,6 +2430,44 @@
                         }).done(function(response) {
                             Swal.fire({
                                 title: 'Your procurement sent to process Contract',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+
+        $("#form-penetapan-pemenang").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Penetapan Pemenang ?',
+                    text: 'Your procurement are change status SPR!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your status change to SPR',
                                 // text: "File change status to Pelaksanaan Aanwidjzing!",
                                 confirmButtonText: 'Yes'
                             }).then((result) => {
