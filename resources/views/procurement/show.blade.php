@@ -1877,8 +1877,8 @@
                                                         <div class="form-group">
                                                             <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
                                                             @php 
-                                                            $rks = \App\Models\DraftRks::select('created_at')->first();
-                                                            $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->first();
+                                                            $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                            $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
                                                             $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
                                                             $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
                                                             $interval = $rksNew->diff($pcpNew);

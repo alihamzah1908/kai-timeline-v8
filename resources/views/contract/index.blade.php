@@ -16,9 +16,8 @@
                                 <tr>
                                     <th>No. SP3</th>
                                     <th>Procurement Title</th>
-                                    <th>RKAP Value</th>
-                                    <th>Department</th>
                                     <th>Contract Value</th>
+                                    <th>Department</th>
                                     <th>Status</th>
                                     <th></th>
                                     <th>Action</th>
@@ -51,7 +50,7 @@
             serverSide: true,
             ajax: "{{ route('data.contract') }}",
             order: [
-                [6, 'desc']
+                [5, 'desc']
             ],
             columns: [{
                     data: 'sp3_no'
@@ -60,16 +59,13 @@
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'nilai_rkap'
+                    data: 'harga_negosiasi'
                 },
                 {
                     data: 'department_cd'
                 },
                 {
-                    data: 'nilai_contract'
-                },
-                {
-                    data: 'contract_status'
+                    data: 'proses_st'
                 },
                 {
                     data: 'created_at',

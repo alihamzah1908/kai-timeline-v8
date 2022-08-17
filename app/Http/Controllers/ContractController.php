@@ -305,24 +305,26 @@ class ContractController extends Controller
 
     public function data(Request $request)
     {
-        $data = DB::select('SELECT * FROM trx_pbj_contract_report');
+        $data = DB::select('select ts.*, kkn.harga_negosiasi from trx_sp3 ts
+        inner join trx_klasifikasi_konfirmasi_negosiasi kkn 
+        on ts.sp3_id = kkn.sp3_id 
+        inner join trx_penetapan_pemenang pp 
+        on pp.vendor_code = kkn.vendor_code
+        where kkn.harga_negosiasi is not null');
         return FacadesDataTables::of($data)
             ->addColumn('sp3_no', function ($row) {
-                return '<a href="' . route('contract.show', $row->report_pbj_contract_id) . '">' . $row->sp3_no . '</a>';
+                return '<a href="' . route('contract.show', $row->sp3_id) . '">' . $row->no_sp3 . '</a>';
             })
             ->addColumn('action', function ($row) {
-                $btn = '<a href="' . route('contract.show', $row->report_pbj_contract_id) . '">
+                $btn = '<a href="' . route('contract.show', $row->sp3_id) . '">
                             <button class="btn btn-sm btn-primary btn-rounded">
                                 <i class="uil uil-search"></i>
                             </button>
                         </a>';
                 return $btn;
             })
-            ->addColumn('nilai_rkap', function ($row) {
-                return number_format($row->nilai_rkap, 2);
-            })
-            ->addColumn('nilai_contract', function ($row) {
-                return number_format($row->nilai_contract, 2);
+            ->addColumn('harga_negosiasi', function ($row) {
+                return number_format($row->harga_negosiasi, 2);
             })
             ->rawColumns(['action','sp3_no'])
             ->make(true);
