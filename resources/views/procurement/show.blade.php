@@ -1838,7 +1838,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="vendor_code">
+                                                            <select class="form-control" name="vendor_code" disabled>
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_aanwidjzing as $val)
                                                                 <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
@@ -1855,8 +1855,8 @@
                                                     </div>
                                                     @if($pemenang)
                                                     <div class="col-md-6 mb-2">
-                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded"> 
+                                                            <i class="uil uil-print"></i>
                                                         </a>
                                                     </div>
                                                     @else

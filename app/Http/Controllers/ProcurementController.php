@@ -560,6 +560,7 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_EDH')
             ->orWhere('proses_st', 'PROSES_UPCP')
             ->orWhere('proses_st', 'PROSES_PCP')
+            ->orWhere('proses_st', 'SPR')
             ->get();
         return DataTables::of($data)
             ->addColumn('nilai_pr', function ($row) {
@@ -609,7 +610,7 @@ class ProcurementController extends Controller
                 //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
                 //                </a>';
                 // } else if ($row->proses_st == 'PROSES_RRKS') {
-                if ($row->proses_st == 'PROSES_PCP') {
+                if ($row->proses_st == 'PROSES_PCP'||$row->proses_st == 'SPR') {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 
