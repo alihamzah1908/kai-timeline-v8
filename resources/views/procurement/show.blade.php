@@ -164,7 +164,9 @@
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
                             || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -174,7 +176,9 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -184,7 +188,9 @@
                             @endif
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -194,7 +200,9 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -203,7 +211,10 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
-                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
+                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -211,7 +222,10 @@
                                 </a>
                             </li>
                             @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -220,7 +234,10 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -229,7 +246,9 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR')
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
@@ -237,7 +256,9 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR')
+                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-penetapanpemenang">
                                 <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
@@ -245,9 +266,14 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'SPR')
+                            @php 
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                                    || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                                    || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp 
+                            @if($status)
                             <li class="nav-item tab-spr">
-                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'SPR' ? 'active' : '' }}">
+                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $status ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
                                     <span class="d-none d-sm-block">SPR</span>
                                 </a>
@@ -1819,8 +1845,12 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="tab-pane {{ $data->proses_st == 'SPR' ? 'active' : '' }}" id="spr">
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
+                                    || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                                    || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
+                            <div class="tab-pane {{ $status ? 'active' : '' }}" id="spr">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
