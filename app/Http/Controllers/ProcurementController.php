@@ -421,7 +421,6 @@ class ProcurementController extends Controller
     public function save_pemenang(Request $request)
     {
         $pemenang = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
-        // dd($pemenang);
         if ($pemenang) {
             $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
             $data->catatan = $request["catatan"];
@@ -432,8 +431,8 @@ class ProcurementController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $new_name = 'file-berita-acara-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                 $file->move(public_path('file/sp3'), $new_name);
+                $data->file_berita_acara = $new_name;
             }
-            $data->file_berita_acara = $new_name;
             $data->save();
             if ($data) {
                 // UPDATE STATUS PENETAPAN PEMENANG
