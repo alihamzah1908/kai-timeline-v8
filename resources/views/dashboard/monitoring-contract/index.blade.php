@@ -118,7 +118,7 @@
                             <div class="media border-top pt-3">
                             <img src="../assets/images/sign.png" class="avatar rounded mr-3"alt="shreyu">
                                 <div class="media-body">
-                                    <label>TTD KAI & Vendor</label>
+                                    <label>TTD Vendor</label>
                                     <h6 class="mt-1 mb-0 font-size-15">35</h6>
                                 </div>
                                 <div class="dropdown align-self-center float-right">

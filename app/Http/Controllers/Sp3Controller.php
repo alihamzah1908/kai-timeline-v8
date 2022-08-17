@@ -59,6 +59,11 @@ class Sp3Controller extends Controller
                 // $data->tanggal_rab =  date('Y-m-d H:i:s');
                 // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->tanggal_kak =  date('Y-m-d H:i:s');
+                // if ($request["vendor_name"] == ''){
+                //     $data->nama_vendor = null;
+                // } else {
+                //     $data->nama_vendor = $request["vendor_name"];
+                // }
                 $data->nama_vendor = $request["vendor_name"];
                 $data->no_mi = $request["no_mi"];
                 $data->no_rab = $request["no_mi"];
