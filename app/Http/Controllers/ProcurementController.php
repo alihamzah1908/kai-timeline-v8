@@ -253,6 +253,7 @@ class ProcurementController extends Controller
 
     public function save_tender(Request $request)
     {
+        // dd($request->all());
         foreach ($request["vendor_code"] as $key => $val) {
             $tender = new \App\Models\TrxPesertaTender();
             $tender->sp3_id = $request["sp3_id"];

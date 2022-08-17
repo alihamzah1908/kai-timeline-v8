@@ -415,6 +415,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <input type="text" class="form-control" value="{{ $val->vendor_name }}" disabled />
+                                                            <input type="hidden" class="form-control" name="vendor_code[{{$val->peserta_tender_id}}]" value="{{ $val->vendor_code }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
@@ -584,6 +585,7 @@
                                                             <td>{{ $i++ }}</td>
                                                             <td>
                                                                 {{ $val->vendor_name }}
+                                                                <input type="hidden" id="vendor_code" name="vendor_code[{{$val->aanwidjzing_id}}]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
