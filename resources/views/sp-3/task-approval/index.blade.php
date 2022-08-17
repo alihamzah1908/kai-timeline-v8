@@ -139,8 +139,8 @@
         });
         $('body').on('click', '.approve', function() {
             Swal.fire({
-                title: 'Are you sure send Draft RKS SP3?',
-                text: "You won't be able to revert this!",
+                title: 'Are you sure approve SP3?',
+                text: "Your SP3 will send to PBJ !",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -160,7 +160,7 @@
                         if (response.status == '200') {
                             Swal.fire(
                                 'congratulations!',
-                                'Your SP3 has updated Draft RKS.',
+                                'Your SP3 send to PBJ.',
                                 'success'
                             )
                             timeline.ajax.reload()
@@ -179,7 +179,7 @@
 
         $('body').on('click', '.reject', function() {
             Swal.fire({
-                title: 'Are you sure reject timeline?',
+                title: 'Are you sure reject sp3?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,

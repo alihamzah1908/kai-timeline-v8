@@ -33,6 +33,7 @@
                                     <th>PBJ</th>
                                     <th>Cost</th>
                                     <th>Status</th>
+                                    <th></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -149,7 +150,7 @@
                         <div class="col-md-4 nilai-tax border">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
-                                <input type="text" class="form-control nilai-tax-value money" placeholder="Please insert nilai tax" disabled>
+                                <input type="text" class="form-control nilai-tax-value money" name="nilai_tax_sebagian" placeholder="Please insert nilai tax" disabled>
                                 <input type="hidden" class="form-control nilai-tax-insert" placeholder="Please insert nilai tax" name="nilai_tax">
                             </div>
                         </div>
@@ -205,6 +206,7 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
+            order: [[7, 'desc']],
             columns: [{
                     data: 'no_pengadaan'
                 },
@@ -225,6 +227,10 @@
                 },
                 {
                     data: 'proses_st'
+                },
+                {
+                    data: 'created_at',
+                    visible: false
                 },
                 {
                     data: 'action',

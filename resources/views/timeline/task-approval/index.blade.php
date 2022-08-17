@@ -21,6 +21,7 @@
                                     <th>PBJ</th>
                                     <th>Cost</th>
                                     <th>Status</th>
+                                    <th></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,7 @@
                     'timeline_type': 'approval'
                 }
             },
+            order: [[7, 'desc']],
             columns: [
                 {
                     data: 'no_pengadaan'
@@ -77,6 +79,10 @@
                 },
                 {
                     data: 'proses_st'
+                },
+                {
+                    data: 'created_at',
+                    visible: false
                 },
                 {
                     data: 'action',

@@ -28,6 +28,7 @@
                                     <th>Tax Value</th>
                                     <th>Realization</th>
                                     <th>Status</th>
+                                    <th></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -276,13 +277,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
-                                    <input type="text" name="no_justifikasi" class="form-control" placeholder="Please Insert No. Justifikasi">
+                                    <input type="text" name="no_justifikasi_pemilihan" class="form-control" placeholder="Please Insert No. Justifikasi">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung</label>
-                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi">
+                                    <input type="date" name="date_justifikasi_pemilihan" class="form-control datepicker" placeholder="Please Insert Date">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -371,6 +372,7 @@
                     timeline_type: 'npp'
                 }
             },
+            order: [[7, 'desc']],
             columns: [{
                     data: 'no_sp3'
                 },
@@ -391,6 +393,10 @@
                 },
                 {
                     data: 'proses_st'
+                },
+                {
+                    data: 'created_at',
+                    visible: false
                 },
                 {
                     data: 'action',

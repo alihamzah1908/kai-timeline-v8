@@ -37,7 +37,7 @@ class TimelineController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request["nilai_tax"] != 0 || $request["nilai_tax"] != '' ? $request["nilai_tax"] : str_replace('.', '', $request["nilai_tax_sebagian"]));
         $data = new \App\Models\Timeline();
         $data->directorate_cd = Auth::user()->directorate_cd;
         $data->division_cd = Auth::user()->division_cd;
@@ -49,7 +49,7 @@ class TimelineController extends Controller
         $data->pbj = $request["pbj"];
         $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
         $data->type_tax = $request["type_tax"];
-        $data->nilai_tax = $request["nilai_tax"];
+        $data->nilai_tax = $request["nilai_tax"] != 0 || $request["nilai_tax"] != '' ? $request["nilai_tax"] : str_replace('.', '', $request["nilai_tax_sebagian"]);
         //$data->nilai_tax = str_replace('.', '', $request["nilai_tax"]);
         $data->start_date_pengadaan = $request["start_date"];
         $data->end_date_pengadaan = $request["end_date"];
