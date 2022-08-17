@@ -95,17 +95,24 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        $data["arr"] = DB::select('SELECT * FROM trx_pbj_contract_report WHERE report_pbj_contract_id=' . $id . '');
+        // $data["arr"] = DB::select('SELECT * FROM trx_pbj_contract_report WHERE report_pbj_contract_id=' . $id . '');
+        $data["arr"] = DB::select('select ts.*, kkn.harga_negosiasi from trx_sp3 ts
+        inner join trx_klasifikasi_konfirmasi_negosiasi kkn 
+        on ts.sp3_id = kkn.sp3_id 
+        inner join trx_penetapan_pemenang pp 
+        on pp.vendor_code = kkn.vendor_code
+        where kkn.harga_negosiasi is not null AND ts.sp3_id=' . $id . '');
         $data["data"] = $data["arr"][0];
-        $data["trx_draft"] = \App\Models\TrxDraftContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_jaminan"] = \App\Models\TrxJaminanContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_verifikasi"] = \App\Models\TrxVerifikasiContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_review"] = \App\Models\TrxReviewContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_vendor"] = \App\Models\TrxVendorContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_approval"] = \App\Models\TrxApprovalLogistik::where('report_pbj_contract_id', $id)->get();
-        $data["trx_approval_user"] = \App\Models\TrxApprovalUser::where('report_pbj_contract_id', $id)->get();
-        $data["trx_kci"] = \App\Models\TrxKciContract::where('report_pbj_contract_id', $id)->get();
-        $data["trx_mppl"] = \App\Models\TrxMppl::where('report_pbj_contract_id', $id)->get();
+        // dd($data["data"]);
+        $data["trx_draft"] = \App\Models\TrxDraftContract::where('sp3_id', $id)->get();
+        $data["trx_jaminan"] = \App\Models\TrxJaminanContract::where('sp3_id', $id)->get();
+        $data["trx_verifikasi"] = \App\Models\TrxVerifikasiContract::where('sp3_id', $id)->get();
+        $data["trx_review"] = \App\Models\TrxReviewContract::where('sp3_id', $id)->get();
+        $data["trx_vendor"] = \App\Models\TrxVendorContract::where('sp3_id', $id)->get();
+        $data["trx_approval"] = \App\Models\TrxApprovalLogistik::where('sp3_id', $id)->get();
+        $data["trx_approval_user"] = \App\Models\TrxApprovalUser::where('sp3_id', $id)->get();
+        $data["trx_kci"] = \App\Models\TrxKciContract::where('sp3_id', $id)->get();
+        $data["trx_mppl"] = \App\Models\TrxMppl::where('sp3_id', $id)->get();
         return view('contract.show', $data);
     }
 
@@ -145,11 +152,10 @@ class ContractController extends Controller
 
     public function draft_kontrak(Request $request)
     {
-        // dd($request->all());
-        $contract = \App\Models\TrxPbjReportContract::find($request["id"]);
+        $contract = \App\Models\SP3::find($request["id"]);
         if ($request["status"] == 'PROSES_DC') {
             $trx_contract = new \App\Models\TrxDraftContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_draft')) {
                 $file = $request->file('file_draft');
@@ -162,11 +168,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_UJP';
+                $contract->proses_st = 'PROSES_UJP';
             }
         } else if ($request["status"] == 'PROSES_UJP') {
             $trx_contract = new \App\Models\TrxJaminanContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_performance')) {
                 $file = $request->file('file_performance');
@@ -179,11 +185,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_VJP';
+                $contract->proses_st = 'PROSES_VJP';
             }
         } else if ($request["status"] == 'PROSES_VJP') {
             $trx_contract = new \App\Models\TrxVerifikasiContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_verifikasi')) {
                 $file = $request->file('file_verifikasi');
@@ -196,12 +202,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_VJP';
+                $contract->proses_st = 'PROSES_RDC';
             }
-            $contract->contract_status = 'PROSES_RDC';
         } else if ($request["status"] == 'PROSES_RDC') {
             $trx_contract = new \App\Models\TrxReviewContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_review')) {
                 $file = $request->file('file_review');
@@ -214,12 +219,12 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_VAC';
+                $contract->proses_st = 'PROSES_VAC';
             }
         } else if ($request["status"] == 'PROSES_VAC') {
             // dd($request->all());
             $trx_contract = new \App\Models\TrxApprovalLogistik();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_approval_logistik')) {
                 $file = $request->file('file_approval_logistik');
@@ -233,12 +238,12 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_ALG';
+                $contract->proses_st = 'PROSES_ALG';
             }
         } else if ($request["status"] == 'PROSES_ALG') {
             // dd($request->all());
             $trx_contract = new \App\Models\TrxApprovalUser();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_approval_user')) {
                 $file = $request->file('file_approval_user');
@@ -252,11 +257,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_APU';
+                $contract->proses_st = 'PROSES_APU';
             }
         } else if ($request["status"] == 'PROSES_APU') {
             $trx_contract = new \App\Models\TrxVendorContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_vendor')) {
                 $file = $request->file('file_vendor');
@@ -269,11 +274,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_KAC';
+                $contract->proses_st = 'PROSES_KAC';
             }
         } else if ($request["status"] == 'PROSES_KAC') {
             $trx_contract = new \App\Models\TrxKciContract();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             if ($request->hasFile('file_kci')) {
                 $file = $request->file('file_kci');
@@ -286,11 +291,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->contract_status = 'PROSES_CR';
+                $contract->proses_st = 'PROSES_CR';
             }
-        }else if ($request["status"] == 'PROSES_CR') {
+        } else if ($request["status"] == 'PROSES_CR') {
             $trx_contract = new \App\Models\TrxMppl();
-            $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             $trx_contract->start_date_mppl = $request["start_date_mppl"];
             $trx_contract->end_date_mppl = $request["end_date_mppl"];
@@ -300,7 +305,7 @@ class ContractController extends Controller
             $trx_contract->save();
         }
         $contract->save();
-        return response()->json(['status' => 200, 'proses_st' => $contract->contract_status]);
+        return response()->json(['status' => 200, 'proses_st' => $contract->proses_st]);
     }
 
     public function data(Request $request)
@@ -326,7 +331,7 @@ class ContractController extends Controller
             ->addColumn('harga_negosiasi', function ($row) {
                 return number_format($row->harga_negosiasi, 2);
             })
-            ->rawColumns(['action','sp3_no'])
+            ->rawColumns(['action', 'sp3_no'])
             ->make(true);
     }
 }

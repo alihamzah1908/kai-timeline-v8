@@ -435,26 +435,26 @@ class ProcurementController extends Controller
             $data->file_berita_acara = $new_name;
             $data->save();
             if ($data) {
-                $sp3 = \App\Models\SP3::find($request["sp3_id"]);
-                $contract = new \App\Models\TrxPbjReportContract();
-                $contract->sp3_id = $request["sp3_id"];
-                $contract->directorate_cd = $sp3->directorate_cd;
-                $contract->division_cd = $sp3->division_cd;
-                $contract->department_cd = $sp3->department_cd;
-                $contract->judul_pengadaan = $sp3->judul_pengadaan;
-                $contract->nilai_rkap = $sp3->nilai_pr;
-                $contract->sp3_no = $sp3->no_sp3;
-                $contract->vendor = $sp3->nama_vendor;
-                $contract->pbj_status = $sp3->proses_st;
-                $contract->metode = $sp3->type_metode;
-                $contract->lokal_impor = $sp3->jenis_barang;
-                $contract->contract_status = 'PROSES_DC';
-                $contract->save();
+                // UPDATE STATUS PENETAPAN PEMENANG
+                $status = \App\Models\SP3::find($request["sp3_id"]);
+                $status->proses_st = 'PROSES_DC';
+                $status->save();
+                // $sp3 = \App\Models\SP3::find($request["sp3_id"]);
+                // $contract = new \App\Models\TrxPbjReportContract();
+                // $contract->sp3_id = $request["sp3_id"];
+                // $contract->directorate_cd = $sp3->directorate_cd;
+                // $contract->division_cd = $sp3->division_cd;
+                // $contract->department_cd = $sp3->department_cd;
+                // $contract->judul_pengadaan = $sp3->judul_pengadaan;
+                // $contract->nilai_rkap = $sp3->nilai_pr;
+                // $contract->sp3_no = $sp3->no_sp3;
+                // $contract->vendor = $sp3->nama_vendor;
+                // $contract->pbj_status = $sp3->proses_st;
+                // $contract->metode = $sp3->type_metode;
+                // $contract->lokal_impor = $sp3->jenis_barang;
+                // $contract->contract_status = 'PROSES_DC';
+                // $contract->save();
             }
-            // UPDATE STATUS PENETAPAN PEMENANG
-            $status = \App\Models\SP3::find($request["sp3_id"]);
-            $status->proses_st = 'SPR';
-            $status->save();
         } else {
             $data = new \App\Models\TrxPenetapanPemenang();
             $data->catatan = $request["catatan"];

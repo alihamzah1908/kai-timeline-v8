@@ -26,13 +26,13 @@
                             <label class="font-weight-bold">Nomor SP3</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->sp3_no }}</label>
+                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_sp3 }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Tanggal SP3</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ date('d M Y', strtotime($data->tanggal_sp3)) }}</label>
+                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ date('d M Y', strtotime($data->created_at)) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -46,7 +46,7 @@
                             <label class="font-weight-bold">Vendor Name</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->vendor }}</label>
+                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -54,27 +54,27 @@
                             <label class="font-weight-bold">Metode</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ $data->metode }}</label>
+                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ $data->type_metode }}</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Nomor NPD</label>
+                            <label class="font-weight-bold">Nomor MI</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ $data->npd_no }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ $data->no_mi }}</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal NPD</label>
+                            <label class="font-weight-bold">Tanggal MI</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ date('d M Y', strtotime($data->tanggal_npd)) }}</label>
+                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ date('d M Y', strtotime($data->no_mi)) }}</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai NPD</label>
+                            <label class="font-weight-bold">Nilai PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ number_format($data->nilai_npd, 2) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ number_format($data->nilai_pr, 2) }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -82,19 +82,19 @@
                             <label class="font-weight-bold">Nilai Kontrak</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ number_format($data->nilai_contract, 2) }}</label>
+                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ number_format($data->harga_negosiasi, 2) }}</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Nomor Kontrak</label>
+                            <label class="font-weight-bold">Jenis Barang</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ $data->contract_no }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ $data->jenis_barang }}</label>
                         </div>
                         <div class="col-md-3">
                             <label class="font-weight-bold">Status Kontrak</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ $data->contract_status }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ $data->proses_st }}</label>
                         </div>
                     </div>
                 </div>
@@ -106,8 +106,8 @@
                             <h4 class="header-title mt-0 mb-1">Contract Process</h4>
                             <p class="sub-header">Procces of Contract</p>
                             <div id="smartwizard-arrows" class="sw-main sw-theme-arrows">
-                                <input type="hidden" value="{{ $data->contract_status }}" id="status">
-                                <input type="hidden" value="{{ $data->report_pbj_contract_id }}" id="id">
+                                <input type="hidden" value="{{ $data->proses_st }}" id="status">
+                                <input type="hidden" value="{{ $data->sp3_id }}" id="id">
                                 <ul class="nav nav-tabs step-anchor">
                                     <li class="nav-item draft-contract status-drk"><a href="#sw-arrows-step-1" class="nav-link">Draft Kontrak<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item performance status-pfm"><a href="#sw-arrows-step-2" class="nav-link">Performance Bond (Upload Jaminan Pelaksanaan)<small class="d-block">Step description</small></a></li>
@@ -713,9 +713,9 @@
                                                 <div class="row mb-2">
                                                     <div class="col-md-12">
                                                         <form action="#" id="form-mppl">
-                                                            <input type="hidden" name="id" value="{{ $data->report_pbj_contract_id }}">
+                                                            <input type="hidden" name="id" value="{{ $data->sp3_id }}">
                                                             <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}">
-                                                            <input type="hidden" name="status" value="{{ $data->contract_status }}">
+                                                            <input type="hidden" name="status" value="{{ $data->proses_st }}">
                                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                             @if($trx_mppl->count() > 0)
                                                             @foreach($trx_mppl as $val)
