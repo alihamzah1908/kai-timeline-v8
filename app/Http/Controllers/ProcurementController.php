@@ -433,58 +433,43 @@ class ProcurementController extends Controller
             }
             $data->file_berita_acara = $new_name;
             $data->save();
+            if ($data) {
+                $contract = new \App\Models\TrxPbjReportContract();
+                $contract->sp3_id = $request["sp3_id"];
+                $contract->directorate_cd = $sp3->directorate_cd;
+                $contract->division_cd = $sp3->division_cd;
+                $contract->department_cd = $sp3->department_cd;
+                $contract->judul_pengadaan = $sp3->judul_pengadaan;
+                $contract->nilai_rkap = $sp3->nilai_pr;
+                $contract->sp3_no = $sp3->no_sp3;
+                $contract->vendor = $sp3->nama_vendor;
+                $contract->pbj_status = $sp3->proses_st;
+                $contract->metode = $sp3->type_metode;
+                $contract->lokal_impor = $sp3->jenis_barang;
+                $contract->contract_status = 'PROSES_DC';
+                $contract->save();
+            }
             // UPDATE STATUS PENETAPAN PEMENANG
             $status = \App\Models\SP3::find($request["sp3_id"]);
             $status->proses_st = 'SPR';
             $status->save();
         } else {
+            $data = new \App\Models\TrxPenetapanPemenang();
+            $data->catatan = $request["catatan"];
+            $data->vendor_code = $request["vendor_code"];
+            $data->sp3_id = $request["sp3_id"];
             if ($request->file('berita_acara_pemenang')) {
-                // $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
-                $data = new \App\Models\TrxPenetapanPemenang();
-                $data->vendor_code = $request["vendor_code"];
-                $data->sp3_id = $request["sp3_id"];
                 $file = $request->file('berita_acara_pemenang');
                 $extension = $file->getClientOriginalExtension();
                 $new_name = 'file-berita-acara-pemenang' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                 $file->move(public_path('file/sp3'), $new_name);
-                $data->file_berita_acara = $new_name;
-                $data->created_by = Auth::user()->id;
-                $data->save();
-
-                // UPDATE STATUS 
-                $status = \App\Models\SP3::find($request["sp3_id"]);
-                $status->proses_st = 'PROSES_PCP';
-                $status->save();
-                if ($data) {
-                    $sp3 = \App\Models\SP3::find($request["sp3_id"]);
-                    if ($sp3) {
-                        $contract = new \App\Models\TrxPbjReportContract();
-                        $contract->sp3_id = $request["sp3_id"];
-                        $contract->directorate_cd = $sp3->directorate_cd;
-                        $contract->division_cd = $sp3->division_cd;
-                        $contract->department_cd = $sp3->department_cd;
-                        $contract->judul_pengadaan = $sp3->judul_pengadaan;
-                        $contract->nilai_rkap = $sp3->nilai_pr;
-                        $contract->sp3_no = $sp3->no_sp3;
-                        $contract->vendor = $sp3->nama_vendor;
-                        $contract->pbj_status = $sp3->proses_st;
-                        $contract->metode = $sp3->type_metode;
-                        $contract->lokal_impor = $sp3->jenis_barang;
-                        $contract->contract_status = 'PROSES_DC';
-                        $contract->save();
-                    }
-                }
-            } else {
-                $data = new \App\Models\TrxPenetapanPemenang();
-                $data->catatan = $request["catatan"];
-                $data->vendor_code = $request["vendor_code"];
-                $data->sp3_id = $request["sp3_id"];
-                $data->save();
-                // UPDATE STATUS PENETAPAN PEMENANG
-                $status = \App\Models\SP3::find($request["sp3_id"]);
-                $status->proses_st = 'PROSES_PCP';
-                $status->save();
             }
+            $data->file_berita_acara = $new_name;
+            $data->save();
+            // UPDATE STATUS PENETAPAN PEMENANG
+            $status = \App\Models\SP3::find($request["sp3_id"]);
+            $status->proses_st = 'PROSES_PCP';
+            $status->save();
         }
 
         return redirect(route('procurement.show', $request["sp3_id"]));
@@ -610,7 +595,7 @@ class ProcurementController extends Controller
                 //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
                 //                </a>';
                 // } else if ($row->proses_st == 'PROSES_RRKS') {
-                if ($row->proses_st == 'PROSES_PCP'||$row->proses_st == 'SPR') {
+                if ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR') {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 

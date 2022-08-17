@@ -323,6 +323,16 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_ASP3');
             $sp3->orWhere('proses_st', 'PROSES_DRKS');
             $sp3->orWhere('proses_st', 'PROSES_RRKS');
+            $sp3->orWhere('proses_st', 'PROSES_DRKS');
+            $sp3->orWhere('proses_st', 'PROSES_PP');
+            $sp3->orWhere('proses_st', 'PROSES_AL');
+            $sp3->orWhere('proses_st', 'PROSES_PDP');
+            $sp3->orWhere('proses_st', 'PROSES_PPDP');
+            $sp3->orWhere('proses_st', 'PROSES_EP');
+            $sp3->orWhere('proses_st', 'PROSES_EDH');
+            $sp3->orWhere('proses_st', 'PROSES_UPCP');
+            $sp3->orWhere('proses_st', 'PROSES_PCP');
+            $sp3->orWhere('proses_st', 'SPR');
         } elseif ($request["timeline_type"] == 'npp') {
             $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st','created_at');
             $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
@@ -412,7 +422,7 @@ class Sp3Controller extends Controller
                                     </button>
                                 </a>';
                         return $btn;
-                    } elseif ($row->proses_st == 'PROSES_PCP') {
+                    } elseif ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR') {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
