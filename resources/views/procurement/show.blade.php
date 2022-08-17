@@ -1879,8 +1879,8 @@
                                                             @php 
                                                             $rks = \App\Models\DraftRks::select('created_at')->first();
                                                             $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->first();
-                                                            $rksNew = new DateTime($rks->created_at);
-                                                            $pcpNew = new DateTime($pcp->created_at);
+                                                            $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
+                                                            $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
                                                             $interval = $rksNew->diff($pcpNew);
                                                             $days = $interval->days;
                                                             @endphp

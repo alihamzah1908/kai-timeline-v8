@@ -419,8 +419,9 @@ class ProcurementController extends Controller
 
     public function save_pemenang(Request $request)
     {
-        $sp3 = \App\Models\SP3::find($request["sp3_id"]);
-        if ($sp3) {
+        $pemenang = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
+        // dd($pemenang);
+        if ($pemenang) {
             $data = \App\Models\TrxPenetapanPemenang::find($request["pemenang_id"]);
             $data->catatan = $request["catatan"];
             $data->vendor_code = $request["vendor_code"];
@@ -434,6 +435,7 @@ class ProcurementController extends Controller
             $data->file_berita_acara = $new_name;
             $data->save();
             if ($data) {
+                $sp3 = \App\Models\SP3::find($request["sp3_id"]);
                 $contract = new \App\Models\TrxPbjReportContract();
                 $contract->sp3_id = $request["sp3_id"];
                 $contract->directorate_cd = $sp3->directorate_cd;
