@@ -56,7 +56,7 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">RKAP Value </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_pr, 2) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_pr, 0) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Department
                                             </dt>
@@ -106,7 +106,8 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->nilai_tax }}</dd>
+                                            <!-- <dd class="col-sm-6 font-weight-normal">{{ $data->nilai_tax }}</dd> -->
+                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_tax, 0) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Start Date Procurement : </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>

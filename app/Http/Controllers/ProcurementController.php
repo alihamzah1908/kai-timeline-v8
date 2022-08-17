@@ -103,6 +103,7 @@ class ProcurementController extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
+        $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
         $data["tender_list"] = DB::table('public.trx_peserta_tender as a')
             ->select(
                 'a.peserta_tender_id',
@@ -179,6 +180,7 @@ class ProcurementController extends Controller
             ->where('sp3_id', $id)
             ->get();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
+        $data["pemenangfinal"] = false;
         return view('procurement.show', $data);
     }
 

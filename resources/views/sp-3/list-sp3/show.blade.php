@@ -69,7 +69,7 @@
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">RKAP Value </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_pr, 2) }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_pr, 0) }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Vendor Name
                                             </dt>
@@ -96,7 +96,26 @@
                                                 @endif
                                             </dd>
 
-                                            <dt class="col-sm-5 font-weight-bold">No PR </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Type
+                                            </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ ($data->type_tax == '1' ? 'Pajak Tidak Dipungut' : ($data->type_tax == '2' ? ' Pajak Dipungut' : 'Pajak Dipungut Biaya Sebagian')) }}</dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ number_format($data->nilai_tax, 0) }}</dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tipe Pemilihan
+                                            </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                            {{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <dl class="row mb-2 mt-3">
+                                        <dt class="col-sm-5 font-weight-bold">No PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach
@@ -107,33 +126,33 @@
                                                 @foreach($trx_npp as $pr){{ $pr->tanggal_pr }}, <br />@endforeach
                                             </dd>
 
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No Justifikasi Barang </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No Justifikasi Kebutuhan Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach
                                             </dd>
 
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Barang </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Kebutuhan Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr){{ $pr->tanggal_justifikasi ? date('d M Y', strtotime($pr->tanggal_justifikasi)) : '' }}, <br />@endforeach
                                             </dd>
-                                        </dl>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <dl class="row mb-2 mt-3">
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Type
-                                            </dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ ($data->type_tax == '1' ? 'Pajak Tidak Dipungut' : ($data->type_tax == '2' ? ' Pajak Dipungut' : 'Pajak Dipungut Biaya Sebagian')) }}</dd>
-
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Value</dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->nilai_tax }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. MI </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->no_mi }}</dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal MI
+                                            </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                {{ $data->tanggal_mi ? date('d M Y', strtotime($data->tanggal_mi)) : '' }}
+                                            </dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No. Justifikasi Penunjukan/Pemilihan Langsung
+                                            </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->no_justifikasi}}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung
                                             </dt>
@@ -148,24 +167,24 @@
                                                 @foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach
                                             </dd>
 
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }}, <br />@endforeach
                                             </dd>
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->no_kak }}</dd>
 
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_kak ? date('d M Y', strtotime($data->tanggal_kak)) : '' }}</dd>
                                             @if($data->timeline_id == '')
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">COA : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">COA </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ str_replace(array( '"', '[', ']' ),'', $data->coa); }}</dd>
                                             @endif
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File PR : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr)
@@ -174,7 +193,7 @@
                                                 </a>
                                                 , <br />@endforeach
                                             </dd>
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File RAB : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File RAB </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr)
@@ -183,7 +202,7 @@
                                                 </a>
                                                 , <br />@endforeach
                                             </dd>
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File Justifikasi Barang : </dt>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File Justifikasi Barang </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr)
@@ -191,6 +210,13 @@
                                                     <i class="uil uil-file"></i>&nbsp; {{ $pr->file_justifikasi }}
                                                 </a>
                                                 , <br />@endforeach
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File Justifikasi Penunjukan/Pemilihan Langsung </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                <a href="{{ asset('file/sp3/'. $pr->file_justifikasi) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_justifikasi_pemilihan }}
+                                                </a>
                                             </dd>
                                         </dl>
                                     </div>
