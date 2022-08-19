@@ -62,7 +62,7 @@
                             <label class="font-weight-bold">Tanggal PR</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}@endforeach</label>
                         </div>
                     </div>
 
@@ -1799,7 +1799,7 @@
                                                             <select class="form-control" name="vendor_code">
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_aanwidjzing as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -2444,8 +2444,8 @@
                 e.preventDefault();
                 var record = new FormData(this);
                 Swal.fire({
-                    title: 'Are you sure save Berita acara pemenang ?',
-                    text: 'Your procurement are send to contract!',
+                    title: 'Usulan, Penetapan calon Pemenang ?',
+                    // text: 'Your procurement are send to contract!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
