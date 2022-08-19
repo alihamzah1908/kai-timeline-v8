@@ -91,7 +91,7 @@
                             <label class="font-weight-bold">Tanggal RAB</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}@endforeach</label>
                         </div>
                     </div>
                     <div class="row">
@@ -105,7 +105,7 @@
                             <label class="font-weight-bold">Tanggal Justifikasi Barang</label>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}</label>
+                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}@endforeach</label>
                         </div>
                     </div>
                     <div class="row">
