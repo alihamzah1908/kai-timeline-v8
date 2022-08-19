@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <dl class="row mb-2 mt-3">
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No. SP3
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No. NPP
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">{{ $data->no_sp3 }}</dd>

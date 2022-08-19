@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // SP3
     Route::get('/data/sp-3', 'App\Http\Controllers\Sp3Controller@data')->name('data.sp3');
-    Route::get('/data/sp-3/show/{id}', 'App\Http\Controllers\SP3Controller@show')->name('sp3.show');
+    Route::get('/data/sp-3/show/{id}', 'App\Http\Controllers\Sp3Controller@show')->name('sp3.show');
     Route::get('/data/sp-3/approve', 'App\Http\Controllers\Sp3Controller@approve')->name('sp3.approve');
     Route::get('/data/sp-3/reject', 'App\Http\Controllers\Sp3Controller@reject')->name('sp3.reject');
     Route::get('/data/sp-3/evaluasi/{id}', 'App\Http\Controllers\Sp3Controller@form_evaluasi')->name('evaluasi.form');
