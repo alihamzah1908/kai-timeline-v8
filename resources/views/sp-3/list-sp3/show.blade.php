@@ -1,26 +1,15 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
-    <div class="row page-title">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="float-left mt-1">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.sp3') }}">List SP3</a></li>
-                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.sp3') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col">
-            <div class="card">
-                <div class="card-body p-0">
-                    <h6 class="card-title border-bottom p-3 mb-0 ">Detail {{ $data->judul_pengadaan }}</h6>
-
-                </div>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -109,13 +98,13 @@
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                            {{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}
+                                                {{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}
                                             </dd>
                                         </dl>
                                     </div>
                                     <div class="col-md-6">
                                         <dl class="row mb-2 mt-3">
-                                        <dt class="col-sm-5 font-weight-bold">No PR </dt>
+                                            <dt class="col-sm-5 font-weight-bold">No PR </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach

@@ -1,18 +1,23 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    label {
+        font-size: 10px;
+    }
+</style>
 <div class="container-fluid">
-    <div class="row page-title">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="float-left mt-1">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List Procurement</a></li>
-                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -22,133 +27,133 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Judul Pengadaan</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Judul Pengadaan</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
+                            <dt class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</dt>
                         </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Vendor Name</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Vendor Name</dt>
                         </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
-                        </div>
-                    </div>  
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 0); }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai Tax</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_tax, 0); }}</label>
+                        <div class="col-md-3 ">
+                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</dt>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No PR</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach</label>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 0); }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai Tax</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}@endforeach</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_mi }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_mi)) }}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No RAB</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal RAB</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}@endforeach</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No Justifikasi Barang</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal Justifikasi Barang</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}@endforeach</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No Justifikasi Pemilihan/Penujukan Langsung</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_justifikasi }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal Justifikasi Pemilihan/Penunjukan Langsung</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi_pemilihan)) }}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No KAK</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal KAK</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_tax, 0); }}</dt>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tipe Pemilihan</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}</label>
+                            <dt class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Status </label>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}@endforeach</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No MI</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st == 'PROSES_PCP' ? 'MASA SANGGAH' : $data->proses_st }}</span></label>
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_mi }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal MI</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_mi)) }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No RAB</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal RAB</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}@endforeach</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No Justifikasi Barang</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal Justifikasi Barang</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}@endforeach</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No Justifikasi Pemilihan/Penujukan Langsung</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_justifikasi }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal Justifikasi Pemilihan/Penunjukan Langsung</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi_pemilihan)) }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No KAK</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal KAK</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tipe Pemilihan</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Status </dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st == 'PROSES_PCP' ? 'MASA SANGGAH' : $data->proses_st }}</span></dt>
                         </div>
                     </div>
                 </div>
@@ -164,8 +169,8 @@
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
                             || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
@@ -176,8 +181,8 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
@@ -188,8 +193,8 @@
                             @endif
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
@@ -200,8 +205,8 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
@@ -212,8 +217,8 @@
                             @endif
                             @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
                             $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
-                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
@@ -223,8 +228,8 @@
                             </li>
                             @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
-                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}">
@@ -235,8 +240,8 @@
                             @endif
                             @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
                             || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
-                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
@@ -246,8 +251,8 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
-                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-pemenang">
                                 <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
@@ -256,8 +261,8 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
+                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-penetapanpemenang">
                                 <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
@@ -266,11 +271,11 @@
                                 </a>
                             </li>
                             @endif
-                            @php 
-                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                                    || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
-                                    || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
-                            @endphp 
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
                             @if($status)
                             <li class="nav-item tab-spr">
                                 <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $status ? 'active' : '' }}">
@@ -786,7 +791,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
-                                                    </div>
+                                                    </dt<div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -1848,9 +1853,9 @@
                                 </div>
                             </div>
                             @php
-                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP' 
-                                    || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG' 
-                                    || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
                             @endphp
                             <div class="tab-pane {{ $status ? 'active' : '' }}" id="spr">
                                 <div class="add-pemenang">
@@ -1887,7 +1892,7 @@
                                                     </div>
                                                     @if($pemenang)
                                                     <div class="col-md-6 mb-2">
-                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded"> 
+                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
                                                             <i class="uil uil-print"></i>
                                                         </a>
                                                     </div>
@@ -1908,7 +1913,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
-                                                            @php 
+                                                            @php
                                                             $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
                                                             $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
                                                             $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
@@ -1917,7 +1922,7 @@
                                                             $days = $interval->days;
                                                             @endphp
                                                             {{ $days }} Days
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
 

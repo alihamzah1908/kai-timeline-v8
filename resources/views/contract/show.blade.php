@@ -1,18 +1,23 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    label {
+        font-size: 10px;
+    }
+</style>
 <div class="container-fluid">
-    <div class="row page-title">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="float-left mt-1">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.contract') }}">List Contract</a></li>
-                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.contract') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -22,79 +27,79 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nomor SP3</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nomor SP3</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_sp3 }}</label>
+                            <dt class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_sp3 }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal SP3</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal SP3</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ date('d M Y', strtotime($data->created_at)) }}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Judul Pengadaan</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Vendor Name</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>{{ date('d M Y', strtotime($data->created_at)) }}</dt>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Metode</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Judul Pengadaan</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ $data->type_metode }}</label>
+                            <dt class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Vendor Name</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Nomor MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ $data->no_mi }}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ date('d M Y', strtotime($data->no_mi)) }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ number_format($data->nilai_pr, 2) }}</label>
+                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</dt>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai Kontrak</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Metode</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ number_format($data->harga_negosiasi, 2) }}</label>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ $data->type_metode }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nomor MI</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Jenis Barang</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ $data->no_mi }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal MI</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ $data->jenis_barang }}</label>
+                            <dt class="font-weight-normal">: <span class="no-rab"></span>{{ date('d M Y', strtotime($data->no_mi)) }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Status Kontrak</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-rab"></span>{{ number_format($data->nilai_pr, 2) }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai Kontrak</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ $data->proses_st }}</label>
+                            <dt class="font-weight-normal">: <span class="no-kak"></span>{{ number_format($data->harga_negosiasi, 2) }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Jenis Barang</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-kak"></span>{{ $data->jenis_barang }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Status Kontrak</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ $data->proses_st }}</dt>
                         </div>
                     </div>
                 </div>
@@ -118,7 +123,7 @@
                                     <li class="nav-item ttd-vendor"><a href="#sw-arrows-step-7" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item ttd-kci"><a href="#sw-arrows-step-8" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item mppl"><a href="#sw-arrows-step-9" class="nav-link">MPPL<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item done"><a href="#sw-arrows-step-10" class="nav-link">Approval<small class="d-block">Step description</small></a></li>
+                                    <!-- <li class="nav-item done"><a href="#sw-arrows-step-10" class="nav-link">Approval<small class="d-block">Step description</small></a></li> -->
                                 </ul>
 
                                 <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">

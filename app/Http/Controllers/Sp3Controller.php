@@ -333,12 +333,26 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_UPCP');
             $sp3->orWhere('proses_st', 'PROSES_PCP');
             $sp3->orWhere('proses_st', 'SPR');
+            $sp3->orWhere('proses_st', 'PROSES_DC');
+            $sp3->orWhere('proses_st', 'PROSES_UJP');
+            $sp3->orWhere('proses_st', 'PROSES_VJP');
+            $sp3->orWhere('proses_st', 'PROSES_RDC');
+            $sp3->orWhere('proses_st', 'PROSES_VAC');
+            $sp3->orWhere('proses_st', 'PROSES_ALG');
+            $sp3->orWhere('proses_st', 'PROSES_APU');
+            $sp3->orWhere('proses_st', 'PROSES_KAC');
+            $sp3->orWhere('proses_st', 'PROSES_CR');
         } elseif ($request["timeline_type"] == 'npp') {
-            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st','created_at');
+            $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st', 'created_at');
             $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)
+            ->addColumn('no_sp3', function ($row) {
+                return '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                           ' . $row->no_sp3 .'
+                        </a>';
+            })
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 2);
             })
@@ -422,7 +436,10 @@ class Sp3Controller extends Controller
                                     </button>
                                 </a>';
                         return $btn;
-                    } elseif ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR') {
+                    } elseif ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
+                        || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
+                        || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
+                        || $row->proses_st == 'PROSES_CR') {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
@@ -438,7 +455,7 @@ class Sp3Controller extends Controller
                 }
             })
 
-            ->rawColumns(['action', 'proses_st', 'evaluasi'])
+            ->rawColumns(['action', 'proses_st', 'evaluasi', 'no_sp3'])
             ->make(true);
     }
 }

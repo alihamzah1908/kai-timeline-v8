@@ -169,13 +169,15 @@ sup {
 }
 
 a {
-    color: #5369f8;
+    /* color: #5369f8; */
+    color: #ff3333;
     text-decoration: none;
     background-color: transparent
 }
 
 a:hover {
-    color: #0a29f5;
+    /* color: #0a29f5; */
+    color:  #ffb380;
     text-decoration: underline
 }
 
@@ -622,7 +624,8 @@ pre code {
     margin-right: auto;
     margin-left: auto;
     /* custom */
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 10px;
 }
 
 .row {
@@ -2984,15 +2987,15 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color:#ff3333;
-    border-color:#ff3333;
+    background-color: #ff3333;
+    border-color: #ff3333;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color:#ff3333;
+    background-color: #ff3333;
     border-color: #ff3333;
 }
 
@@ -3007,7 +3010,7 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: red;
     border-color: red
-    /* background-color: #1e2139;
+        /* background-color: #1e2139;
     border-color: #1e2139 */
 }
 
@@ -5598,7 +5601,8 @@ input[type=submit].btn-block {
     padding: .75rem 1rem;
     margin-bottom: 1rem;
     list-style: none;
-    background-color: #f6f6f7;
+    /* background-color: #f6f6f7; */
+    background-color: #ffffff;
     border-radius: .3rem
 }
 
@@ -6148,7 +6152,7 @@ a.badge-dark:focus {
     -ms-flex-align: start;
     align-items: flex-start;
     /* custom  */
-    height: 90px;
+    /* height: 90px; */
 }
 
 .media-body {
@@ -6838,10 +6842,11 @@ a.close.disabled {
 }
 
 @media (min-width:1200px) {
+
     /* .modal-xl {
         max-width: 1140px
     } */
-    .modal-xl{
+    .modal-xl {
         max-width: 900px;
     }
 }
@@ -12579,7 +12584,8 @@ a.text-dark:hover {
 }
 
 .header-title {
-    font-size: 1.04rem;
+    /* font-size: 1.04rem; */
+    font-size: 15px;
     font-weight: 700
 }
 
@@ -13061,6 +13067,11 @@ p {
     line-height: 1.6
 }
 
+/* CUSTOM */
+.font-size-10 {
+    font-size: 10px !important
+}
+
 .font-size-11 {
     font-size: 11px !important
 }
@@ -13120,4 +13131,9 @@ p {
 /* CUSTOM CSS */
 .font-size-9 {
     font-size: 9px !important;
+}
+
+.text-kai {
+    color: red !important;
+    font-weight: bold;
 }

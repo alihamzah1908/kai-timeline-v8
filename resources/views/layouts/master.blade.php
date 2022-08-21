@@ -42,10 +42,10 @@
     <div id="wrapper">
 
         <!-- Topbar Start -->
-        <div class="navbar navbar-expand flex-column flex-md-row navbar-custom">
-            <div class="container-fluid">
-                <!-- LOGO -->
-                <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
+        <!-- <div class="navbar navbar-expand flex-column flex-md-row navbar-custom"> -->
+        <!-- <div class="container-fluid"> -->
+        <!-- LOGO -->
+        <!-- <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
                     <span class="logo-lg">
                         <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
                         <span class="d-inline h5 ml-1 text-logo"></span>
@@ -53,18 +53,18 @@
                     <span class="logo-sm">
                         <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="24">
                     </span>
-                </a>
+                </a> -->
 
-                <ul class="navbar-nav bd-navbar-nav flex-row list-unstyled menu-left mb-0">
+        <!-- <ul class="navbar-nav bd-navbar-nav flex-row list-unstyled menu-left mb-0">
                     <li class="">
                         <button class="button-menu-mobile open-left disable-btn">
                             <i data-feather="menu" class="menu-icon"></i>
                             <i data-feather="x" class="close-icon"></i>
                         </button>
                     </li>
-                </ul>
+                </ul> -->
 
-                <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+        <!-- <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
                     <li class="dropdown notification-list" data-toggle="tooltip" data-placement="left" title="8 new unread notifications">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i data-feather="bell"></i>
@@ -72,7 +72,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
 
-                            <!-- item-->
                             <div class="dropdown-item noti-title border-bottom">
                                 <h5 class="m-0 font-size-16">
                                     <span class="float-right">
@@ -85,14 +84,11 @@
 
                             <div class="slimscroll noti-scroll">
 
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                                     <div class="notify-icon bg-primary"><i class="uil uil-user-plus"></i></div>
                                     <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
                                     </p>
                                 </a>
-
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                                     <div class="notify-icon">
                                         <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" class="img-fluid rounded-circle" alt="" />
@@ -102,8 +98,6 @@
                                         <small>Wow ! this admin looks good and awesome design</small>
                                     </p>
                                 </a>
-
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                                     <div class="notify-icon">
                                         <img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
@@ -113,8 +107,6 @@
                                         <small>Hi, How are you? What about our next meeting</small>
                                     </p>
                                 </a>
-
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom active">
                                     <div class="notify-icon bg-success"><i class="uil uil-comment-message"></i> </div>
                                     <p class="notify-details">Jaclyn Brunswick commented on Dashboard<small class="text-muted">1
@@ -122,14 +114,11 @@
                                             ago</small></p>
                                 </a>
 
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                                     <div class="notify-icon bg-danger"><i class="uil uil-comment-message"></i></div>
                                     <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days
                                             ago</small></p>
                                 </a>
-
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-primary">
                                         <i class="uil uil-heart"></i>
@@ -140,8 +129,6 @@
                                     </p>
                                 </a>
                             </div>
-
-                            <!-- All-->
                             <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all border-top">
                                 View all
                                 <i class="fi-arrow-right"></i>
@@ -150,7 +137,7 @@
                         </div>
                     </li>
 
-                    <li class="dropdown notification-list align-self-center profile-dropdown">
+                    <li claNoss="dropdown notification-list align-self-center profile-dropdown">
                         <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <div class="media user-profile ">
                                 <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" alt="user-image" class="rounded-circle align-self-center" />
@@ -192,15 +179,24 @@
                             </a>
                         </div>
                     </li>
-                </ul>
-            </div>
+                </ul> -->
+        <!-- </div> -->
 
-        </div>
+        <!-- </div> -->
         <!-- end Topbar -->
 
         <!-- ========== Left Sidebar Start ========== -->
         <div class="left-side-menu">
-            <div class="media user-profile mt-2 mb-2">
+            <div class="container-fluid mb-4 mt-3 d-flex justify-content-center">
+                <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
+                    <span class="logo-lg">
+                        <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
+                        <span class="d-inline h5 ml-1 text-logo"></span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- <div class="media user-profile mt-2 mb-2">
                 <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
                 <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-xs rounded-circle mr-2" alt="Shreyu" />
 
@@ -223,7 +219,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="sidebar-content">
                 <!--- Sidemenu -->
                 <div id="sidebar-menu" class="slimscroll-menu">
@@ -441,6 +437,119 @@
         <!-- ============================================================== -->
 
         <div class="content-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 border">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @php $date = date('d M Y H:i:s') @endphp
+                                        <i class="uil uil-home-alt"></i> {{ $date }} Login as <b>{{ Auth::user()->name }}</b>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-end">
+                                        <!-- <ul class="mt-1 mr-3 navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+                                            <li class="dropdown notification-list" data-toggle="tooltip" data-placement="left" title="8 new unread notifications">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                    <i data-feather="bell" class="text-kai" height="15"></i>
+                                                    <span class="noti-icon-badge"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                                                    <div class="dropdown-item noti-title border-bottom">
+                                                        <h5 class="m-0 font-size-16">
+                                                            <span class="float-right">
+                                                                <a href="" class="text-dark">
+                                                                    <small>Clear All</small>
+                                                                </a>
+                                                            </span>Notification
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="slimscroll noti-scroll">
+
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon bg-primary"><i class="uil uil-user-plus"></i></div>
+                                                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
+                                                            </p>
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon">
+                                                                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                            </div>
+                                                            <p class="notify-details">Karen Robinson</p>
+                                                            <p class="text-muted mb-0 user-msg">
+                                                                <small>Wow ! this admin looks good and awesome design</small>
+                                                            </p>
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon">
+                                                                <img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                            </div>
+                                                            <p class="notify-details">Cristina Pride</p>
+                                                            <p class="text-muted mb-0 user-msg">
+                                                                <small>Hi, How are you? What about our next meeting</small>
+                                                            </p>
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom active">
+                                                            <div class="notify-icon bg-success"><i class="uil uil-comment-message"></i> </div>
+                                                            <p class="notify-details">Jaclyn Brunswick commented on Dashboard<small class="text-muted">1
+                                                                    min
+                                                                    ago</small></p>
+                                                        </a>
+
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon bg-danger"><i class="uil uil-comment-message"></i></div>
+                                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days
+                                                                    ago</small></p>
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                                            <div class="notify-icon bg-primary">
+                                                                <i class="uil uil-heart"></i>
+                                                            </div>
+                                                            <p class="notify-details">Carlos Crouch liked
+                                                                <b>Admin</b>
+                                                                <small class="text-muted">13 days ago</small>
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all border-top">
+                                                        View all
+                                                        <i class="fi-arrow-right"></i>
+                                                    </a>
+
+                                                </div>
+                                            </li>
+                                        </ul> -->
+                                        <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                            <div class="media">
+                                                <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
+                                                <!-- <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-xs rounded-circle mr-2" alt="Shreyu" /> -->
+
+                                                <div class="media-body mr-2">
+                                                    <h6 class="pro-user-name font-size-10 mt-0 mb-0 text-kai">{{ ucfirst(Auth::user()->username) }}</h6>
+                                                    <span class="pro-user-desc text-dark">{{ ucfirst(Auth::user()->name) }}</span>
+                                                </div>
+                                                <span data-feather="chevron-down" height="20" class="ml-2 align-self-center text-kai"></span>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
+                                            <a href="javascript:void(0)" class="dropdown-item notify-item">
+                                                <i data-feather="user" class="icon-dual icon-xs mr-2 text-kai"></i>
+                                                <span>My Account</span>
+                                            </a>
+                                            <a href="{{ route('logout') }}" class="dropdown-item notify-item">
+                                                <i data-feather="log-out" class="icon-dual icon-xs mr-2 text-kai"></i>
+                                                <span>Logout</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="content">
                 @yield('content')
             </div> <!-- content -->

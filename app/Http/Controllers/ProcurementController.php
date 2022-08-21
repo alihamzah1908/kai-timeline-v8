@@ -439,21 +439,6 @@ class ProcurementController extends Controller
                 $status = \App\Models\SP3::find($request["sp3_id"]);
                 $status->proses_st = 'PROSES_DC';
                 $status->save();
-                // $sp3 = \App\Models\SP3::find($request["sp3_id"]);
-                // $contract = new \App\Models\TrxPbjReportContract();
-                // $contract->sp3_id = $request["sp3_id"];
-                // $contract->directorate_cd = $sp3->directorate_cd;
-                // $contract->division_cd = $sp3->division_cd;
-                // $contract->department_cd = $sp3->department_cd;
-                // $contract->judul_pengadaan = $sp3->judul_pengadaan;
-                // $contract->nilai_rkap = $sp3->nilai_pr;
-                // $contract->sp3_no = $sp3->no_sp3;
-                // $contract->vendor = $sp3->nama_vendor;
-                // $contract->pbj_status = $sp3->proses_st;
-                // $contract->metode = $sp3->type_metode;
-                // $contract->lokal_impor = $sp3->jenis_barang;
-                // $contract->contract_status = 'PROSES_DC';
-                // $contract->save();
             }
         } else {
             $data = new \App\Models\TrxPenetapanPemenang();
@@ -548,8 +533,22 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_UPCP')
             ->orWhere('proses_st', 'PROSES_PCP')
             ->orWhere('proses_st', 'SPR')
+            ->orWhere('proses_st', 'PROSES_DC')
+            ->orWhere('proses_st', 'PROSES_UJP')
+            ->orWhere('proses_st', 'PROSES_VJP')
+            ->orWhere('proses_st', 'PROSES_RDC')
+            ->orWhere('proses_st', 'PROSES_VAC')
+            ->orWhere('proses_st', 'PROSES_ALG')
+            ->orWhere('proses_st', 'PROSES_APU')
+            ->orWhere('proses_st', 'PROSES_KAC')
+            ->orWhere('proses_st', 'PROSES_CR')
             ->get();
         return DataTables::of($data)
+            ->addColumn('no_sp3', function ($row) {
+                return '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                           ' . $row->no_sp3 . '
+                        </a>';
+            })
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 2);
             })
@@ -597,7 +596,12 @@ class ProcurementController extends Controller
                 //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
                 //                </a>';
                 // } else if ($row->proses_st == 'PROSES_RRKS') {
-                if ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR') {
+                if (
+                    $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
+                    || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
+                    || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
+                    || $row->proses_st == 'PROSES_CR'
+                ) {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 
@@ -618,7 +622,7 @@ class ProcurementController extends Controller
                 // }
                 return $action;
             })
-            ->rawColumns(['action', 'proses_st'])
+            ->rawColumns(['action', 'proses_st', 'no_sp3'])
             ->make(true);
     }
 }

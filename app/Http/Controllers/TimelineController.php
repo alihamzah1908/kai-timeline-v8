@@ -151,6 +151,11 @@ class TimelineController extends Controller
         } else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
         $data = $timeline->get();
         return FacadesDataTables::of($data)
+            ->addColumn('no_pengadaan', function ($row) {
+                return '<a href="' . route('timeline.show', $row->timeline_id) . '">
+                           ' . $row->no_pengadaan . '
+                        </a>';
+            })
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 0);
             })
@@ -210,7 +215,7 @@ class TimelineController extends Controller
                     return $btn;
                 }
             })
-            ->rawColumns(['action', 'proses_st'])
+            ->rawColumns(['action', 'proses_st', 'no_pengadaan'])
             ->make(true);
     }
 }
