@@ -64,7 +64,7 @@ class Sp3Controller extends Controller
                 // } else {
                 //     $data->nama_vendor = $request["vendor_name"];
                 // }
-                $data->nama_vendor = $request["vendor_name"];
+                $data->nama_vendor = json_encode($request["vendor_name"]);
                 $data->no_mi = $request["no_mi"];
                 $data->no_rab = $request["no_mi"];
                 $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
@@ -312,6 +312,11 @@ class Sp3Controller extends Controller
             $data->created_by = Auth::user()->id;
             $data->save();
         }
+        $notes = new \App\Models\TrxEvalNotes();
+        $notes->sp3_id = $request["sp3_id"];
+        $notes->catatan_evaluasi = $request["catatan_evaluasi"];
+        $data->created_by = Auth::user()->id;
+        $notes->save();
         return redirect(route('sp3.show', $request["sp3_id"]));
     }
 
@@ -332,6 +337,7 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_EDH');
             $sp3->orWhere('proses_st', 'PROSES_UPCP');
             $sp3->orWhere('proses_st', 'PROSES_PCP');
+            $sp3->orWhere('proses_st', 'PROSES_PGL');
             $sp3->orWhere('proses_st', 'SPR');
             $sp3->orWhere('proses_st', 'PROSES_DC');
             $sp3->orWhere('proses_st', 'PROSES_UJP');
@@ -350,7 +356,7 @@ class Sp3Controller extends Controller
         return FacadesDataTables::of($data)
             ->addColumn('no_sp3', function ($row) {
                 return '<a href="' . route('sp3.show', $row->sp3_id) . '">
-                           ' . $row->no_sp3 .'
+                           ' . $row->no_sp3 . '
                         </a>';
             })
             ->addColumn('nilai_pr', function ($row) {
@@ -429,17 +435,19 @@ class Sp3Controller extends Controller
                     if ($row->proses_st == 'PROSES_SSP3') {
                         $btn = $action;
                         return $btn;
-                    } elseif ($row->proses_st == 'PROSES_DRKS') {
+                    } elseif ($row->proses_st == 'PROSES_DRKS' || $row->proses_st == 'PROSES_PGL') {
                         $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
                                     <button class="btn btn-primary btn-rounded btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
                                 </a>';
                         return $btn;
-                    } elseif ($row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
+                    } elseif (
+                        $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
                         || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
                         || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
-                        || $row->proses_st == 'PROSES_CR') {
+                        || $row->proses_st == 'PROSES_CR'
+                    ) {
                         $btn = '<a href="' . route('evaluasi.print.sp') . '">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 

@@ -12,12 +12,12 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5 class="header-title mt-0 mb-1">List Timeline Signed</h4>
+                            <h5 class="header-title mt-0 mb-1">List SP3 Signed</h4>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <p class="sub-header">
                                 <button type="button" class="create-timeline d-flex justify-content-end btn btn-success btn-sm btn-rounded">
-                                    <i class="uil-plus"></i> &nbsp; Upload Timeline Signed
+                                    <i class="uil-plus"></i> &nbsp; Upload SP3 Signed
                                 </button>
                             </p>
                         </div>
@@ -48,7 +48,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Upload Timeline</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Upload SP3 Signed</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -84,9 +84,9 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h5 class="header-title" class="font-weight-bold">Upload Timeline Signed</h5>
+                            <h5 class="header-title" class="font-weight-bold">Upload SP3 Signed</h5>
                             <div class="fallback">
-                                <input name="file[]" type="file" id="file" multiple />
+                                <input name="file[]" type="file" id="file" class="form-control" multiple />
                             </div>
                             <div class="dz-message needsclick">
                                 <i class="h1 text-muted  uil-cloud-upload"></i>
@@ -120,7 +120,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: "{{ route('data.timeline') }}",
+            ajax: "{{ route('data.sp3') }}",
             columns: [{
                     data: 'judul_pengadaan'
                 },
@@ -130,22 +130,21 @@
                 {
                     data: 'nilai_pr'
                 },
-
                 {
                     data: 'created_at'
                 },
                 {
-                    data: 'jenis_kontrak'
+                    data: 'nilai_tax'
                 },
                 {
-                    data: 'start_date_pengadaan'
+                    data: 'realisasi'
                 },
                 // {
                 //     data: 'action',
                 //     name: 'action',
                 //     orderable: false,
                 //     searchable: false
-                // },
+                // },,
             ]
         });
         $('body').on('click', '.create-timeline', function() {

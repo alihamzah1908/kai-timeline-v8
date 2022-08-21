@@ -63,7 +63,7 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Vendor Name
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->nama_vendor }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ str_replace(array( '"', '[', ']' ),'' , $data->nama_vendor); }}</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Department</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -82,6 +82,8 @@
                                                 <span class="text-warning">Drafting RKS</span>
                                                 @elseif($data->proses_st == 'PROSES_RRKS')
                                                 <span class="text-warning">Reviewing RKS</span>
+                                                @else 
+                                                <span class="text-warning">{{ $data->proses_st }}</span>
                                                 @endif
                                             </dd>
 
@@ -508,6 +510,14 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <table class="ml-3">
+                                                <tr>
+                                                    <th>Catatan </th>
+                                                </tr>
+                                                <tr>
+                                                    <th><textarea name="catatan_evaluasi" class="form-control" cols="50"></textarea> </th>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
@@ -550,6 +560,19 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                </table>
+                                
+                                    @php
+                                    $notes = \App\Models\TrxEvalNotes::where('sp3_id', request()->id)->first();
+                                    @endphp
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Catatan Evaluasi</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">{{ $notes ? $notes->catatan_evaluasi : '' }}</div>
+                                    </div>
                                 </table>
                             </div>
                         </div>

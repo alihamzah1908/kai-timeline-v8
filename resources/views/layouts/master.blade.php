@@ -341,6 +341,9 @@
                                     <a href="{{ route('list.sp3') }}">List SP3</a>
                                 </li>
                                 @endcan
+                                <li>
+                                    <a href="{{ route('sp3.final') }}">Upload SP3 Final</a>
+                                </li>
                             </ul>
                         </li>
                         <li>

@@ -67,7 +67,7 @@
                                 <?php
                                 $timeline = DB::select("select tt.timeline_id, tt.judul_pengadaan from trx_timeline tt
                                     left join trx_sp3 ts on tt.timeline_id = ts.timeline_id
-                                    where tt.division_cd='". Auth::user()->division_cd ."' and tt.proses_st='PROSES_AT' and ts.timeline_id is null");
+                                    where tt.division_cd='" . Auth::user()->division_cd . "' and tt.proses_st='PROSES_AT' and ts.timeline_id is null");
                                 ?>
                                 <select data-plugin="customselect" class="form-control" name="timeline_id[]" multiple>
                                     @foreach($timeline as $val)
@@ -99,17 +99,25 @@
                         <div class="col-md-6">
                             <label for="exampleInputEmail1" class="font-weight-bold">Metode</label>
                             <select class="form-control type-metode" name="type_metode">
+                                <option value="">Pilih Metode</option>
                                 <option value="1">Penunjukan Langsung</option>
                                 <option value="2">Pemilihan Langsung</option>
                                 <option value="3">Pelelangan Terbuka</option>
                             </select>
                             <!-- <input type="text" name="metode" class="form-control" placeholder="Please insert metode"> -->
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 vendor-name">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
-                                <input type="text" id="vendor_name" name="vendor_name" class="form-control" placeholder="Please insert vendor name">
+                                <input type="text" id="vendor_name" name="vendor_name[]" class="form-control form-vendor-name" placeholder="Please insert vendor name">
                                 <div id="loading"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 add-vendor" style="display: none;">
+                            <div class="form-group d-flex justify-content-end">
+                                <button class="btn btn-primary btn-sm btn-rounded mt-4" type="button"><i class="uil uil-plus"></i> Add Vendor</button>
                             </div>
                         </div>
                     </div>
@@ -644,8 +652,16 @@
         $('body').on('change', '.type-metode', function() {
             if ($(this).val() == '3') {
                 $("#no-justifikasi").css('display', 'none')
-            } else {
+                $(".add-vendor").css('display', 'none')
+                $(".form-vendor-name").prop('disabled', true)
+            } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')
+                $(".add-vendor").css('display', 'none')
+                $(".form-vendor-name").prop('disabled', false)
+            } else if ($(this).val() == '2') {
+                $("#no-justifikasi").css('display', '')
+                $(".add-vendor").css('display', '')
+                $(".form-vendor-name").prop('disabled', false)
             }
         })
 
@@ -711,6 +727,14 @@
             body += '</div>'
             body += '</div>'
             $('.doc-pr-rab').append(body)
+        })
+
+        $('body').on('click', '.add-vendor', function() {
+            var body = '<div class="form-group">'
+            body += '<input type="text" id="vendor_name" name="vendor_name[]" class="form-control form-vendor-name" placeholder="Please insert vendor name">'
+            body += '<div id="loading"></div>'
+            body += '</div>'
+            $(".vendor-name").append(body)
         })
     })
 </script>

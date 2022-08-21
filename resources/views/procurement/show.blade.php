@@ -37,7 +37,7 @@
                             <dt class="font-weight-bold">Vendor Name</dt>
                         </div>
                         <div class="col-md-3 ">
-                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</dt>
+                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ str_replace(array( '"', '[', ']' ),'' , $data->nama_vendor); }}</dt>
                         </div>
                     </div>
 
@@ -171,9 +171,9 @@
                             || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
                             || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
                             || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
-                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR' || $data->proses_st == 'PROSES_PGL')
                             <li class="nav-item tab-draftrks">
-                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
+                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">RKS</span>
                                 </a>
@@ -294,7 +294,7 @@
                             @endif
                         </ul>
                         <div class="tab-content p-3 text-muted col-md-12">
-                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'show' : '' }} {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}" id="draftrks">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'show' : '' }} {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'active' : '' }}" id="draftrks">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="exampleInputEmail1" class="font-weight-bold"></label>
@@ -747,83 +747,6 @@
                                             </form>
                                         </div>
                                     </div>
-                                    @elseif($data->proses_st == 'PROSES_PPDP')
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="3">PEMBUKAAN DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="30%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="30%" rowspan="2">DOKUMEN (Admin, Teknis dan Harga)</th>
-                                                        <th width="30%" rowspan="2">TANGGAL PEMBUKAAN DOKUMEN</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    @php
-                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
-                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name')
-                                                    ->where('a.sp3_id', request()->id)
-                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
-                                                    ->get();
-                                                    @endphp
-                                                    @foreach($dokumen as $doc)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $doc->vendor_name }}
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/sp3/'. $doc->file_dokumen) }}" target="_blank">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_dokumen }}">
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
-                                                    </dt<div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     @else
                                     <div class="row">
                                         <div class="col-md-12">
@@ -895,8 +818,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
                                                     <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -924,14 +848,6 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody style="vertical-align: top">
-                                                        @php
-                                                        $tender_list = DB::table('public.trx_peserta_tender as a')
-                                                        ->select('a.peserta_tender_id','a.sp3_id','a.vendor_code','a.phone_number','a.pic_name','a.email_corporate',
-                                                        'a.address','b.i_lifnr','b.e_name')
-                                                        ->where('a.sp3_id', request()->id)
-                                                        ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
-                                                        ->get();
-                                                        @endphp
                                                         @foreach($tender_list as $val)
                                                         <tr>
                                                             <td>
@@ -1036,15 +952,16 @@
                                                     @php
                                                     $dokumen = DB::table('public.trx_document_penawaran as a')
                                                     ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.i_lifnr','b.e_name')
+                                                    'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name','a.file_teknis','a.tanggal_submit_teknis','a.file_harga',
+                                                    'a.tanggal_submit_harga')
                                                     ->where('a.sp3_id', request()->id)
-                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
                                                     @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->e_name}}
+                                                            {{ $doc->vendor_name}}
                                                         </td>
                                                         <td>
                                                             <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
@@ -1124,6 +1041,7 @@
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
                                                     <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1">Reject</button>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1341,8 +1259,12 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
+                                                        @if($evaluasi_1_sampul->count() > 0)
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                                        <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                        @else 
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                                        <!-- <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button> -->
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
@@ -1501,8 +1423,12 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
+                                                        @if($evaluasi_2_sampul->count() > 0)
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                                        <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                        @else 
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                                        <!-- <button type="button" class="btn btn-warning btn-sm btn-rounded reject-rks">Reject</button> -->
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
@@ -2553,9 +2479,23 @@
 
         // SAVE DOKUMEN PENAWARAN
         $("body").on('click', '.reject', function(e) {
+            var status = $(this).attr('data-status')
+            if (status == 'gagal_lelang') {
+                var title = 'Are you sure Gagal Lelang PBJ ?'
+                var text = 'Your dokumen will change status gagal lelang!'
+                var title_success = 'Dokumen Are Gagal Lelang'
+                var text_success = 'File change status to Gagal Lelang!'
+                var proses = status
+            } else {
+                var title = 'Are you sure reject dokumen penawaran?'
+                var text = 'Your dokumen penawaran will back to pengumuman pengadaan !'
+                var title_success = 'Success rejected'
+                var text_success = 'File change status to Pengumuman Pengadaan!'
+                var proses = false
+            }
             Swal.fire({
-                title: 'Are you sure reject dokumen penawaran?',
-                text: "Your dokumen penawaran will back to pengumuman pengadaan !",
+                title: title,
+                text: text,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -2568,13 +2508,14 @@
                         method: "get",
                         dataType: 'JSON',
                         data: {
-                            sp3_id: '{{ $data->sp3_id }}'
+                            sp3_id: '{{ $data->sp3_id }}',
+                            status: proses
                         },
                     }).done(function(response) {
                         if (response.status == 200) {
                             Swal.fire({
-                                title: 'Success rejected',
-                                text: "File change status to Pengumuman Pengadaan!",
+                                title: title_success,
+                                text: text_success,
                                 confirmButtonText: 'Yes'
                             }).then((result) => {
                                 if (result.isConfirmed) {

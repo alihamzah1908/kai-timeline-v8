@@ -233,6 +233,8 @@ class ProcurementController extends Controller
                 $status->proses_st = 'PROSES_PP';
             } elseif ($request["proses_st"] == 'PROSES_PPDP') {
                 $status->proses_st = 'PROSES_EP';
+            } elseif ($request["proses_st"] == 'PROSES_EP') {
+                $status->proses_st = 'PROSES_KKN';
             }
             $status->save();
             if ($status) {
@@ -244,7 +246,11 @@ class ProcurementController extends Controller
     public function reject_penawaran(Request $request)
     {
         $status = \App\Models\SP3::find($request["sp3_id"]);
-        $status->proses_st = 'PROSES_PP';
+        if ($request["status"] == 'gagal_lelang') {
+            $status->proses_st = 'PROSES_PGL';
+        } else {
+            $status->proses_st = 'PROSES_PP';
+        }
         $status->save();
         if ($status) {
             return response()->json(['status' => 200]);
@@ -365,9 +371,9 @@ class ProcurementController extends Controller
                 $dokumen->created_by = Auth::user()->id;
                 $dokumen->save();
                 // UPDATE STATUS
-                $status = \App\Models\SP3::find($request["sp3_id"]);
-                $status->proses_st = 'PROSES_KKN';
-                $status->save();
+                // $status = \App\Models\SP3::find($request["sp3_id"]);
+                // $status->proses_st = 'PROSES_KKN';
+                // $status->save();
             } else if ($request["metode"] == '2_sampul') {
                 if ($request["tanggal_admin"] || $request["penilaian_admin"] || $request["catatan_admin"]) {
                     $dokumen->tanggal_evaluasi_admin = $request["tanggal_admin"][$key];
@@ -389,9 +395,9 @@ class ProcurementController extends Controller
                     $dokumen->created_by = Auth::user()->id;
                     $dokumen->save();
                     // UPDATE STATUS
-                    $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->proses_st = 'PROSES_KKN';
-                    $status->save();
+                    // $status = \App\Models\SP3::find($request["sp3_id"]);
+                    // $status->proses_st = 'PROSES_KKN';
+                    // $status->save();
                 }
             }
         }
@@ -532,6 +538,7 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_EDH')
             ->orWhere('proses_st', 'PROSES_UPCP')
             ->orWhere('proses_st', 'PROSES_PCP')
+            ->orWhere('proses_st', 'PROSES_PGL')
             ->orWhere('proses_st', 'SPR')
             ->orWhere('proses_st', 'PROSES_DC')
             ->orWhere('proses_st', 'PROSES_UJP')

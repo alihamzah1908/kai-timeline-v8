@@ -155,6 +155,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/sp-3/evaluasi/detail', function () {
         return view('sp-3.evaluasi.sp');
     })->name('evaluasi.sp3');
+    Route::get('/sp-3/upload-sp3-final', function () {
+        return view('sp-3.list-sp3.list-sp3-signed');
+    })->name('sp3.final');
     Route::get('/pbj/list-pbj', function () {
         return view('pbj.index');
     })->name('list.pbj');

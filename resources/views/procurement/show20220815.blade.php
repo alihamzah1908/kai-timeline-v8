@@ -1,18 +1,23 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    label {
+        font-size: 10px;
+    }
+</style>
 <div class="container-fluid">
-    <div class="row page-title">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="float-left mt-1">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}">List Procurement</a></li>
-                    <li class="breadcrumb-item"><a href="#">Detail {{ $data->judul_pengadaan }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.taskpbj') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -22,85 +27,133 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Judul Pengadaan</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Judul Pengadaan</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</label>
+                            <dt class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ $data->judul_pengadaan }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Vendor Name</dt>
+                        </div>
+                        <div class="col-md-3 ">
+                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Vendor Name</label>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 0); }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nilai Tax</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</label>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_tax, 0); }}</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No PR</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal PR</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}@endforeach</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No MI</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_mi }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal MI</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_mi)) }}</dt>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No PR</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No RAB</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_pr }}</label>
+                            <dt class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal RAB</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">No MI</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-mi"></span>{{ $data->mi }}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Nilai PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 2); }}</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal PR</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_pr)) }}</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}@endforeach</dt>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No RAB</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No Justifikasi Barang</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-rab"></span>{{ $data->no_rab }}</label>
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal Justifikasi Barang</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal RAB</label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-rab"></span>{{ date('d/m/Y', strtotime($data->tanggal_rab)) }}</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}@endforeach</dt>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <label class="font-weight-bold">No KAK</label>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No Justifikasi Pemilihan/Penujukan Langsung</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</label>
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>{{ $data->no_justifikasi }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal Justifikasi Pemilihan/Penunjukan Langsung</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal KAK</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi_pemilihan)) }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">No KAK</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</label>
+                            <dt class="font-weight-normal">: <span class="no-kak"></span>{{ $data->no_kak }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal KAK</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Tanggal Justifikasi</label>
+                            <dt class="font-weight-normal">: <span class="tanggal-kak"></span>{{ date('d/m/Y', strtotime($data->tanggal_kak)) }}</dt>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tipe Pemilihan</dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ date('d/m/Y', strtotime($data->tanggal_justifikasi)) }}</label>
+                            <dt class="font-weight-normal">: <span class="judul-pengadaan"></span>{{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}</dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Status </dt>
                         </div>
                         <div class="col-md-3">
-                            <label class="font-weight-bold">Status </label>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st }}</span></label>
+                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st == 'PROSES_PCP' ? 'MASA SANGGAH' : $data->proses_st }}</span></dt>
                         </div>
                     </div>
                 </div>
@@ -115,7 +168,10 @@
                         <ul class="nav nav-tabs">
                             @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
                             $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
-                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-draftrks">
                                 <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -124,7 +180,10 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-peserta-tender">
                                 <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -133,7 +192,10 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
-                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-aanwidjzing">
                                 <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -143,7 +205,9 @@
                             @endif
                             @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
                             || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-dokumen-penawaran">
                                 <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -152,7 +216,10 @@
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
-                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-evaluasi-dokumen">
                                 <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -160,16 +227,22 @@
                                 </a>
                             </li>
                             @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
-                                <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' ? 'active' : '' }}">
+                                <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
                                     <span class="d-none d-sm-block">Klarifikasi, Konfirmasi dan Negoisasi</span>
                                 </a>
                             </li>
                             @endif
                             @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
-                            || $data->proses_st == 'PROSES_PCP')
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-klarifikasi">
                                 <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
@@ -177,11 +250,37 @@
                                 </a>
                             </li>
                             @endif
-                            @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP')
+                            @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
                             <li class="nav-item tab-pemenang">
-                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
+                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
                                     <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                    <span class="d-none d-sm-block">Usulan & Penetapan Calon Pemenang</span>
+                                    <span class="d-none d-sm-block">Usulan Calon Pemenang</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-penetapanpemenang">
+                                <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Penetapan Calon Pemenang</span>
+                                </a>
+                            </li>
+                            @endif
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
+                            @if($status)
+                            <li class="nav-item tab-spr">
+                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $status ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">SPR</span>
                                 </a>
                             </li>
                             @endif
@@ -300,7 +399,11 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                         <div class="row">
                                             @php
-                                            $tender = \App\Models\TrxPesertaTender::where('sp3_id', $data->sp3_id)->get();
+                                            $tender = DB::table('public.trx_peserta_tender as a')
+                                            ->select('a.*', 'b.vendor_code','b.vendor_name')
+                                            ->join('public.vendor as b','a.vendor_code','b.vendor_code')
+                                            ->where('sp3_id', $data->sp3_id)
+                                            ->get();
                                             @endphp
                                             @if($tender->count() > 0)
                                             @foreach($tender as $val)
@@ -316,12 +419,8 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <select data-plugin="customselect" class="form-control" name="vendor_code[{{$val->peserta_tender_id}}]">
-                                                                <option value="">Select Vendor</option>
-                                                                <option value="RK10047" {{ $val->vendor_code == 'RK10047' ? ' selected' : '' }}>PT. TEKNOKRAT MITRA DATA</option>
-                                                                <option value="RK100002" {{ $val->vendor_code == 'RK100002' ? ' selected' : '' }}>PT. SARANA MULTI CORPORA</option>
-                                                                <option value="RK10003" {{ $val->vendor_code == 'RK10003' ? ' selected' : '' }}>PT. TRIINTI INTERNATIONAL</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" value="{{ $val->vendor_name }}" disabled />
+                                                            <input type="hidden" class="form-control" name="vendor_code[{{$val->peserta_tender_id}}]" value="{{ $val->vendor_code }}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
@@ -384,11 +483,18 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <!-- <input type="text" class="form-control vendor_name-1" name="vendor_name[]" placeholder="Please search vendor name">
+                                                            <input type="text" class="form-control code-1" name="vendor_code[]" value="">
+                                                            <div class="loading"></div> -->
                                                             <select data-plugin="customselect" class="form-control" name="vendor_code[]">
                                                                 <option value="">Select Vendor</option>
-                                                                <option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>
-                                                                <option value="RK100002">PT. SARANA MULTI CORPORA</option>
-                                                                <option value="RK10003">PT. TRIINTI INTERNATIONAL</option>
+
+                                                                <?php
+                                                                $vendor = DB::table('public.vendor')->limit(5)->get();
+                                                                foreach ($vendor as $val) {
+                                                                ?>
+                                                                    <option value="{{ $val->vendor_code }}">{{ $val->vendor_name }}</option>
+                                                                <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -483,7 +589,8 @@
                                                         <tr>
                                                             <td>{{ $i++ }}</td>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
+                                                                <input type="hidden" id="vendor_code" name="vendor_code[{{$val->aanwidjzing_id}}]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -510,7 +617,7 @@
                                                         <tr>
                                                             <td>{{ $i++ }}</td>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" id="vendor_code" name="vendor_code[{{$val->peserta_tender_id}}]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
@@ -587,10 +694,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody style="vertical-align: top">
-                                                        @foreach($tender_list as $val)
+                                                        @foreach($tender_aanwidjzing as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
@@ -658,15 +765,15 @@
                                                     @php
                                                     $dokumen = DB::table('public.trx_document_penawaran as a')
                                                     ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_dokumen','b.i_lifnr','b.e_name')
+                                                    'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name')
                                                     ->where('a.sp3_id', request()->id)
-                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
                                                     @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->e_name }}
+                                                            {{ $doc->vendor_name }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ asset('file/sp3/'. $doc->file_dokumen) }}" target="_blank">
@@ -684,7 +791,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen:</label>
-                                                    </div>
+                                                    </dt<div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -735,15 +842,15 @@
                                                     @php
                                                     $dokumen = DB::table('public.trx_document_penawaran as a')
                                                     ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_dokumen','b.i_lifnr','b.e_name')
+                                                    'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name')
                                                     ->where('a.sp3_id', request()->id)
-                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
                                                     @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->e_name }}
+                                                            {{ $doc->vendor_name }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ asset('file/sp3/', $doc->file_dokumen) }}">
@@ -1152,8 +1259,8 @@
                                                         <tr>
                                                             <th width="30%" rowspan="2">PESERTA TENDER</th>
                                                             <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
-                                                            <th width="10%" rowspan="2">LOLOS</th>
-                                                            <th width="10%" rowspan="2">TIDAK LOLOS</th>
+                                                            <th width="10%" rowspan="2">LULUS</th>
+                                                            <th width="10%" rowspan="2">GUGUR</th>
                                                             <th width="30%" rowspan="2">CATATAN EVALUASI</th>
                                                         </tr>
                                                     </thead>
@@ -1162,7 +1269,7 @@
                                                         @foreach($evaluasi_1_sampul as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
 
                                                             </td>
                                                             <td>
@@ -1181,34 +1288,34 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
+                                                                <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_dokumen }}</textarea>
                                                             </td>
                                                         </tr>
                                                         @endforeach
                                                         @else
-                                                        @foreach($tender_list as $val)
+                                                        @foreach($tender_aanwidjzing as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
-                                                                <input type="hidden" name="vendor_code[{{$val->peserta_tender_id }}]" value="{{ $val->vendor_code}}" />
+                                                                {{ $val->vendor_name }}
+                                                                <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="tanggal_evaluasi_dokumen[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                                <input type="text" name="tanggal_evaluasi_dokumen[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->peserta_tender_id }}]" id="penilaian_{{$val->peserta_tender_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_ya">Ya</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->peserta_tender_id }}]" id="penilaian_{{$val->peserta_tender_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <textarea name="catatan_evaluasi[{{ $val->peserta_tender_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
+                                                                <textarea name="catatan_evaluasi[{{ $val->aanwidjzing_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -1271,7 +1378,7 @@
                                                         @foreach($evaluasi_2_sampul as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" name="vendor_code[{{$val->document_evaluasi_id }}]" value="{{ $val->vendor_code}}" />
                                                             </td>
                                                             <td>
@@ -1313,47 +1420,47 @@
                                                         </tr>
                                                         @endforeach
                                                         @else
-                                                        @foreach($tender_list as $val)
+                                                        @foreach($tender_aanwidjzing as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
-                                                                <input type="hidden" name="vendor_code[{{$val->peserta_tender_id }}]" value="{{ $val->vendor_code}}" />
+                                                                {{ $val->vendor_name }}
+                                                                <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="tanggal_admin[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                                <input type="text" name="tanggal_admin[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->peserta_tender_id }}]" id="admin_{{$val->peserta_tender_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="admin_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_ya">Ya</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->peserta_tender_id }}]" id="admin_{{$val->peserta_tender_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="admin_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <textarea name="catatan_admin[{{$val->peserta_tender_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                                <textarea name="catatan_admin[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="tanggal_harga[{{$val->peserta_tender_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                                <input type="text" name="tanggal_harga[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->peserta_tender_id}}]" id="harga_{{$val->peserta_tender_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="harga_{{$val->peserta_tender_id }}_ya">Ya</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                                    <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_ya">Ya</label>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->peserta_tender_id}}]" id="harga_{{$val->peserta_tender_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="harga_{{$val->peserta_tender_id }}_tidak">Tidak</label>
+                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                                    <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <textarea name="catatan_harga[{{$val->peserta_tender_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                                <textarea name="catatan_harga[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -1405,8 +1512,7 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="tab-pane {{ $data->proses_st == 'PROSES_KKN' ? 'active' : '' }}" id="klarifikasi">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}" id="klarifikasi">
                                 <div class="add-klarifikasi">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1433,7 +1539,7 @@
                                                         @foreach($klarifikasi as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
                                                             </td>
                                                             <td>
@@ -1451,10 +1557,10 @@
                                                         </tr>
                                                         @endforeach
                                                         @else
-                                                        @foreach($tender_list as $val)
+                                                        @foreach($tender_aanwidjzing as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
                                                             </td>
                                                             <td>
@@ -1542,39 +1648,62 @@
                                                         <th width="100%" colspan="5">BERITA ACARA HASIL PELELANGAN</th>
                                                     </tr>
                                                     <tr>
-                                                        <th width="20%">PESERTA TENDER</th>
-                                                        <th width="10%">BERITA ACARA</th>
+                                                        <th>PESERTA TENDER</th>
+                                                        <th>TANGGAL BERITA ACARA</th>
+                                                        <th>CATATAN HASIL PELELANGAN</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody style="vertical-align: top">
                                                     @if($bahp->count() > 0)
-                                                    @foreach($bahp as $doc)
+                                                    @foreach($bahp as $val)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->e_name }}
+                                                            {{ $val->vendor_name }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ asset('file/sp3/'. $doc->file_berita_acara) }}" target="_blank">
-                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $doc->file_berita_acara }}
-                                                            </a>
+                                                            <input type="text" class="form-control datepicker" value="{{ $val->tanggal_berita_acara }}">
+                                                        </td>
+                                                        <td>
+                                                            <textarea class="form-control" value="{{ $val->catatan_berita_acara }}">{{ $val->catatan_berita_acara }}</textarea>
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                     @else
-                                                    @foreach($tender_list as $val)
+                                                    @foreach($tender_aanwidjzing as $val)
                                                     <tr>
                                                         <td>
-                                                            {{ $val->e_name }}
+                                                            {{ $val->vendor_name }}
                                                             <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
                                                         </td>
                                                         <td>
-                                                            <input type="file" name="berita_acara[]" class="form-control">
+                                                            <input type="text" class="form-control datepicker" name="tanggal_berita_acara[]" placeholder="Please insert tanggal berita acara">
+                                                        </td>
+                                                        <td>
+                                                            <!-- <input type="file" name="berita_acara[]" class="form-control"> -->
+                                                            <textarea class="form-control" name="catatan_berita_acara[]" placeholder="please insert catatan"></textarea>
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="submit" class="btn btn-primary btn-sm btn-rounded save-bahp">Submit</button>
@@ -1584,7 +1713,151 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="pemenang">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}" id="pemenang">
+                                <div class="add-pemenang">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_UPCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Calon Pemenang Tender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="vendor_code">
+                                                                <option value="">Select Vendor</option>
+                                                                @foreach($tender_aanwidjzing as $val)
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">File Berita Acara Usulan Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    @if($pemenang)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
+                                                    </div>
+                                                    @else
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="penetapanpemenang">
+                                <div class="add-pemenang">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                            <form action="{{ route('save.pemenang') }}" id="form-penetapan-pemenang" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <select class="form-control" name="vendor_code">
+                                                                <option value="">Select Vendor</option>
+                                                                @foreach($tender_aanwidjzing as $val)
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">File Berita Acara Penetapan Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    @if($pemenangfinal)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
+                                                    </div>
+                                                    @else
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
+                            <div class="tab-pane {{ $status ? 'active' : '' }}" id="spr">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1602,29 +1875,83 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="vendor_code">
+                                                            <select class="form-control" name="vendor_code" disabled>
                                                                 <option value="">Select Vendor</option>
-                                                                @foreach($tender_list as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == 'RK10003' || $val->vendor_code == 'RK100002' || $val->vendor_code == 'RK10047' ? ' selected' : '' }} @endif>{{ $val->e_name }}</option>
+                                                                @foreach($tender_aanwidjzing as $val)
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($data->proses_st == 'PROSES_PCP')
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">File Berita Acara Pemenang:</label>
+                                                            <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>
                                                         </div>
                                                     </div>
+                                                    @if($pemenang)
+                                                    <div class="col-md-6 mb-2">
+                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
+                                                            <i class="uil uil-print"></i>
+                                                        </a>
+                                                    </div>
+                                                    @else
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 </div>
-                                                @endif
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Total Hari Kalender:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
+                                                            @php
+                                                            $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                            $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                            $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
+                                                            $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
+                                                            $interval = $rksNew->diff($pcpNew);
+                                                            $days = $interval->days;
+                                                            @endphp
+                                                            {{ $days }} Days
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Total Hari Kerja:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Uncontrolled Days:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1639,11 +1966,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                        @if($data->proses_st == 'PROSES_PCP')
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
-                                                        @else
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
@@ -2117,8 +2440,8 @@
                 e.preventDefault();
                 var record = new FormData(this);
                 Swal.fire({
-                    title: 'Are you sure save Berita acara pemenang ?',
-                    text: 'Your procurement are send to contract!',
+                    title: 'Usulan, Penetapan calon Pemenang ?',
+                    // text: 'Your procurement are send to contract!',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -2135,6 +2458,43 @@
                         }).done(function(response) {
                             Swal.fire({
                                 title: 'Your procurement sent to process Contract',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+        $("#form-penetapan-pemenang").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Penetapan Pemenang ?',
+                    text: 'Your procurement are change status SPR!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your status change to SPR',
                                 // text: "File change status to Pelaksanaan Aanwidjzing!",
                                 confirmButtonText: 'Yes'
                             }).then((result) => {
@@ -2215,9 +2575,65 @@
                 }
             })
         });
+        // SEARCH VENDOR
+        $(".vendor_name").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{ route('vendor.autocomplete') }}",
+                    data: {
+                        search: request.term
+                    },
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('.loading').html('loading ...')
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        $('.loading').html(' ')
+                        var resp = $.map(data, function(obj) {
+                            return obj.vendor_name;
+                        });
+                        response(resp);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                $('.vendor_name').val(ui.item.label);
+                return false;
+            }
+        });
+        // SEARCH VENDOR AFTER APPEND
+        $("body").on('keyup', '#test', function(request, response) {
+            $(".vendor_name").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('vendor.autocomplete') }}",
+                        data: {
+                            search: request.term
+                        },
+                        dataType: "json",
+                        beforeSend: function() {
+                            $('.loading').html('loading ...')
+                        },
+                        success: function(data) {
+                            $('.loading').html(' ')
+                            var resp = $.map(data, function(obj) {
+                                return obj.vendor_name
+                            });
+                            response(resp);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    $('.vendor_name').val(ui.item.label);
+                    return false;
+                }
+                // minLength: 2
+            });
+        })
         // ADD FORM TENDER
         $('body').on('click', '.add-button-vendor', function() {
-            var body = '<div class="row border-top">'
+            var body = '<div style="border-top: 1px solid red;margin-bottom: 12px;"></div><div class="row">'
             body += '<div class="col-md-12">'
             body += '<div class="form-group">'
             body += '<div class="row">'
@@ -2228,11 +2644,18 @@
             body += '</div>'
             body += '<div class="col-md-3">'
             body += '<div class="form-group">'
+            // body += '<input type="text" class="form-control vendor_name" name="vendor_name[]" placeholder="Please insert vendor name" id="test">'
+            // body += '<input type="text" class="form-control code-2" name="vendor_code[]" value="">'
+            // body += '<div class="loading"></div>'
             body += '<select data-plugin="customselect" class="form-control" name="vendor_code[]">'
             body += '<option value="">Select Vendor</option>'
-            body += '<option value="RK10047">PT. TEKNOKRAT MITRA DATA</option>'
-            body += '<option value="RK100002">PT. SARANA MULTI CORPORA</option>'
-            body += '<option value="RK10003">PT. TRIINTI INTERNATIONAL</option>'
+            <?php
+            $vendor = DB::table('public.vendor')->limit(5)
+                ->get();
+            foreach ($vendor as $val) {
+            ?>
+                body += '<option value="<?php echo $val->vendor_code ?>"><?php echo $val->vendor_name ?></option>'
+            <?php } ?>
             body += '</select>'
             body += '</div>'
             body += '</div>'
