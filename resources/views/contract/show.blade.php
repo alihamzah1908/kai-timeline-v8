@@ -214,14 +214,27 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Jaminan Pelaksanaan:</label>
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance" disabled>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4" style="margin-top: 2rem;">
-                                                                    <div class="form-group">
                                                                         <a href="{{ asset('file/contract/' . $val->file_performance_contract) }}">
                                                                             <i class="uil uil-file"></i> {{ $val->file_performance_contract }}
                                                                         </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Bank:</label>
+                                                                        <select name="bank" class="form-control" id="bank">
+                                                                            <option value="">Pilih Bank</option>
+                                                                            <option value="BCA"{{ $val->bank == 'BCA' ? ' selected' : '' }}>Bank Central Asia</option>
+                                                                            <option value="MANDIRI"{{ $val->bank == 'MANDIRI' ? ' selected' : '' }}>Mandiri</option>
+                                                                            <option value="BNI"{{ $val->bank == 'BNI' ? ' selected' : '' }}>BNI</option>
+                                                                            <option value="BRI"{{ $val->bank == 'BRI' ? ' selected' : '' }}>BRI</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Cabang:</label>
+                                                                        <input type="text" name="cabang" id="cabang" class="form-control" value="{{ $val->bank_cab }}" placeholder="please insert cabang" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -232,13 +245,52 @@
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">No Bank Garansi:</label>
+                                                                        <input type="text" name="bank_garansi" id="no_bank_garansi" class="form-control" value="{{ $val->no_bank_garansi }}" placeholder="please insert garansi" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Minimum Jaminan:</label>
+                                                                        @php
+                                                                        $percent = ($data->harga_negosiasi * 5) / 100;
+                                                                        @endphp
+                                                                        <input type="text" name="minimum_jaminan" id="minimum_jaminan" class="form-control money" value="{{ $val->minimum_jaminan }}" />
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
-                                                                        <textarea class="form-control" name="catatan_performance" placeholder="please insert catatan"></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (Start Date):</label>
+                                                                        <input type="text" name="start_berlaku" id="start_berlaku" class="form-control datepicker" value="{{ $val->start_berlaku }}" placeholder="please insert masa berlaku" />
                                                                     </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (End Date):</label>
+                                                                        <input type="text" name="end_berlaku" id="end_berlaku" class="form-control datepicker" value="{{ $val->end_berlaku }}" placeholder="please insert masa berlaku" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Nilai Jaminan:</label>
+                                                                        <input type="text" name="nilai_jaminan" id="nilai_jaminan" class="form-control money" value="{{ $val->nilai_jaminan }}" placeholder="please insert nilai jaminan" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Terbit Jamlak:</label>
+                                                                        <input type="text" name="tanggal_jamlak" id="tanggal_jamlak" class="form-control datepicker" value="{{ $val->tanggal_jamlak }}" placeholder="please insert tanggal jamlak" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Catatan Performance:</label>
+                                                                    <textarea class="form-control" id="catatan_performance" name="catatan_performance" placeholder="please insert catatan" value="{{ $val->catatan_performance }}">{{ $val->catatan_performance }}</textarea>
                                                                 </div>
                                                             </div>
                                                             @endforeach
@@ -250,6 +302,24 @@
                                                                         <input type="file" name="file_performance" class="form-control" id="file-performance">
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Bank:</label>
+                                                                        <select name="bank" class="form-control" id="bank">
+                                                                            <option value="">Pilih Bank</option>
+                                                                            <option value="BCA">Bank Central Asia</option>
+                                                                            <option value="MANDIRI">Mandiri</option>
+                                                                            <option value="BNI">BNI</option>
+                                                                            <option value="BRI">BRI</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Cabang:</label>
+                                                                        <input type="text" name="cabang" id="cabang" class="form-control" value="" placeholder="please insert cabang" />
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
@@ -258,13 +328,52 @@
                                                                         <input type="text" name="tanggal_submit_performace" class="form-control datepicker" id="tanggal-submit-performance" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">No Bank Garansi:</label>
+                                                                        <input type="text" name="bank_garansi" id="no_bank_garansi" class="form-control" value="" placeholder="please insert garansi" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Minimum Jaminan:</label>
+                                                                        @php
+                                                                        $percent = ($data->harga_negosiasi * 5) / 100;
+                                                                        @endphp
+                                                                        <input type="text" name="minimum_jaminan" id="minimum_jaminan" class="form-control money" value="{{ $data->harga_negosiasi - $percent }}" />
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Jaminan:</label>
-                                                                        <textarea class="form-control" name="catatan_performance" placeholder="please insert catatan"></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (Start Date):</label>
+                                                                        <input type="text" name="start_berlaku" id="start_berlaku" class="form-control datepicker" value="" placeholder="please insert masa berlaku" />
                                                                     </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (End Date):</label>
+                                                                        <input type="text" name="end_berlaku" id="end_berlaku" class="form-control datepicker" value="" placeholder="please insert masa berlaku" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Nilai Jaminan:</label>
+                                                                        <input type="text" name="nilai_jaminan" id="nilai_jaminan" class="form-control money" value="" placeholder="please insert nilai jaminan" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Terbit Jamlak:</label>
+                                                                        <input type="text" name="tanggal_jamlak" id="tanggal_jamlak" class="form-control datepicker" value="" placeholder="please insert tanggal jamlak" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label for="exampleInputEmail1" class="font-weight-bold">Catatan Performance:</label>
+                                                                    <textarea class="form-control" id="catatan_performance" name="catatan_performance" placeholder="please insert catatan"></textarea>
                                                                 </div>
                                                             </div>
                                                             @endif
@@ -1010,17 +1119,29 @@
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
+                    $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
+                    $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_RDC') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                     $('.review').addClass('done')
+                    $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
+                    $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_VAC') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                     $('.review').addClass('done')
                     $('.approval-logistik').addClass('done')
+                    $('.approval-user').addClass('done')
+                    $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_ALG') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
@@ -1028,6 +1149,8 @@
                     $('.review').addClass('done')
                     $('.approval-logistik').addClass('done')
                     $('.approval-user').addClass('done')
+                    $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_APU') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
@@ -1036,6 +1159,7 @@
                     $('.approval-logistik').addClass('done')
                     $('.approval-user').addClass('done')
                     $('.ttd-vendor').addClass('done')
+                    $('.ttd-kci').addClass('done')
                 } else if (status == 'PROSES_VAC') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
@@ -1120,11 +1244,29 @@
                             if (result.value) {
                                 var file_perform = $("#file-performance")[0].files;
                                 var tanggal_submit = $("#tanggal-submit-performance").val();
+                                var bank = $("#bank").val();
+                                var cabang = $("#cabang").val();
+                                var no_garansi = $("#no_bank_garansi").val();
+                                var minimum_jaminan = $("#minimum_jaminan").val();
+                                var start_berlaku = $("#start_berlaku").val();
+                                var end_berlaku = $("#end_berlaku").val();
+                                var nilai_jaminan = $("#nilai_jaminan").val();
+                                var catatan_performace = $("#catatan_performance").val();
+                                var tanggal_jamlak = $("#tanggal_jamlak").val();
                                 var formData = new FormData();
                                 formData.append('file_performance', file_perform[0])
                                 formData.append('tanggal_submit_performance', tanggal_submit)
                                 formData.append('_token', '{{ csrf_token() }}');
                                 formData.append('status', status);
+                                formData.append('bank', bank);
+                                formData.append('cabang', cabang);
+                                formData.append('no_garansi', no_garansi);
+                                formData.append('minimum_jaminan', minimum_jaminan);
+                                formData.append('start_berlaku', start_berlaku);
+                                formData.append('end_berlaku', end_berlaku);
+                                formData.append('nilai_jaminan', nilai_jaminan);
+                                formData.append('catatan_performance', catatan_performace);
+                                formData.append('tanggal_jamlak', tanggal_jamlak);
                                 formData.append('id', id);
                                 $.ajax({
                                     url: '{{ route("save.kontrak") }}',

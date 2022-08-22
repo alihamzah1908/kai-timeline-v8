@@ -171,6 +171,7 @@ class ContractController extends Controller
                 $contract->proses_st = 'PROSES_UJP';
             }
         } else if ($request["status"] == 'PROSES_UJP') {
+            // dd($request->all());
             $trx_contract = new \App\Models\TrxJaminanContract();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
@@ -182,6 +183,15 @@ class ContractController extends Controller
                 $trx_contract->file_performance_contract = $new_name;
             }
             $trx_contract->tanggal_submit = $request["tanggal_submit_performance"];
+            $trx_contract->bank_name = $request["bank"];
+            $trx_contract->bank_cab = $request["cabang"];
+            $trx_contract->no_bank_garansi = $request["no_garansi"];
+            $trx_contract->minimum_jaminan = str_replace('.', '', $request["minimum_jaminan"]);
+            $trx_contract->start_berlaku = $request["start_berlaku"];
+            $trx_contract->end_berlaku = $request["end_berlaku"];
+            $trx_contract->nilai_jaminan = str_replace('.', '', $request["nilai_jaminan"]);
+            $trx_contract->tanggal_terbit_jamlak = $request["tanggal_terbit_jamlak"];
+            $trx_contract->catatan_performance = $request["catatan_performance"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {

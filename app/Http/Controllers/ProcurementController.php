@@ -491,6 +491,26 @@ class ProcurementController extends Controller
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
+    public function save_spr(Request $request)
+    {
+        // dd($request->all());
+        $data = new \App\Models\TrxSpr();
+        if ($request->hasFile('file_jamlak')) {
+            $file = $request->file('file_jamlak');
+            $extension = $file->getClientOriginalExtension();
+            $new_name = 'dokumen-spr' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+            $file->move(public_path('file/sp3'), $new_name);
+            $data->file_jamlak = $new_name;
+        }
+        $data->total_hari_kerja = $request["workDays"];
+        $data->uncontrolled_days = $request["uncontrolledDays"];
+        $data->catatan_spr = $request["catatan"];
+        $data->vendor_code = $request["vendor_code"];
+        $data->sp3_id = $request["sp3_id"];
+        $data->save();
+        return redirect(route('procurement.show', $request["sp3_id"]));
+    }
+
     public function getSp3(Request $request)
     {
         $data = \App\Models\SP3::orderBy('sp3_id', 'desc')
@@ -534,6 +554,7 @@ class ProcurementController extends Controller
             ->orWhere('proses_st', 'PROSES_AL')
             ->orWhere('proses_st', 'PROSES_PDP')
             ->orWhere('proses_st', 'PROSES_PPDP')
+            ->orWhere('proses_st', 'PROSES_KKN')
             ->orWhere('proses_st', 'PROSES_EP')
             ->orWhere('proses_st', 'PROSES_EDH')
             ->orWhere('proses_st', 'PROSES_UPCP')

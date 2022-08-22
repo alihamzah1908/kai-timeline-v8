@@ -1262,7 +1262,7 @@
                                                         @if($evaluasi_1_sampul->count() > 0)
                                                         <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
                                                         <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                        @else 
+                                                        @else
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                         @endif
                                                     </div>
@@ -1426,7 +1426,7 @@
                                                         @if($evaluasi_2_sampul->count() > 0)
                                                         <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
                                                         <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                        @else 
+                                                        @else
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                         @endif
                                                     </div>
@@ -1484,6 +1484,9 @@
                                                         @endforeach
                                                         @else
                                                         @foreach($tender_aanwidjzing as $val)
+                                                        @php
+                                                        $pagu = $data->nilai_pr + $data->tax_value;
+                                                        @endphp
                                                         <tr>
                                                             <td>
                                                                 {{ $val->vendor_name }}
@@ -1493,7 +1496,7 @@
                                                                 <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu">
+                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{ $pagu }}">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi">
@@ -1784,30 +1787,46 @@
                             || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
                             @endphp
                             <div class="tab-pane {{ $status ? 'active' : '' }}" id="spr">
+                                @php
+                                $spr = \App\Models\TrxSpr::where('sp3_id', $data->sp3_id)->first();
+                                @endphp
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
                                         <div class="col-md-12">
                                             <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_PCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ route('save.spr') }}" id="form-spr" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-3 mt-2">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Pemenang Tender:</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="vendor_code" disabled>
+                                                            <input type="hidden" name="vendor_code" value="{{ $pemenang ? $pemenang->vendor_code : '' }}" />
+                                                            <select class="form-control" disabled>
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_aanwidjzing as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-3 mt-2">
+                                                        <label for="exampleInputEmail1">Upload SP Jamlak :</label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        @if(!$spr)
+                                                        <input type="file" class="form-control" name="file_jamlak">
+                                                        @else
+                                                        <input type="file" class="form-control" name="file_jamlak" value="{{ $spr->file_jamlak }}">
+                                                        <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
+                                                            {{ asset('file/sp3/'. $spr->file_jamlak) }}
+                                                        </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -1860,7 +1879,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="">
+                                                            <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->total_hari_kerja : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1873,7 +1892,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="">
+                                                            <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->uncontrolled_days : '' }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1886,7 +1905,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note" value="{{ $spr ? $spr->catatan_spr : '' }}">{{ $spr ? $spr->catatan_spr : '' }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2393,6 +2412,44 @@
                         }).done(function(response) {
                             Swal.fire({
                                 title: 'Your procurement sent to process Contract',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+
+        $("#form-spr").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save SPR ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.spr') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your SPR is saved !',
                                 // text: "File change status to Pelaksanaan Aanwidjzing!",
                                 confirmButtonText: 'Yes'
                             }).then((result) => {

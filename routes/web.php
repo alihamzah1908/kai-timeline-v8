@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
     Route::post('/data/procurement/save-bahp', 'App\Http\Controllers\ProcurementController@save_bahp')->name('save.bahp');
+    Route::post('/data/procurement/save-spr', 'App\Http\Controllers\ProcurementController@save_spr')->name('save.spr');
 
 
     //DASHBOARD & MasterData
