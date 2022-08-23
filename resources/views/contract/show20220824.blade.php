@@ -1243,6 +1243,27 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-draft-kontrak").submit();
+                                // var file_draft = $("#file-draft-contract")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-contract").val();
+                                // var formData = new FormData();
+                                // formData.append('file_draft', file_draft[0])
+                                // formData.append('tanggal_submit_draft', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('.performance').addClass('active')
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_UJP') {
@@ -1259,6 +1280,45 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-draft-performance").submit();
+                                //     var file_perform = $("#file-performance")[0].files;
+                                //     var tanggal_submit = $("#tanggal-submit-performance").val();
+                                //     var bank = $("#bank").val();
+                                //     var cabang = $("#cabang").val();
+                                //     var no_garansi = $("#no_bank_garansi").val();
+                                //     var minimum_jaminan = $("#minimum_jaminan").val();
+                                //     var start_berlaku = $("#start_berlaku").val();
+                                //     var end_berlaku = $("#end_berlaku").val();
+                                //     var nilai_jaminan = $("#nilai_jaminan").val();
+                                //     var catatan_performace = $("#catatan_performance").val();
+                                //     var tanggal_jamlak = $("#tanggal_jamlak").val();
+                                //     var formData = new FormData();
+                                //     formData.append('file_performance', file_perform[0])
+                                //     formData.append('tanggal_submit_performance', tanggal_submit)
+                                //     formData.append('_token', '{{ csrf_token() }}');
+                                //     formData.append('status', status);
+                                //     formData.append('bank', bank);
+                                //     formData.append('cabang', cabang);
+                                //     formData.append('no_garansi', no_garansi);
+                                //     formData.append('minimum_jaminan', minimum_jaminan);
+                                //     formData.append('start_berlaku', start_berlaku);
+                                //     formData.append('end_berlaku', end_berlaku);
+                                //     formData.append('nilai_jaminan', nilai_jaminan);
+                                //     formData.append('catatan_performance', catatan_performace);
+                                //     formData.append('tanggal_jamlak', tanggal_jamlak);
+                                //     formData.append('id', id);
+                                //     $.ajax({
+                                //         url: '{{ route("save.kontrak") }}',
+                                //         method: 'POST',
+                                //         dataType: 'json',
+                                //         processData: false,
+                                //         contentType: false,
+                                //         data: formData,
+                                //     }).done(function(response) {
+                                //         if (response.status == 200) {
+                                //             $('.verifikasi').addClass('active')
+                                //             $('#status').val(response.proses_st)
+                                //         }
+                                //     })
                             }
                         })
                     } else if (status == 'PROSES_VJP') {
@@ -1275,6 +1335,27 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-verif-jamlak").submit();
+                                // var file_perform = $("#file-verifikasi")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-verifikasi").val();
+                                // var formData = new FormData();
+                                // formData.append('file_verifikasi', file_perform[0])
+                                // formData.append('tanggal_submit_verifikasi', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('.review').addClass('active')
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_RDC') {
@@ -1290,6 +1371,25 @@
                         }).then((result) => {
                             e.preventDefault()
                             $("#form-review-legal").submit();
+                            // if (result.value) {
+                            //     formData.append('tanggal_submit_review', tanggal_submit)
+                            //     formData.append('_token', '{{ csrf_token() }}');
+                            //     formData.append('status', status);
+                            //     formData.append('id', id);
+                            //     $.ajax({
+                            //         url: '{{ route("save.kontrak") }}',
+                            //         method: 'POST',
+                            //         dataType: 'json',
+                            //         processData: false,
+                            //         contentType: false,
+                            //         data: formData
+                            //     }).done(function(response) {
+                            //         if (response.status == 200) {
+                            //             $('.review').addClass('active')
+                            //             $('#status').val(response.proses_st)
+                            //         }
+                            //     })
+                            // }
                         })
                     } else if (status == 'PROSES_VAC') {
                         $('.approval-user').removeClass('active')
@@ -1305,6 +1405,28 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-approval-logistik").submit();
+                                // $('.ttd-kci').removeClass('active')
+                                // var file_perform = $("#file-approval")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-approval").val();
+                                // var formData = new FormData();
+                                // formData.append('file_approval_logistik', file_perform[0])
+                                // formData.append('tanggal_submit_logistik', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('.approval-user').addClass('active')
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_ALG') {
@@ -1322,6 +1444,27 @@
                                 // $('.ttd-kci').removeClass('active')
                                 e.preventDefault()
                                 $("#form-approval-user").submit();
+                                // var file_perform = $("#file-approval-user")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-user").val();
+                                // var formData = new FormData();
+                                // formData.append('file_approval_user', file_perform[0])
+                                // formData.append('tanggal_submit_user', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('.ttd-vendor').addClass('active')
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_APU') {
@@ -1339,6 +1482,27 @@
                                 // $('.ttd-kci').removeClass('active')
                                 e.preventDefault()
                                 $("#form-ttd-vendor").submit()
+                                // var file_perform = $("#file-vendor")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-vendor").val();
+                                // var formData = new FormData();
+                                // formData.append('file_vendor', file_perform[0])
+                                // formData.append('tanggal_submit_vendor', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('.ttd-kci').addClass('active')
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_KAC') {
@@ -1354,6 +1518,26 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-ttd-kci").submit()
+                                // var file_perform = $("#file-kci")[0].files;
+                                // var tanggal_submit = $("#tanggal-submit-kci").val();
+                                // var formData = new FormData();
+                                // formData.append('file_kci', file_perform[0])
+                                // formData.append('tanggal_submit_kci', tanggal_submit)
+                                // formData.append('_token', '{{ csrf_token() }}');
+                                // formData.append('status', status);
+                                // formData.append('id', id);
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     processData: false,
+                                //     contentType: false,
+                                //     data: formData
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     } else if (status == 'PROSES_CR') {
@@ -1369,6 +1553,19 @@
                             if (result.value) {
                                 e.preventDefault()
                                 $("#form-mppl").submit()
+                                // var data = $('#form-mppl').serialize()
+                                // $.ajax({
+                                //     url: '{{ route("save.kontrak") }}',
+                                //     method: 'POST',
+                                //     dataType: 'json',
+                                //     // processData: false,
+                                //     // contentType: false,
+                                //     data: data
+                                // }).done(function(response) {
+                                //     if (response.status == 200) {
+                                //         $('#status').val(response.proses_st)
+                                //     }
+                                // })
                             }
                         })
                     }

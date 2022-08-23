@@ -170,8 +170,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->proses_st = 'PROSES_UJP';
+                $trx_status = \App\Models\SP3::find($sp3_id);
+                $trx_status->proses_st = 'PROSES_UJP';
+                $trx_status->save();
             }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_UJP') {
             // dd($request->all());
             $trx_contract = new \App\Models\TrxJaminanContract();
@@ -197,8 +200,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->proses_st = 'PROSES_VJP';
+                $trx_status = \App\Models\SP3::find($sp3_id);
+                $trx_status->proses_st = 'PROSES_VJP';
+                $trx_status->save();
             }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_VJP') {
             $trx_contract = new \App\Models\TrxVerifikasiContract();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
@@ -214,8 +220,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->proses_st = 'PROSES_RDC';
+                $trx_status = \App\Models\SP3::find($sp3_id);
+                $trx_status->proses_st = 'PROSES_RDC';
+                $trx_status->save();
             }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_RDC') {
             $arr = $request["tanggal_submit_review"];
             foreach ($arr as $key => $val) {
@@ -321,8 +330,11 @@ class ContractController extends Controller
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
-                $contract->proses_st = 'PROSES_CR';
+                $trx_status = \App\Models\SP3::find($sp3_id);
+                $trx_status->proses_st = 'PROSES_CR';
+                $trx_status->save();
             }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_CR') {
             $trx_contract = new \App\Models\TrxMppl();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
@@ -333,6 +345,7 @@ class ContractController extends Controller
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
+            return redirect(route('contract.show', $sp3_id));
         }
         $contract->save();
         return response()->json(['status' => 200, 'proses_st' => $contract->proses_st]);
