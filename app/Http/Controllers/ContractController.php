@@ -113,6 +113,7 @@ class ContractController extends Controller
         $data["trx_approval_user"] = \App\Models\TrxApprovalUser::where('sp3_id', $id)->get();
         $data["trx_kci"] = \App\Models\TrxKciContract::where('sp3_id', $id)->get();
         $data["trx_mppl"] = \App\Models\TrxMppl::where('sp3_id', $id)->get();
+        $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
         return view('contract.show', $data);
     }
 
@@ -152,7 +153,8 @@ class ContractController extends Controller
 
     public function draft_kontrak(Request $request)
     {
-        $contract = \App\Models\SP3::find($request["id"]);
+        $sp3_id = $request["sp3_id"] != '' || $request["sp3_id"] != null ? $request["sp3_id"] : $request["id"];
+        $contract = \App\Models\SP3::find($sp3_id);
         if ($request["status"] == 'PROSES_DC') {
             $trx_contract = new \App\Models\TrxDraftContract();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
@@ -215,77 +217,95 @@ class ContractController extends Controller
                 $contract->proses_st = 'PROSES_RDC';
             }
         } else if ($request["status"] == 'PROSES_RDC') {
-            $trx_contract = new \App\Models\TrxReviewContract();
-            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
-            $trx_contract->sp3_id = $contract->sp3_id;
-            if ($request->hasFile('file_review')) {
-                $file = $request->file('file_review');
-                $extension = $file->getClientOriginalExtension();
-                $new_name = 'file-review-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-                $file->move(public_path('file/contract'), $new_name);
-                $trx_contract->file_review_contract = $new_name;
+            $arr = $request["tanggal_submit_review"];
+            foreach ($arr as $key => $val) {
+                $trx_contract = new \App\Models\TrxReviewContract();
+                $trx_contract->sp3_id = $contract->sp3_id;
+                if ($request->hasFile('file_review')) {
+                    $file = $request->file('file_review')[$key];
+                    $extension = $file->getClientOriginalExtension();
+                    $new_name = 'file-review-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/contract'), $new_name);
+                    $trx_contract->file_review_contract = $new_name;
+                }
+                $trx_contract->tanggal_submit = $val;
+                $trx_contract->created_by = Auth::user()->id;
+                $trx_contract->save();
+                if ($trx_contract) {
+                    $trx_status = \App\Models\SP3::find($sp3_id);
+                    $trx_status->proses_st = 'PROSES_VAC';
+                    $trx_status->save();
+                }
             }
-            $trx_contract->tanggal_submit = $request["tanggal_submit_verifikasi"];
-            $trx_contract->created_by = Auth::user()->id;
-            $trx_contract->save();
-            if ($trx_contract) {
-                $contract->proses_st = 'PROSES_VAC';
-            }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_VAC') {
-            // dd($request->all());
-            $trx_contract = new \App\Models\TrxApprovalLogistik();
-            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
-            $trx_contract->sp3_id = $contract->sp3_id;
-            if ($request->hasFile('file_approval_logistik')) {
-                $file = $request->file('file_approval_logistik');
-                $extension = $file->getClientOriginalExtension();
-                $new_name = 'file-approval-logistik-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-                $file->move(public_path('file/contract'), $new_name);
-                $trx_contract->file_approval_logistik = $new_name;
+            $arr = $request["tanggal_submit_logistik"];
+            foreach ($arr as $key => $val) {
+                $trx_contract = new \App\Models\TrxApprovalLogistik();
+                $trx_contract->sp3_id = $contract->sp3_id;
+                if ($request->hasFile('file_approval_logistik')) {
+                    $file = $request->file('file_approval_logistik')[$key];
+                    $extension = $file->getClientOriginalExtension();
+                    $new_name = 'file-approval-logistik-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/contract'), $new_name);
+                    $trx_contract->file_approval_logistik = $new_name;
+                }
+                $trx_contract->tanggal_submit = $val;
+                // $trx_contract->catatan_logistik = $request["catatan_logistik"];
+                $trx_contract->created_by = Auth::user()->id;
+                $trx_contract->save();
+                if ($trx_contract) {
+                    $trx_status = \App\Models\SP3::find($sp3_id);
+                    $trx_status->proses_st = 'PROSES_ALG';
+                    $trx_status->save();
+                }
             }
-            $trx_contract->tanggal_submit = $request["tanggal_submit_logistik"];
-            // $trx_contract->catatan_logistik = $request["catatan_logistik"];
-            $trx_contract->created_by = Auth::user()->id;
-            $trx_contract->save();
-            if ($trx_contract) {
-                $contract->proses_st = 'PROSES_ALG';
-            }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_ALG') {
-            // dd($request->all());
-            $trx_contract = new \App\Models\TrxApprovalUser();
-            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
-            $trx_contract->sp3_id = $contract->sp3_id;
-            if ($request->hasFile('file_approval_user')) {
-                $file = $request->file('file_approval_user');
-                $extension = $file->getClientOriginalExtension();
-                $new_name = 'file-approval-user-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-                $file->move(public_path('file/contract'), $new_name);
-                $trx_contract->file_approval_user = $new_name;
+            $arr = $request["tanggal_submit_user"];
+            foreach ($arr as $key => $val) {
+                $trx_contract = new \App\Models\TrxApprovalUser();
+                $trx_contract->sp3_id = $contract->sp3_id;
+                if ($request->hasFile('file_approval_user')) {
+                    $file = $request->file('file_approval_user')[$key];
+                    $extension = $file->getClientOriginalExtension();
+                    $new_name = 'file-approval-user-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/contract'), $new_name);
+                    $trx_contract->file_approval_user = $new_name;
+                }
+                $trx_contract->tanggal_submit = $val;
+                // $trx_contract->catatan_logistik = $request["catatan_logistik"];
+                $trx_contract->created_by = Auth::user()->id;
+                $trx_contract->save();
+                if ($trx_contract) {
+                    $trx_status = \App\Models\SP3::find($sp3_id);
+                    $trx_status->proses_st = 'PROSES_APU';
+                    $trx_status->save();
+                }
             }
-            $trx_contract->tanggal_submit = $request["tanggal_submit_user"];
-            // $trx_contract->catatan_logistik = $request["catatan_logistik"];
-            $trx_contract->created_by = Auth::user()->id;
-            $trx_contract->save();
-            if ($trx_contract) {
-                $contract->proses_st = 'PROSES_APU';
-            }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_APU') {
-            $trx_contract = new \App\Models\TrxVendorContract();
-            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
-            $trx_contract->sp3_id = $contract->sp3_id;
-            if ($request->hasFile('file_vendor')) {
-                $file = $request->file('file_vendor');
-                $extension = $file->getClientOriginalExtension();
-                $new_name = 'file-vendor-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-                $file->move(public_path('file/contract'), $new_name);
-                $trx_contract->file_vendor_contract = $new_name;
+            $arr = $request["tanggal_submit_vendor"];
+            foreach ($arr as $key => $val) {
+                $trx_contract = new \App\Models\TrxVendorContract();
+                $trx_contract->sp3_id = $contract->sp3_id;
+                if ($request->hasFile('file_vendor')) {
+                    $file = $request->file('file_vendor')[$key];
+                    $extension = $file->getClientOriginalExtension();
+                    $new_name = 'file-vendor-contract' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/contract'), $new_name);
+                    $trx_contract->file_vendor_contract = $new_name;
+                }
+                $trx_contract->tanggal_submit = $val;
+                $trx_contract->created_by = Auth::user()->id;
+                $trx_contract->save();
+                if ($trx_contract) {
+                    $trx_status = \App\Models\SP3::find($sp3_id);
+                    $trx_status->proses_st = 'PROSES_KAC';
+                    $trx_status->save();
+                }
             }
-            $trx_contract->tanggal_submit = $request["tanggal_submit_vendor"];
-            $trx_contract->created_by = Auth::user()->id;
-            $trx_contract->save();
-            if ($trx_contract) {
-                $contract->proses_st = 'PROSES_KAC';
-            }
+            return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_KAC') {
             $trx_contract = new \App\Models\TrxKciContract();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
@@ -325,7 +345,7 @@ class ContractController extends Controller
         on ts.sp3_id = kkn.sp3_id 
         inner join trx_penetapan_pemenang pp 
         on pp.vendor_code = kkn.vendor_code
-        where kkn.harga_negosiasi is not null');
+        where kkn.harga_negosiasi is not null GROUP BY ts.sp3_id, kkn.harga_negosiasi');
         return FacadesDataTables::of($data)
             ->addColumn('sp3_no', function ($row) {
                 return '<a href="' . route('contract.show', $row->sp3_id) . '">' . $row->no_sp3 . '</a>';
