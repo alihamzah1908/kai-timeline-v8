@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.sp3') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.sp3') }}"><b>Back to list</b></a></li>
                     <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
@@ -76,15 +76,7 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Status </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-bold">
-                                                @if($data->proses_st == 'PROSES_SSP3')
-                                                <span class="text-success">Submited SP3</span>
-                                                @elseif($data->proses_st == 'PROSES_DRKS')
-                                                <span class="text-warning">Drafting RKS</span>
-                                                @elseif($data->proses_st == 'PROSES_RRKS')
-                                                <span class="text-warning">Reviewing RKS</span>
-                                                @else 
-                                                <span class="text-warning">{{ $data->proses_st }}</span>
-                                                @endif
+                                                <badges class="badge badge-danger">{{ $data->get_status->keterangan }}</badges>
                                             </dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Tax Type

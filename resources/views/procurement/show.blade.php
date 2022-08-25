@@ -153,7 +153,7 @@
                             <dt class="font-weight-bold">Status </dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi bagde-success">{{ $data->proses_st == 'PROSES_PCP' ? 'MASA SANGGAH' : $data->proses_st }}</span></dt>
+                            <dt class="font-weight-normal">: <badges class="badge badge-danger">{{ $data->get_status->keterangan }}</badges></dt>
                         </div>
                     </div>
                 </div>

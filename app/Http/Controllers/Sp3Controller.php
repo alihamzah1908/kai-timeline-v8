@@ -392,25 +392,7 @@ class Sp3Controller extends Controller
                 return $row->timeline_id != '' ? 'YES (TIMELINE)' : 'NO (TIMELINE)';
             })
             ->addColumn('proses_st', function ($row) {
-                if ($row->proses_st == 'PROSES_DSP3') {
-                    return '<badges class="badge badge-warning">Draft SP3</badges>';
-                }
-                if ($row->proses_st == 'PROSES_DRKS') {
-                    return '<badges class="badge badge-warning">Draft RKS</badges>';
-                }
-                if ($row->proses_st == 'PROSES_RRKS') {
-                    return '<badges class="badge badge-warning">Reviewing RKS</badges>';
-                } else if ($row->proses_st == 'PROSES_SSP3') {
-                    return '<badges class="badge badge-primary">Submited SP3</badges>';
-                } else if ($row->proses_st == 'PROSES_ESP3') {
-                    return '<badges class="badge badge-warning">Evaluated SP3</badges>';
-                } else if ($row->proses_st == 'PROSES_ASP3') {
-                    return '<badges class="badge badge-success">Approved SP3</badges>';
-                } else if ($row->proses_st == 'PROSES_RSP3') {
-                    return '<badges class="badge badge-danger">Rejected SP3</badges>';
-                } else {
-                    return $row->proses_st;
-                }
+                return '<badges class="badge badge-danger">' . $row->get_status->keterangan . '</badges>';
             })
             ->addColumn('action', function ($row) {
                 if (auth()->user()->can('sp3-list')) {

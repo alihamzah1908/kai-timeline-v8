@@ -39,6 +39,16 @@
 
 <body>
     <!-- Begin page -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+            </div>
+        </div>
+    </div>
+    
     <div id="wrapper">
 
         <!-- Topbar Start -->

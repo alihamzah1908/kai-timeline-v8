@@ -7,9 +7,9 @@
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
                     @can('timeline.approval-list')
-                    <li class="breadcrumb-item"><a href="{{ route('task.approval') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('task.approval') }}"><b>Back to list</b></a></li>
                     @else
-                    <li class="breadcrumb-item"><a href="{{ route('list.timeline') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.timeline') }}"><b>Back to list</b></a></li>
                     @endcan
 
                     <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
@@ -65,11 +65,11 @@
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-bold">
                                                 @if($data->proses_st == 'PROSES_AT')
-                                                <span class="text-success">Approved Timeline</span>
+                                                <badges class="badge badge-danger">Approved Timeline</badges>
                                                 @elseif($data->proses_st == 'PROSES_ST')
-                                                <span class="text-warning">Submitted Timeline</span>
+                                                <badges class="badge badge-danger">Submitted Timeline</badges>
                                                 @else
-                                                <span class="text-danger">Rejected Timeline</span>
+                                                <badges class="badge badge-danger">Rejected Timeline</badges>
                                                 @endif
                                             </dd>
                                         </dl>

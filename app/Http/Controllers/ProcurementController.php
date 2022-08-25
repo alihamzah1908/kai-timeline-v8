@@ -602,19 +602,7 @@ class ProcurementController extends Controller
                 return $row->timeline_id != '' ? 'YES (TIMELINE)' : 'NO (TIMELINE)';
             })
             ->addColumn('proses_st', function ($row) {
-                if ($row->proses_st == 'PROSES_DRKS') {
-                    return '<badges class="badge badge-warning">Drafting RKS</badges>';
-                } else if ($row->proses_st == 'PROSES_RRKS') {
-                    return '<badges class="badge badge-success">Reviewing RKS</badges>';
-                } else if ($row->proses_st == 'PROSES_PP') {
-                    return '<badges class="badge badge-success">Pengumuman Pengadaan</badges>';
-                } else if ($row->proses_st == 'PROSES_AL') {
-                    return '<badges class="badge badge-success">Pelaksanaan Aanwidjzing</badges>';
-                } else if ($row->proses_st == 'PROSES_PDP') {
-                    return '<badges class="badge badge-success">Pemasukan Dokumen Penawaran</badges>';
-                } else {
-                    return $row->proses_st;
-                }
+                return '<badges class="badge badge-danger">' . $row->get_status->keterangan . '</badges>';
             })
             ->addColumn('action', function ($row) {
                 // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';

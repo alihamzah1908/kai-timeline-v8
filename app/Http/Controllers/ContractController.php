@@ -96,11 +96,14 @@ class ContractController extends Controller
     public function show($id)
     {
         // $data["arr"] = DB::select('SELECT * FROM trx_pbj_contract_report WHERE report_pbj_contract_id=' . $id . '');
-        $data["arr"] = DB::select('select ts.*, kkn.harga_negosiasi from trx_sp3 ts
+        $data["arr"] = DB::select('select ts.*, kkn.harga_negosiasi,
+        mt.keterangan as contract_status from trx_sp3 ts
         inner join trx_klasifikasi_konfirmasi_negosiasi kkn 
         on ts.sp3_id = kkn.sp3_id 
         inner join trx_penetapan_pemenang pp 
         on pp.vendor_code = kkn.vendor_code
+        inner join auth.mapping_type mt 
+        on mt.mapping_desc = ts.proses_st
         where kkn.harga_negosiasi is not null AND ts.sp3_id=' . $id . '');
         $data["data"] = $data["arr"][0];
         // dd($data["data"]);
@@ -353,12 +356,14 @@ class ContractController extends Controller
 
     public function data(Request $request)
     {
-        $data = DB::select('select ts.*, kkn.harga_negosiasi from trx_sp3 ts
-        inner join trx_klasifikasi_konfirmasi_negosiasi kkn 
+        $data = DB::select('select ts.*, kkn.harga_negosiasi, mt.keterangan as contract_status from public.trx_sp3 ts
+        inner join public.trx_klasifikasi_konfirmasi_negosiasi kkn 
         on ts.sp3_id = kkn.sp3_id 
-        inner join trx_penetapan_pemenang pp 
+        inner join public.trx_penetapan_pemenang pp 
         on pp.vendor_code = kkn.vendor_code
-        where kkn.harga_negosiasi is not null GROUP BY ts.sp3_id, kkn.harga_negosiasi');
+        inner join auth.mapping_type mt
+        on mt.mapping_desc = ts.proses_st
+        where kkn.harga_negosiasi is not null GROUP BY ts.sp3_id, kkn.harga_negosiasi, mt.keterangan');
         return FacadesDataTables::of($data)
             ->addColumn('sp3_no', function ($row) {
                 return '<a href="' . route('contract.show', $row->sp3_id) . '">' . $row->no_sp3 . '</a>';
@@ -374,7 +379,10 @@ class ContractController extends Controller
             ->addColumn('harga_negosiasi', function ($row) {
                 return number_format($row->harga_negosiasi, 2);
             })
-            ->rawColumns(['action', 'sp3_no'])
+            ->addColumn('proses_st', function ($row) {
+                return '<badges class="badge badge-danger">' . $row->contract_status . '</badges>';
+            })
+            ->rawColumns(['action', 'sp3_no','proses_st'])
             ->make(true);
     }
 }

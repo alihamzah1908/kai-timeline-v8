@@ -41,4 +41,8 @@ class SP3 extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function get_status(){
+        return $this->belongsTo('\App\Models\MappingStatus','proses_st','mapping_desc');
+    }
 }

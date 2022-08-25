@@ -15,11 +15,11 @@
                             </a>
                         </div>
                     </div>
-                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <table id="basic-datatable" class="table m-0 nowrap">
                         <thead>
                             <tr>
                                 <th>Roles Name</th>
-                                <th> </th>
+                                <th width="20px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,18 +27,12 @@
                             <tr>
                                 <td>{{ ucfirst($val->name) }}</td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-rounded btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button">Action
-                                            <i class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
-                                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                                </svg></i>
-                                            <div></div>
-                                        </button>
-                                        <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            <a class="dropdown-item" role="presentation" href="javascript:void(0)"> <i class="uil uil-edit-alt"></i> Edit</a>
-                                            <a class="dropdown-item delete" data-bind="{{ $val->id }}" role="presentation" href="javascript:void(0)"> <i class="uil uil-trash-alt"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <button class="btn btn-sm btn-primary btn-rounded"><i class="uil uil-edit-alt"></i></button>
+                                    </a>
+                                    <a class="delete" data-bind="{{ $val->id }}" href="javascript:void(0)"> 
+                                        <button class="btn btn-sm btn-primary btn-rounded"><i class="uil uil-trash-alt"></i></button>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

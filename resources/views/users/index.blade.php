@@ -15,14 +15,14 @@
                             </a>
                         </div>
                     </div>
-                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <table id="basic-datatable" class="table m-0 nowrap">
                         <thead>
                             <tr>
                                 <th>Fullname</th>
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Roles</th>
-                                <th>Action </th>
+                                <th class="d-flex justify-content-end">Action </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,13 +34,13 @@
                                 <td>
                                     @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $v)
-                                    <label class="badge badge-success">{{ $v }}</label>
+                                    <label class="badge badge-danger">{{ $v }}</label>
                                     @endforeach
                                     @endif
                                 </td>
-                                <td>
+                                <td class="d-flex justify-content-end">
                                     <a href="{{ route('users.edit', $user->id) }}">
-                                        <button class="btn btn-sm btn-primary btn-rounded">Edit</button>
+                                        <button class="btn btn-sm btn-primary btn-rounded"><i class="uil uil-edit-alt"></i></button>
                                     </a>
                                 </td>
                             </tr>

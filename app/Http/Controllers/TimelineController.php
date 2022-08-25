@@ -187,13 +187,13 @@ class TimelineController extends Controller
             })
             ->addColumn('proses_st', function ($row) {
                 if ($row->proses_st == 'PROSES_DT') {
-                    return '<badges class="badge badge-warning">Draft Timeline</badges>';
+                    return '<badges class="badge badge-danger">Draft Timeline</badges>';
                 } else if ($row->proses_st == 'PROSES_AT') {
-                    return '<badges class="badge badge-success">Approved Timeline</badges>';
+                    return '<badges class="badge badge-danger">Approved Timeline</badges>';
                 } else if ($row->proses_st == 'PROSES_CT') {
                     return '<badges class="badge badge-danger">Canceled Timeline</badges>';
                 } else if ($row->proses_st == 'PROSES_ST') {
-                    return '<badges class="badge badge-primary">Submitted Timeline</badges>';
+                    return '<badges class="badge badge-danger">Submitted Timeline</badges>';
                 }
             })
             ->addColumn('action', function ($row) {

@@ -11,7 +11,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('list.contract') }}"><b>Back</b></a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('list.contract') }}"><b>Back to list</b></a></li>
                     <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->judul_pengadaan }}</b></a></li>
                 </ol>
             </nav>
@@ -51,7 +51,7 @@
                             <dt class="font-weight-bold">Vendor Name</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ $data->nama_vendor }}</dt>
+                            <dt class="font-weight-normal">: <span class="vendor-name"></span>{{ str_replace(array( '"', '[', ']' ),'' , $data->nama_vendor); }}</dt>
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +99,7 @@
                             <dt class="font-weight-bold">Status Kontrak</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi"></span>{{ $data->proses_st }}</dt>
+                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi"></span><badges class="badge badge-danger">{{ $data->contract_status }}</badges></dt>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                             <h4 class="header-title mt-0 mb-1">Contract Process</h4>
                             <p class="sub-header">Procces of Contract</p>
                             <div id="smartwizard-arrows" class="sw-main sw-theme-arrows">
-                                <input type="hidden" value="{{ $data->proses_st }}" id="status">
+                                <input type="hidden" value="{{ $data->proses_st }}" id="contract_status">
                                 <input type="hidden" value="{{ $data->sp3_id }}" id="id">
                                 <ul class="nav nav-tabs step-anchor">
                                     <li class="nav-item draft-contract status-drk"><a href="#sw-arrows-step-1" class="nav-link">Draft Kontrak<small class="d-block">Step description</small></a></li>
@@ -1149,7 +1149,7 @@
         @push('scripts')
         <script>
             $(document).ready(function() {
-                var status = $('#status').val();
+                var status = $('#contract_status').val();
                 if (status == 'PROSES_UJP') {
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
@@ -1158,7 +1158,6 @@
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
                 } else if (status == 'PROSES_RDC') {
-                    console.log(status)
                     $('.draft-contract').addClass('done')
                     $('.performance').addClass('done')
                     $('.verifikasi').addClass('done')
@@ -1227,8 +1226,7 @@
                     // conditional contract prosess
                     // if status 
                     var id = $(this).closest('#smartwizard-arrows').find('#id').val();
-                    var status = $(this).closest('#smartwizard-arrows').find('#status').val();
-                    console.log(status)
+                    var status = $(this).closest('#smartwizard-arrows').find('#contract_status').val();
                     if (status == 'PROSES_DC') {
                         $('.performance').removeClass('active')
                         Swal.fire({
