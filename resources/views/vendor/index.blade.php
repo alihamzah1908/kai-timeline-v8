@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5 class="header-title mt-0 mb-1">List Contract</h4>
+                            <h5 class="header-title mt-0 mb-1">List Vendor</h4>
                         </div>
                     </div>
                     <div class="table-responsive">

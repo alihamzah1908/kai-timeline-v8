@@ -109,6 +109,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
     Route::post('/data/contract/contract', 'App\Http\Controllers\ContractController@draft_kontrak')->name('save.kontrak');
 
+    // SPARE PART 
+    Route::get('/data/warehouse', 'App\Http\Controllers\WarehouseController@data')->name('data.warehouse');
+    Route::get('/data/warehouse/part', 'App\Http\Controllers\WarehouseController@index')->name('warehouse.index');
+
+    // WASTE
+    Route::get('/data/waste', 'App\Http\Controllers\WasteController@data')->name('data.waste');
+    Route::get('/data/warehouse/waste', 'App\Http\Controllers\WasteController@index')->name('waste.index');
+    
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');

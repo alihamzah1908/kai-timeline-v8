@@ -398,10 +398,10 @@
                                     <a href="javascript:void(0)">Card</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">Spare Part</a>
+                                    <a href="{{ route('warehouse.index') }}">Spare Part</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">Waste</a>
+                                    <a href="{{ route('waste.index') }}">Waste</a>
                                 </li>
                             </ul>
                         </li>
@@ -571,7 +571,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <?php echo date('Y') ?> &copy KAI
+                            <?php echo date('Y') ?> &copy KAI Commuter
                         </div>
                     </div>
                 </div>
