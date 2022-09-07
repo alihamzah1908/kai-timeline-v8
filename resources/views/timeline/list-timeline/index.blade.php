@@ -62,26 +62,22 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan</label>
-                                <!-- <div id="summernote-editor">
-                                    <p>Uraian Details</p>
-                                </div> end summernote-editor -->
-                                <textarea name="judul_pengadaan" class="form-control" placeholder="Please insert judul pengadaan"></textarea>
+                                <textarea name="judul_pengadaan" class="form-control judul_pengadaan" placeholder="Please insert judul pengadaan"></textarea>
+                                <div class="invalid-feedback error-judul" style="display: none;">
+                                    Mohon isi judul pengadaan.
+                                </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">No Pengadaan</label>
-                                <input type="text" name="nomor_pengadaan" class="form-control" placeholder="Please insert no pengadaan">
-                            </div>
-                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Beban Biaya</label>
-                                <select class="form-control" name="beban_biaya">
+                                <select class="form-control beban_biaya" name="beban_biaya">
                                     <option value="CAPEX">Capex</option>
                                     <option value="OPEX">Opex</option>
                                 </select>
-                                <!-- <input type="text" class="form-control" placeholder="Please insert metode" name="metode"> -->
+                                <div class="invalid-feedback error-biaya" style="display: none;">
+                                    Mohon isi judul beban biaya.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -89,22 +85,26 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">PBJ</label>
-                                <select class="form-control" name="pbj">
+                                <select class="form-control obj" name="pbj">
                                     <option value="Sarana">Sarana</option>
                                     <option value="Non Sarana">Non Sarana</option>
                                 </select>
-                                <!-- <input type="text" class="form-control" placeholder="Please insert pbj" name="pbj"> -->
+                                <div class="invalid-feedback error-pbj" style="display: none;">
+                                    Mohon isi pbj.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana</label>
-                                <select class="form-control" name="sumber_dana">
+                                <select class="form-control sumber_dana" name="sumber_dana">
                                     <option value="2022">2021</option>
                                     <option value="2023">2022</option>
                                     <option value="2023">2023</option>
                                 </select>
-                                <!-- <input type="text" class="form-control" placeholder="Please insert pbj" name="pbj"> -->
+                                <div class="invalid-feedback error-sumber" style="display: none;">
+                                    Mohon isi sumber dana.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,6 +133,9 @@
                         <div class="col-md-6">
                             <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP</label>
                             <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai_pr" name="nilai_pr">
+                            <div class="invalid-feedback nilai-rkap" style="display: none;">
+                                Mohon isi nilai rkap.
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -206,7 +209,9 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.timeline') }}",
-            order: [[7, 'desc']],
+            order: [
+                [7, 'desc']
+            ],
             columns: [{
                     data: 'no_pengadaan'
                 },

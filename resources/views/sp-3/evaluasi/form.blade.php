@@ -30,8 +30,8 @@
                         <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                         <div class="row">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
+                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                    <thead style="text-align: center">
                                         <tr>
                                             <th width="5">No</th>
                                             <th>Urian Dokumen</th>
@@ -52,7 +52,7 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="vertical-align: top">
                                         <tr>
                                             <th>1.</th>
                                             <td>
