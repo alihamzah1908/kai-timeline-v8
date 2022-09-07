@@ -26,7 +26,7 @@
                         <table id="datatable" class="table table-striped mb-0 nowrap">
                             <thead>
                                 <tr>
-                                    <th>No. Timeline</th>
+                                    <th>No. Pengadaan</th>
                                     <th>Procurement Title</th>
                                     <th>RKAP Value</th>
                                     <th>Department</th>

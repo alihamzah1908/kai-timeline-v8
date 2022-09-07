@@ -142,11 +142,19 @@ class TimelineController extends Controller
 
     public function data(Request $request)
     {
-
         $timeline = \App\Models\Timeline::orderBy('timeline_id', 'desc');
         if ($request["timeline_type"] == 'approval') {
-            $timeline->where('proses_st', 'PROSES_ST');
-            $timeline->orWhere('proses_st', 'PROSES_AT');
+            if ($request["status"] == 'PROSES_AT') {
+                $timeline->where('proses_st', 'PROSES_AT');
+            } else if ($request["status"] == 'PROSES_ST') {
+                $timeline->where('proses_st', 'PROSES_ST');
+            } else if ($request["status"] == 'PROSES_CT') {
+                $timeline->where('proses_st', 'PROSES_CT');
+            } else {
+                $timeline->where('proses_st', 'PROSES_ST');
+                $timeline->orWhere('proses_st', 'PROSES_AT');
+                $timeline->orWhere('proses_st', 'PROSES_CT');
+            }
             // $timeline->orWhere('proses_st', 'PROSES_CT');
         } else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
         $data = $timeline->get();

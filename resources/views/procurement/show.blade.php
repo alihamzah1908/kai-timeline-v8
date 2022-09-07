@@ -153,7 +153,8 @@
                             <dt class="font-weight-bold">Status </dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <badges class="badge badge-danger">{{ $data->get_status->keterangan }}</badges></dt>
+                            <dt class="font-weight-normal">: <badges class="badge badge-danger">{{ $data->get_status->keterangan }}</badges>
+                            </dt>
                         </div>
                     </div>
                 </div>

@@ -203,7 +203,7 @@
                     y: response.st_sp3,
                     color: '#ff751a'
                 }],
-                url: "{{ route('task.approval') }}",
+                url: "{{ route('task.approval') }}?status=PROSES_ST",
                 color: '#ff751a'
             });
             seriesData.push({
@@ -215,7 +215,7 @@
                     y: response.at_sp3,
                     color: '#47d147'
                 }],
-                url: "{{ route('task.approval') }}",
+                url: "{{ route('task.approval') }}?status=PROSES_AT",
                 color: '#47d147'
             });
             seriesData.push({
@@ -227,7 +227,7 @@
                     y: response.ct_sp3,
                     color: '#ff3333'
                 }],
-                url: "{{ route('task.approval') }}",
+                url: "{{ route('task.approval') }}?status=PROSES_CT",
                 color: '#ff3333'
             });
             Highcharts.chart('container', {
