@@ -417,7 +417,7 @@
                                     <a href="{{ route('vendor.index') }}">List Vendor</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">Vendor Blacklist</a>
+                                    <a href="{{ route('blacklist.index') }}">Vendor Blacklist</a>
                                 </li>
                             </ul>
                         </li>

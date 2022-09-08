@@ -110,7 +110,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     // VENDOR
     Route::get('/data/vendor', 'App\Http\Controllers\VendorController@data')->name('data.vendor');
+    Route::get('/data/vendor/blacklist', 'App\Http\Controllers\VendorController@data_blacklist')->name('vendor.blacklist');
     Route::get('/data/vendor/list', 'App\Http\Controllers\VendorController@index')->name('vendor.index');
+    Route::get('/data/vendor/blacklist/list', 'App\Http\Controllers\VendorController@blacklist')->name('blacklist.index');
     Route::get('/data/vendor/autovendor', 'App\Http\Controllers\VendorController@autovendor')->name('vendor.autocomplete');
 
     // CONTRACT
