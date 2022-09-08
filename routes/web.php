@@ -33,6 +33,9 @@ Route::get('/dashboard/pengadaan/sarana', 'App\Http\Controllers\DashboardControl
 Route::get('/dashboard/pengadaan/non-sarana', 'App\Http\Controllers\DashboardController@get_pengadaan_non_sarana')->name('pengadaan.non.sarana');
 Route::get('/dashboard/pengadaan/monitoring', 'App\Http\Controllers\DashboardController@get_monitroing_pengadaan_sarana')->name('pengadaan.monitoring');
 
+// DASHBOARD MONITORING PENGADAAN
+Route::get('/dashboard/warehouse/part', 'App\Http\Controllers\DashboardController@get_warehouse_part')->name('warehouse.part');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');

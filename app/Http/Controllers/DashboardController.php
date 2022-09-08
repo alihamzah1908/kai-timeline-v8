@@ -228,6 +228,7 @@ class DashboardController extends Controller
                 ->count(),
         ]);
     }
+
     public function get_monitroing_pengadaan_sarana(Request $request)
     {
         $timeline = DB::table('trx_timeline')
@@ -240,5 +241,29 @@ class DashboardController extends Controller
             "pelelangan_terbuka" => $timeline->where('pbj', 'Non Sarana')
                 ->count(),
         ]);
+    }
+
+    public function get_warehouse_part(Request $request)
+    {
+        if ($request["warehouse"]) {
+            $timeline = DB::select("SELECT sloc, material_description, value_unrestricted
+            FROM warehouse_part WHERE sloc='" . $request["warehouse"] ."' 
+            AND value_unrestricted !='0'
+            ORDER BY value_unrestricted desc
+            LIMIT 20");
+        } else {
+            $timeline = DB::select("SELECT material_description, value_unrestricted 
+            FROM warehouse_part WHERE value_unrestricted !='0' 
+            ORDER BY value_unrestricted desc
+            LIMIT 20");
+        }
+        $arr = [];
+        foreach ($timeline as $val) {
+            $arrx["name"] = $val->material_description;
+            $arrx["y"] = (int)$val->value_unrestricted;
+            $arrx["color"] = '#ff3300';
+            $arr[] = $arrx;
+        }
+        return response()->json($arr);
     }
 }

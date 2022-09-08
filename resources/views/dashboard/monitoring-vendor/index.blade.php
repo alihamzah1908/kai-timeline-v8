@@ -42,7 +42,7 @@
                         <div class="media-body">
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Total
                                 Vendor</span>
-                            <h6 class="mb-0">Rp. 2.189</h6>
+                            <h6 class="mb-0">2.189</h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -60,7 +60,7 @@
                         <div class="media-body">
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Total
                                 Vendor Blacklist</span>
-                            <h6 class="mb-0">Rp. 1.065</h6>
+                            <h6 class="mb-0">1.065</h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-product-sold-chart" class="apex-charts"></div>
@@ -134,7 +134,7 @@
         xAxis: {
             categories: ['Proses Pengadaan Barang dan Jasa', 'Pelaksanaan Kontrak', 'Masa Pemeliharaan'],
             title: {
-                text: 'PBJ Sarana'
+                text: 'Waktu Blacklist Vendor'
             }
         },
         yAxis: {
