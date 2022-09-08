@@ -18,6 +18,11 @@ class VendorController extends Controller
     {
         return view('vendor.index');
     }
+    
+    public function blacklist()
+    {
+        return view('vendor.blacklist');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -103,6 +108,20 @@ class VendorController extends Controller
     public function data()
     {
         $data = DB::select('SELECT * FROM vendor');
+        return FacadesDataTables::of($data)
+            ->addColumn('action', function ($row) {
+                $btn = '<button class="btn btn-sm btn-primary btn-rounded">
+                            <i class="uil uil-search"></i>
+                        </button>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function data_blacklist()
+    {
+        $data = DB::select('SELECT * FROM vendor_blacklist');
         return FacadesDataTables::of($data)
             ->addColumn('action', function ($row) {
                 $btn = '<button class="btn btn-sm btn-primary btn-rounded">
