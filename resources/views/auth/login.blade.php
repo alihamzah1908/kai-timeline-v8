@@ -18,36 +18,43 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         body.authentication-bg {
-            background: url("assets/images/auth-bg.jpg");
+            background: url("assets/images/auth-bg.png");
             background-size: cover;
             background-repeat: no-repeat;
-            background-size: 100% 100%;
+            /* background-size: 100% 100%; */
         }
     </style>
 </head>
 
 <body class="authentication-bg">
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
+    <div class="row pt-5">
+    </div>
+    <div class="row pt-5">
+    </div>
+    <div class="row pt-3">
+        <div class="col-xl-7">
+        </div>
+        <div class="col-xl-5">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="card">
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <div class="mx-auto p-3 d-flex justify-content-center">
                                     <a href="index.html">
-                                        <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="55" />
+                                        <img src="{{ asset('assets/images/c-log.png') }}" alt="" height="55" />
                                         <h3 class="d-inline align-middle ml-1 text-logo"></h3>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12 p-3 d-flex justify-content-center"">
                                 <h6 class=" h5 mb-0 mt-4">Welcome Back !</h6>
                                 <p class="text-muted mt-1 mb-4"></p>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="{{ route('process.login') }}" class="authentication-form p-3" method="post">
@@ -87,7 +94,14 @@
                                     <div class="form-group mb-0 text-center">
                                         <button class="btn btn-primary btn-block btn-rounded" type="submit"> Log In
                                         </button>
+                                    </div>     
+                                    <br>
+                                    <div class="col-xl-6">
+                                    <img src="{{ asset('assets/images/applestore.png') }}" alt="" width="100" />   
                                     </div>
+                                    <div class="col-xl-6">
+                                    <img src="{{ asset('assets/images/googleplay.png') }}" alt="" width="55" />
+                                    </div>                       
                                 </form>
                             </div>
                         </div>
@@ -95,6 +109,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
