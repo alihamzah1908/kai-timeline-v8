@@ -96,12 +96,12 @@
                                         </button>
                                     </div>     
                                     <br>
-                                    <div class="col-xl-6">
+                                    <!-- <div class="col-xl-6">
                                     <img src="{{ asset('assets/images/applestore.png') }}" alt="" width="100" />   
                                     </div>
                                     <div class="col-xl-6">
                                     <img src="{{ asset('assets/images/googleplay.png') }}" alt="" width="55" />
-                                    </div>                       
+                                    </div>                        -->
                                 </form>
                             </div>
                         </div>
