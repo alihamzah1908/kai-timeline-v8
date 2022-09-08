@@ -1068,7 +1068,7 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 10,
+                    borderRadius: 5,
                     cursor: 'pointer',
                     point: {
                         events: {
@@ -1084,6 +1084,10 @@
                         }
                     }
 
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
                 }
 
             },
@@ -1189,7 +1193,7 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 10,
+                    borderRadius: 5,
                     cursor: 'pointer',
                     point: {
                         events: {
@@ -1205,6 +1209,10 @@
                         }
                     }
 
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
                 }
 
             },

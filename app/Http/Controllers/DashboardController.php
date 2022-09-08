@@ -228,4 +228,17 @@ class DashboardController extends Controller
                 ->count(),
         ]);
     }
+    public function get_monitroing_pengadaan_sarana(Request $request)
+    {
+        $timeline = DB::table('trx_timeline')
+            ->get();
+        return response()->json([
+            "penunjukan_langsung" => $timeline->where('pbj', 'Non Sarana')
+                ->count(),
+            "pemilihan_langsung" => $timeline->where('pbj', 'Non Sarana')
+                ->count(),
+            "pelelangan_terbuka" => $timeline->where('pbj', 'Non Sarana')
+                ->count(),
+        ]);
+    }
 }

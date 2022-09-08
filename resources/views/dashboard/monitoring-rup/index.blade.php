@@ -284,7 +284,7 @@
                 },
                 plotOptions: {
                     series: {
-                        borderRadius: 15,
+                        borderRadius: 8,
                         cursor: 'pointer',
                         point: {
                             events: {
@@ -299,6 +299,10 @@
                             }
                         }
 
+                    },
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
                     }
 
                 },
@@ -435,97 +439,103 @@
         })
 
         // MONITORING PENGADAAN BAR
-        Highcharts.chart('pengadaan', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Monitoring & Pengadaan 2022'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: ['Penunjukan Langsung', 'Pemilihan Langsung', 'Pelelangan Terbuka'],
-                title: {
-                    text: 'PBJ Sarana'
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: '',
-                    align: 'high'
+        $.ajax({
+            url: "{{ route('pengadaan.monitoring') }}",
+            dataType: "json",
+            method: "get"
+        }).done(function(response) {
+            console.log(response)
+            Highcharts.chart('pengadaan', {
+                chart: {
+                    type: 'bar'
                 },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' total'
-            },
-            plotOptions: {
-                series: {
-                    borderRadius: 10
+                title: {
+                    text: 'Monitoring & Pengadaan 2022'
                 },
-                bar: {
-                    dataLabels: {
-                        enabled: true
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: ['Proses Pengadaan', 'Selesai Pengadaan'],
+                    title: {
+                        text: 'PBJ Sarana'
                     }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 80,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-                shadow: true
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Penunjukan Langsung',
-                data: [{
-                    y: 18,
-                    color: "#47d147",
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' total'
+                },
+                plotOptions: {
+                    series: {
+                        borderRadius: 8
+                    },
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    },
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Penunjukan Langsung',
+                    data: [{
+                        y: response.penunjukan_langsung,
+                        color: "#ff751a",
+                    }, {
+                        y: 1,
+                        color: "#ff751a",
+                    }],
+                    color: '#ff751a'
                 }, {
-                    y: 1,
-                    color: "#47d147",
+                    name: 'Pemilihan Langsung',
+                    data: [{
+                        y: response.pemilihan_langsung,
+                        color: "#47d147",
+                    }, {
+                        y: 50,
+                        color: "#47d147",
+                    }],
+                    color: '#47d147'
                 }, {
-                    y: 18,
-                    color: "#47d147",
+                    name: 'Pelelangan Terbuka',
+                    data: [{
+                        y: response.pelelangan_terbuka,
+                        color: "#ff3333",
+                    }, {
+                        y: 50,
+                        color: "#ff3333",
+                    }],
+                    color: '#ff3333'
                 }]
-            }, {
-                name: 'Pemilihan Langsung',
-                data: [{
-                    y: 100,
-                    color: "red",
-                }, {
-                    y: 50,
-                    color: "red",
-                }, {
-                    y: 116,
-                    color: "red",
-                }]
-            }, {
-                name: 'Pelelangan Terbuka',
-                data: [{
-                    y: 200,
-                    color: "orange",
-                }, {
-                    y: 150,
-                    color: "orange",
-                }, {
-                    y: 230,
-                    color: "orange",
-                }]
-            }]
-        });
+            });
+        })
+
 
         // MONITORING PENGADAAN PIE
         Highcharts.chart('pengadaan-pie', {

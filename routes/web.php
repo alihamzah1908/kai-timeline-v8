@@ -31,6 +31,7 @@ Route::get('/dashboard/program-unit/opex', 'App\Http\Controllers\DashboardContro
 // DASHBOARD MONITORING PENGADAAN
 Route::get('/dashboard/pengadaan/sarana', 'App\Http\Controllers\DashboardController@get_pengadaan_sarana')->name('pengadaan.sarana');
 Route::get('/dashboard/pengadaan/non-sarana', 'App\Http\Controllers\DashboardController@get_pengadaan_non_sarana')->name('pengadaan.non.sarana');
+Route::get('/dashboard/pengadaan/monitoring', 'App\Http\Controllers\DashboardController@get_monitroing_pengadaan_sarana')->name('pengadaan.monitoring');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
