@@ -22,6 +22,16 @@ Route::get('/logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('
 Route::get('/dashboard/program-rup', 'App\Http\Controllers\DashboardController@get_program')->name('program.rup');
 Route::get('/dashboard/program-rup/card', 'App\Http\Controllers\DashboardController@get_dashboard_card')->name('get.dashboard.card');
 Route::get('/dashboard/program-rup/department', 'App\Http\Controllers\DashboardController@get_department')->name('get.department');
+
+// DASHBOARD REALISASI PROGRAM
+Route::get('/dashboard/program-directorate/opex', 'App\Http\Controllers\DashboardController@get_directorate_opex')->name('realisasi.opex');
+Route::get('/dashboard/program-directorate/capex', 'App\Http\Controllers\DashboardController@get_directorate_capex')->name('realisasi.capex');
+Route::get('/dashboard/program-unit/opex', 'App\Http\Controllers\DashboardController@get_realisasi_unit')->name('realisasi.unit');
+
+// DASHBOARD MONITORING PENGADAAN
+Route::get('/dashboard/pengadaan/sarana', 'App\Http\Controllers\DashboardController@get_pengadaan_sarana')->name('pengadaan.sarana');
+Route::get('/dashboard/pengadaan/non-sarana', 'App\Http\Controllers\DashboardController@get_pengadaan_non_sarana')->name('pengadaan.non.sarana');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');

@@ -65,4 +65,167 @@ class DashboardController extends Controller
             "cola_sp3" => $sp3->where('division_cd', 'COLA')->count()
         ]);
     }
+
+    public function get_directorate_opex(Request $request)
+    {
+        $timeline = DB::table('trx_timeline as a')
+            ->get();
+        return response()->json([
+            "cu" => $timeline->where('directorate_cd', 'CU')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cf" => $timeline->where('directorate_cd', 'CF')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "ct" => $timeline->where('directorate_cd', 'CT')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "co" => $timeline->where('directorate_cd', 'CO')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "ka_bandara" => $timeline->where('directorate_cd', 'KB')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+        ]);
+    }
+
+    public function get_directorate_capex(Request $request)
+    {
+        $timeline = DB::table('trx_timeline as a')
+            ->get();
+        return response()->json([
+            "cu" => $timeline->where('directorate_cd', 'CU')
+                ->where('beban_biaya', 'CAPEX')
+                ->count(),
+            "cf" => $timeline->where('directorate_cd', 'CF')
+                ->where('beban_biaya', 'CAPEX')
+                ->count(),
+            "ct" => $timeline->where('directorate_cd', 'CT')
+                ->where('beban_biaya', 'CAPEX')
+                ->count(),
+            "co" => $timeline->where('directorate_cd', 'CO')
+                ->where('beban_biaya', 'CAPEX')
+                ->count(),
+            "ka_bandara" => $timeline->where('directorate_cd', 'KB')
+                ->where('beban_biaya', 'CAPEX')
+                ->count(),
+        ]);
+    }
+
+    public function get_realisasi_unit(Request $request)
+    {
+        $timeline = DB::table('trx_timeline as a')
+            ->get();
+        return response()->json([
+            "cus" => $timeline->where('division_cd', 'CUS')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cfh" => $timeline->where('division_cd', 'CFH')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cti" => $timeline->where('division_cd', 'CTI')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "ctp" => $timeline->where('division_cd', 'CTP')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cts" => $timeline->where('division_cd', 'CTS')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "coc" => $timeline->where('division_cd', 'COC')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "coh" => $timeline->where('division_cd', 'COH')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cos" => $timeline->where('division_cd', 'COS')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cot" => $timeline->where('division_cd', 'COT')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "cola" => $timeline->where('division_cd', 'COLA')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+            "ka_bandara" => $timeline->where('division_cd', 'KB')
+                ->where('beban_biaya', 'OPEX')
+                ->count(),
+        ]);
+    }
+
+    public function get_pengadaan_sarana(Request $request)
+    {
+        $timeline = DB::table('trx_timeline')
+            ->get();
+        return response()->json([
+            "cus" => $timeline->where('division_cd', 'CUS')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "cfh" => $timeline->where('division_cd', 'CFH')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "cti" => $timeline->where('division_cd', 'CTI')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "ctp" => $timeline->where('division_cd', 'CTP')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "cts" => $timeline->where('division_cd', 'CTS')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "coc" => $timeline->where('division_cd', 'COC')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "coh" => $timeline->where('division_cd', 'COH')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "cos" => $timeline->where('division_cd', 'COS')
+                ->where('pbj', 'OPEX')
+                ->count(),
+            "cot" => $timeline->where('division_cd', 'COT')
+                ->where('pbj', 'Sarana')
+                ->count(),
+            "cola" => $timeline->where('division_cd', 'COLA')
+                ->where('pbj', 'Sarana')
+                ->count(),
+        ]);
+    }
+
+    public function get_pengadaan_non_sarana(Request $request)
+    {
+        $timeline = DB::table('trx_timeline')
+            ->get();
+        return response()->json([
+            "cus" => $timeline->where('division_cd', 'CUS')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cfh" => $timeline->where('division_cd', 'CFH')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cti" => $timeline->where('division_cd', 'CTI')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "ctp" => $timeline->where('division_cd', 'CTP')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cts" => $timeline->where('division_cd', 'CTS')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "coc" => $timeline->where('division_cd', 'COC')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "coh" => $timeline->where('division_cd', 'COH')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cos" => $timeline->where('division_cd', 'COS')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cot" => $timeline->where('division_cd', 'COT')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+            "cola" => $timeline->where('division_cd', 'COLA')
+                ->where('pbj', 'Non Sarana')
+                ->count(),
+        ]);
+    }
 }

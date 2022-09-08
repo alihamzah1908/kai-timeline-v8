@@ -11,13 +11,13 @@
             <h5 class="mb-1 mt-0">Dashboard Monitoring RUP</h4>
         </div>
         <div class="col-md-4">
-            
+
         </div>
         <div class="col-md-2">
             <select class="form-control type-metode" name="type_metode">
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
-                    <!-- <option value="3">Pelelangan Terbuka</option> -->
+                <!-- <option value="3">Pelelangan Terbuka</option> -->
             </select>
         </div>
         <div class="col-sm-8 col-xl-6">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="align-self-center">
                             <div id="today-product-sold-chart" class="apex-charts"></div>
-                            <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i> 5.05%</span>
+                            <!-- <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i> 5.05%</span> -->
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="align-self-center">
                             <div id="today-new-customer-chart" class="apex-charts"></div>
-                            <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 25.16%</span>
+                            <!-- <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 25.16%</span> -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="align-self-center">
                             <div id="today-new-visitors-chart" class="apex-charts"></div>
-                            <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i> 5.05%</span>
+                            <!-- <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i> 5.05%</span> -->
                         </div>
                     </div>
                 </div>
@@ -157,9 +157,14 @@
 
     <!-- PROSES PENGADAAN 2022 -->
     <div class="row mt-4">
-        <div class="col-xl-12">
+        <div class="col-xl-6">
             <figure class="highcharts-figure">
-                <div id="proses-pengadaan"></div>
+                <div id="proses-pengadaan-sarana"></div>
+            </figure>
+        </div>
+        <div class="col-xl-6">
+            <figure class="highcharts-figure">
+                <div id="proses-pengadaan-non-sarana"></div>
             </figure>
         </div>
     </div>
@@ -285,7 +290,6 @@
                             events: {
                                 click: function() {
                                     var point = this;
-
                                     if (point.url) {
                                         window.open(point.url);
                                     } else if (point.series.userOptions.url) {
@@ -308,7 +312,6 @@
             dataType: 'json',
             method: 'get',
         }).done(function(response) {
-            console.log(response)
             Highcharts.chart('pbj-opex', {
                 chart: {
                     type: 'column'
@@ -560,7 +563,7 @@
             },
 
             series: [{
-                name: "Browsers",
+                name: "Monitoring Sarana",
                 colorByPoint: true,
                 data: [{
                         name: "PBJ Sarana",
@@ -578,323 +581,229 @@
             }],
         });
 
-        // PROSES PENGADAAN
-        Highcharts.chart('proses-pengadaan', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                align: 'center',
-                text: 'Monitoring Pengadaan Sarana & Non Sarana'
-            },
-            subtitle: {
-                align: 'left',
-                text: ''
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
+        // PROSES PENGADAAN SARANA
+        $.ajax({
+            url: '{{ route("pengadaan.sarana") }}',
+            dataType: 'json',
+            method: 'get',
+        }).done(function(response) {
+            Highcharts.chart('proses-pengadaan-sarana', {
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Total percent market share'
-                }
-
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%'
-                    }
-                }
-            },
-
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-            },
-
-            series: [{
-                name: "Browsers",
-                colorByPoint: true,
-                data: [{
-                        name: "Chrome",
-                        y: 62.74,
-                        color: '#ff3300',
-                        drilldown: "Chrome"
-                    },
-                    {
-                        name: "Firefox",
-                        y: 10.57,
-                        color: '#ff3300',
-                        drilldown: "Firefox"
-                    },
-                    {
-                        name: "Internet Explorer",
-                        y: 7.23,
-                        color: '#ff3300',
-                        drilldown: "Internet Explorer"
-                    },
-                    {
-                        name: "Safari",
-                        y: 5.58,
-                        color: '#ff3300',
-                        drilldown: "Safari"
-                    },
-                    {
-                        name: "Edge",
-                        y: 4.02,
-                        color: '#ff3300',
-                        drilldown: "Edge"
-                    },
-                    {
-                        name: "Opera",
-                        y: 1.92,
-                        color: '#ff3300',
-                        drilldown: "Opera"
-                    },
-                    {
-                        name: "Other",
-                        y: 7.62,
-                        color: '#ff3300',
-                        drilldown: null
-                    }
-                ]
-            }],
-            drilldown: {
-                breadcrumbs: {
-                    position: {
-                        align: 'right'
+                    align: 'center',
+                    text: 'Monitoring Pengadaan Sarana'
+                },
+                subtitle: {
+                    align: 'left',
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
                     }
                 },
-                series: [{
-                        name: "Chrome",
-                        id: "Chrome",
-                        data: [
-                            [
-                                "v65.0",
-                                0.1
-                            ],
-                            [
-                                "v64.0",
-                                1.3
-                            ],
-                            [
-                                "v63.0",
-                                53.02
-                            ],
-                            [
-                                "v62.0",
-                                1.4
-                            ],
-                            [
-                                "v61.0",
-                                0.88
-                            ],
-                            [
-                                "v60.0",
-                                0.56
-                            ],
-                            [
-                                "v59.0",
-                                0.45
-                            ],
-                            [
-                                "v58.0",
-                                0.49
-                            ],
-                            [
-                                "v57.0",
-                                0.32
-                            ],
-                            [
-                                "v56.0",
-                                0.29
-                            ],
-                            [
-                                "v55.0",
-                                0.79
-                            ],
-                            [
-                                "v54.0",
-                                0.18
-                            ],
-                            [
-                                "v51.0",
-                                0.13
-                            ],
-                            [
-                                "v49.0",
-                                2.16
-                            ],
-                            [
-                                "v48.0",
-                                0.13
-                            ],
-                            [
-                                "v47.0",
-                                0.11
-                            ],
-                            [
-                                "v43.0",
-                                0.17
-                            ],
-                            [
-                                "v29.0",
-                                0.26
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Firefox",
-                        id: "Firefox",
-                        data: [
-                            [
-                                "v58.0",
-                                1.02
-                            ],
-                            [
-                                "v57.0",
-                                7.36
-                            ],
-                            [
-                                "v56.0",
-                                0.35
-                            ],
-                            [
-                                "v55.0",
-                                0.11
-                            ],
-                            [
-                                "v54.0",
-                                0.1
-                            ],
-                            [
-                                "v52.0",
-                                0.95
-                            ],
-                            [
-                                "v51.0",
-                                0.15
-                            ],
-                            [
-                                "v50.0",
-                                0.1
-                            ],
-                            [
-                                "v48.0",
-                                0.31
-                            ],
-                            [
-                                "v47.0",
-                                0.12
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Internet Explorer",
-                        id: "Internet Explorer",
-                        data: [
-                            [
-                                "v11.0",
-                                6.2
-                            ],
-                            [
-                                "v10.0",
-                                0.29
-                            ],
-                            [
-                                "v9.0",
-                                0.27
-                            ],
-                            [
-                                "v8.0",
-                                0.47
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Safari",
-                        id: "Safari",
-                        data: [
-                            [
-                                "v11.0",
-                                3.39
-                            ],
-                            [
-                                "v10.1",
-                                0.96
-                            ],
-                            [
-                                "v10.0",
-                                0.36
-                            ],
-                            [
-                                "v9.1",
-                                0.54
-                            ],
-                            [
-                                "v9.0",
-                                0.13
-                            ],
-                            [
-                                "v5.1",
-                                0.2
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Edge",
-                        id: "Edge",
-                        data: [
-                            [
-                                "v16",
-                                2.6
-                            ],
-                            [
-                                "v15",
-                                0.92
-                            ],
-                            [
-                                "v14",
-                                0.4
-                            ],
-                            [
-                                "v13",
-                                0.1
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Opera",
-                        id: "Opera",
-                        data: [
-                            [
-                                "v50.0",
-                                0.96
-                            ],
-                            [
-                                "v49.0",
-                                0.82
-                            ],
-                            [
-                                "v12.1",
-                                0.14
-                            ]
-                        ]
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Monitoring Pengadaan Sarana'
                     }
-                ]
-            }
-        })
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Sarana",
+                    colorByPoint: true,
+                    data: [{
+                            name: "CFH",
+                            y: response.cfh,
+                            color: '#ff3300',
+                            drilldown: "Chrome"
+                        },
+                        {
+                            name: "COC",
+                            y: response.coc,
+                            color: '#ff3300',
+                            drilldown: "Firefox"
+                        },
+                        {
+                            name: "COH",
+                            y: response.coh,
+                            color: '#ff3300',
+                            drilldown: "Internet Explorer"
+                        },
+                        {
+                            name: "COLA",
+                            y: response.cola,
+                            color: '#ff3300',
+                            drilldown: "Safari"
+                        },
+                        {
+                            name: "COS",
+                            y: response.cos,
+                            color: '#ff3300',
+                            drilldown: "Edge"
+                        },
+                        {
+                            name: "CTI",
+                            y: response.cti,
+                            color: '#ff3300',
+                            drilldown: "Opera"
+                        },
+                        {
+                            name: "CTS",
+                            y: response.cts,
+                            color: '#ff3300',
+                            drilldown: null
+                        },
+                        {
+                            name: "CUSG",
+                            y: response.cusg,
+                            color: '#ff3300',
+                            drilldown: null
+                        },
+                        {
+                            name: "COLS",
+                            y: response.cols,
+                            color: '#ff3300',
+                            drilldown: null
+                        }
+                    ]
+                }],
+            })
+        });
+
+        // PROSES PENGADAAN NON SARANA
+        $.ajax({
+            url: '{{ route("pengadaan.non.sarana") }}',
+            dataType: 'json',
+            method: 'get',
+        }).done(function(response) {
+            Highcharts.chart('proses-pengadaan-non-sarana', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    align: 'center',
+                    text: 'Monitoring Pengadaan Non Sarana'
+                },
+                subtitle: {
+                    align: 'left',
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Monitoring Pengadaan Sarana'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Sarana",
+                    colorByPoint: true,
+                    data: [{
+                            name: "CFH",
+                            y: response.cfh,
+                            color: '#ff3300',
+                            drilldown: "Chrome"
+                        },
+                        {
+                            name: "COC",
+                            y: response.coc,
+                            color: '#ff3300',
+                            drilldown: "Firefox"
+                        },
+                        {
+                            name: "COH",
+                            y: response.coh,
+                            color: '#ff3300',
+                            drilldown: "Internet Explorer"
+                        },
+                        {
+                            name: "COLA",
+                            y: response.cola,
+                            color: '#ff3300',
+                            drilldown: "Safari"
+                        },
+                        {
+                            name: "COS",
+                            y: response.cos,
+                            color: '#ff3300',
+                            drilldown: "Edge"
+                        },
+                        {
+                            name: "CTI",
+                            y: response.cti,
+                            color: '#ff3300',
+                            drilldown: "Opera"
+                        },
+                        {
+                            name: "CTS",
+                            y: response.cts,
+                            color: '#ff3300',
+                            drilldown: null
+                        },
+                        {
+                            name: "CUSG",
+                            y: response.cusg,
+                            color: '#ff3300',
+                            drilldown: null
+                        },
+                        {
+                            name: "COLS",
+                            y: response.cols,
+                            color: '#ff3300',
+                            drilldown: null
+                        }
+                    ]
+                }],
+            })
+        });
     })
 </script>
 @endpush
