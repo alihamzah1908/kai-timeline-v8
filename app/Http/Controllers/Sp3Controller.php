@@ -294,7 +294,7 @@ class Sp3Controller extends Controller
     {
         $pdf = FacadePdf::loadView('sp-3.evaluasi.print-sp')->setOptions(['defaultFont' => 'roboto']);;
         // return view('sp-3.evaluasi.print-sp');
-        return $pdf->download('dasdsa.pdf');
+        return $pdf->download('spr.pdf');
     }
 
     public function evaluasi_store(Request $request)

@@ -318,9 +318,9 @@ class ProcurementController extends Controller
             $dokumen->metode = $request["metode"];
             $dokumen->vendor_code = $val;
             if ($request["metode"] == '1_sampul') {
+                // dd($request->all());
                 $dokumen->tanggal_submit_dokumen = $request["dok_admin_date"][$key];
                 $dokumen->created_by = Auth::user()->id;
-
                 $file = $request->file('file_dokumen')[$key];
                 $extension = $file->getClientOriginalExtension();
                 $new_name = 'dokumen-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;

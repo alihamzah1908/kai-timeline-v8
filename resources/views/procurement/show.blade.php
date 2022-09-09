@@ -313,12 +313,14 @@
                                                         <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         @if($rks)
-                                                        <a href="{{ asset('file/rks/'. $rks->file_penawaran) }}" target="_blank">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </a>
+                                                        <h6>
+                                                            <a href="{{ asset('file/rks/'. $rks->file_penawaran) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_penawaran }}
+                                                            </a>
+                                                        </h6>
                                                         @else
                                                         <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         @endif
@@ -336,12 +338,14 @@
                                                         <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         @if($rks)
-                                                        <a href="{{ asset('file/rks/'. $rks->file_dokumen) }}" target="_blank">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </a>
+                                                        <h6>
+                                                            <a href="{{ asset('file/rks/'. $rks->file_dokumen) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_dokumen }}
+                                                            </a>
+                                                        </h6>
                                                         @else
                                                         <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         @endif
@@ -777,8 +781,8 @@
                                                             {{ $doc->vendor_name }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ asset('file/sp3/', $doc->file_dokumen) }}">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            <a href="{{ asset('file/sp3/'. $doc->file_dokumen) }}">
+                                                                <p><i class="uil uil-file-alt"></i> {{ $doc->file_dokumen }}</p>
                                                             </a>
                                                         </td>
                                                         <td>
@@ -1678,9 +1682,11 @@
                                                     </div>
                                                     @if($pemenang)
                                                     <div class="col-md-6 mb-2">
-                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
-                                                        </a>
+                                                        <h6>
+                                                            <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
+                                                            </a>
+                                                        </h6>
                                                     </div>
                                                     @else
                                                     <div class="col-md-3">
@@ -1816,6 +1822,8 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-3 mt-2">
                                                         <label for="exampleInputEmail1">Upload SP Jamlak :</label>
                                                     </div>
@@ -1824,13 +1832,19 @@
                                                         <input type="file" class="form-control" name="file_jamlak">
                                                         @else
                                                         <input type="file" class="form-control" name="file_jamlak" value="{{ $spr->file_jamlak }}">
-                                                        <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
-                                                            {{ asset('file/sp3/'. $spr->file_jamlak) }}
-                                                        </a>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        @if($spr)
+                                                        <h6>
+                                                            <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
+                                                                <i class="uil uil-file-alt"></i> {{ $spr->file_jamlak }}
+                                                            </a>
+                                                        </h6>
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mt-3">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>

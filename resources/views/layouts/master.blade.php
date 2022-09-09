@@ -197,10 +197,10 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         <div class="left-side-menu">
-            <div class="container-fluid mb-4 mt-3 d-flex justify-content-center">
-                <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
+            <div class="container-fluid mb-4 d-flex justify-content-center">
+                <a href="{{ route('home') }}" class="mr-0 mr-md-2 logo">
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
+                        <img src="{{ asset('assets/images/c-log-bar.png') }}" alt="" height="115" width="258" />
                         <span class="d-inline h5 ml-1 text-logo"></span>
                     </span>
                 </a>
