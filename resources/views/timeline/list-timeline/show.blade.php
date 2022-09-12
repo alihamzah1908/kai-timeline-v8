@@ -109,6 +109,14 @@
                                         </dl>
                                     </div>
                                 </div>
+                                @if($data->proses_st == 'PROSES_ST')
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="{{ $data->timeline_id }}"><i class="uil uil-check"></i> Approve</button></a>
+                                        <button class="btn btn-primary btn-rounded btn-sm reject ml-2" data-bind="{{ $data->timeline_id }}"><i class="uil uil-multiply"></i> Reject</button></a>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -118,3 +126,85 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        // Approve Timeline
+        $('body').on('click', '.approve', function() {
+            Swal.fire({
+                title: 'Are you sure approve timeline?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Approve'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var timeline_id = $(this).attr('data-bind');
+                    $.ajax({
+                        url: '{{ route("timeline.approve") }}',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            'timeline_id': timeline_id
+                        }
+                    }).done(function(response) {
+                        if (response.status == '200') {
+                            window.location.href = "{{ route('task.approval') }}"
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Your timeline failed approved.',
+                                'success'
+                            )
+                        }
+                    })
+
+                }
+            })
+        });
+
+        // Rejected Timeline
+        $('body').on('click', '.reject', function() {
+            Swal.fire({
+                title: 'Are you sure reject timeline?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Reject'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var timeline_id = $(this).attr('data-bind');
+                    $.ajax({
+                        url: '{{ route("timeline.reject") }}',
+                        dataType: 'json',
+                        method: 'get',
+                        data: {
+                            'timeline_id': timeline_id
+                        }
+                    }).done(function(response) {
+                        if (response.status == '200') {
+                            Swal.fire(
+                                'Rejected!',
+                                'Your timeline has rejected.',
+                                'success'
+                            )
+                            timeline.ajax.reload();
+                        } else {
+                            Swal.fire(
+                                'Failed!',
+                                'Your timeline failed rejected.',
+                                'success'
+                            )
+                        }
+                    })
+
+                }
+            })
+        })
+    })
+</script>
+@endpush

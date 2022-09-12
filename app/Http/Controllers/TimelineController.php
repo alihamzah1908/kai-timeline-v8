@@ -142,7 +142,7 @@ class TimelineController extends Controller
 
     public function data(Request $request)
     {
-        $timeline = \App\Models\Timeline::orderBy('timeline_id', 'desc');
+        $timeline = \App\Models\Timeline::orderBy('created_at', 'desc');
         if ($request["timeline_type"] == 'approval') {
             if ($request["status"] == 'PROSES_AT') {
                 $timeline->where('proses_st', 'PROSES_AT');

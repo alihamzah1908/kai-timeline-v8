@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>KAI Timeline</title>
+    <title>C-LOG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo-kai-icon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/c-log.png') }}" width="100px">
     <!-- Summernote css -->
     <link href="{{ asset('assets/libs/summernote/summernote-bs4.css') }}" rel="stylesheet" />
 
@@ -56,14 +56,14 @@
         <!-- <div class="container-fluid"> -->
         <!-- LOGO -->
         <!-- <a href="{{ route('home') }}" class="navbar-brand mr-0 mr-md-2 logo">
-                    <span class="logo-lg">
-                        <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
-                        <span class="d-inline h5 ml-1 text-logo"></span>
-                    </span>
-                    <span class="logo-sm">
-                        <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="24">
-                    </span>
-                </a> -->
+            <span class="logo-lg">
+                <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="37" />
+                <span class="d-inline h5 ml-1 text-logo"></span>
+            </span>
+            <span class="logo-sm">
+                <img src="{{ asset('assets/images/Logo_KAI_Commuter.svg.png') }}" alt="" height="24">
+            </span>
+        </a> -->
 
         <!-- <ul class="navbar-nav bd-navbar-nav flex-row list-unstyled menu-left mb-0">
                     <li class="">
@@ -233,11 +233,11 @@
             <div class="sidebar-content">
                 <!--- Sidemenu -->
                 <div id="sidebar-menu" class="slimscroll-menu">
-                    <ul class="metismenu" id="menu-bar">
+                    <ul class="metismenu font-weight-bold" id="menu-bar">
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Dashboard </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Dashboard </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -276,8 +276,8 @@
                         </li> -->
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="users"></i>
-                                <span> Management Users </span>
+                                <i data-feather="users" class="text-white"></i>
+                                <span class="font-weight-bold"> Management Users </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -289,8 +289,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="users"></i>
-                                <span> Management Roles </span>
+                                <i data-feather="users" class="text-white"></i>
+                                <span class="font-weight-bold"> Management Roles </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -302,8 +302,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Timeline </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Timeline </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -324,8 +324,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> NPP </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> NPP </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -336,8 +336,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> SP3 </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> SP3 </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -358,8 +358,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> PBJ </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> PBJ </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -373,8 +373,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Contract </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Contract </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
@@ -388,8 +388,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Warehouse </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Warehouse </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -407,8 +407,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Vendor Management </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Vendor Management </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
@@ -423,8 +423,8 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);">
-                                <i data-feather="bookmark"></i>
-                                <span> Harga Satuan </span>
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Harga Satuan </span>
                                 <span class="menu-arrow"></span>
                             </a>
 
