@@ -113,12 +113,15 @@
                                 <div id="loading"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 add-vendor" style="display: none;">
-                            <div class="form-group d-flex justify-content-end">
-                                <button class="btn btn-primary btn-sm btn-rounded mt-4" type="button"><i class="uil uil-plus"></i> Add Vendor</button>
-                            </div>
+                        <div class="col-md-6 add-vendor-form" style="display: none;">
+                            @php 
+                            $vendor = DB::select('select * from vendor');
+                            @endphp
+                            <select data-plugin="customselect" class="form-control" name="vendor_name[]" multiple>
+                                @foreach($vendor as $val)
+                                <option value="{{ $val->vendor_name }}">{{ $val->vendor_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="kolom-timeline">
@@ -652,15 +655,15 @@
         $('body').on('change', '.type-metode', function() {
             if ($(this).val() == '3') {
                 $("#no-justifikasi").css('display', 'none')
-                $(".add-vendor").css('display', 'none')
+                $(".add-vendor-form").css('display', 'none')
                 $(".form-vendor-name").prop('disabled', true)
             } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')
-                $(".add-vendor").css('display', 'none')
+                $(".add-vendor-form").css('display', 'none')
                 $(".form-vendor-name").prop('disabled', false)
             } else if ($(this).val() == '2') {
                 $("#no-justifikasi").css('display', '')
-                $(".add-vendor").css('display', '')
+                $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', false)
             }
         })

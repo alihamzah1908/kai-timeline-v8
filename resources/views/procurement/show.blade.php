@@ -856,7 +856,7 @@
                                                         @foreach($tender_list as $val)
                                                         <tr>
                                                             <td>
-                                                                {{ $val->e_name }}
+                                                                {{ $val->vendor_name }}
                                                                 <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
@@ -1071,15 +1071,15 @@
                                                     @php
                                                     $dokumen = DB::table('public.trx_document_penawaran as a')
                                                     ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.i_lifnr','b.e_name')
+                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.vendor_code','b.vendor_name')
                                                     ->where('a.sp3_id', request()->id)
-                                                    ->join('mst_mmpm.tm_vendor as b','a.vendor_code','b.i_lifnr')
+                                                    ->join('public.vandor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
                                                     @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->e_name}}
+                                                            {{ $doc->vendor_name}}
                                                         </td>
                                                         <td>
                                                             <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">

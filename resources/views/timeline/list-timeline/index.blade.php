@@ -216,7 +216,8 @@
                     data: 'no_pengadaan'
                 },
                 {
-                    data: 'judul_pengadaan'
+                    data: 'judul_pengadaan',
+                    sWidth: '15%'
                 },
                 {
                     data: 'nilai_pr'
@@ -234,7 +235,7 @@
                     data: 'proses_st'
                 },
                 {
-                    data: 'created_at',
+                    data: 'timeline_id',
                     visible: false
                 },
                 {
@@ -372,7 +373,7 @@
                 const format = pr.toString().split('').reverse().join('');
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
-                
+
                 // convert nilai tax to rupiah
                 const formatTax = tax.toString().split('').reverse().join('');
                 const converts = formatTax.match(/\d{1,3}/g);
@@ -400,7 +401,7 @@
             var persen = (parseInt($(this).val()) / 100)
             var nilai_pr = $(".nilai-pr").val()
             var new_nilai_pr = nilai_pr.replace(/\./g, '')
-            
+
             const format = new_nilai_pr.toString().split('').reverse().join('');
             const convert = format.match(/\d{1,3}/g);
             const rupiah = convert.join('.').split('').reverse().join('')
