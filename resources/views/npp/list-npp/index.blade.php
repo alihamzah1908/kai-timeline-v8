@@ -114,6 +114,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 add-vendor-form" style="display: none;">
+                            <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
                             @php 
                             $vendor = DB::select('select * from vendor');
                             @endphp
@@ -158,8 +159,8 @@
                             <div class="col-md-4 nilai-tax border">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Nilai TAX</label>
-                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" name="nilai_tax" readonly>
-                                    <!-- <input type="hidden" class="form-control nilai-tax-value" name="nilai_tax_x"> -->
+                                    <input type="text" class="form-control nilai-tax-value" placeholder="Please insert nilai tax" readonly>
+                                    <input type="hidden" class="form-control nilai-tax-insert" name="nilai_tax">
                                 </div>
                             </div>
                         </div>
@@ -546,7 +547,7 @@
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
                 $(".nilai-tax-value").val('0')
-                $(".nilai-tax-insert").val('0')
+                // $(".nilai-tax-insert").val('0')
                 $(".nilai-pr").val(rupiah)
                 $(".nilai-tax-value").prop('disabled', true)
             } else if (jenis == '2') {
@@ -556,9 +557,13 @@
                 const format = pr.toString().split('').reverse().join('');
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
+
+                const formatTax = tax.toString().split('').reverse().join('');
+                const convertTax = formatTax.match(/\d{1,3}/g);
+                const rupiahTax = convertTax.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
                 //$(".nilai-tax-value").val('11')
-                $(".nilai-tax-value").val(tax)
+                $(".nilai-tax-value").val(rupiahTax)
                 //$(".nilai-tax-insert").val('11')
                 $(".nilai-tax-insert").val(tax)
                 $(".nilai-tax-percent").html('%')
@@ -570,7 +575,7 @@
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").prop('disabled', false)
+                $(".nilai-tax-value").attr("readonly", false); 
                 //$(".nilai-tax-value").val(' ')
                 $(".nilai-tax-value").val(tax)
                 //$(".nilai-tax-insert").val(' ')
@@ -657,14 +662,17 @@
                 $("#no-justifikasi").css('display', 'none')
                 $(".add-vendor-form").css('display', 'none')
                 $(".form-vendor-name").prop('disabled', true)
+                $(".vendor-name").show()
             } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', 'none')
                 $(".form-vendor-name").prop('disabled', false)
+                $(".vendor-name").show()
             } else if ($(this).val() == '2') {
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', false)
+                $(".vendor-name").hide()
             }
         })
 

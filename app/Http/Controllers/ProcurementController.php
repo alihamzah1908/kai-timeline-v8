@@ -38,7 +38,7 @@ class ProcurementController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->hasFile('file_penawaran'));
+        // dd($request->all());
         if ($request->hasFile('file_penawaran')) {
             // PROPOSAL/TEMPLATE FILE
             $file_penawaran = $request->file('file_penawaran');
@@ -64,9 +64,7 @@ class ProcurementController extends Controller
                 $sp3 = \App\Models\SP3::findOrFail($request["sp3_id"]);
                 $sp3->proses_st = 'PROSES_RRKS';
                 $sp3->save();
-                return response()->json(["status" => 200]);
-            } else {
-                return response()->json(["status" => 400]);
+                return redirect(route('procurement.show', $request["sp3_id"]));
             }
         } elseif ($request["penjadwalan"]) {
             $jadwal = new \App\Models\TrxJadwalPelaksaan();
@@ -233,7 +231,7 @@ class ProcurementController extends Controller
                 $status->proses_st = 'PROSES_PP';
             } elseif ($request["proses_st"] == 'PROSES_PPDP') {
                 $status->proses_st = 'PROSES_EP';
-            } elseif ($request["proses_st"] == 'PROSES_EP') {
+            } elseif ($request["proses_st"] == 'PROSES_EP' || $request["proses_st"] == 'PROSES_EDH') {
                 $status->proses_st = 'PROSES_KKN';
             }
             $status->save();
@@ -277,7 +275,8 @@ class ProcurementController extends Controller
             $status->proses_st = 'PROSES_AL';
         }
         $status->save();
-        return response()->json(['status' => 200]);
+        // return response()->json(['status' => 200]);
+        return redirect(route('procurement.show', $request["sp3_id"]));
     }
 
     public function save_aanwidjzing(Request $request)

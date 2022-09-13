@@ -41,11 +41,26 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $bogor = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C008'");
+                            $bogor = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C008'
+                            ");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Bogor</span>
-                            <h6 class="mb-0">{{ $bogor[0]->total }}</h6>
+                                Bogor
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($bogor[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $bogor[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -61,11 +76,25 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $juanda = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C012'");
+                            $juanda = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C012'");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Juanda</span>
-                            <h6 class="mb-0">{{ $juanda[0]->total }}</h6>
+                                Juanda
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($juanda[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $juanda[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-product-sold-chart" class="apex-charts"></div>
@@ -81,11 +110,25 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $duri = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C006'");
+                            $duri = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C006'");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Bukit Duri</span>
-                            <h6 class="mb-0">{{ $duri[0]->total }}</h6>
+                                Bukit Duri
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($duri[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $duri[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -101,11 +144,25 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $depok = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C007'");
+                            $depok = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C007'");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Depok</span>
-                            <h6 class="mb-0">{{ $depok[0]->total }}</h6>
+                                Depok
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($depok[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $depok[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -121,11 +178,25 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $manggarai = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C009'");
+                            $manggarai = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C009'");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Manggarai</span>
-                            <h6 class="mb-0">{{ $manggarai[0]->total }}</h6>
+                                Manggarai
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($manggarai[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $manggarai[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -141,11 +212,25 @@
                     <div class="media p-3">
                         <div class="media-body">
                             @php
-                            $main = DB::select("SELECT count(*) as total FROM warehouse_part WHERE sloc='C013'");
+                            $main = DB::select("select SUM(value_unrestricted) as value, count(*) total_part
+                            from warehouse_part where unrestricted != '0'
+                            and value_unrestricted != '0' and sloc = 'C013'");
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
-                                Main</span>
-                            <h6 class="mb-0">{{ $main[0]->total }}</h6>
+                                Main
+                            </span>
+                            <h6 class="mb-0">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Value Unrestricted</span>
+                                        <h6>Rp. {{ number_format($main[0]->value,2,',','.') }}</h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Total Part</span>
+                                        <h6>{{ $main[0]->total_part }}</h6>
+                                    </div>
+                                </div>
+                            </h6>
                         </div>
                         <div class="align-self-center">
                             <div id="today-revenue-chart" class="apex-charts"></div>
@@ -179,6 +264,27 @@
         <div class="col-xl-12">
             <figure class="highcharts-figure">
                 <div id="warehouse-part"></div>
+            </figure>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <figure class="highcharts-figure">
+                <div id="waste-estimate"></div>
+            </figure>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <figure class="highcharts-figure">
+                <div id="harga-kontrak"></div>
+            </figure>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <figure class="highcharts-figure">
+                <div id="total-penjualan"></div>
             </figure>
         </div>
     </div>
@@ -309,5 +415,213 @@
             });
         })
     })
+
+    // WASTE ESTIMATE
+    Highcharts.chart('waste-estimate', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Total Estimasi dan Realisasi Quantity (Kg)'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Gram Bubutan',
+                'Potongan Logam',
+                'Limbah Pelumas',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ' Jumlah Pengadaan'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            series: {
+                borderRadius: 3,
+            },
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Estimasi Qty',
+            color: 'red',
+            data: [{
+                y: 49.9,
+                color: 'red'
+            }, {
+                y: 71.5,
+                color: 'red'
+            }, {
+                y: 106.4,
+                color: 'red'
+            }],
+
+        }, {
+            name: 'Realisasi Qty',
+            color: 'orange',
+            data: [{
+                    y: 83.6,
+                    color: 'orange'
+                },
+                {
+                    y: 78.8,
+                    color: 'orange'
+                }, {
+                    y: 93.4,
+                    color: 'orange'
+                }
+            ]
+        },{
+            name: 'Progres Presentasi Qty',
+            color: '#ccc',
+            data: [{
+                    y: 83.6,
+                    color: '#ccc'
+                },
+                {
+                    y: 78.8,
+                    color: '#ccc'
+                }, {
+                    y: 93.4,
+                    color: '#ccc'
+                }
+            ]
+        }]
+    });
+
+
+    // HARGA KONTRAK
+    Highcharts.chart('harga-kontrak', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Harga Kontrak (Rp)'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Gram Bubutan',
+                'Potongan Logam',
+                'Limbah Pelumas',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ' Jumlah Pengadaan'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            series: {
+                borderRadius: 3,
+            },
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Harga Kontrak',
+            color: '#b3ccff',
+            data: [{
+                y: 49.9,
+                color: '#b3ccff'
+            }, {
+                y: 71.5,
+                color: '#b3ccff'
+            }, {
+                y: 106.4,
+                color: '#b3ccff'
+            }],
+
+        }]
+    });
+
+    // TOTAL PENJUALAN
+    Highcharts.chart('total-penjualan', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Total Penjualan Barang Limbah'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [
+                'Gram Bubutan',
+                'Potongan Logam',
+                'Limbah Pelumas',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ' Jumlah Pengadaan'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            series: {
+                borderRadius: 3,
+            },
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Total Penjualan',
+            color: '#ffffcc',
+            data: [{
+                y: 49.9,
+                color: '#ffffcc'
+            }, {
+                y: 71.5,
+                color: '#ffffcc'
+            }, {
+                y: 106.4,
+                color: '#ffffcc'
+            }],
+
+        }]
+    });
 </script>
 @endpush
