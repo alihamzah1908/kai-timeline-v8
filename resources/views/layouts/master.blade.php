@@ -293,12 +293,13 @@
                                 <span class="font-weight-bold"> Management Roles </span>
                                 <span class="menu-arrow"></span>
                             </a>
-
+                            @can('role-list')
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
                                     <a href="{{ route('roles.index') }}">List Roles</a>
                                 </li>
                             </ul>
+                            @endcan
                         </li>
                         <li>
                             <a href="javascript: void(0);">
@@ -363,12 +364,16 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('pbj.approval-list')
                                 <li>
                                     <a href="{{ route('list.taskpbj') }}">Task Approval PBJ</a>
                                 </li>
+                                @endcan
+                                @can('pbj-list')
                                 <li>
                                     <a href="{{ route('list.procurement') }}">List PBJ</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -378,12 +383,16 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('contract.approval-list')
                                 <li>
                                     <a href="{{ route('contract.approval') }}">Task Approval Contract</a>
                                 </li>
+                                @endcan
+                                @can('contract.list')
                                 <li>
                                     <a href="{{ route('contract.index') }}">List Contract</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -394,15 +403,21 @@
                             </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('warehouse-card-list')
                                 <li>
                                     <a href="javascript:void(0)">Card</a>
                                 </li>
+                                @endcan
+                                @can('warehouse-part-list')
                                 <li>
                                     <a href="{{ route('warehouse.index') }}">Spare Part</a>
                                 </li>
+                                @endcan
+                                @can('warehouse-waste-list')
                                 <li>
                                     <a href="{{ route('waste.index') }}">Waste</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -413,12 +428,16 @@
                             </a>
 
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('warehouse-card-list')
                                 <li>
                                     <a href="{{ route('vendor.index') }}">List Vendor</a>
                                 </li>
+                                @endcan
+                                @can('vendor-blacklist-list')
                                 <li>
                                     <a href="{{ route('blacklist.index') }}">Vendor Blacklist</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -427,11 +446,12 @@
                                 <span class="font-weight-bold"> Harga Satuan </span>
                                 <span class="menu-arrow"></span>
                             </a>
-
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('vendor-blacklist-list')
                                 <li>
                                     <a href="{{ route('list.hs') }}">List Harga Satuan</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                     </ul>

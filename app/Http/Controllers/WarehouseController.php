@@ -86,12 +86,18 @@ class WarehouseController extends Controller
 
     public function data(Request $request)
     {
-        $warehouse = \App\Models\WarehousePart::orderBy('warehouse_part_id');
-        if($request["code"]){
+        $warehouse = \App\Models\WarehousePart::where('value_unrestricted', '!=', '0')
+            ->orderBy('warehouse_part_id');
+        if ($request["code"]) {
             $warehouse->where('sloc', $request["code"]);
+        } else {
+            $warehouse->where('sloc', 'C012');
         }
         $data = $warehouse->get();
         return FacadesDataTables::of($data)
+            ->addColumn('value_unrestricted', function ($row) {
+                return number_format($row->value_unrestricted,2,',','.');
+            })
             ->addColumn('action', function ($row) {
                 $btn = '<button class="btn btn-sm btn-primary btn-rounded">
                             <i class="uil uil-search"></i>

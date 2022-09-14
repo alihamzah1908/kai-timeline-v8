@@ -160,130 +160,244 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mt-0 mb-1">PBJ Process</h4>
                     <p class="sub-header">Procces of PBJ</p>
-                    <div id="smartwizard-arrows" class="sw-main sw-theme-arrows">
-                        <input type="hidden" value="{{ $data->proses_st }}" id="contract_status">
-                        <input type="hidden" value="{{ $data->sp3_id }}" id="id">
-                        <ul class="nav nav-tabs step-anchor">
-                            <li class="nav-item rks"><a href="#sw-arrows-step-1" class="nav-link">RKS<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item calon-tender"><a href="#sw-arrows-step-2" class="nav-link">Calon Peserta Tender<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item aanwidjzing"><a href="#sw-arrows-step-3" class="nav-link">Aanwidjzing<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item doc-penawaran"><a href="#sw-arrows-step-4" class="nav-link">Dokumen Penawaran<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item eval-penawaran"><a href="#sw-arrows-step-5" class="nav-link">Evaluasi Penawaran<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item kkn"><a href="#sw-arrows-step-6" class="nav-link">Klarifikasi, Konfirmasi dan Negoisasi<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item bahp"><a href="#sw-arrows-step-7" class="nav-link">Berita Acara Hasil Pelelangan<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item ucp"><a href="#sw-arrows-step-8" class="nav-link">Usulan Calon Pemenang<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item pcp"><a href="#sw-arrows-step-9" class="nav-link">Penetapan Calon Pemenang<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item spr"><a href="#sw-arrows-step-10" class="nav-link">SPR<small class="d-block">Step description</small></a></li>
+                    <div class="row mt-4">
+                        <ul class="nav nav-tabs">
+                            @if($data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' ||
+                            $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN'
+                            || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR' || $data->proses_st == 'PROSES_PGL')
+                            <li class="nav-item tab-draftrks">
+                                <a href="#draftrks" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">RKS</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_PP' || $data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-peserta-tender">
+                                <a href="#peserta-tender" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Calon Peserta Tender</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_AL' || $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-aanwidjzing">
+                                <a href="#aanwidjzing" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Aanwidjzing</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' || $data->proses_st == 'PROSES_EP'
+                            || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ||$data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-dokumen-penawaran">
+                                <a href="#dokumen-penawaran" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Dokumen Penawaran</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' ||
+                            $data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-evaluasi-dokumen">
+                                <a href="#evaluasi-dokumen" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Evaluasi Penawaran</span>
+                                </a>
+                            </li>
+                            @if($data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' || $data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-klarifikasi">
+                                <a href="#klarifikasi" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Klarifikasi, Konfirmasi dan Negoisasi</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_BAHP' || $data->proses_st == 'PROSES_UPCP'
+                            || $data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR'
+                            || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-klarifikasi">
+                                <a href="#bahp" data-toggle="tab" aria-expanded="true" class="nav-link {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-home-alt"></i></span>
+                                    <span class="d-none d-sm-block">Berita Acara Hasil Pelelangan</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_UPCP' || $data->proses_st == 'PROSES_PCP'
+                            || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-pemenang">
+                                <a href="#pemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Usulan Calon Pemenang</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if($data->proses_st == 'PROSES_PCP' || $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR')
+                            <li class="nav-item tab-penetapanpemenang">
+                                <a href="#penetapanpemenang" data-toggle="tab" aria-expanded="false" class="nav-link {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Penetapan Calon Pemenang</span>
+                                </a>
+                            </li>
+                            @endif
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
+                            @if($status)
+                            <li class="nav-item tab-spr">
+                                <a href="#spr" data-toggle="tab" aria-expanded="false" class="nav-link {{ $status ? 'active' : '' }}">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">SPR</span>
+                                </a>
+                            </li>
+                            @endif
+                            @else
+                            <!-- <li class="nav-item tab-summary">
+                                <a href="#summary" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                    <span class="d-block d-sm-none"><i class="uil-user"></i></span>
+                                    <span class="d-none d-sm-block">Summary PBJ</span>
+                                </a>
+                            </li> -->
+                            @endif
                         </ul>
-                        <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">
-                            <div id="sw-arrows-step-1" class="tab-pane step-content">
-                                <h6>Draft RKS</h6>
+                        <div class="tab-content p-3 text-muted col-md-12">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'show' : '' }} {{ $data->proses_st == 'PROSES_DRKS' || $data->proses_st == 'PROSES_RRKS' || $data->proses_st == 'PROSES_PGL' ? 'active' : '' }}" id="draftrks">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="row mb-2">
-                                            <div class="col-md-12">
-                                                <form action="{{ route('procurement.store') }}" id="form-draftrks" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                @if($rks)
-                                                                <h6>
-                                                                    <a href="{{ asset('file/rks/'. $rks->file_penawaran) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_penawaran }}
-                                                                    </a>
-                                                                </h6>
-                                                                @else
-                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                                @endif
-                                                            </div>
-                                                        </div>
+                                    <div class="col-md-12">
+                                        <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                        <form action="#" id="form-draftrks" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Template Dokumen RKS:</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                @if($rks)
-                                                                <h6>
-                                                                    <a href="{{ asset('file/rks/'. $rks->file_dokumen) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_dokumen }}
-                                                                    </a>
-                                                                </h6>
-                                                                @else
-                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                                @endif
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <select class="form-control" name="metode_dokumen" id="metode-dokumen">
-                                                                    <option value="">Select Sampul</option>
-                                                                    <option value="1_sampul" @if($rks) {{ $rks->metode == '1_sampul' ? ' selected' : '' }} @endif>1 Sampul</option>
-                                                                    <option value="2_sampul" @if($rks) {{ $rks->metode == '2_sampul' ? ' selected' : '' }} @endif>2 Sampul</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @if($rks)
+                                                        <h6>
+                                                            <a href="{{ asset('file/rks/'. $rks->file_penawaran) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_penawaran }}
+                                                            </a>
+                                                        </h6>
+                                                        @else
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        @endif
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputEmail1">Catatan:</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <textarea name="catatan_rks" id="catatan-rks" class="form-control" placeholder="Please insert RKS note">{{ $rks ? $rks->catatan : '' }}</textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                </div>
                                             </div>
-                                            @if($data->proses_st == 'PROSES_RRKS')
-                                            <div class="col-md-12 d-flex justify-content-end">
-                                                <button type="button" class="btn btn-warning btn-sm btn-rounded approve mr-2" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded reject" data-bind="{{ $data->proses_st }}"><i class="uil uil-reject"></i>Reject</button>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Template Dokumen RKS:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        @if($rks)
+                                                        <h6>
+                                                            <a href="{{ asset('file/rks/'. $rks->file_dokumen) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $rks->file_dokumen }}
+                                                            </a>
+                                                        </h6>
+                                                        @else
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </div>
-                                            @endif
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Metode Submit Dokumen:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="metode_dokumen" id="metode-dokumen">
+                                                            <option value="">Select Sampul</option>
+                                                            <option value="1_sampul" @if($rks) {{ $rks->metode == '1_sampul' ? ' selected' : '' }} @endif>1 Sampul</option>
+                                                            <option value="2_sampul" @if($rks) {{ $rks->metode == '2_sampul' ? ' selected' : '' }} @endif>2 Sampul</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Catatan:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <textarea name="catatan_rks" id="catatan-rks" class="form-control" placeholder="Please insert RKS note">{{ $rks ? $rks->catatan : '' }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    @if($data->proses_st == 'PROSES_DRKS')
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                                @if($data->proses_st == 'PROSES_RRKS')
+                                <div class="col-md-12 d-flex justify-content-end">
+                                    <button type="button" class="btn btn-warning btn-sm btn-rounded approve mr-2" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                    <button type="button" class="btn btn-primary btn-sm btn-rounded reject" data-bind="{{ $data->proses_st }}"><i class="uil uil-reject"></i>Reject</button>
+                                </div>
+                                @endif
                             </div>
-                            <div id="sw-arrows-step-2" class="tab-pane step-content">
-                                <h6>Calon Peserta Tender</h6>
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PP' ? 'active' : '' }}" id="peserta-tender">
                                 <form action="{{ route('save.tender') }}" method="post" id="tender">
                                     <div class="add-vendor">
                                         <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
@@ -444,13 +558,17 @@
                                         <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-tender" data-bind="{{ $data->proses_st }}">Submit</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="sw-arrows-step-3" class="tab-pane step-content">
-                                <h6>Aanwidjzing</h6>
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_AL' ? 'active' : '' }}" id="aanwidjzing">
                                 <form id="form-aanwidjzing" enctype="multipart/form-data" method="post" action="{{ route('save.aanwidjzing') }}">
                                     @csrf
                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                     <div class="add-aanwidjzing">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -548,9 +666,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-rounded save-aanwidjzing">Submit</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
-                            <div id="sw-arrows-step-4" class="tab-pane step-content">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_PPDP' ? 'active' : '' }}" id="dokumen-penawaran">
                                 <div class="add-dokumen-penawaran">
                                     @php
                                     $rks = \App\Models\DraftRks::where('sp3_id', $data->sp3_id)->first();
@@ -564,7 +687,6 @@
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                                                 <input type="hidden" name="metode" value="{{ $rks->metode }}" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -622,6 +744,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -648,7 +775,7 @@
                                                     ->join('public.vendor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
-                                                    @foreach($tender_aanwidjzing as $val)
+                                                    @foreach($dokumen as $doc)
                                                     <tr>
                                                         <td>
                                                             {{ $doc->vendor_name }}
@@ -694,7 +821,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if($data->proses_st == 'PROSES_PDP')
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
@@ -702,7 +828,6 @@
                                                     <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
                                                 </div>
                                             </div>
-                                            @endif
                                         </div>
                                     </div>
                                     @endif
@@ -714,7 +839,6 @@
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                                                 <input type="hidden" name="metode" value="{{ $rks->metode }}" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -729,7 +853,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody style="vertical-align: top">
-                                                        @foreach($tender_aanwidjzing as $val)
+                                                        @foreach($tender_list as $val)
                                                         <tr>
                                                             <td>
                                                                 {{ $val->vendor_name }}
@@ -805,11 +929,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="row">
+                                                <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -949,7 +1073,7 @@
                                                     ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
                                                     'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.vendor_code','b.vendor_name')
                                                     ->where('a.sp3_id', request()->id)
-                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
+                                                    ->join('public.vandor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
                                                     @foreach($dokumen as $doc)
@@ -1038,7 +1162,8 @@
                                     @endif
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-5" class="tab-pane step-content">
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_EP' ? 'active' : '' }}" id="evaluasi-dokumen">
                                 <div class="add-evaluasi-dokumen">
                                     @if($rks)
                                     @if($rks->metode == '1_sampul')
@@ -1048,8 +1173,7 @@
                                             <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
-                                                <input type="hidden" name="metode" value="1_sampul" class="metode_sampul" />/>
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                <input type="hidden" name="metode" value="1_sampul" />
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -1143,6 +1267,8 @@
                                                         @if($evaluasi_1_sampul->count() > 0)
                                                         <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
                                                         <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                        @else
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1156,8 +1282,7 @@
                                             <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-harga" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
-                                                <input type="hidden" name="metode" value="2_sampul" class="metode_sampul" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                <input type="hidden" name="metode" value="2_sampul" />
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -1303,9 +1428,11 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                        @if($data->proses_st == 'PROSES_EDH')
+                                                        @if($evaluasi_2_sampul->count() > 0)
                                                         <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
                                                         <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                        @else
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1316,7 +1443,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-6" class="tab-pane step-content">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_KKN' || $data->proses_st == 'PROSES_EDH' ? 'active' : '' }}" id="klarifikasi">
                                 <div class="add-klarifikasi">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1430,13 +1557,18 @@
                                                             <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </div>
                                                     </div>
-                                                </div>x
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-7" class="tab-pane step-content">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_BAHP' ? 'active' : '' }}" id="bahp">
                                 <div class="row">
                                     <label for="exampleInputEmail1"></label>
                                     <div class="col-md-12">
@@ -1506,11 +1638,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary btn-sm btn-rounded save-bahp">Submit</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-8" class="tab-pane step-content">
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_UPCP' ? 'active' : '' }}" id="pemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1571,12 +1708,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-9" class="tab-pane step-content">
+
+                            <div class="tab-pane {{ $data->proses_st == 'PROSES_PCP' ? 'active' : '' }}" id="penetapanpemenang">
                                 <div class="add-pemenang">
                                     <div class="row">
                                         <label for="exampleInputEmail1"></label>
@@ -1609,13 +1752,11 @@
                                                             <label for="exampleInputEmail1">File Berita Acara Penetapan Pemenang:</label>
                                                         </div>
                                                     </div>
-                                                    @if($pemenang)
+                                                    @if($pemenangfinal)
                                                     <div class="col-md-6 mb-2">
-                                                        <h6>
-                                                            <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                                <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
-                                                            </a>
-                                                        </h6>
+                                                        <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" /> {{ $pemenang->file_berita_acara }}
+                                                        </a>
                                                     </div>
                                                     @else
                                                     <div class="col-md-3">
@@ -1637,19 +1778,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @if($data->proses_st != 'PROSES_DC')
                                                 <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
                                                     </div>
                                                 </div>
-                                                @endif
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-10" class="tab-pane step-content">
+                            @php
+                            $status = $data->proses_st == 'SPR' || $data->proses_st == 'PROSES_DC' || $data->proses_st == 'PROSES_UJP' || $data->proses_st == 'PROSES_VJP'
+                            || $data->proses_st == 'PROSES_RDC' || $data->proses_st == 'PROSES_VAC' || $data->proses_st == 'PROSES_ALG'
+                            || $data->proses_st == 'PROSES_APU' || $data->proses_st == 'PROSES_KAC' || $data->proses_st == 'PROSES_CR';
+                            @endphp
+                            <div class="tab-pane {{ $status ? 'active' : '' }}" id="spr">
                                 @php
                                 $spr = \App\Models\TrxSpr::where('sp3_id', $data->sp3_id)->first();
                                 @endphp
@@ -1767,6 +1911,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1789,88 +1934,245 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="tab-pane" id="summary">
+                                <div class="add-summary">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                <thead style="text-align: center">
+                                                    <tr>
+                                                        <th width="100%" colspan="6">SUMMARY PENGADAAN BARANG DAN JASA</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="25%" rowspan="2">KEGIATAN</th>
+                                                        <th width="15%" rowspan="2">STATUS</th>
+                                                        <th width="10%" rowspan="2">TOTAL HARI KALENDER</th>
+                                                        <th width="10%" rowspan="2">TOTAL HARI KERJA</th>
+                                                        <th width="10%" rowspan="2">UNCONTROLLED</th>
+                                                        <th width="10%" rowspan="2">TOTAL HARI</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="vertical-align: top">
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 1
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Peserta Tender 2
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name">
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label for="exampleInputEmail1"></label><br>
+                                                <label for="exampleInputEmail1"></label><br>
+                                                <label for="exampleInputEmail1"></label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Berita Acara Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="summary">
+                                <div class="add-summary">
+                                    <div class="row">
+                                        <label for="exampleInputEmail1"></label>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                            <form action="#" id="form-draftrks" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="sp3_id" id="sp3_id" />
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">ID Pengadaan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">1.616</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Judul Pengadaan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Pengadaan ABC</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Penetapan Pemenang note"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded save-rks">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
     </div>
 </div>
 @endsection
 @push('scripts')
 <script>
     $(document).ready(function() {
-        var status = $('#contract_status').val();
-        if (status == 'PROSES_PP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-        } else if (status == 'PROSES_AL') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-        } else if (status == 'PROSES_PDP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-        } else if (status == 'PROSES_PPDP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-        } else if (status == 'PROSES_EP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-        } else if (status == 'PROSES_KKN' || status == 'PROSES_EDH') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-        } else if (status == 'PROSES_BAHP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-        } else if (status == 'PROSES_UPCP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('done')
-        } else if (status == 'PROSES_PCP') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('done')
-            $('.pcp').addClass('done')
-            $('.spr').addClass('done')
-        } else if (status == 'PROSES_DC') {
-            $('.rks').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('done')
-            $('.pcp').addClass('done')
-            $('.spr').addClass('done')
-        }
+        // SAVE DATA RKS
+        $('body').on('click', '.save-rks', function() {
+            var file_penawaran = $("#file-penawaran")[0].files;
+            var file_dokumen = $("#file-dokumen")[0].files;
+            var sp3_id = $("#sp3-id").val();
+            var tanggal_rks = $("#tanggal-rks").val();
+            var metode_dokumen = $("#metode-dokumen").val();
+            var catatan_rks = $("#catatan-rks").val();
+            var formData = new FormData();
+            formData.append('file_penawaran', file_penawaran[0])
+            formData.append('file_dokumen', file_dokumen[0])
+            formData.append('tanggal_rks', tanggal_rks)
+            formData.append('metode_dokumen', metode_dokumen)
+            formData.append('catatan_rks', catatan_rks)
+            formData.append('sp3_id', sp3_id)
+            formData.append('_token', '{{ csrf_token() }}');
+            $.ajax({
+                url: "{{ route('procurement.store') }}",
+                method: "POST",
+                dataType: 'JSON',
+                data: formData,
+                processData: false,
+                contentType: false,
+            }).done(function(response) {
+                if (response.status == 200) {
+                    Swal.fire({
+                        title: 'RKS Saved',
+                        text: "File change status to Reviewing RKS!",
+                        confirmButtonText: 'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload()
+                        }
+                    })
+                } else {
+                    Swal.fire(
+                        'RKS failed Save!',
+                        'Your RKS has failed save.',
+                        'error'
+                    )
+                }
+            })
+        })
+
         // APPROVE RKS
         $('body').on('click', '.approve', function() {
             Swal.fire({
@@ -1896,7 +2198,7 @@
                         if (response.status == 200) {
                             Swal.fire({
                                 title: 'Your RKS is approved',
-                                text: "File change status to Calon Peserta tender!",
+                                text: "File change status to Evaluasi Penawaran!",
                                 confirmButtonText: 'Yes'
                             }).then((result) => {
                                 if (result.isConfirmed) {
@@ -1909,12 +2211,16 @@
             })
         })
 
-        $('body').on('click', '.sw-btn-next', function(e) {
-            if (status == 'PROSES_DRKS') {
-                $('.calon-tender').removeClass('active')
+        // SAVE AANDWIDJZING
+        $("#form-aanwidjzing").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
                 Swal.fire({
-                    title: 'Are you sure save Draft RKS ?',
-                    // text: 'Your procurement are send to contract!',
+                    title: 'Are you sure save Aanwidjzing ?',
+                    // text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -1922,99 +2228,30 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        e.preventDefault()
-                        $("#form-draftrks").submit();
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.aanwidjzing') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
                     }
                 })
-            } else if (status == 'PROSES_PP') {
-                $('.aanwidjzing').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Calon Peserta Tender ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#tender").submit();
-                    }
-                })
-            } else if (status == 'PROSES_AL') {
-                $('.doc-penawaran').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Aandwidjzing ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-aanwidjzing").submit();
-                    }
-                })
-            } else if (status == 'PROSES_PDP') {
-                $('.eval-penawaran').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Document Penawaran ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-dokumen-penawaran").submit();
-                    }
-                })
-            } else if (status == 'PROSES_EP') {
-                var metode = $('.metode_sampul').val()
-                if (metode == '1_sampul') {
-                    $('.kkn').removeClass('active')
-                    Swal.fire({
-                        title: 'Are you sure save Evaluasi Penawaran ?',
-                        // text: 'Your procurement are send to contract!',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
-                            e.preventDefault()
-                            $("#form-evaluasi-penawaran").submit();
-                        }
-                    })
-                } else if (metode == '2_sampul') {
-                    $('.kkn').removeClass('active')
-                    Swal.fire({
-                        title: 'Are you sure save Evaluasi Dokumen Penawaran ?',
-                        // text: 'Your procurement are send to contract!',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
-                            e.preventDefault()
-                            $("#form-evaluasi-harga").submit();
-                        }
-                    })
+            }
+        });
 
-                }
-            } else if (status == 'PROSES_KKN' || status == 'PROSES_EDH') {
-                $('.bahp').removeClass('active')
+        // SAVE DOKUMEN PENAWARAN
+        $("#form-dokumen-penawaran").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
                 Swal.fire({
-                    title: 'Are you sure save Klarifikasi, Konformasi dan Negosiasi ?',
-                    // text: 'Your procurement are send to contract!',
+                    title: 'Are you sure save dokumen penawaran ?',
+                    // text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -2022,15 +2259,30 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        e.preventDefault()
-                        $("#form-klarifikasi").submit();
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.document-penawaran') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
                     }
                 })
-            } else if (status == 'PROSES_BAHP') {
-                $('.bahp').removeClass('active')
+            }
+        });
+
+        // SAVE EVALUASI 
+        $("#form-evaluasi-penawaran").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
                 Swal.fire({
-                    title: 'Are you sure save Berita Acara Hasil Pelelangan ?',
-                    // text: 'Your procurement are send to contract!',
+                    title: 'Are you sure save evaluasi penawaran ?',
+                    // text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -2038,29 +2290,375 @@
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        e.preventDefault()
-                        $("#form-bahp").submit();
-                    }
-                })
-            } else if (status == 'PROSES_UPCP') {
-                $('.pcp').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Usulan Calon Pemenang ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-submit-contract").submit();
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.evaluasi-penawaran') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
                     }
                 })
             }
         })
 
+        // SAVE EVALUASI HARGA
+        $("#form-evaluasi-harga").submit(function(e) {
+            alert("Evaluasi Penawaran saved !")
+        })
+
+        // SAVE BAHP
+        $("#form-bahp").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Berita Acara Hasil Pelelangan ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.bahp') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
+        })
+
+        // SAVE KLARIFIKASI
+        $("#form-klarifikasi").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Klarifikasi, Konfirmasi dan Negosiasi ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.klarifikasi') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
+        })
+
+        // FORM PEMENANG
+        $("#form-pemenang").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Usulan, Penetapan calon Pemenang ?',
+                    // text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            location.reload()
+                        })
+                    }
+                })
+            }
+        })
+
+        $("#form-submit-contract").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Usulan, Penetapan calon Pemenang ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your procurement sent to process Contract',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+
+        $("#form-spr").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save SPR ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.spr') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your SPR is saved !',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+
+        $("#form-penetapan-pemenang").submit(function(e) {
+            if (e.isDefaultPrevented()) {
+                //--Handle the invalid form
+            } else {
+                e.preventDefault();
+                var record = new FormData(this);
+                Swal.fire({
+                    title: 'Are you sure save Penetapan Pemenang ?',
+                    text: 'Your procurement are change status SPR!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            'type': 'POST',
+                            'url': "{{ route('save.pemenang') }}",
+                            'data': record,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(response) {
+                            Swal.fire({
+                                title: 'Your status change to SPR',
+                                // text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
+        // SAVE FORM TENDER
+        $('body').on('click', '.save-tender', function() {
+            Swal.fire({
+                title: 'Are you sure save Tender?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('save.tender') }}",
+                        method: "post",
+                        dataType: 'JSON',
+                        data: $("#tender").serializeArray()
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: 'Peserta Tender Saved',
+                                text: "File change status to Pelaksanaan Aanwidjzing!",
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        })
+
+        // SAVE DOKUMEN PENAWARAN
+        $("body").on('click', '.reject', function(e) {
+            var status = $(this).attr('data-status')
+            if (status == 'gagal_lelang') {
+                var title = 'Are you sure Gagal Lelang PBJ ?'
+                var text = 'Your dokumen will change status gagal lelang!'
+                var title_success = 'Dokumen Are Gagal Lelang'
+                var text_success = 'File change status to Gagal Lelang!'
+                var proses = status
+            } else {
+                var title = 'Are you sure reject dokumen penawaran?'
+                var text = 'Your dokumen penawaran will back to pengumuman pengadaan !'
+                var title_success = 'Success rejected'
+                var text_success = 'File change status to Pengumuman Pengadaan!'
+                var proses = false
+            }
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reject.pengadaan') }}",
+                        method: "get",
+                        dataType: 'JSON',
+                        data: {
+                            sp3_id: '{{ $data->sp3_id }}',
+                            status: proses
+                        },
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: title_success,
+                                text: text_success,
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        });
+
+        // SEARCH VENDOR
+        $(".vendor_name").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{ route('vendor.autocomplete') }}",
+                    data: {
+                        search: request.term
+                    },
+                    dataType: "json",
+                    beforeSend: function() {
+                        $('.loading').html('loading ...')
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        $('.loading').html(' ')
+                        var resp = $.map(data, function(obj) {
+                            return obj.vendor_name;
+                        });
+                        response(resp);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                $('.vendor_name').val(ui.item.label);
+                return false;
+            }
+        });
+
+        // SEARCH VENDOR AFTER APPEND
+        $("body").on('keyup', '#test', function(request, response) {
+            $(".vendor_name").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('vendor.autocomplete') }}",
+                        data: {
+                            search: request.term
+                        },
+                        dataType: "json",
+                        beforeSend: function() {
+                            $('.loading').html('loading ...')
+                        },
+                        success: function(data) {
+                            $('.loading').html(' ')
+                            var resp = $.map(data, function(obj) {
+                                return obj.vendor_name
+                            });
+                            response(resp);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    $('.vendor_name').val(ui.item.label);
+                    return false;
+                }
+                // minLength: 2
+            });
+        })
+
+        // ADD FORM TENDER
         $('body').on('click', '.add-button-vendor', function() {
             var body = '<div style="border-top: 1px solid red;margin-bottom: 12px;"></div><div class="row">'
             body += '<div class="col-md-12">'

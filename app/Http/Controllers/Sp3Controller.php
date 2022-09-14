@@ -128,6 +128,7 @@ class Sp3Controller extends Controller
                 }
             }
         } else {
+            // dd($request->all());
             $data = new \App\Models\SP3();
             $data->directorate_cd = Auth::user()->directorate_cd;
             $data->division_cd = Auth::user()->division_cd;
@@ -138,19 +139,13 @@ class Sp3Controller extends Controller
             $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
             $data->type_tax =  $request["type_tax"];
             $data->nilai_tax =  $request["nilai_tax"] ? str_replace('.', '', $request["nilai_tax"]) : 0;
-            // $data->tanggal_pr =  date('Y-m-d H:i:s');
             $data->type_metode =  $request["type_metode"];
-            // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
-            // $data->tanggal_rab =  date('Y-m-d H:i:s');
-            // $data->tanggal_pr =  date('Y-m-d H:i:s');
             $data->tanggal_kak =  date('Y-m-d H:i:s');
-            $data->nama_vendor = $request["vendor_name"];
+            $data->nama_vendor = json_encode($request["vendor_name"]);
             $data->no_mi = $request["no_mi"];
-            // $data->no_rab = $request["no_mi"];
             $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
             $data->tanggal_justifikasi_pemilihan = $request["date_justifikasi_pemilihan"];
             $data->no_kak = $request["no_kak"];
-            // $data->no_pr = $request["no_pr_ip"];
             $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
             $data->keterangan = 'KETERANGAN';
             $data->created_by = Auth::user()->id;
