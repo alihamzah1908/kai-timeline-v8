@@ -280,12 +280,13 @@
                                 <span class="font-weight-bold"> Management Users </span>
                                 <span class="menu-arrow"></span>
                             </a>
-
+                            @can('user-list')
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li>
                                     <a href="{{ route('users.index') }}">List Users</a>
                                 </li>
                             </ul>
+                            @endcan
                         </li>
                         <li>
                             <a href="javascript: void(0);">
@@ -354,9 +355,11 @@
                                     <a href="{{ route('list.sp3') }}">List SP3</a>
                                 </li>
                                 @endcan
+                                @can('upload-timeline-final')
                                 <li>
                                     <a href="{{ route('sp3.final') }}">Upload SP3 Final</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>

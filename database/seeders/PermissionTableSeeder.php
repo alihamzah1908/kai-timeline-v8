@@ -83,6 +83,8 @@ class PermissionTableSeeder extends Seeder
             // 'npp-create',
             // 'npp-edit',
             // 'npp-delete',
+            'upload-timeline-final',
+            'upload-sp3-final',
         ];
         foreach ($permissions as $permission) {
 
