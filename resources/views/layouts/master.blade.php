@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/c-log.png') }}" width="100px">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-kai-icon.png') }}">
     <!-- Summernote css -->
     <link href="{{ asset('assets/libs/summernote/summernote-bs4.css') }}" rel="stylesheet" />
 
@@ -330,9 +330,11 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
+                                @can('npp-list')
                                 <li>
                                     <a href="{{ route('list.npp') }}">List NPP</a>
                                 </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -388,7 +390,7 @@
                                     <a href="{{ route('contract.approval') }}">Task Approval Contract</a>
                                 </li>
                                 @endcan
-                                @can('contract.list')
+                                @can('contract-list')
                                 <li>
                                     <a href="{{ route('contract.index') }}">List Contract</a>
                                 </li>
