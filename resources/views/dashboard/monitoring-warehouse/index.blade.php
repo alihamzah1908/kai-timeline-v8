@@ -45,6 +45,11 @@
                             @endphp
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Warehouse
                                 Bogor</span>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">{{ $bogor[0]->total }}</h6>
+                        </div>
+                        <div>
                             <h6 class="mb-0">{{ $bogor[0]->total }}</h6>
                         </div>
                         <div class="align-self-center">
