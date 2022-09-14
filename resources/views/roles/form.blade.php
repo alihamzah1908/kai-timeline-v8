@@ -18,9 +18,20 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Permission</label> <br />
                         </div>
+                        @php
+                        $trx = DB::select('SELECT sub_menu FROM permissions GROUP BY sub_menu ORDER BY sub_menu ASC');
+                        @endphp
                         <div class="form-group">
-                            @foreach($permission as $val)
-                            <input type="checkbox" name="permission[]" value="{{ $val->id }}"> {{ $val->name }} <br />
+                            @foreach($trx as $val2)
+                            <h6>{{ $val2->sub_menu }}</h6>
+                            @php
+                            $permissions = DB::select("SELECT id, name FROM permissions WHERE sub_menu='$val2->sub_menu'");
+                            @endphp
+                            @foreach($permissions as $val)
+                            <div class="ml-4 mb-3">
+                                <input type="checkbox" name="permission[]" value="{{ $val->id }}"> {{ $val->name }}
+                            </div>
+                            @endforeach
                             @endforeach
                         </div>
                         <button type="submit" class="btn btn-primary btn-rounded btn-sm">Save</button>
