@@ -247,7 +247,7 @@ class DashboardController extends Controller
     {
         if ($request["warehouse"]) {
             $timeline = DB::select("SELECT sloc, material_description, value_unrestricted
-            FROM warehouse_part WHERE sloc='" . $request["warehouse"] ."' 
+            FROM warehouse_part WHERE sloc='" . $request["warehouse"] . "' 
             AND value_unrestricted !='0'
             ORDER BY value_unrestricted desc
             LIMIT 20");
@@ -265,5 +265,78 @@ class DashboardController extends Controller
             $arr[] = $arrx;
         }
         return response()->json($arr);
+    }
+
+    public function get_waste_estimate(Request $request)
+    {
+
+        return response()->json([
+            'gram_bubutan' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+                'progres_qty' => DB::select("SELECT (SUM(realisasi_qty) / SUM(estimasi_user) * 100) as total  FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+            ],
+            'potongan_logam' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+                'progres_qty' => DB::select("SELECT (SUM(realisasi_qty) / SUM(estimasi_user) * 100) as total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+            ],
+            'limbah_pelumas' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+                'progres_qty' => DB::select("SELECT (SUM(realisasi_qty) / SUM(estimasi_user) * 100) as total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+            ],
+        ]);
+    }
+
+    public function get_waste_kontrak(Request $request)
+    {
+        return response()->json([
+            'gram_bubutan' => [
+                'kontrak' => DB::select("SELECT SUM(harga_kontrak) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+            ],
+            'potongan_logam' => [
+                'kontrak' => DB::select("SELECT SUM(harga_kontrak) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+            ],
+            'limbah_pelumas' => [
+                'kontrak' => DB::select("SELECT SUM(harga_kontrak) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+            ],
+        ]);
+    }
+
+    public function get_waste_penjualan(Request $request)
+    {
+        return response()->json([
+            'gram_bubutan' => [
+                'penjualan' => DB::select("SELECT SUM(realisasi_penjualan) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+            ],
+            'potongan_logam' => [
+                'penjualan' => DB::select("SELECT SUM(realisasi_penjualan) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+            ],
+            'limbah_pelumas' => [
+                'penjualan' => DB::select("SELECT SUM(realisasi_penjualan) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+            ],
+        ]);
+    }
+
+    public function get_waste_program(Request $request)
+    {
+        return response()->json([
+            'gram_bubutan' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+                'sisa_qty' => DB::select("SELECT (SUM(estimasi_user) - SUM(realisasi_qty)) as total  FROM warehouse_waste WHERE uraian='Gram Bubutan'"),
+            ],
+            'potongan_logam' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+                'sisa_qty' => DB::select("SELECT (SUM(estimasi_user) - SUM(realisasi_qty)) as total FROM warehouse_waste WHERE uraian='Potongan Logam'"),
+            ],
+            'limbah_pelumas' => [
+                'estimasi_qty' => DB::select("SELECT SUM(estimasi_user) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+                'realisasi_qty' => DB::select("SELECT SUM(realisasi_qty) total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+                'sisa_qty' => DB::select("SELECT (SUM(estimasi_user) - SUM(realisasi_qty)) as total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
+            ],
+        ]);
     }
 }

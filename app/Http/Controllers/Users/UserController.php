@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModelHasRoles;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash as FacadesHash;
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data["roles"] = Role::pluck('name', 'name')->all();
+        $data["roles"] = Role::all();
         $data["user"] = false;
         return view('users.form', $data);
     }
@@ -40,6 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $input = $request->all();
         if ($request["id"]) {
             $user = \App\Models\User::findOrFail($request["id"]);
@@ -71,7 +73,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $data["user"] = \App\Models\User::findOrFail($id);
-        $data["roles"] = Role::pluck('name', 'name')->all();
+        $data["roles"] = Role::all();
+        $data["model_has_roles"] = ModelHasRoles::where('model_id', $id)->get();
         return view('users.form', $data);
     }
 

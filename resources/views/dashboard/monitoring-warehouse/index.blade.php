@@ -288,6 +288,13 @@
             </figure>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <figure class="highcharts-figure">
+                <div id="program-realisasi"></div>
+            </figure>
+        </div>
+    </div>
 </div>
 @endsection
 @push('scripts')
@@ -302,7 +309,6 @@
         dataType: "json",
         method: "get",
     }).done(function(response) {
-        console.log(response)
         Highcharts.chart('warehouse-part', {
             chart: {
                 type: 'column'
@@ -416,212 +422,260 @@
         })
     })
 
-    // WASTE ESTIMATE
-    Highcharts.chart('waste-estimate', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Total Estimasi dan Realisasi Quantity (Kg)'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'Gram Bubutan',
-                'Potongan Logam',
-                'Limbah Pelumas',
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
+    // GET WASTE ESTIMATE
+    $.ajax({
+        url: "{{ route('warehouse.waste.estimate') }}",
+        dataType: "json",
+        method: "get",
+    }).done(function(response) {
+        Highcharts.chart('waste-estimate', {
             title: {
-                text: ' Jumlah Pengadaan'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            series: {
-                borderRadius: 3,
+                text: 'Total Estimasi dan Realisasi QTY',
+                align: 'center'
             },
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Estimasi Qty',
-            color: 'red',
-            data: [{
-                y: 49.9,
-                color: 'red'
-            }, {
-                y: 71.5,
-                color: 'red'
-            }, {
-                y: 106.4,
-                color: 'red'
-            }],
-
-        }, {
-            name: 'Realisasi Qty',
-            color: 'orange',
-            data: [{
-                    y: 83.6,
-                    color: 'orange'
-                },
-                {
-                    y: 78.8,
-                    color: 'orange'
-                }, {
-                    y: 93.4,
-                    color: 'orange'
+            xAxis: {
+                categories: ['Gram Bubutan', 'Potongan Logam', 'Limbah Pelumas']
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
                 }
-            ]
-        },{
-            name: 'Progres Presentasi Qty',
-            color: '#ccc',
-            data: [{
-                    y: 83.6,
-                    color: '#ccc'
-                },
-                {
-                    y: 78.8,
-                    color: '#ccc'
-                }, {
-                    y: 93.4,
-                    color: '#ccc'
+            },
+            labels: {},
+            series: [{
+                type: 'column',
+                color: 'red',
+                name: 'Estimasi qty',
+                data: [parseInt(response.gram_bubutan.estimasi_qty[0].total), parseInt(response.potongan_logam.estimasi_qty[0].total), parseInt(response.limbah_pelumas.estimasi_qty[0].total)]
+            }, {
+                type: 'column',
+                color: 'orange',
+                name: 'Realisasi Qty',
+                data: [parseInt(response.gram_bubutan.realisasi_qty[0].total), parseInt(response.potongan_logam.realisasi_qty[0].total), parseInt(response.limbah_pelumas.realisasi_qty[0].total)]
+            }, {
+                type: 'spline',
+                name: 'Progres Presentasi Qty',
+                data: [Math.round(response.gram_bubutan.progres_qty[0].total), Math.round(response.potongan_logam.progres_qty[0].total), Math.round(response.limbah_pelumas.progres_qty[0].total)],
+                marker: {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
                 }
-            ]
-        }]
-    });
-
+            }]
+        });
+    })
 
     // HARGA KONTRAK
-    Highcharts.chart('harga-kontrak', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Harga Kontrak (Rp)'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'Gram Bubutan',
-                'Potongan Logam',
-                'Limbah Pelumas',
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: ' Jumlah Pengadaan'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            series: {
-                borderRadius: 3,
+    $.ajax({
+        url: "{{ route('warehouse.waste.kontrak') }}",
+        dataType: "json",
+        method: "get",
+    }).done(function(response) {
+        Highcharts.chart('harga-kontrak', {
+            chart: {
+                type: 'column'
             },
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Harga Kontrak',
-            color: '#b3ccff',
-            data: [{
-                y: 49.9,
-                color: '#b3ccff'
-            }, {
-                y: 71.5,
-                color: '#b3ccff'
-            }, {
-                y: 106.4,
-                color: '#b3ccff'
-            }],
+            title: {
+                text: 'Harga Kontrak (Rp)'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Gram Bubutan',
+                    'Potongan Logam',
+                    'Limbah Pelumas',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ' '
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                series: {
+                    borderRadius: 3,
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Harga Kontrak',
+                color: '#4d79ff',
+                data: [{
+                    y: parseInt(response.gram_bubutan.kontrak[0].total),
+                    color: '#4d79ff'
+                }, {
+                    y: parseInt(response.potongan_logam.kontrak[0].total),
+                    color: '#4d79ff'
+                }, {
+                    y: parseInt(response.limbah_pelumas.kontrak[0].total),
+                    color: '#4d79ff'
+                }],
 
-        }]
-    });
+            }]
+        });
+    })
 
     // TOTAL PENJUALAN
-    Highcharts.chart('total-penjualan', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Total Penjualan Barang Limbah'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'Gram Bubutan',
-                'Potongan Logam',
-                'Limbah Pelumas',
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: ' Jumlah Pengadaan'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            series: {
-                borderRadius: 3,
+    $.ajax({
+        url: "{{ route('warehouse.waste.penjualan') }}",
+        dataType: "json",
+        method: "get",
+    }).done(function(response) {
+        Highcharts.chart('total-penjualan', {
+            chart: {
+                type: 'column'
             },
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Total Penjualan',
-            color: '#ffffcc',
-            data: [{
-                y: 49.9,
-                color: '#ffffcc'
-            }, {
-                y: 71.5,
-                color: '#ffffcc'
-            }, {
-                y: 106.4,
-                color: '#ffffcc'
-            }],
+            title: {
+                text: 'Total Penjualan Barang Limbah'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Gram Bubutan',
+                    'Potongan Logam',
+                    'Limbah Pelumas',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                series: {
+                    borderRadius: 3,
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Total Penjualan',
+                color: '#4d79ff',
+                data: [{
+                    y: parseInt(response.gram_bubutan.penjualan[0].total),
+                    color: '#4d79ff'
+                }, {
+                    y: parseInt(response.potongan_logam.penjualan[0].total),
+                    color: '#4d79ff'
+                }, {
+                    y: parseInt(response.limbah_pelumas.penjualan[0].total),
+                    color: '#4d79ff'
+                }],
 
-        }]
-    });
+            }]
+        });
+    })
+
+    // TOTAL PENJUALAN
+    $.ajax({
+        url: "{{ route('warehouse.waste.program') }}",
+        dataType: "json",
+        method: "get",
+    }).done(function(response) {
+        Highcharts.chart('program-realisasi', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Program Realisasi Gram Sisa Bubutan dan Potongan Logam Bekas'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
+                    'Gram Bubutan',
+                    'Potongan Logam',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} value</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                series: {
+                    borderRadius: 3,
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Estimasi User',
+                color: 'red',
+                data: [{
+                    y: parseInt(response.gram_bubutan.estimasi_qty[0].total),
+                    color: 'red'
+                }, {
+                    y: parseInt(response.potongan_logam.estimasi_qty[0].total),
+                    color: 'red'
+                }],
+
+            },{
+                name: 'Realisasi Qty',
+                color: 'orange',
+                data: [{
+                    y: parseInt(response.gram_bubutan.realisasi_qty[0].total),
+                    color: 'orange'
+                }, {
+                    y: parseInt(response.potongan_logam.realisasi_qty[0].total),
+                    color: 'orange'
+                }],
+
+            },{
+                name: 'Sisa Qty',
+                color: 'silver',
+                data: [{
+                    y: parseInt(response.gram_bubutan.sisa_qty[0].total),
+                    color: 'silver'
+                }, {
+                    y: parseInt(response.potongan_logam.sisa_qty[0].total),
+                    color: 'silver'
+                }],
+
+            }]
+        });
+    })
 </script>
 @endpush

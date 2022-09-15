@@ -35,6 +35,10 @@ Route::get('/dashboard/pengadaan/monitoring', 'App\Http\Controllers\DashboardCon
 
 // DASHBOARD MONITORING PENGADAAN
 Route::get('/dashboard/warehouse/part', 'App\Http\Controllers\DashboardController@get_warehouse_part')->name('warehouse.part');
+Route::get('/dashboard/warehouse/estimate', 'App\Http\Controllers\DashboardController@get_waste_estimate')->name('warehouse.waste.estimate');
+Route::get('/dashboard/warehouse/kontrak', 'App\Http\Controllers\DashboardController@get_waste_kontrak')->name('warehouse.waste.kontrak');
+Route::get('/dashboard/warehouse/penjualan', 'App\Http\Controllers\DashboardController@get_waste_penjualan')->name('warehouse.waste.penjualan');
+Route::get('/dashboard/warehouse/program', 'App\Http\Controllers\DashboardController@get_waste_program')->name('warehouse.waste.program');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {

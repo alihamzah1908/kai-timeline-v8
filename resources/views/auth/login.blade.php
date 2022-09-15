@@ -18,7 +18,7 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         body.authentication-bg {
-            background: url("assets/images/auth-bg.png");
+            background: url("assets/images-new/C-Log Login Background Rev 2.png");
             background-size: cover;
             background-repeat: no-repeat;
             /* background-size: 100% 100%; */
