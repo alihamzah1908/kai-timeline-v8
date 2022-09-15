@@ -1909,6 +1909,56 @@
             })
         })
 
+        $("body").on('click', '.reject', function(e) {
+            var status = $(this).attr('data-status')
+            if (status == 'gagal_lelang') {
+                var title = 'Are you sure Gagal Lelang PBJ ?'
+                var text = 'Your dokumen will change status gagal lelang!'
+                var title_success = 'Dokumen Are Gagal Lelang'
+                var text_success = 'File change status to Gagal Lelang!'
+                var proses = status
+            } else {
+                var title = 'Are you sure reject dokumen penawaran?'
+                var text = 'Your dokumen penawaran will back to pengumuman pengadaan !'
+                var title_success = 'Success rejected'
+                var text_success = 'File change status to Pengumuman Pengadaan!'
+                var proses = false
+            }
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('reject.pengadaan') }}",
+                        method: "get",
+                        dataType: 'JSON',
+                        data: {
+                            sp3_id: '{{ $data->sp3_id }}',
+                            status: proses
+                        },
+                    }).done(function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                title: title_success,
+                                text: text_success,
+                                confirmButtonText: 'Yes'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        });
+
         $('body').on('click', '.sw-btn-next', function(e) {
             if (status == 'PROSES_DRKS') {
                 $('.calon-tender').removeClass('active')
