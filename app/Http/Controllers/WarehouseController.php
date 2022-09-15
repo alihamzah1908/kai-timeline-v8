@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Imports\WarehouseImport;
+use App\Imports\WasteImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class WarehouseController extends Controller
@@ -16,6 +20,11 @@ class WarehouseController extends Controller
     public function index()
     {
         return view('warehouse.index');
+    }
+
+    public function card()
+    {
+        return view('warehouse.card');
     }
 
     /**
@@ -90,13 +99,11 @@ class WarehouseController extends Controller
             ->orderBy('warehouse_part_id');
         if ($request["code"]) {
             $warehouse->where('sloc', $request["code"]);
-        } else {
-            $warehouse->where('sloc', 'C012');
         }
         $data = $warehouse->get();
         return FacadesDataTables::of($data)
             ->addColumn('value_unrestricted', function ($row) {
-                return number_format($row->value_unrestricted,2,',','.');
+                return number_format($row->value_unrestricted, 2, ',', '.');
             })
             ->addColumn('action', function ($row) {
                 $btn = '<button class="btn btn-sm btn-primary btn-rounded">
@@ -106,5 +113,45 @@ class WarehouseController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function data_card(Request $request)
+    {
+        $data = \App\Models\WarehousePart::where('value_unrestricted', '!=', '0')
+            ->orderBy('warehouse_part_id')
+            ->where('sloc', 'C012')
+            ->get();
+        return FacadesDataTables::of($data)
+            ->addColumn('value_unrestricted', function ($row) {
+                return number_format($row->value_unrestricted, 2, ',', '.');
+            })
+            ->addColumn('action', function ($row) {
+                $btn = '<button class="btn btn-sm btn-primary btn-rounded">
+                            <i class="uil uil-search"></i>
+                        </button>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function importWarehouse(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); //GET FILE
+            Excel::import(new WarehouseImport, $file); //IMPORT FILE
+            return redirect()->back()->with(['message' => 'Upload berhasil']);
+        }
+        return redirect()->back()->withErrors(['message' => 'Upload gagal']);
+    }
+
+    public function importWaste(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file'); //GET FILE
+            Excel::import(new WasteImport, $file); //IMPORT FILE
+            return redirect()->back()->with(['message' => 'Upload berhasil']);
+        }
+        return redirect()->back()->withErrors(['message' => 'Upload gagal']);
     }
 }

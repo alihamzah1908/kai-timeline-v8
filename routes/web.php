@@ -129,6 +129,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
     Route::post('/data/contract/contract', 'App\Http\Controllers\ContractController@draft_kontrak')->name('save.kontrak');
 
+     // CARD 
+     Route::get('/data/warehouse-card', 'App\Http\Controllers\WarehouseController@data_card')->name('data.card');
+     Route::get('/data/warehouse/card', 'App\Http\Controllers\WarehouseController@card')->name('card.index');
+     Route::post('/data/warehouse/import', 'App\Http\Controllers\WarehouseController@importWarehouse')->name('import.warehouse');
+     Route::post('/data/waste/import', 'App\Http\Controllers\WarehouseController@importWaste')->name('import.waste');
+
+
     // SPARE PART 
     Route::get('/data/warehouse', 'App\Http\Controllers\WarehouseController@data')->name('data.warehouse');
     Route::get('/data/warehouse/part', 'App\Http\Controllers\WarehouseController@index')->name('warehouse.index');

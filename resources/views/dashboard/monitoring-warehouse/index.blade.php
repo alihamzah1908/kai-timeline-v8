@@ -275,26 +275,24 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-xl-12">
+        <div class="col-xl-6">
             <figure class="highcharts-figure">
                 <div id="harga-kontrak"></div>
             </figure>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-xl-12">
+        <div class="col-xl-6">
             <figure class="highcharts-figure">
                 <div id="total-penjualan"></div>
             </figure>
         </div>
     </div>
-    <div class="row mt-4">
+    <!-- <div class="row mt-4">
         <div class="col-xl-12">
             <figure class="highcharts-figure">
                 <div id="program-realisasi"></div>
             </figure>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
 @push('scripts')

@@ -12,7 +12,7 @@
                         <div class="col-md-3 mt-2 d-flex justify-content-end">
                             <label>Warehouse : </label>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end">
+                        <div class="col-md-3">
                             <select name="code_loc" class="form-control warehouse" data-plugin="customselect">
                                 <option value="">Pilih Warehouse</option>
                                 <option value="C008" {{ request()->code_loc == 'C008' ? ' selected' : '' }}>Bogor</option>
@@ -21,6 +21,11 @@
                                 <option value="C012" {{ request()->code_loc == 'C012' ? ' selected' : '' }}>Juanda</option>
                                 <option value="C009" {{ request()->code_loc == 'C009' ? ' selected' : '' }}>Manggarai</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button class="btn btn-primary btn-sm btn-rounded import"><i class="uil uil-upload"></i> Import Excel</button>
                         </div>
                     </div>
                     <table id="datatable" class="table m-0 nowrap">
@@ -45,6 +50,34 @@
         </div><!-- end col-->
     </div>
 </div> <!-- container-fluid -->
+<div class="modal fade" id="modal-import" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Import Warehouse Card</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action='{{ route("import.warehouse") }}' id="form-timeline" enctype="multipart/form-data" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Import File</label>
+                            <input type="file" class="form-control" name="file">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button class="btn btn-warning btn-sm btn-rounded" type="submit"><i class="uil uil-save"></i>Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('scripts')
 <script>
@@ -93,8 +126,13 @@
                 },
             ]
         });
+
         $('body').on('change', '.warehouse', function() {
             window.location.href = '{{ route("warehouse.index") }}?code_loc=' + $(this).val();
+        })
+
+        $('body').on('click', '.import', function() {
+            $("#modal-import").modal('show')
         })
     })
 </script>

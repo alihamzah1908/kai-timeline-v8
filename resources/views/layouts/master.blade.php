@@ -243,7 +243,7 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 @can('warehouse-card-list')
                                 <li>
-                                    <a href="javascript:void(0)">Card</a>
+                                    <a href="{{ route('card.index') }}">Card</a>
                                 </li>
                                 @endcan
                                 @can('warehouse-part-list')

@@ -14,7 +14,7 @@
                         <table id="datatable" class="table m-0 nowrap">
                             <thead>
                                 <tr>
-                                    <th>No. SP3</th>
+                                    <th>No. SP3s</th>
                                     <th>Procurement Title</th>
                                     <th>RKAP Value</th>
                                     <th>Department</th>
