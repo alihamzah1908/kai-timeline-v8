@@ -102,6 +102,9 @@ class WarehouseController extends Controller
         }
         $data = $warehouse->get();
         return FacadesDataTables::of($data)
+            ->addColumn('unrestricted', function ($row) {
+                return number_format($row->unrestricted, 2, ',', '.');
+            })
             ->addColumn('value_unrestricted', function ($row) {
                 return number_format($row->value_unrestricted, 2, ',', '.');
             })
@@ -122,6 +125,9 @@ class WarehouseController extends Controller
             ->where('sloc', 'C012')
             ->get();
         return FacadesDataTables::of($data)
+            ->addColumn('unrestricted', function ($row) {
+                return number_format($row->unrestricted, 2, ',', '.');
+            })
             ->addColumn('value_unrestricted', function ($row) {
                 return number_format($row->value_unrestricted, 2, ',', '.');
             })
