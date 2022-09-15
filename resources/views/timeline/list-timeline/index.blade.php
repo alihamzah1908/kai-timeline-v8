@@ -23,18 +23,19 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped mb-0 nowrap">
+                        <!-- <table id="datatable" class="table table-striped mb-0 nowrap"> -->
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>No. Pengadaan</th>
-                                    <th>Procurement Title</th>
-                                    <th>RKAP Value</th>
-                                    <th>Department</th>
-                                    <th>PBJ</th>
-                                    <th>Cost</th>
-                                    <th>Status</th>
+                                    <th style='width:10%'>No. Pengadaan</th>
+                                    <th style='width:40%'>Procurement Title</th>
+                                    <th style='width:10%'>RKAP Value</th>
+                                    <th style='width:5%'>Department</th>
+                                    <th style='width:10%'>PBJ</th>
+                                    <th style='width:10%'>Cost</th>
+                                    <th style='width:10%'>Status</th>
                                     <th></th>
-                                    <th>Action</th>
+                                    <th style='width:5%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

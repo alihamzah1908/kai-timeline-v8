@@ -18,18 +18,19 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table m-0 nowrap">
+                        <!-- <table id="datatable" class="table m-0 nowrap"> -->
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>No. SP3</th>
-                                    <th>Procurement Title</th>
-                                    <th>RKAP Value</th>
-                                    <th>Department</th>
-                                    <th>Tax Value</th>
-                                    <th>Realization</th>
-                                    <th>Status</th>
+                                    <th style='width:10%'>No. SP3</th>
+                                    <th style='width:40%'>Procurement Title</th>
+                                    <th style='width:10%'>RKAP Value</th>
+                                    <th style='width:5%'>Department</th>
+                                    <th style='width:10%'>Tax Value</th>
+                                    <th style='width:10%'>Realization</th>
+                                    <th style='width:10%'>Status</th>
                                     <th></th>
-                                    <th>Action</th>
+                                    <th style='width:5%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

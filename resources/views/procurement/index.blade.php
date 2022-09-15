@@ -11,9 +11,11 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table m-0 nowrap">
+                        <!-- <table id="datatable" class="table m-0 nowrap"> -->
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
+<<<<<<< HEAD
                                     <th>No. SP3s</th>
                                     <th>Procurement Title</th>
                                     <th>RKAP Value</th>
@@ -22,6 +24,16 @@
                                     <th>Realization</th>
                                     <th>Status</th>
                                     <th>Action</th>
+=======
+                                    <th style='width:10%'>No. SP3</th>
+                                    <th style='width:35%'>Procurement Title</th>
+                                    <th style='width:10%'>RKAP Value</th>
+                                    <th style='width:5%'>Department</th>
+                                    <th style='width:10%'>Tax Value</th>
+                                    <th style='width:10%'>Realization</th>
+                                    <th style='width:10%'>Status</th>
+                                    <th style='width:10%'>Action</th>
+>>>>>>> a9db5c6baecef578f6138a9e608a4d34239e6088
                                 </tr>
                             </thead>
                             <tbody>

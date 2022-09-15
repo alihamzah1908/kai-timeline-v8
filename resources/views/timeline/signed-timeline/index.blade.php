@@ -23,16 +23,16 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table nowrap">
+                        <!-- <table id="datatable" class="table nowrap"> -->
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Upload Signed Title</th>
-                                    <th>Upload By</th>
-                                    <th>Signed By</th>
-                                    <th>Upload Date</th>
-                                    <th>File</th>
-                                    <th>Notes</th>
-                                    <!-- <th>Action</th> -->
+                                    <th style='width:20%'>Upload Signed Title</th>
+                                    <th style='width:10%'>Upload By</th>
+                                    <th style='width:20%'>Signed By</th>
+                                    <th style='width:10%'>Upload Date</th>
+                                    <th style='width:20%'>File</th>
+                                    <th style='width:20%'>Notes</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -11,16 +11,17 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table m-0 nowrap">
+                        <!-- <table id="datatable" class="table m-0 nowrap"> -->   
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>No. SP3</th>
-                                    <th>Procurement Title</th>
-                                    <th>Contract Value</th>
-                                    <th>Department</th>
-                                    <th>Status</th>
+                                    <th style='width:10%'>No. SP3</th>
+                                    <th style='width:45%'>Procurement Title</th>
+                                    <th style='width:15%'>Contract Value</th>
+                                    <th style='width:10%'>Department</th>
+                                    <th style='width:10%'>Status</th>
                                     <th></th>
-                                    <th>Action</th>
+                                    <th style='width:10%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
