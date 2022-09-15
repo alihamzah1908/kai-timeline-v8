@@ -197,10 +197,11 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         <div class="left-side-menu">
+            <br></br>
             <div class="container-fluid mb-4 d-flex justify-content-center">
                 <a href="{{ route('home') }}" class="mr-0 mr-md-2 logo">
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/c-log-bar.png') }}" alt="" height="115" width="258" />
+                        <img src="{{ asset('assets/images/c-log-bar.png') }}" alt="" height="80" width="208" />
                         <span class="d-inline h5 ml-1 text-logo"></span>
                     </span>
                 </a>
