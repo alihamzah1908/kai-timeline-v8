@@ -4,9 +4,10 @@
 </div>
 <div class="content">
     <div class="container-fluid">
+    <img src="{{ asset('assets/images/dash_summary.png') }}" />
         <div class="row page-title align-items-center">
             <div class="col-sm-4 col-xl-6">
-                <h4 class="mb-1 mt-0">Dashboard Program Realisasi</h4>
+                <h2 class="mb-1 mt-0">Dashboard Program Realisasi</h2>
             </div>
             <div class="col-sm-8 col-xl-6">
                 <form class="form-inline float-sm-right mt-3 mt-sm-0">
@@ -14,9 +15,10 @@
                         <input type="text" class="form-control" id="dash-daterange" style="min-width: 190px;" />
                     </div>
                     <div class="btn-group">
-                        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class='uil uil-file-alt mr-1'></i>Download
-                            <i class="icon"><span data-feather="chevron-down"></span></i></button> -->
+                            <i class="icon"><span data-feather="chevron-down"></span></i>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="#" class="dropdown-item notify-item">
                                 <i data-feather="mail" class="icon-dual icon-xs mr-2"></i>
