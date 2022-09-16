@@ -11,19 +11,20 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table id="datatable" class="table m-0 nowrap">
+                        <!-- <table id="datatable" class="table m-0 nowrap"> -->
+                        <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Material No</th>
-                                    <th>Nama Barang/ Upah</th>
-                                    <th>Kategori</th>
-                                    <th>Merk</th>
-                                    <th>Spesifikasi</th>
-                                    <th>Satuan</th>
-                                    <th>Harga</th>
-                                    <th>Mata Uang</th>
-                                    <th>Referensi</th>
-                                    <th>Tahun</th>
+                                    <th style='width:5%'>Material No</th>
+                                    <th style='width:10%'>Nama Barang/ Upah</th>
+                                    <th style='width:8%'>Kategori</th>
+                                    <th style='width:5%'>Merk</th>
+                                    <th style='width:7%'>Spesifikasi</th>
+                                    <th style='width:7%'>Satuan</th>
+                                    <th style='width:10%'>Harga</th>
+                                    <th style='width:5%'>Mata Uang</th>
+                                    <th style='width:38%'>Referensi</th>
+                                    <th style='width:5%'>Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
