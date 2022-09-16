@@ -264,6 +264,8 @@
                     $('#modal-timeline').modal('hide')
                     timeline.ajax.reload();
                     $('#form-timeline')[0].reset();
+                } else if (response.status == '400') {
+                    alert("error insert timeline")
                 }
             })
         })

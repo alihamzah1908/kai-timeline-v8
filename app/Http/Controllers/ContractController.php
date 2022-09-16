@@ -363,7 +363,7 @@ class ContractController extends Controller
         on pp.vendor_code = kkn.vendor_code
         inner join auth.mapping_type mt
         on mt.mapping_desc = ts.proses_st
-        where kkn.harga_negosiasi is not null GROUP BY ts.sp3_id, kkn.harga_negosiasi, mt.keterangan');
+        where kkn.harga_negosiasi is not null GROUP BY ts.timeline_id, ts.sp3_id, kkn.harga_negosiasi, mt.keterangan');
         return FacadesDataTables::of($data)
             ->addColumn('sp3_no', function ($row) {
                 return '<a href="' . route('contract.show', $row->sp3_id) . '">' . $row->no_sp3 . '</a>';

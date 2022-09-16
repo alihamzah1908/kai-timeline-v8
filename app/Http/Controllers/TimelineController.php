@@ -56,10 +56,14 @@ class TimelineController extends Controller
         $data->proses_st = $request["save"] == 'draft' ? 'PROSES_DT' : 'PROSES_ST';
         $data->created_by = Auth::user()->id;
         $data->save();
-        $data2 = \App\Models\Timeline::find($data->timeline_id);
-        $data2->no_pengadaan = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->timeline_id;
-        $data2->save();
-        return response()->json(['status' => '200']);
+        if ($data) {
+            $data2 = \App\Models\Timeline::find($data->timeline_id);
+            $data2->no_pengadaan = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->timeline_id;
+            $data2->save();
+            return response()->json(['status' => '200']);
+        }else{
+            return response()->json(['status' => '400']);
+        }
     }
 
     /**
