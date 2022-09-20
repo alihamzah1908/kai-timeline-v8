@@ -604,13 +604,6 @@ class ProcurementController extends Controller
                 return '<badges class="badge badge-danger">' . $row->get_status->keterangan . '</badges>';
             })
             ->addColumn('action', function ($row) {
-                // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Reviewing RKS</a>';
-                // <a class="dropdown-item approve-rks" role="presentation" href="javascript:void(0)" data-id=' . $row->sp3_id . '><i class="uil uil-upload"></i> Drafting RKS</a>';
-                // if ($row->proses_st == 'PROSES_DRKS') {
-                //     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                //                     <button class="btn btn-rounded btn-primary btn-sm"><i class="uil uil-search"></i> Show Detail</button>
-                //                </a>';
-                // } else if ($row->proses_st == 'PROSES_RRKS') {
                 if (
                     $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
                     || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
@@ -622,7 +615,7 @@ class ProcurementController extends Controller
                                         <i class="uil uil-search"></i> 
                                     </button>
                                 </a>
-                                <a href="' . route('evaluasi.print.sp') . '">
+                                <a href="' . route('evaluasi.print.sk') . '">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
                                     </button>

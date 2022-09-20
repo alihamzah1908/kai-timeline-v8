@@ -5,7 +5,7 @@
     <style>
         body,
         table {
-            font-family: 'Roboto';
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
         }
 

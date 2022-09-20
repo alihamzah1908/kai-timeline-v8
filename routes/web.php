@@ -42,7 +42,7 @@ Route::get('/dashboard/warehouse/program', 'App\Http\Controllers\DashboardContro
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', function () {
-        return view('dashboard.index');
+        return view('dashboard.monitoring-progreal.index');
     })->name('home');
     // USER
     Route::get('/users', 'App\Http\Controllers\Users\UserController@index')->name('users.index');
@@ -201,4 +201,5 @@ Route::group(['middleware' => ['auth']], function () {
         return view('hs.index');
     })->name('list.hs');
 });
+Route::get('/sp-3/evaluasi/print/sk', 'App\Http\Controllers\Sp3Controller@generate_sk')->name('evaluasi.print.sk');
 Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');

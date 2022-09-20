@@ -1,114 +1,248 @@
-@extends('layouts.master')
-@section('content')
-<div class="container-fluid">
-    <div class="row page-title">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="float-left mt-1">
-                <ol class="breadcrumb">
-                    <li><i class="uil uil-chart-infographic"></i></li>
-                    <li class="breadcrumb-item"><a href="{{ route('sp3.task.approval') }}">SP3 Task Approval</a></li>
-                    <li class="breadcrumb-item"><a href="#">Evaluasi</a></li>
-                </ol>
-            </nav>
-        </div>
+<style>
+    body {
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #table-evaluasi {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #table-evaluasi td,
+    #table-evaluasi th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #table-evaluasi tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #table-evaluasi tr:hover {
+        background-color: #ddd;
+    }
+
+    #table-evaluasi th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #fff;
+        color: black;
+    }
+</style>
+
+<body>
+    <table width="100%">
+        <tr>
+            <th>
+                <!-- <img src="{{ asset('assets/images/rks.png') }}"> -->
+            </th>
+            <th>
+                FORM KENDALI PENERBITAN SP3<br />
+                (SURAT PERINTAH PELAKSANAAN PENGADAAN)
+            </th>
+        </tr>
+    </table>
+    <table width="100%" style="margin-top: 20px;">
+        <tr>
+            <th align="left" width="200" style="vertical-align: top">
+                JUDUL PENGADAAN
+            </th>
+            <th style="vertical-align: top">
+                :
+            </th>
+            <td>{{ $data->judul_pengadaan }}</td>
+        </tr>
+        <tr>
+            <th align="left" width="200" style="vertical-align: top">
+                NO ID
+            </th>
+            <th>
+                :
+            </th>
+            <td>1610</td>
+        </tr>
+        <tr>
+            <th align="left" width="200" style="vertical-align: top">
+                NILAI
+            </th>
+            <th>
+                :
+            </th>
+            <td>{{ number_format($data->nilai_pr, 2) }}</td>
+        </tr>
+        <tr>
+            <th align="left" width="200" style="vertical-align: top">
+                UNIT
+            </th>
+            <th>
+                :
+            </th>
+            <td>{{ $data->directorate_cd . '/' . $data->division_cd . '/' . $data->department_cd }}</td>
+        </tr>
+        <tr>
+            <th align="left" width="200" style="vertical-align: top">
+                METODE PENGADAAN
+            </th>
+            <th>
+                :
+            </th>
+            <td>{{ $data->type_metode }}</td>
+        </tr>
+    </table>
     </div>
-    <div class="row mt-1">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <h4 class="header-title mt-0 mb-1">Evaluasi SP3</h4>
-                        </div>
-                    </div>
-                    @php
-                    $evaluasi = \App\Models\SP3::where('sp3_id', request()->sp_id)->first();
-                    @endphp
-                    <div class="row mb-3">
-                        <div class="col-md-12">
-                            <table width="100%">
-                                <tr>
-                                    <th align="left" width="200">
-                                        JUDUL PENGADAAN
-                                    </th>
-                                    <th width="20">
-                                        :
-                                    </th>
-                                    <th>{{ $evaluasi->judul_pengadaan }}</th>
-                                </tr>
-                                <tr>
-                                    <th align="left">
-                                        NO ID
-                                    </th>
-                                    <th>
-                                        :
-                                    </th>
-                                    <th>1610</th>
-                                </tr>
-                                <tr>
-                                    <th align="left">
-                                        NILAI
-                                    </th>
-                                    <th>
-                                        :
-                                    </th>
-                                    <th>{{ number_format($evaluasi->nilai_pr, 2) }}</th>
-                                </tr>
-                                <tr>
-                                    <th align="left">
-                                        UNIT
-                                    </th>
-                                    <th>
-                                        :
-                                    </th>
-                                    <th>{{ $evaluasi->directorate_cd . '/' . $evaluasi->division_cd . '/' . $evaluasi->department_cd }}</th>
-                                </tr>
-                                <tr>
-                                    <th align="left">
-                                        METODE PENGADAAN
-                                    </th>
-                                    <th>
-                                        :
-                                    </th>
-                                    <th>{{ $evaluasi->type_metode }}</th>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <table id="tablel-evaluasi" class="table dt-responsive nowrap">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>URAIAN DOKUMEN</th>
-                                <th>NOMOR</th>
-                                <th>TANGGAL</th>
-                                <th></th>
-                                <th></th>
-                                <th>KETERANGAN/KELENGKAPAN/KESESUAIAN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', request()->sp_id)->get();
-							//$evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', request()->sp_id)->post();
-                            $i = 1;
-                            @endphp
-                            @foreach($evaluasi as $val)
-                            <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $val->item_value }}</td>
-                                <td></td>
-                                <td>{{ date('d M Y', strtotime($val->created_at)) }}</td>
-                                <td></td>
-                                <td></td>
-                                <td>{{ $val->keterangan }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div> <!-- end card body-->
-            </div> <!-- end card -->
-        </div><!-- end col-->
-    </div>
-</div>
-@endsection
+    <table id="table-evaluasi" style="width: 100%; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th>URAIAN DOKUMEN</th>
+                <th>NOMOR</th>
+                <th>TANGGAL</th>
+                <th colspan="2">PEMENUHAN</th>
+                <th>KETERANGAN/KELENGKAPAN/KESESUAIAN </th>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Ya</th>
+                <th>Tidak</th>
+                <th style='width:10%'></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.</td>
+                <td>MI Permohonan Pengadaan dari User</td>
+                <td>@if($evaluasi){{$evaluasi[0]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[0]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[0]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[0]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[0]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>NPD</td>
+                <td>@if($evaluasi){{$evaluasi[1]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[1]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[1]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[1]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[1]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>IJIN PRINSIP</td>
+                <td>@if($evaluasi){{$evaluasi[2]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[2]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[2]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[2]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[2]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Permohonan Dana dari User (NPD/Ijin Prinsip)</td>
+                <td>@if($evaluasi){{$evaluasi[3]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[3]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[3]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[3]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[3]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td>No RAB, Tanggal RAB dan Judul Pengadaan di RAB</td>
+                <td>@if($evaluasi){{$evaluasi[4]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[4]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[4]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[4]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[4]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td>No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi</td>
+                <td>@if($evaluasi){{$evaluasi[5]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[5]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[5]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[5]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[5]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td>No KAK/TOR, Tanggal KAK/TOR dan Judul Pengadaan di KAK/TOR</td>
+                <td>@if($evaluasi){{$evaluasi[6]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[6]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[6]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[6]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[6]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>a. MPPL</td>
+                <td>@if($evaluasi){{$evaluasi[7]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[7]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[7]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[7]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[7]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>b. Denda</td>
+                <td>@if($evaluasi){{$evaluasi[8]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[8]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[8]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[8]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[8]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>b. Metode Pembayaran</td>
+                <td>@if($evaluasi){{$evaluasi[9]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[9]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[9]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[9]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[9]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>RKIP</td>
+                <td>@if($evaluasi){{$evaluasi[10]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[10]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[10]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[10]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[10]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>PML/PNL</center>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td>Permohonan Persetujuan Direksi</td>
+                <td>@if($evaluasi){{$evaluasi[11]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[11]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[11]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[11]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[11]->keterangan }}@endif</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Persetujuan Direksi (Justifikasi PNL)</td>
+                <td>@if($evaluasi){{$evaluasi[12]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){{$evaluasi[12]->tanggal_evaluasi }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[12]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif/></td>
+                <td><input type="checkbox" @if($evaluasi){{$evaluasi[12]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif/></td>
+                <td>@if($evaluasi){{$evaluasi[12]->keterangan }}@endif</td>
+            </tr>
+        </tbody>
+    </table>
+</body>

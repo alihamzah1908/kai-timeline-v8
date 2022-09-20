@@ -216,6 +216,13 @@ class Sp3Controller extends Controller
     {
         $data["data"] = \App\Models\SP3::find($id);
         $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
+        $check = \App\Models\EvaluasiSp3::where('sp3_id', $id)->get();
+        if ($check->count() > 0) {
+            $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $id)->get();
+        } else {
+            $data["evaluasi"] = null;
+        }
+        $data["evalnotes"] = DB::table('trx_eval_notes')->where('sp3_id', $id)->first();
         return view('sp-3.list-sp3.show', $data);
     }
 
@@ -285,11 +292,36 @@ class Sp3Controller extends Controller
         }
     }
 
-    public function generate_sp()
+    public function generate_sk()
     {
-        $pdf = FacadePdf::loadView('sp-3.evaluasi.print-sp')->setOptions(['defaultFont' => 'roboto']);;
-        // return view('sp-3.evaluasi.print-sp');
-        return $pdf->download('spr.pdf');
+        $resultName = date('Ymd_His') . "_SURAT_KEPUTUSAN.pdf";
+        $view       = view('sp-3.evaluasi.print-sk')->render();
+        // return $view;
+        $pdf        = FacadePdf::loadHtml($view);
+        $pdf->setOptions(['isHtml5ParserEnabled' => true, 'setIsRemoteEnabled' => true]);
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->stream($resultName);
+    }
+
+    public function generate_sp(Request $request)
+    {
+        $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
+        $data["data"] = \App\Models\SP3::find($request["id"]);
+        $check = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
+        if ($check->count() > 0) {
+            $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
+        } else {
+            $data["evaluasi"] = null;
+        }
+        if ($data) {
+            $resultName = date('Ymd_His') . "_SURAT_PERINTAH.pdf";
+            $view       = view('sp-3.evaluasi.sp', $data)->render();
+            // return $view;
+            $pdf        = FacadePdf::loadHtml($view);
+            $pdf->setOptions(['isHtml5ParserEnabled' => true, 'setIsRemoteEnabled' => true]);
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream($resultName);
+        }
     }
 
     public function evaluasi_store(Request $request)
@@ -345,7 +377,7 @@ class Sp3Controller extends Controller
             $sp3->orWhere('proses_st', 'PROSES_CR');
         } elseif ($request["timeline_type"] == 'npp') {
             $sp3->select(DB::raw("sum(nilai_pr) as nilai_pr"), 'department_cd', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st', 'created_at');
-            $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st','created_at');
+            $sp3->groupBy('department_cd', 'nilai_pr', 'judul_pengadaan', 'no_sp3', 'nilai_tax', 'timeline_id', 'sp3_id', 'proses_st', 'created_at');
         }
         $data = $sp3->get();
         return FacadesDataTables::of($data)
@@ -391,9 +423,14 @@ class Sp3Controller extends Controller
             })
             ->addColumn('action', function ($row) {
                 if (auth()->user()->can('sp3-list')) {
-                    $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                    $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
                                 <button class="btn btn-primary btn-rounded btn-sm">
                                     <i class="uil uil-search"></i> 
+                                </button>
+                            </a>
+                            <a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
+                                <button class="btn btn-primary btn-sm btn-rounded">
+                                    <i class="uil uil-print"></i> 
                                 </button>
                             </a>';
                     return $btn;
@@ -404,9 +441,14 @@ class Sp3Controller extends Controller
                                         <i class="uil uil-check"></i> 
                                     </button>
                                </a>
-                               <a href="' . route('sp3.show', $row->sp3_id) . '">
+                               <a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
                                     <button class="btn btn-primary btn-rounded btn-sm">
                                         <i class="uil uil-search"></i> 
+                                    </button>
+                               </a>
+                               <a href="' . route('evaluasi.print.sp') . '?id="' . $row->sp3_id . '" target="_blank">
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
                                     </button>
                                </a>';
                     if ($row->proses_st == 'PROSES_SSP3') {
@@ -425,16 +467,21 @@ class Sp3Controller extends Controller
                         || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
                         || $row->proses_st == 'PROSES_CR'
                     ) {
-                        $btn = '<a href="' . route('evaluasi.print.sp') . '">
-                                    <button class="btn btn-primary btn-sm btn-rounded">
-                                        <i class="uil uil-print"></i> 
-                                    </button>
-                                </a>
-                                <a href="' . route('sp3.show', $row->sp3_id) . '">
+                        $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
                                     <button class="btn btn-primary btn-rounded btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
-                                </a>';
+                                </a>
+                                <a href="' . route('evaluasi.print.sp') . '?id="' . $row->sp3_id . '" target="_blank">
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
+                                    </button>
+                               </a>
+                               <a href="' . route('evaluasi.print.sk') . '">
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
+                                    </button>
+                               </a>';
                         return $btn;
                     }
                 }

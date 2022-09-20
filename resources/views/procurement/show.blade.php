@@ -648,18 +648,18 @@
                                                     ->join('public.vendor as b','a.vendor_code','b.vendor_code')
                                                     ->get();
                                                     @endphp
-                                                    @foreach($tender_aanwidjzing as $val)
+                                                    @foreach($dokumen as $val)
                                                     <tr>
                                                         <td>
-                                                            {{ $doc->vendor_name }}
+                                                            {{ $val->vendor_name }}
                                                         </td>
                                                         <td>
-                                                            <a href="{{ asset('file/sp3/'. $doc->file_dokumen) }}">
-                                                                <p><i class="uil uil-file-alt"></i> {{ $doc->file_dokumen }}</p>
+                                                            <a href="{{ asset('file/sp3/'. $val->file_dokumen) }}">
+                                                                <p><i class="uil uil-file-alt"></i> {{ $val->file_dokumen }}</p>
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_dokumen }}">
+                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_submit_dokumen }}">
                                                         </td>
                                                     </tr>
                                                     @endforeach
