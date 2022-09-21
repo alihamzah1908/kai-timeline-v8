@@ -1859,7 +1859,9 @@
             $('.ucp').addClass('done')
             $('.pcp').addClass('done')
             $('.spr').addClass('done')
-        } else if (status == 'PROSES_DC') {
+        } else if (status == 'PROSES_DC' || status == 'PROSES_DC' || status == 'PROSES_UJP' 
+            || status == 'PROSES_VJP' || status == 'PROSES_RDC' || status == 'PROSES_VAC' || status == 'PROSES_APU' 
+            || status == 'PROSES_ALG' || status == 'PROSES_KAC' || status == 'PROSES_CR') {
             $('.rks').addClass('done')
             $('.calon-tender').addClass('done')
             $('.aanwidjzing').addClass('done')
