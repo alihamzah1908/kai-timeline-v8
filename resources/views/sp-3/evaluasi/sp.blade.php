@@ -89,8 +89,7 @@
         <tr>
             <td>
                 1. &nbsp; Menunjuk : <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan “Pelayanan Penumpang Di Stasiun –
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pengisian Ulang dan Pengadaan Tabung APAR Stasiun dan KRL; <br /><br />
+                &nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan <b>{{ $data->judul_pengadaan }}</b>; <br /><br />
                 &nbsp;&nbsp;&nbsp;&nbsp; b. Ijin Prinsip/PR/NPD ACC*) No. 2100074947 tanggal 6 Juni 2022 senilai Rp. 710.188.121,- dan No.2100074949 tanggal 6 Juni 2022 senilai
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp.12.249.243,- dengan total Rp. 722.437.364 (tujuh ratus dua puluh dua juta empat ratus tiga puluh tujuh ribu tiga ratus enam puluh empat rupiah).
                 <br />
@@ -99,8 +98,8 @@
                 <br />
                 <br />
                 2. &nbsp; Sehubungan hal tersebut diatas, agar dilaksanakan proses : <br /><br />
-                <center><b>Pelayanan Penumpang - Pengisian Ulang dan Pengadaan Tabung Apar Stasiun Dan KRL;
-                        Pagu Dana Rp. 722.437.364,-
+                <center><b>{{ $data->judul_pengadaan }};<br />
+                        Pagu Dana Rp. {{ number_format($data->nilai_pr, 2)}},-
                     </b></center>
                 <br />
                 <br />

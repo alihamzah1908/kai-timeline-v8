@@ -215,6 +215,7 @@ class Sp3Controller extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
+        dd($data["data"]);
         $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $id)->get();
         if ($check->count() > 0) {
