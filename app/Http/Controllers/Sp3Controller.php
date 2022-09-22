@@ -307,6 +307,7 @@ class Sp3Controller extends Controller
     {
         $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         $data["data"] = \App\Models\SP3::find($request["id"]);
+        $data["timeline"] = \App\Models\Timeline::where('timeline_id', $data["data"]["timeline_id"])->first();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         if ($check->count() > 0) {
             $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
