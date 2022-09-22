@@ -109,7 +109,7 @@
                                         </dl>
                                     </div>
                                 </div>
-                                @if($data->proses_st == 'PROSES_ST')
+                                @if($data->proses_st == 'PROSES_ST' || auth()->user()->hasRole('manajer-logistik'))
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">
                                         <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="{{ $data->timeline_id }}"><i class="uil uil-check"></i> Approve</button></a>

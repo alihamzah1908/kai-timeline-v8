@@ -89,8 +89,7 @@
         <tr>
             <td>
                 1. &nbsp; Menunjuk : <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan “Pelayanan Penumpang Di Stasiun –
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pengisian Ulang dan Pengadaan Tabung APAR Stasiun dan KRL; <br /><br />
+                &nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan <b>{{ $data->judul_pengadaan }}</b>; <br /><br />
                 &nbsp;&nbsp;&nbsp;&nbsp; b. Ijin Prinsip/PR/NPD ACC*) No. 2100074947 tanggal 6 Juni 2022 senilai Rp. 710.188.121,- dan No.2100074949 tanggal 6 Juni 2022 senilai
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp.12.249.243,- dengan total Rp. 722.437.364 (tujuh ratus dua puluh dua juta empat ratus tiga puluh tujuh ribu tiga ratus enam puluh empat rupiah).
                 <br />
@@ -99,8 +98,8 @@
                 <br />
                 <br />
                 2. &nbsp; Sehubungan hal tersebut diatas, agar dilaksanakan proses : <br /><br />
-                <center><b>Pelayanan Penumpang - Pengisian Ulang dan Pengadaan Tabung Apar Stasiun Dan KRL;
-                        Pagu Dana Rp. 722.437.364,-
+                <center><b>{{ $data->judul_pengadaan }};<br />
+                        Pagu Dana Rp. {{ number_format($data->nilai_pr, 2)}},-
                     </b></center>
                 <br />
                 <br />
@@ -232,7 +231,7 @@
             <tr>
                 <td>1.</td>
                 <td>MI Permohonan Pengadaan dari User</td>
-                <td>@if($evaluasi){{$evaluasi[0]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[0]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[0]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[0]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[0]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -241,7 +240,7 @@
             <tr>
                 <td>2.</td>
                 <td>NPD</td>
-                <td>@if($evaluasi){{$evaluasi[1]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[1]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[1]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[1]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[1]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -250,7 +249,7 @@
             <tr>
                 <td>3.</td>
                 <td>IJIN PRINSIP</td>
-                <td>@if($evaluasi){{$evaluasi[2]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[2]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[2]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[2]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[2]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -259,7 +258,7 @@
             <tr>
                 <td>4.</td>
                 <td>Permohonan Dana dari User (NPD/Ijin Prinsip)</td>
-                <td>@if($evaluasi){{$evaluasi[3]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[3]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[3]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[3]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[3]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -268,7 +267,7 @@
             <tr>
                 <td>5.</td>
                 <td>No RAB, Tanggal RAB dan Judul Pengadaan di RAB</td>
-                <td>@if($evaluasi){{$evaluasi[4]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[4]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[4]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[4]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[4]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -277,7 +276,7 @@
             <tr>
                 <td>6.</td>
                 <td>No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi</td>
-                <td>@if($evaluasi){{$evaluasi[5]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[5]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[5]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[5]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[5]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -286,7 +285,7 @@
             <tr>
                 <td>7.</td>
                 <td>No KAK/TOR, Tanggal KAK/TOR dan Judul Pengadaan di KAK/TOR</td>
-                <td>@if($evaluasi){{$evaluasi[6]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[6]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[6]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[6]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[6]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -295,7 +294,7 @@
             <tr>
                 <td></td>
                 <td>a. MPPL</td>
-                <td>@if($evaluasi){{$evaluasi[7]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[7]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[7]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[7]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[7]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -304,7 +303,7 @@
             <tr>
                 <td></td>
                 <td>b. Denda</td>
-                <td>@if($evaluasi){{$evaluasi[8]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[8]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[8]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[8]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[8]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -313,7 +312,7 @@
             <tr>
                 <td></td>
                 <td>b. Metode Pembayaran</td>
-                <td>@if($evaluasi){{$evaluasi[9]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[9]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[9]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[9]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[9]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -322,7 +321,7 @@
             <tr>
                 <td>8</td>
                 <td>RKIP</td>
-                <td>@if($evaluasi){{$evaluasi[10]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[10]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[10]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[10]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[10]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -341,7 +340,7 @@
             <tr>
                 <td>9.</td>
                 <td>Permohonan Persetujuan Direksi</td>
-                <td>@if($evaluasi){{$evaluasi[11]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[11]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[11]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[11]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[11]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
@@ -350,7 +349,7 @@
             <tr>
                 <td>10</td>
                 <td>Persetujuan Direksi (Justifikasi PNL)</td>
-                <td>@if($evaluasi){{$evaluasi[12]->nomor_evaluasi }}@endif</td>
+                <td>@if($evaluasi){!!$evaluasi[12]->nomor_evaluasi !!}@endif</td>
                 <td>@if($evaluasi){{$evaluasi[12]->tanggal_evaluasi }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[12]->pemenuhan == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi){{$evaluasi[12]->pemenuhan == 'Tidak' ? ' checked' : ' ' }}@endif /></td>

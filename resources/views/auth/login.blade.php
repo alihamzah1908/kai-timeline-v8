@@ -42,7 +42,7 @@
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <div class="mx-auto p-3 d-flex justify-content-center">
-                                    <a href="index.html">
+                                    <a href="javascript:void(0)">
                                         <img src="{{ asset('assets/images/c-log.png') }}" />
                                         <h3 class="d-inline align-middle ml-1 text-logo"></h3>
                                     </a>

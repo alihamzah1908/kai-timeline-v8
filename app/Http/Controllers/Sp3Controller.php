@@ -422,20 +422,24 @@ class Sp3Controller extends Controller
                 return '<badges class="badge badge-danger">' . $row->get_status->keterangan . '</badges>';
             })
             ->addColumn('action', function ($row) {
+                if ($row->proses_st != 'PROSES_SSP3') {
+                    $print = '<a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
+                                <button class="btn btn-primary btn-sm btn-rounded">
+                                    <i class="uil uil-print"></i> 
+                                </button>
+                            </a>';
+                }else{
+                    $print = false;
+                }
                 if (auth()->user()->can('sp3-list')) {
                     $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
                                 <button class="btn btn-primary btn-rounded btn-sm">
                                     <i class="uil uil-search"></i> 
                                 </button>
                             </a>
-                            <a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
-                                <button class="btn btn-primary btn-sm btn-rounded">
-                                    <i class="uil uil-print"></i> 
-                                </button>
-                            </a>';
+                            ' . $print . '';
                     return $btn;
                 } else {
-                    $check = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
                     $action = '<a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
                                     <button class="btn btn-warning btn-sm btn-rounded">
                                         <i class="uil uil-check"></i> 
@@ -446,11 +450,7 @@ class Sp3Controller extends Controller
                                         <i class="uil uil-search"></i> 
                                     </button>
                                </a>
-                               <a href="' . route('evaluasi.print.sp') . '?id="' . $row->sp3_id . '" target="_blank">
-                                    <button class="btn btn-primary btn-sm btn-rounded">
-                                        <i class="uil uil-print"></i> 
-                                    </button>
-                               </a>';
+                               ' . $print . '';
                     if ($row->proses_st == 'PROSES_SSP3') {
                         $btn = $action;
                         return $btn;
@@ -459,7 +459,8 @@ class Sp3Controller extends Controller
                                     <button class="btn btn-primary btn-rounded btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
-                                </a>';
+                                </a>
+                                ' . $print . '';
                         return $btn;
                     } elseif (
                         $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
@@ -472,11 +473,7 @@ class Sp3Controller extends Controller
                                         <i class="uil uil-search"></i> 
                                     </button>
                                 </a>
-                                <a href="' . route('evaluasi.print.sp') . '?id="' . $row->sp3_id . '" target="_blank">
-                                    <button class="btn btn-primary btn-sm btn-rounded">
-                                        <i class="uil uil-print"></i> 
-                                    </button>
-                               </a>
+                                ' . $print . '
                                <a href="' . route('evaluasi.print.sk') . '">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
