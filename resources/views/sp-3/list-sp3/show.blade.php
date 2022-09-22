@@ -195,6 +195,37 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if ($evaluasi) {
+                            $arr = $evaluasi->toArray();
+                            $arr0 = array_key_exists('0', $arr) ? $arr[0]["pemenuhan"] : '';
+                            $arr0ket = array_key_exists('0', $arr) ? $arr[0]["keterangan"] : '';
+                            $arr1 = array_key_exists('1', $arr) ? $arr[1]["pemenuhan"] : '';
+                            $arr1ket = array_key_exists('1', $arr) ? $arr[1]["keterangan"] : '';
+                            $arr2 = array_key_exists('2', $arr) ? $arr[2]["pemenuhan"] : '';
+                            $arr2ket = array_key_exists('2', $arr) ? $arr[2]["keterangan"] : '';
+                            $arr3 = array_key_exists('3', $arr) ? $arr[3]["pemenuhan"] : '';
+                            $arr3ket = array_key_exists('3', $arr) ? $arr[3]["keterangan"] : '';
+                            $arr4 = array_key_exists('4', $arr) ? $arr[4]["pemenuhan"] : '';
+                            $arr4ket = array_key_exists('4', $arr) ? $arr[4]["keterangan"] : '';
+                            $arr5 = array_key_exists('5', $arr) ? $arr[5]["pemenuhan"] : '';
+                            $arr5ket = array_key_exists('5', $arr) ? $arr[5]["keterangan"] : '';
+                            $arr6 = array_key_exists('6', $arr) ? $arr[6]["pemenuhan"] : '';
+                            $arr6ket = array_key_exists('6', $arr) ? $arr[6]["keterangan"] : '';
+                            $arr7 = array_key_exists('7', $arr) ? $arr[7]["pemenuhan"] : '';
+                            $arr7ket = array_key_exists('7', $arr) ? $arr[7]["keterangan"] : '';
+                            $arr8 = array_key_exists('8', $arr) ? $arr[8]["pemenuhan"] : '';
+                            $arr8ket = array_key_exists('8', $arr) ? $arr[8]["keterangan"] : '';
+                            $arr9 = array_key_exists('9', $arr) ? $arr[9]["pemenuhan"] : '';
+                            $arr9ket = array_key_exists('9', $arr) ? $arr[9]["keterangan"] : '';
+                            $arr10 = array_key_exists('10', $arr) ? $arr[10]["pemenuhan"] : '';
+                            $arr10ket = array_key_exists('10', $arr) ? $arr[10]["keterangan"] : '';
+                            $arr11 = array_key_exists('11', $arr) ? $arr[11]["pemenuhan"] : '';
+                            $arr11ket = array_key_exists('11', $arr) ? $arr[11]["keterangan"] : '';
+                            $arr12 = array_key_exists('12', $arr) ? $arr[12]["pemenuhan"] : '';
+                            $arr12ket = array_key_exists('12', $arr) ? $arr[12]["keterangan"] : '';
+                        }
+                        ?>
                         <div class="tab-pane show" id="profile">
                             <div class="col-md-12">
                                 <form action='{{ route("evaluasi.store") }}' id="form-evaluasi" enctype="multipart/form-data" method="post">
@@ -240,13 +271,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" placeholder="please insert uraian" value="2022-07-13">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[0]" value="Ya" @if($evaluasi){{ $evaluasi[0]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[0]" value="Ya" @if($evaluasi){{ $arr0 ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[0]" value="Tidak" @if($evaluasi){{ $evaluasi[0]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[0]" value="Tidak" @if($evaluasi){{ $arr0 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[2]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[0]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr0ket }}@endif"> @if($evaluasi){{ $arr0ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -264,13 +295,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[1]" value="Ya" @if($evaluasi){{ $evaluasi[1]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[1]" value="Ya" @if($evaluasi){{ $arr1 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[1]" value="Tidak" @if($evaluasi){{ $evaluasi[1]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[1]" value="Tidak" @if($evaluasi){{ $arr1 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[2]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[1]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr1ket }}@endif"> @if($evaluasi){{ $arr1ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -288,13 +319,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[2]" value="Ya" @if($evaluasi){{ $evaluasi[2]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[2]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[2]" value="Tidak" @if($evaluasi){{ $evaluasi[2]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[2]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[2]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[2]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr2ket }}@endif"> @if($evaluasi){{ $arr2ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -312,13 +343,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[3]" value="Ya" @if($evaluasi){{ $evaluasi[3]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[3]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[3]" value="Tidak" @if($evaluasi){{ $evaluasi[3]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[3]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[3]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[3]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $evaluasi[3]->keterangan }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -336,13 +367,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[4]" value="Ya" @if($evaluasi){{ $evaluasi[4]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[4]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[4]" value="Tidak" @if($evaluasi){{ $evaluasi[4]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[4]" value="Tidak" @if($evaluasi){{ $arr4 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[4]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[4]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr4ket }}@endif"> @if($evaluasi){{ $arr4ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -360,13 +391,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[5]" value="Ya" @if($evaluasi){{ $evaluasi[5]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[5]" value="Ya" @if($evaluasi){{ $arr5 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[5]" value="Tidak" @if($evaluasi){{ $evaluasi[5]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[5]" value="Tidak" @if($evaluasi){{ $arr5 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[5]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[5]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr5ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -393,22 +424,22 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[6]" value="Ya" @if($evaluasi){{ $evaluasi[6]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[7]" value="Ya" @if($evaluasi){{ $evaluasi[7]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[8]" value="Ya" @if($evaluasi){{ $evaluasi[8]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[9]" value="Ya" @if($evaluasi){{ $evaluasi[9]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[6]" value="Ya" @if($evaluasi){{ $arr6 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[7]" value="Ya" @if($evaluasi){{ $arr7 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[8]" value="Ya" @if($evaluasi){{ $arr8 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[9]" value="Ya" @if($evaluasi){{ $arr9 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[6]" value="Tidak" @if($evaluasi){{ $evaluasi[6]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[7]" value="Tidak" @if($evaluasi){{ $evaluasi[7]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[8]" value="Tidak" @if($evaluasi){{ $evaluasi[8]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[9]" value="Tidak" @if($evaluasi){{ $evaluasi[9]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[6]" value="Tidak" @if($evaluasi){{ $arr6 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[7]" value="Tidak" @if($evaluasi){{ $arr7 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[8]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="radio" name="pemenuhan[9]" value="Tidak" @if($evaluasi){{ $arr9 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[6]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[6]->keterangan }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[7]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[7]->keterangan }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[8]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[8]->keterangan }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[9]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[9]->keterangan }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr7ket }}@endif"> @if($evaluasi){{ $arr7ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr8ket }}@endif"> @if($evaluasi){{ $arr8ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr9ket }}@endif"> @if($evaluasi){{ $arr9ket }}@endif</textarea><br />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -432,13 +463,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[10]" value="Ya" @if($evaluasi){{ $evaluasi[10]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[10]" value="Ya" @if($evaluasi){{ $arr10 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[10]" value="Tidak" @if($evaluasi){{ $evaluasi[10]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[10]" value="Tidak" @if($evaluasi){{ $arr10 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[10]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[10]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr10ket }}@endif"> @if($evaluasi){{ $arr10ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -456,13 +487,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[11]" value="Ya" @if($evaluasi){{ $evaluasi[11]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[11]" value="Ya" @if($evaluasi){{ $arr11 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[11]" value="Tidak" @if($evaluasi){{ $evaluasi[11]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[11]" value="Tidak" @if($evaluasi){{ $arr11 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[11]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[11]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr11ket }}@endif"> @if($evaluasi){{ $arr11ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -480,13 +511,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[12]" value="Ya" @if($evaluasi){{ $evaluasi[12]->pemenuhan == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="radio" name="pemenuhan[12]" value="Ya" @if($evaluasi){{ $arr12 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[12]" value="Tidak" @if($evaluasi){{ $evaluasi[12]->pemenuhan == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="radio" name="pemenuhan[12]" value="Tidak" @if($evaluasi){{ $arr12 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $evaluasi[12]->keterangan }}@endif"> @if($evaluasi){{ $evaluasi[12]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr12ket }}@endif"> @if($evaluasi){{ $arr12ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                 </tbody>
