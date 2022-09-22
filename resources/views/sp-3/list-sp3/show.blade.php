@@ -349,7 +349,7 @@
                                                             <input type="radio" name="pemenuhan[3]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $evaluasi[3]->keterangan }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
