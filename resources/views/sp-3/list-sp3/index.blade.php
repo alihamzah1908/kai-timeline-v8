@@ -22,7 +22,7 @@
                         <table id="datatable" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style='width:10%'>No. SP3</th>
+                                    <th style='width:10%'>Nomor. SP3</th>
                                     <th style='width:30%'>Procurement Title</th>
                                     <th style='width:10%'>RKAP Value</th>
                                     <th style='width:5%'>Department</th>
