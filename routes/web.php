@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/procurement/approve', 'App\Http\Controllers\ProcurementController@approve')->name('procurement.approve'); 
     Route::get('/data/procurement/reject-penawaran', 'App\Http\Controllers\ProcurementController@reject_penawaran')->name('reject.pengadaan'); 
     Route::get('/data/procurement/review/rks', 'App\Http\Controllers\ProcurementController@data_rks')->name('data.view.rks');
+    Route::get('/data/procurement/summary/{id}', 'App\Http\Controllers\ProcurementController@summary')->name('data.summary');
     Route::post('/data/procurement/store/draft', 'App\Http\Controllers\ProcurementController@store')->name('procurement.store');
     Route::post('/data/procurement/status/reviewing', 'App\Http\Controllers\ProcurementController@reviewing')->name('procurement.reviewing');
     Route::post('/data/procurement/save-tender', 'App\Http\Controllers\ProcurementController@save_tender')->name('save.tender');

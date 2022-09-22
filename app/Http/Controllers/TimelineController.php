@@ -49,7 +49,7 @@ class TimelineController extends Controller
         $data->pbj = $request["pbj"];
         $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
         $data->type_tax = $request["type_tax"];
-        $data->nilai_tax = $request["nilai_tax"] != 0 || $request["nilai_tax"] != '' ? $request["nilai_tax"] : str_replace('.', '', $request["nilai_tax_sebagian"]);
+        $data->nilai_tax = $request["nilai_tax"] != 0 || $request["nilai_tax"] != '' ? str_replace('.', '', $request["nilai_tax"]) : str_replace('.', '', $request["nilai_tax_sebagian"]);
         //$data->nilai_tax = str_replace('.', '', $request["nilai_tax"]);
         $data->start_date_pengadaan = $request["start_date"];
         $data->end_date_pengadaan = $request["end_date"];
@@ -61,7 +61,7 @@ class TimelineController extends Controller
             $data2->no_pengadaan = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->timeline_id;
             $data2->save();
             return response()->json(['status' => '200']);
-        }else{
+        } else {
             return response()->json(['status' => '400']);
         }
     }
@@ -146,7 +146,7 @@ class TimelineController extends Controller
 
     public function data(Request $request)
     {
-        $timeline = \App\Models\Timeline::orderBy('timeline_id', 'desc');
+        $timeline = \App\Models\Timeline::orderBy('created_at', 'desc');
         if ($request["timeline_type"] == 'approval') {
             if ($request["status"] == 'PROSES_AT') {
                 $timeline->where('proses_st', 'PROSES_AT');
@@ -159,8 +159,14 @@ class TimelineController extends Controller
                 $timeline->orWhere('proses_st', 'PROSES_AT');
                 $timeline->orWhere('proses_st', 'PROSES_CT');
             }
-            // $timeline->orWhere('proses_st', 'PROSES_CT');
-        } else ($timeline->where('directorate_cd', Auth::user()->directorate_cd));
+        } else {
+            if(Auth::user()->id == 14){
+                $timeline;
+            }else{
+                $timeline->where('directorate_cd', Auth::user()->directorate_cd);
+            }
+            
+        };
         $data = $timeline->get();
         return FacadesDataTables::of($data)
             ->addColumn('no_pengadaan', function ($row) {

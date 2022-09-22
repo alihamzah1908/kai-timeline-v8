@@ -182,6 +182,90 @@ class ProcurementController extends Controller
         return view('procurement.show', $data);
     }
 
+    public function summary($id)
+    {
+        $data["data"] = \App\Models\SP3::find($id);
+        $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
+        $data["tender_list"] = DB::table('public.trx_peserta_tender as a')
+            ->select(
+                'a.peserta_tender_id',
+                'a.sp3_id',
+                'a.vendor_code',
+                'a.phone_number',
+                'a.pic_name',
+                'a.email_corporate',
+                'a.address',
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->where('sp3_id', $id)
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->get();
+        $data["tender_aanwidjzing"] = DB::table('public.trx_aanwidjzing as a')
+            ->select(
+                'a.aanwidjzing_id',
+                'a.sp3_id',
+                'a.vendor_code',
+                'a.verif_value',
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->where('a.sp3_id', $id)
+            ->where('a.verif_value', '=', '1')
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->get();
+        $data["rks"] = \App\Models\DraftRks::where('sp3_id', $id)->first();
+        $data["aandwidjzing"] = DB::table('trx_aanwidjzing as a')->where('sp3_id', $id)
+            ->select(
+                DB::raw('a.*'),
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->get();
+        $data["evaluasi_1_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->where('a.sp3_id', $id)
+            ->where('a.metode', '1_sampul')
+            ->get();
+        $data["evaluasi_2_sampul"] = DB::table('trx_evaluasi_dokumen_penawaran as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->where('a.sp3_id', $id)
+            ->where('a.metode', '2_sampul')
+            ->get();
+        $data["bahp"] = DB::table('trx_berita_acara_hasil_pelelangan as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->where('sp3_id', $id)
+            ->get();
+        $data["klarifikasi"] = DB::table('trx_klasifikasi_konfirmasi_negosiasi as a')
+            ->select(
+                DB::raw('a.*'),
+                'b.vendor_code',
+                'b.vendor_name'
+            )
+            ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->where('sp3_id', $id)
+            ->get();
+        $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
+        $data["pemenangfinal"] = false;
+        return view('procurement.summary', $data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -610,22 +694,32 @@ class ProcurementController extends Controller
                     || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
                     || $row->proses_st == 'PROSES_CR'
                 ) {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '" target="_blank">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
                                 </a>
-                                <a href="' . route('evaluasi.print.sk') . '">
+                                <a href="' . route('evaluasi.print.sk') . '" target="_blank">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
                                     </button>
+                                </a>
+                                <a href="' . route('data.summary', $row->sp3_id) . '" target="_blank">
+                                    <button class="btn btn-primary btn-sm btn-rounded" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
+                                        <i class="uil uil-clipboard-alt"></i> 
+                                    </button>
                                 </a>';
                 } else {
-                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '">
-                        <button class="btn btn-rounded btn-primary btn-sm">
-                            <i class="uil uil-search"></i> 
-                        </button>
-                   </a>';
+                    $action = '<a href="' . route('procurement.show', $row->sp3_id) . '" target="_blank">
+                                    <button class="btn btn-rounded btn-primary btn-sm">
+                                        <i class="uil uil-search"></i> 
+                                    </button>
+                               </a>
+                               <a href="' . route('data.summary', $row->sp3_id) . '" target="_blank">
+                                    <button class="btn btn-primary btn-sm btn-rounded" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
+                                        <i class="uil uil-clipboard-alt "></i> 
+                                    </button>
+                               </a>';
                 }
                 // }
                 return $action;

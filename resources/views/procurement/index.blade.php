@@ -16,13 +16,13 @@
                             <thead>
                                 <tr>
                                     <th style='width:10%'>No. SP3</th>
-                                    <th style='width:35%'>Procurement Title</th>
+                                    <th style='width:30%'>Procurement Title</th>
                                     <th style='width:10%'>RKAP Value</th>
                                     <th style='width:5%'>Department</th>
                                     <th style='width:10%'>Tax Value</th>
                                     <th style='width:10%'>Realization</th>
                                     <th style='width:10%'>Status</th>
-                                    <th style='width:10%'>Action</th>
+                                    <th style='width:13%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
