@@ -109,13 +109,15 @@
                                         </dl>
                                     </div>
                                 </div>
-                                @if($data->proses_st == 'PROSES_ST' || auth()->user()->hasRole('manajer-logistik'))
+                                @if($data->proses_st == 'PROSES_ST')
+				                @can('timeline.approval-list')
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-end">
                                         <button class="btn btn-warning btn-rounded btn-sm approve" data-bind="{{ $data->timeline_id }}"><i class="uil uil-check"></i> Approve</button></a>
                                         <button class="btn btn-primary btn-rounded btn-sm reject ml-2" data-bind="{{ $data->timeline_id }}"><i class="uil uil-multiply"></i> Reject</button></a>
                                     </div>
                                 </div>
+                                @endcan
                                 @endif
                             </div>
                         </div>

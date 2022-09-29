@@ -694,7 +694,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- @if($data->proses_st == 'PROSES_PDP')
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
@@ -702,8 +701,6 @@
                                             <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
                                         </div>
                                     </div>
-                                    @endif
-                                    --}}
                                 </div>
                             </div>
                             @endif
@@ -1662,7 +1659,7 @@
                                     <form action="{{ route('save.spr') }}" id="form-spr" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                        <input type="hidden" name="trx_spr_id" id="trx_spr_id" value="{{ $data->trx_spr_id }}" />
+                                        <input type="hidden" name="trx_spr_id" id="trx_spr_id" value="{{ $spr ? $spr->trx_spr_id : '' }}" />
                                         <div class="row">
                                             <div class="col-md-3 mt-2">
                                                 <div class="form-group">
@@ -1812,11 +1809,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                            </div>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -1905,6 +1897,7 @@
             $('.ucp').addClass('done')
             $('.pcp').addClass('done')
             $('.spr').addClass('done')
+            $('.sw-btn-next').prop("disabled", false);
         }
         // APPROVE RKS
         $('body').on('click', '.approve', function() {
@@ -2141,6 +2134,22 @@
                     if (result.value) {
                         e.preventDefault()
                         $("#form-submit-contract").submit();
+                    }
+                })
+            }else if (status == 'PROSES_DC' || status == 'PROSES_PCP') {
+                $('.pcp').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save SPR ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-spr").submit();
                     }
                 })
             }

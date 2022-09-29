@@ -202,5 +202,5 @@ Route::group(['middleware' => ['auth']], function () {
         return view('hs.index');
     })->name('list.hs');
 });
-Route::get('/sp-3/evaluasi/print/sk', 'App\Http\Controllers\Sp3Controller@generate_sk')->name('evaluasi.print.sk');
+Route::get('/sp-3/evaluasi/print/spr', 'App\Http\Controllers\Sp3Controller@generate_sk')->name('evaluasi.print.sk');
 Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');

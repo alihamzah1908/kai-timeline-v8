@@ -576,8 +576,11 @@ class ProcurementController extends Controller
 
     public function save_spr(Request $request)
     {
-        // dd($request->all());
-        $data = new \App\Models\TrxSpr();
+        if ($request["trx_spr_id"]) {
+            $data = \App\Models\TrxSpr::find($request["trx_spr_id"]);
+        } else {
+            $data = new \App\Models\TrxSpr();
+        }
         if ($request->hasFile('file_jamlak')) {
             $file = $request->file('file_jamlak');
             $extension = $file->getClientOriginalExtension();

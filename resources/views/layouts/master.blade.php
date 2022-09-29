@@ -292,6 +292,25 @@
                                 @endcan
                             </ul>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Report </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
+                                    <a href="javascript:void(0)">RUP</a>
+                                    <a href="javascript:void(0)">PBJ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Tutorial </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- End Sidebar -->

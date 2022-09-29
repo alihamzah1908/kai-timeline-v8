@@ -99,7 +99,9 @@
                             <dt class="font-weight-bold">Status Kontrak</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi"></span><badges class="badge badge-danger">{{ $data->contract_status }}</badges></dt>
+                            <dt class="font-weight-normal">: <span class="tanggal-justifikasi"></span>
+                                <badges class="badge badge-danger">{{ $data->contract_status }}</badges>
+                            </dt>
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@
                                     <li class="nav-item ttd-vendor {{ $data->proses_st == 'PROSES_KAC' ? 'active' : ''}}"><a href="#sw-arrows-step-7" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item ttd-kci"><a href="#sw-arrows-step-8" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item mppl"><a href="#sw-arrows-step-9" class="nav-link">MPPL<small class="d-block">Step description</small></a></li>
-                                    <!-- <li class="nav-item done"><a href="#sw-arrows-step-10" class="nav-link">Approval<small class="d-block">Step description</small></a></li> -->
+                                    <li class="nav-item summary-contract"><a href="#sw-arrows-step-10" class="nav-link">Summary Contract<small class="d-block">Step description</small></a></li>
                                 </ul>
 
                                 <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">
@@ -875,594 +877,451 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
+                                                            {{--<div class="row">
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label> &nbsp;&nbsp;
                                                                         @if($pemenang)
-                                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
-                                                                            <i class="uil uil-print"></i>
-                                                                        </a>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
-                                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert off days" value="{{ $val->off_days }}">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
-                                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $val->uncontroll_days }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengawas Pekerjaan:</label>
-                                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @endforeach
-                                                            @else
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
-                                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
-                                                                        <input type="text" name="start_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
-                                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label> &nbsp;&nbsp;
-                                                                        @if($pemenang)
-                                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
-                                                                            <i class="uil uil-print"></i>
-                                                                        </a>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
-                                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert total_hari_kerja">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
-                                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengawas Pekerjaan:</label>
-                                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                        <a href="{{ route('evaluasi.print.sk')}}" class="btn btn-primary btn-sm btn-rounded">
+                                                            <i class="uil uil-print"></i>
+                                                            </a>
                                                             @endif
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
+                                            </div>
+                                            --}}
+                                            {{--<div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
+                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert off days" value="{{ $val->off_days }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
+                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $val->uncontroll_days }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            --}}
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengawas Pekerjaan:</label>
+                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @else
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
+                                                        <input type="text" name="start_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label> &nbsp;&nbsp;
+                                                        @if($pemenang)
+                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
+                                                            <i class="uil uil-print"></i>
+                                                        </a>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Pengawas Pekerjaan:</label>
+                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div id="sw-arrows-step-10" class="tab-pane step-content">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Legal:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Legal:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager Sarana/Non-Sarana:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP Sarana/Non-Sarana:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By Manager User:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Approval By VP User:</label>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Document Signed</label>
-                                                            <input type="file" name="file" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Date Signed</label>
-                                                            <input type="text" id="penjelasan_start_date" name="penjelasan_start_date" class="form-control datepicker flatpickr-input" placeholder="Please insert signed date" readonly="readonly">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                            <textarea name="catatan_rks[]" class="form-control" placeholder="Please insert Approval note"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Approve</button>
-                                                        <button type="submit" class="btn btn-warning btn-sm btn-rounded">Reject</button>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row -->
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+                        </div>
+                        <div id="sw-arrows-step-10" class="tab-pane step-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
+                                                <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert total_hari_kerja">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
+                                                <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Upload SPK :</label>
+                                                <input type="file" name="file_spk" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan :</label>
+                                                <textarea name="catatan_summary_contract" class="form-control" placeholder="Please insert catatan"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+                    <!-- <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end">
                             <div class="btn-group mr-2 sw-btn-group" role="group"><button class="btn btn-secondary sw-btn-prev disabled" type="button">Previous</button><button class="btn btn-secondary sw-btn-next" type="button">Next</button></div>
                         </div> -->
-                            </div>
-                        </div> <!-- end card body-->
-                    </div> <!-- end card -->
-                </div><!-- end col-->
-            </div>
-        </div>
-        @endsection
-        @push('scripts')
-        <script>
-            $(document).ready(function() {
-                var status = $('#contract_status').val();
-                if (status == 'PROSES_UJP') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                } else if (status == 'PROSES_VJP') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                } else if (status == 'PROSES_RDC') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_VAC') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_ALG') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_APU') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_VAC') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_KAC') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                } else if (status == 'PROSES_CR') {
-                    $('.draft-contract').addClass('done')
-                    $('.performance').addClass('done')
-                    $('.verifikasi').addClass('done')
-                    $('.review').addClass('done')
-                    $('.approval-logistik').addClass('done')
-                    $('.approval-user').addClass('done')
-                    $('.ttd-vendor').addClass('done')
-                    $('.ttd-kci').addClass('done')
-                    $('.mppl').addClass('done')
-                }
-                $('body').on('click', '.sw-btn-next', function(e) {
-                    // conditional contract prosess
-                    // if status 
-                    var id = $(this).closest('#smartwizard-arrows').find('#id').val();
-                    var status = $(this).closest('#smartwizard-arrows').find('#contract_status').val();
-                    if (status == 'PROSES_DC') {
-                        $('.performance').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Draft Contract ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-draft-kontrak").submit();
-                            }
-                        })
-                    } else if (status == 'PROSES_UJP') {
-                        $('.verifikasi').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Jaminan Pelaksanaan ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-draft-performance").submit();
-                            }
-                        })
-                    } else if (status == 'PROSES_VJP') {
-                        $('.review').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Verifikasi Jaminan ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-verif-jamlak").submit();
-                            }
-                        })
-                    } else if (status == 'PROSES_RDC') {
-                        $('.review').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Review Legal ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            e.preventDefault()
-                            $("#form-review-legal").submit();
-                        })
-                    } else if (status == 'PROSES_VAC') {
-                        $('.approval-user').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Approval Logistik ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-approval-logistik").submit();
-                            }
-                        })
-                    } else if (status == 'PROSES_ALG') {
-                        $('.ttd-vendor').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Approval User ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                // $('.ttd-kci').removeClass('active')
-                                e.preventDefault()
-                                $("#form-approval-user").submit();
-                            }
-                        })
-                    } else if (status == 'PROSES_APU') {
-                        $('.ttd-kci').removeClass('active')
-                        Swal.fire({
-                            title: 'Are you sure save Tanda Tangan Vendor ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                // $('.ttd-kci').removeClass('active')
-                                e.preventDefault()
-                                $("#form-ttd-vendor").submit()
-                            }
-                        })
-                    } else if (status == 'PROSES_KAC') {
-                        Swal.fire({
-                            title: 'Are you sure save Tanda Tangan KCI ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-ttd-kci").submit()
-                            }
-                        })
-                    } else if (status == 'PROSES_CR') {
-                        Swal.fire({
-                            title: 'Are you sure save MPPL ?',
-                            // text: 'Your procurement are send to contract!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
-                                e.preventDefault()
-                                $("#form-mppl").submit()
-                            }
-                        })
+                </div>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+</div>
+@endsection
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        var status = $('#contract_status').val();
+        if (status == 'PROSES_UJP') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+        } else if (status == 'PROSES_VJP') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+        } else if (status == 'PROSES_RDC') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_VAC') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_ALG') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_APU') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_VAC') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_KAC') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_CR') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+            $('.mppl').addClass('done')
+            $('.summary-contract').addClass('done')
+        }
+        $('body').on('click', '.sw-btn-next', function(e) {
+            // conditional contract prosess
+            // if status 
+            var id = $(this).closest('#smartwizard-arrows').find('#id').val();
+            var status = $(this).closest('#smartwizard-arrows').find('#contract_status').val();
+            if (status == 'PROSES_DC') {
+                $('.performance').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Draft Contract ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-draft-kontrak").submit();
                     }
-                    // console.log($(this).closest('#smartwizard-arrows').find('.performance').addClass('test'));
                 })
-                $('body').on('click', '.add-review', function() {
-                    var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="file" name="file_review[]" class="form-control" id="file-review">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="date" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<textarea class="form-control" name="catatan_review[]" placeholder="please insert catatan"></textarea>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div></div>'
-                    $('.add-form-review').append(body)
+            } else if (status == 'PROSES_UJP') {
+                $('.verifikasi').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Jaminan Pelaksanaan ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-draft-performance").submit();
+                    }
                 })
+            } else if (status == 'PROSES_VJP') {
+                $('.review').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Verifikasi Jaminan ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-verif-jamlak").submit();
+                    }
+                })
+            } else if (status == 'PROSES_RDC') {
+                $('.review').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Review Legal ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    e.preventDefault()
+                    $("#form-review-legal").submit();
+                })
+            } else if (status == 'PROSES_VAC') {
+                $('.approval-user').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Approval Logistik ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-approval-logistik").submit();
+                    }
+                })
+            } else if (status == 'PROSES_ALG') {
+                $('.ttd-vendor').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Approval User ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        // $('.ttd-kci').removeClass('active')
+                        e.preventDefault()
+                        $("#form-approval-user").submit();
+                    }
+                })
+            } else if (status == 'PROSES_APU') {
+                $('.ttd-kci').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Tanda Tangan Vendor ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        // $('.ttd-kci').removeClass('active')
+                        e.preventDefault()
+                        $("#form-ttd-vendor").submit()
+                    }
+                })
+            } else if (status == 'PROSES_KAC') {
+                Swal.fire({
+                    title: 'Are you sure save Tanda Tangan KCI ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-ttd-kci").submit()
+                    }
+                })
+            } else if (status == 'PROSES_CR') {
+                Swal.fire({
+                    title: 'Are you sure save MPPL ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        e.preventDefault()
+                        $("#form-mppl").submit()
+                    }
+                })
+            }
+            // console.log($(this).closest('#smartwizard-arrows').find('.performance').addClass('test'));
+        })
+        $('body').on('click', '.add-review', function() {
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_review[]" class="form-control" id="file-review">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<textarea class="form-control" name="catatan_review[]" placeholder="please insert catatan"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div></div>'
+            $('.add-form-review').append(body)
+        })
 
-                $('body').on('click', '.add-approval-logistik', function() {
-                    var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="file" name="file_approval_logistik[]" class="form-control" id="file-review">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="date" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<textarea class="form-control" name="catatan_logistik[]" placeholder="please insert catatan"></textarea>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div></div>'
-                    $('.form-layout-approval-logistik').append(body)
-                })
+        $('body').on('click', '.add-approval-logistik', function() {
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_approval_logistik[]" class="form-control" id="file-review">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<textarea class="form-control" name="catatan_logistik[]" placeholder="please insert catatan"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div></div>'
+            $('.form-layout-approval-logistik').append(body)
+        })
 
-                $('body').on('click', '.add-approval-user', function() {
-                    var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="date" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<textarea class="form-control" name="catatan_user[]" placeholder="please insert catatan"></textarea>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div></div>'
-                    $('.form-layout-approval-user').append(body)
-                })
+        $('body').on('click', '.add-approval-user', function() {
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<textarea class="form-control" name="catatan_user[]" placeholder="please insert catatan"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div></div>'
+            $('.form-layout-approval-user').append(body)
+        })
 
-                $('body').on('click', '.add-ttd-vendor', function() {
-                    var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="file" name="file_vendor[]" class="form-control" id="file-review">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<input type="date" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '<div class="row">'
-                    body += '<div class="col-md-4">'
-                    body += '<div class="form-group">'
-                    body += '<textarea class="form-control" name="catatan_vendor[]" placeholder="please insert catatan"></textarea>'
-                    body += '</div>'
-                    body += '</div>'
-                    body += '</div></div>'
-                    $('.form-layout-ttd-vendor').append(body)
-                })
-            })
-        </script>
-        @endpush
+        $('body').on('click', '.add-ttd-vendor', function() {
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_vendor[]" class="form-control" id="file-review">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<textarea class="form-control" name="catatan_vendor[]" placeholder="please insert catatan"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div></div>'
+            $('.form-layout-ttd-vendor').append(body)
+        })
+    })
+</script>
+@endpush

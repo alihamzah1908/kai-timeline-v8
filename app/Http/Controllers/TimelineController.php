@@ -215,14 +215,14 @@ class TimelineController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
-                if (auth()->user()->can('timeline-list') || $row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
+                if (!auth()->user()->hasRole('Manajer Logistik') || $row->proses_st == 'PROSES_CT' || $row->proses_st == 'PROSES_AT') {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
                                 <button class="btn btn-primary btn-rounded btn-sm">
                                     <i class="uil uil-search"></i>
                                 </button>
                             </a>';
                     return $btn;
-                } else {
+                } else if(auth()->user()->hasRole('Manajer Logistik') && $row->proses_st == 'PROSES_ST') {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
                                 <button class="btn btn-sm btn-primary btn-rounded">
                                     <i class="uil uil-search"></i>
