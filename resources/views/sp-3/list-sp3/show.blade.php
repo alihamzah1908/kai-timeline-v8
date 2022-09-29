@@ -271,17 +271,17 @@
                                                         </td>
                                                         <td>
                                                             <p>{{ $data ? $data->no_mi : '' }}</p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" placeholder="please insert item" value="23/MI/COHP/KCI/VII/2022">
+                                                            <input type="hidden" name="nomor[]" class="form-control" placeholder="please insert item" value="{{ $data ? $data->no_mi : '' }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $data->tanggal_mi != '' ? date('d M Y', strtotime($data->tanggal_mi)) : '' }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" placeholder="please insert uraian" value="2022-07-13">
+                                                            <p>{{ $data->tanggal_mi }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" placeholder="please insert uraian" value="{{ $data->tanggal_mi }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[0]" value="Ya" @if($evaluasi){{ $arr0 ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr0 ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[0]" value="Tidak" @if($evaluasi){{ $arr0 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr0 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr0ket }}@endif"> @if($evaluasi){{ $arr0ket }}@endif</textarea>
@@ -289,10 +289,16 @@
                                                     </tr>
                                                     <?php
                                                     $nilai_pr = [];
+                                                    $tanggal_pr = [];
+                                                    $arrcheck = [];
                                                     foreach ($trx_npp as $val) {
                                                         $nilai_pr[] = $val->no_pr;
+                                                        $arrcheck[] = is_numeric($val->no_pr);
+                                                        $tanggal_pr[] = $val->tangggal_pr;
                                                     }
+                                                    $checkNumeric = array_sum($arrcheck)
                                                     ?>
+                                                    @if($checkNumeric > 0)
                                                     <tr>
                                                         <th>2.</th>
                                                         <td>
@@ -301,17 +307,17 @@
                                                         </td>
                                                         <td>
                                                             <p>{{ implode(', ', $nilai_pr) }}</p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="2100074947<br />2100074949">
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ date('d M Y', strtotime($data->created_at)) }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
+                                                            <p>{{ $tanggal_pr[0] }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[1]" value="Ya" @if($evaluasi){{ $arr1 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr1 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[1]" value="Tidak" @if($evaluasi){{ $arr1 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr1 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr1ket }}@endif"> @if($evaluasi){{ $arr1ket }}@endif</textarea>
@@ -319,6 +325,31 @@
                                                     </tr>
                                                     <tr>
                                                         <th>3.</th>
+                                                        <td>
+                                                            <p>Permohonan Dana dari User (NPD)</p>
+                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD/Ijin Prinsip)">
+                                                        </td>
+                                                        <td>
+                                                            <p>{{ implode(', ', $nilai_pr) }}</p>
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
+                                                        </td>
+                                                        <td>
+                                                            <p>{{ $tanggal_pr[0] }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
+                                                        </td>
+                                                    </tr>
+                                                    @else
+                                                    <tr>
+                                                        <th>2.</th>
                                                         <td>
                                                             <p>IJIN PRINSIP</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="IJIN PRINSIP">
@@ -332,89 +363,106 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[2]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[2]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr2ket }}@endif"> @if($evaluasi){{ $arr2ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>4.</th>
+                                                        <th>3.</th>
                                                         <td>
-                                                            <p>Permohonan Dana dari User (NPD/Ijin Prinsip)</p>
+                                                            <p>Permohonan Dana dari User (Ijin Prinsip)</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD/Ijin Prinsip)">
                                                         </td>
                                                         <td>
                                                             <p>{{ implode(', ', $nilai_pr) }}</p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="2100074947 <br />2100074949">
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ date('d M Y', strtotime($data->created_at)) }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
+                                                            <p>{{ $tanggal_pr[0] }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[3]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[3]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
+                                                    @endif
+                                                    <?php
+                                                    $no_rab = [];
+                                                    $tgl_rab = [];
+                                                    $no_just = [];
+                                                    $tgl_just = [];
+                                                    foreach ($trx_npp as $val) {
+                                                        $no_rab[] = $pr->no_rab . '/' . $pr->tanggal_rab . '/' . $data->judul_pengadaan;
+                                                        $tgl_rab[] = $pr->tanggal_rab;
+                                                        $no_just[] = $pr->no_justifikasi . '/' . $pr->tanggal_justifikasi . '/' . $data->judul_pengadaan;
+                                                        $tgl_just[] = $pr->tanggal_justifikasi;
+                                                    }
+                                                    $rabImpld = implode(', ', $no_rab);
+                                                    $tglImpld = implode(', ', $tgl_rab);
+                                                    $justImpld = implode(', ', $no_just);
+                                                    $justTglImpld = implode(', ', $tgl_just);
+                                                    ?>
                                                     <tr>
-                                                        <th>5.</th>
+                                                        <th>4.</th>
                                                         <td>
                                                             <p>No RAB, Tanggal RAB dan Judul Pengadaan di RAB</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No RAB, Tanggal RAB dan Judul Pengadaan di RAB">
                                                         </td>
                                                         <td>
                                                             @foreach($trx_npp as $pr){{ $pr->no_rab . '/' . $pr->tanggal_rab . '/' . $data->judul_pengadaan}} <br />@endforeach
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022">
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ $rabImpld }}">
                                                         </td>
                                                         <td>
-                                                            <p>19 Mei 2022</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
+                                                            <p>{{ $tgl_rab[0] }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_rab[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[4]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[4]" value="Tidak" @if($evaluasi){{ $arr4 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr4 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr4ket }}@endif"> @if($evaluasi){{ $arr4ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>6.</td>
+                                                        <td>5.</td>
                                                         <td>
                                                             <p>No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi">
                                                         </td>
                                                         <td>
                                                             @foreach($trx_npp as $pr){{ $pr->no_justifikasi . '/' . $pr->tanggal_justifikasi . '/' . $data->judul_pengadaan}} <br />@endforeach
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="307/RAB/COH/KCI/V/2022 <br />308/RAB/COH/KCI/V/2022">
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ $justImpld }}">
                                                         </td>
                                                         <td>
-                                                            <p>19 Mei 2022</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
+                                                            <p>{{ $tgl_just[0] }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_just[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[5]" value="Ya" @if($evaluasi){{ $arr5 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr5 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[5]" value="Tidak" @if($evaluasi){{ $arr5 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr5 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr5ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>7.</td>
+                                                        <td>6.</td>
                                                         <td>
                                                             <p>No KAK/TOR, Tanggal KAK/TOR dan Judul Pengadaan di KAK/TOR</p><br /><br />
                                                             <p>a. MPPL</p><br /><br /><br />
@@ -430,23 +478,23 @@
                                                         </td>
                                                         <td>
                                                             <p>{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}</p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="054/COH/KCI/V/2022">
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}">
                                                         </td>
                                                         <td>
                                                             <p>19 Mei 2022</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="2022-05-19">
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $data->tanggal_kak }}">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[6]" value="Ya" @if($evaluasi){{ $arr6 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[7]" value="Ya" @if($evaluasi){{ $arr7 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[8]" value="Ya" @if($evaluasi){{ $arr8 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[9]" value="Ya" @if($evaluasi){{ $arr9 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr6 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr7 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr8 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr9 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[6]" value="Tidak" @if($evaluasi){{ $arr6 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[7]" value="Tidak" @if($evaluasi){{ $arr7 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[8]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="radio" name="pemenuhan[9]" value="Tidak" @if($evaluasi){{ $arr9 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr6 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr7 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr9 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
@@ -456,7 +504,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>8.</td>
+                                                        <td>7.</td>
                                                         <td>
                                                             <p>RKIP</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="RKIP">
@@ -476,17 +524,17 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[10]" value="Ya" @if($evaluasi){{ $arr10 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr10 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[10]" value="Tidak" @if($evaluasi){{ $arr10 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr10 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr10ket }}@endif"> @if($evaluasi){{ $arr10ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>9.</td>
+                                                        <td>8.</td>
                                                         <td>
                                                             <p>Permohonan Persetujuan Direksi</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Persetujuan Direksi">
@@ -500,17 +548,17 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[11]" value="Ya" @if($evaluasi){{ $arr11 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr11 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[11]" value="Tidak" @if($evaluasi){{ $arr11 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr11 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr11ket }}@endif"> @if($evaluasi){{ $arr11ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>10.</td>
+                                                        <td>9.</td>
                                                         <td>
                                                             <p>Persetujuan Direksi (Justifikasi PNL)</p>
                                                             <input type="hidden" name="item_value[]" class="form-control" value="Persetujuan Direksi (Justifikasi PNL)">
@@ -524,10 +572,10 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[12]" value="Ya" @if($evaluasi){{ $arr12 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr12 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="pemenuhan[12]" value="Tidak" @if($evaluasi){{ $arr12 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr12 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr12ket }}@endif"> @if($evaluasi){{ $arr12ket }}@endif</textarea>
@@ -550,9 +598,11 @@
                                             <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-sim-card"></i>
                                                 @if($evaluasi) Update @else Save @endif
                                             </button>
+                                            @if($evaluasi)
                                             <a href="{{ route('evaluasi.print.sp')}}?id={{ request()->id}}" target="_blank">
-                                                <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-print"></i> Print </button>
+                                                <button class="btn btn-primary btn-sm btn-rounded ml-2" type="button"><i class="uil uil-print"></i> Print </button>
                                             </a>
+                                            @endif
                                         </div>
 
                                     </div>

@@ -350,17 +350,25 @@
         $arr12ket = array_key_exists('12', $arr) ? $arr[12]["keterangan"] : '';
         $nomor12 = array_key_exists('12', $arr) ? $arr[12]["nomor_evaluasi"] : '';
         $tanggal12 = array_key_exists('12', $arr) ? $arr[12]["tanggal_evaluasi"] : '';
+        $nilai_pr = [];
+        $arrcheck = [];
+        foreach ($npp as $val) {
+            $nilai_pr[] = $val->no_pr;
+            $arrcheck[] = is_numeric($val->no_pr);
+        }
+        $checkNumeric = array_sum($arrcheck);
+                                                    
     }
     ?>
     <table id="table-evaluasi" style="width: 100%; margin-top: 20px;">
         <thead>
             <tr>
                 <th style="width: 5%;">No</th>
-                <th>URAIAN DOKUMEN</th>
-                <th>NOMOR</th>
+                <th style="width: 20%;">URAIAN DOKUMEN</th>
+                <th style="width: 10%;">NOMOR</th>
                 <th>TANGGAL</th>
-                <th colspan="2">PEMENUHAN</th>
-                <th>KETERANGAN/KELENGKAPAN/KESESUAIAN </th>
+                <th style="width: 10%;" colspan="2">PEMENUHAN</th>
+                <th style="width: 5%;">KETERANGAN/KELENGKAPAN/KESESUAIAN </th>
             </tr>
         </thead>
         <thead>
@@ -384,6 +392,7 @@
                 <td><input type="checkbox" @if($evaluasi) {{ $arr0 == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
                 <td>@if($evaluasi){{$arr0ket }}@endif</td>
             </tr>
+            @if($checkNumeric > 0)
             <tr>
                 <td>2.</td>
                 <td>NPD</td>
@@ -395,24 +404,35 @@
             </tr>
             <tr>
                 <td>3.</td>
-                <td>IJIN PRINSIP</td>
-                <td>@if($evaluasi){!! $nomor2 !!}@endif</td>
-                <td>@if($evaluasi){{ $tanggal2 }}@endif</td>
-                <td><input type="checkbox" @if($evaluasi) {{ $arr2 == 'Ya' ? ' checked' : ' ' }}@endif /></td>
-                <td><input type="checkbox" @if($evaluasi) {{ $arr2 == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
-                <td>@if($evaluasi){{$arr2ket }}@endif</td>
-            </tr>
-            <tr>
-                <td>4.</td>
-                <td>Permohonan Dana dari User (NPD/Ijin Prinsip)</td>
+                <td>Permohonan Dana dari User (NPD)</td>
                 <td>@if($evaluasi){!! $nomor3 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal3 }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi) {{ $arr3 == 'Ya' ? ' checked' : ' ' }}@endif /></td>
                 <td><input type="checkbox" @if($evaluasi) {{ $arr3 == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
                 <td>@if($evaluasi){{$arr3ket }}@endif</td>
             </tr>
+            @else
             <tr>
-                <td>5.</td>
+                <td>2.</td>
+                <td>IJIN PRINSIP</td>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox" @if($evaluasi) {{ $arr2 == 'Ya' ? ' checked' : ' ' }}@endif /></td>
+                <td><input type="checkbox" @if($evaluasi) {{ $arr2 == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
+                <td>@if($evaluasi){{$arr2ket }}@endif</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Permohonan Dana dari User (Ijin Prinsip)</td>
+                <td>@if($evaluasi){!! $nomor2 !!}@endif</td>
+                <td>@if($evaluasi){{ $tanggal2 }}@endif</td>
+                <td><input type="checkbox" @if($evaluasi) {{ $arr3 == 'Ya' ? ' checked' : ' ' }}@endif /></td>
+                <td><input type="checkbox" @if($evaluasi) {{ $arr3 == 'Tidak' ? ' checked' : ' ' }}@endif /></td>
+                <td>@if($evaluasi){{$arr3ket }}@endif</td>
+            </tr>
+            @endif
+            <tr>
+                <td>4.</td>
                 <td>No RAB, Tanggal RAB dan Judul Pengadaan di RAB</td>
                 <td>@if($evaluasi){!! $nomor4 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal4 }}@endif</td>
@@ -421,7 +441,7 @@
                 <td>@if($evaluasi){{$arr4ket }}@endif</td>
             </tr>
             <tr>
-                <td>6.</td>
+                <td>5.</td>
                 <td>No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi</td>
                 <td>@if($evaluasi){!! $nomor5 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal5 }}@endif</td>
@@ -430,7 +450,7 @@
                 <td>@if($evaluasi){{$arr5ket }}@endif</td>
             </tr>
             <tr>
-                <td>7.</td>
+                <td>6.</td>
                 <td>No KAK/TOR, Tanggal KAK/TOR dan Judul Pengadaan di KAK/TOR</td>
                 <td>@if($evaluasi){!! $nomor6 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal6 }}@endif</td>
@@ -466,7 +486,7 @@
                 <td>@if($evaluasi){{$arr9ket }}@endif</td>
             </tr>
             <tr>
-                <td>8</td>
+                <td>7.</td>
                 <td>RKIP</td>
                 <td>@if($evaluasi){!! $nomor10 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal10 }}@endif</td>
@@ -485,7 +505,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td>9.</td>
+                <td>8.</td>
                 <td>Permohonan Persetujuan Direksi</td>
                 <td>@if($evaluasi){!! $nomor11 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal11 }}@endif</td>
@@ -494,7 +514,7 @@
                 <td>@if($evaluasi){{$arr11ket }}@endif</td>
             </tr>
             <tr>
-                <td>10</td>
+                <td>9.</td>
                 <td>Persetujuan Direksi (Justifikasi PNL)</td>
                 <td>@if($evaluasi){!! $nomor12 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal12 }}@endif</td>

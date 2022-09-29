@@ -590,6 +590,9 @@ class ProcurementController extends Controller
         $data->catatan_spr = $request["catatan"];
         $data->vendor_code = $request["vendor_code"];
         $data->sp3_id = $request["sp3_id"];
+        $data->nomor_spr = $request["nomor_spr"];
+        $data->nama_ttd = $request["nama_ttd"];
+        $data->jabatan_ttd = $request["jabatan_ttd"];
         $data->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
@@ -703,21 +706,11 @@ class ProcurementController extends Controller
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
                                     </button>
-                                </a>
-                                <a href="' . route('data.summary', $row->sp3_id) . '" target="_blank">
-                                    <button class="btn btn-primary btn-sm btn-rounded" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-                                        <i class="uil uil-clipboard-alt"></i> 
-                                    </button>
                                 </a>';
                 } else {
                     $action = '<a href="' . route('procurement.show', $row->sp3_id) . '" target="_blank">
                                     <button class="btn btn-rounded btn-primary btn-sm">
                                         <i class="uil uil-search"></i> 
-                                    </button>
-                               </a>
-                               <a href="' . route('data.summary', $row->sp3_id) . '" target="_blank">
-                                    <button class="btn btn-primary btn-sm btn-rounded" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">
-                                        <i class="uil uil-clipboard-alt "></i> 
                                     </button>
                                </a>';
                 }

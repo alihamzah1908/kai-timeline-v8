@@ -698,1096 +698,1126 @@
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
-                                                </div>
-                                            </div>
-                                            @endif
-                                            --}}
+                                            <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                            <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
                                         </div>
                                     </div>
                                     @endif
-                                    @elseif($rks->metode == '2_sampul')
-                                    @if($data->proses_st == 'PROSES_PDP')
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <input type="hidden" name="metode" value="{{ $rks->metode }}" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                    <thead style="text-align: center">
-                                                        <tr>
-                                                            <th width="100%" colspan="5">PEMASUKAN DOKUMEN PENAWARAN</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                            <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
-                                                            <th width="20%" rowspan="2">TANGGAL SUBMIT (Admin & Teknis)</th>
-                                                            <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
-                                                            <th width="20%" rowspan="2">TANGGAL SUBMIT (Harga)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="vertical-align: top">
-                                                        @foreach($tender_aanwidjzing as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="file" name="file_teknis[]" class="form-control" id="file-draft">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_submit_teknis[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                            <td>
-                                                                <input type="file" name="file_harga[]" class="form-control" id="file-draft">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_submit_harga[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Admin & Teknis:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Harga:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
+                                    --}}
+                                </div>
+                            </div>
+                            @endif
+                            @elseif($rks->metode == '2_sampul')
+                            @if($data->proses_st == 'PROSES_PDP')
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
+                                        <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                            <thead style="text-align: center">
+                                                <tr>
+                                                    <th width="100%" colspan="5">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                    <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                    <th width="20%" rowspan="2">TANGGAL SUBMIT (Admin & Teknis)</th>
+                                                    <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                    <th width="20%" rowspan="2">TANGGAL SUBMIT (Harga)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="vertical-align: top">
+                                                @foreach($tender_aanwidjzing as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" name="file_teknis[]" class="form-control" id="file-draft">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_submit_teknis[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                    <td>
+                                                        <input type="file" name="file_harga[]" class="form-control" id="file-draft">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_submit_harga[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Admin & Teknis:</label>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Catatan Pemasukan Dok. Admin & Teknis:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Catatan Pemasukan Dok. Harga:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                 </div>
-                                                <!-- <div class="row">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Pemasukan Dok. Harga:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Catatan Pemasukan Dok. Admin & Teknis:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Catatan Pemasukan Dok. Harga:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
                                                     <div class="col-md-12 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
                                                     </div>
                                                 </div> -->
-                                            </form>
-                                        </div>
-                                    </div>
-                                    @elseif($data->proses_st == 'PROSES_PPDP')
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    @php
-                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
-                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name','a.file_teknis','a.tanggal_submit_teknis','a.file_harga',
-                                                    'a.tanggal_submit_harga')
-                                                    ->where('a.sp3_id', request()->id)
-                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
-                                                    ->get();
-                                                    @endphp
-                                                    @foreach($dokumen as $doc)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $doc->vendor_name}}
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Admin & Teknis:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Admin & Teknis:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 d-flex justify-content-end">
-                                                    <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1">Reject</button>
-                                                    <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @else
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
-                                                        <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
-                                                        <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    @php
-                                                    $dokumen = DB::table('public.trx_document_penawaran as a')
-                                                    ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
-                                                    'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.vendor_code','b.vendor_name')
-                                                    ->where('a.sp3_id', request()->id)
-                                                    ->join('public.vendor as b','a.vendor_code','b.vendor_code')
-                                                    ->get();
-                                                    @endphp
-                                                    @foreach($dokumen as $doc)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $doc->vendor_name}}
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
-                                                                Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Admin & Teknis:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Admin & Teknis:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Catatan Pembukaan Dok. Harga:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @endif
-                                    @endif
+                                    </form>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-5" class="tab-pane step-content">
-                                <div class="add-evaluasi-dokumen">
-                                    @if($rks)
-                                    @if($rks->metode == '1_sampul')
+                            @elseif($data->proses_st == 'PROSES_PPDP')
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                        <thead style="text-align: center">
+                                            <tr>
+                                                <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
+                                            </tr>
+                                            <tr>
+                                                <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
+                                                <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="vertical-align: top">
+                                            @php
+                                            $dokumen = DB::table('public.trx_document_penawaran as a')
+                                            ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                            'a.tanggal_submit_dokumen','b.vendor_code','b.vendor_name','a.file_teknis','a.tanggal_submit_teknis','a.file_harga',
+                                            'a.tanggal_submit_harga')
+                                            ->where('a.sp3_id', request()->id)
+                                            ->join('public.vendor as b','a.vendor_code','b.vendor_code')
+                                            ->get();
+                                            @endphp
+                                            @foreach($dokumen as $doc)
+                                            <tr>
+                                                <td>
+                                                    {{ $doc->vendor_name}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
+                                                        Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
+                                                        Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                     <div class="row">
-                                        <!-- <label for="exampleInputEmail1">if 1 Sampul:</label> -->
-                                        <div class="col-md-12">
-                                            <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
-                                                <input type="hidden" name="metode" value="1_sampul" class="metode_sampul" />/>
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                    <thead style="text-align: center">
-                                                        <tr>
-                                                            <th width="100%" colspan="5">EVALUASI DOKUMEN PENAWARAN</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="30%" rowspan="2">PESERTA TENDER</th>
-                                                            <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
-                                                            <th width="10%" rowspan="2">LULUS</th>
-                                                            <th width="10%" rowspan="2">GUGUR</th>
-                                                            <th width="30%" rowspan="2">CATATAN EVALUASI</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="vertical-align: top">
-                                                        @if($evaluasi_1_sampul->count() > 0)
-                                                        @foreach($evaluasi_1_sampul as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Admin & Teknis:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Catatan Pembukaan Dok. Admin & Teknis:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Catatan Pembukaan Dok. Harga:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}">Approve</button>
+                                            <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1">Reject</button>
+                                            <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-status="gagal_lelang">Gagal Lelang</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @else
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                        <thead style="text-align: center">
+                                            <tr>
+                                                <th width="100%" colspan="5">PEMBUKAAN DOKUMEN PENAWARAN</th>
+                                            </tr>
+                                            <tr>
+                                                <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                <th width="20%" rowspan="2">DOKUMEN (Admin & Teknis)</th>
+                                                <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
+                                                <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Harga)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="vertical-align: top">
+                                            @php
+                                            $dokumen = DB::table('public.trx_document_penawaran as a')
+                                            ->select('a.document_penawaran_id','a.sp3_id','a.vendor_code','a.tanggal_submit_dokumen', 'a.file_dokumen',
+                                            'a.tanggal_submit_teknis','a.tanggal_submit_harga','a.file_teknis','a.file_harga','b.vendor_code','b.vendor_name')
+                                            ->where('a.sp3_id', request()->id)
+                                            ->join('public.vendor as b','a.vendor_code','b.vendor_code')
+                                            ->get();
+                                            @endphp
+                                            @foreach($dokumen as $doc)
+                                            <tr>
+                                                <td>
+                                                    {{ $doc->vendor_name}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset('file/sp3/', $doc->file_teknis) }}">
+                                                        Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_teknis }}">
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset('file/sp3/', $doc->file_harga) }}">
+                                                        Dokumen Penawaran File.pdf <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="dok_admin_date" name="dok_admin_date" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $doc->tanggal_submit_harga }}">
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Admin & Teknis:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Catatan Pembukaan Dok. Admin & Teknis:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Catatan Pembukaan Dok. Harga:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @endif
+                            @endif
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-5" class="tab-pane step-content">
+                        <div class="add-evaluasi-dokumen">
+                            @if($rks)
+                            @if($rks->metode == '1_sampul')
+                            <div class="row">
+                                <!-- <label for="exampleInputEmail1">if 1 Sampul:</label> -->
+                                <div class="col-md-12">
+                                    <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
+                                        <input type="hidden" name="metode" value="1_sampul" class="metode_sampul" />/>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                            <thead style="text-align: center">
+                                                <tr>
+                                                    <th width="100%" colspan="5">EVALUASI DOKUMEN PENAWARAN</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                    <th width="20%" rowspan="2">TANGGAL EVALUASI</th>
+                                                    <th width="10%" rowspan="2">LULUS</th>
+                                                    <th width="10%" rowspan="2">GUGUR</th>
+                                                    <th width="30%" rowspan="2">CATATAN EVALUASI</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="vertical-align: top">
+                                                @if($evaluasi_1_sampul->count() > 0)
+                                                @foreach($evaluasi_1_sampul as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
 
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_evaluasi_dokumen[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_dokumen }}">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->document_evaluasi_id }}]" id="penilaian_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_dokumen == '1') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->document_evaluasi_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->document_evaluasi_id }}]" id="penilaian_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_dokumen == '0') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_dokumen }}</textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @else
-                                                        @foreach($tender_aanwidjzing as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_evaluasi_dokumen[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_evaluasi[{{ $val->aanwidjzing_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @endif
-                                                    </tbody>
-                                                </table>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Dokumen:</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_evaluasi_dokumen[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_dokumen }}">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->document_evaluasi_id }}]" id="penilaian_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_dokumen == '1') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="penilaian_{{$val->document_evaluasi_id }}_ya">Ya</label>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->document_evaluasi_id }}]" id="penilaian_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_dokumen == '0') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="penilaian_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_evaluasi[{{ $val->document_evaluasi_id }}]" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_dokumen }}</textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @else
+                                                @foreach($tender_aanwidjzing as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_evaluasi_dokumen[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                            <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_ya">Ya</label>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        @if($evaluasi_1_sampul->count() > 0)
-                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
-                                                        <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @if($rks->metode == '2_sampul')
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-harga" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
-                                                <input type="hidden" name="metode" value="2_sampul" class="metode_sampul" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                    <thead style="text-align: center">
-                                                        <tr>
-                                                            <th width="100%" colspan="9">EVALUASI DOKUMEN PENAWARAN</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                            <th width="10%" rowspan="2">TANGGAL EVALUASI (Admin & Teknis)</th>
-                                                            <th width="5%" rowspan="2">LOLOS</th>
-                                                            <th width="5%" rowspan="2">TIDAK LOLOS</th>
-                                                            <th width="20%" rowspan="2">CATATAN EVALUASI (Admin & Teknis)</th>
-                                                            <th width="10%" rowspan="2">TANGGAL EVALUASI (Harga)</th>
-                                                            <th width="5%" rowspan="2">LOLOS</th>
-                                                            <th width="5%" rowspan="2">TIDAK LOLOS</th>
-                                                            <th width="20%" rowspan="2">CATATAN EVALUASI (Harga)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="vertical-align: top">
-                                                        @if($evaluasi_2_sampul->count() > 0)
-                                                        @foreach($evaluasi_2_sampul as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" name="vendor_code[{{$val->document_evaluasi_id }}]" value="{{ $val->vendor_code}}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_admin[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_admin }}">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_admin == '1') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_admin == '0') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_admin[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_admin }}</textarea>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_harga[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_harga }}">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_harga == '1') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_harga == '0') ' checked=""' : '' @endif>
-                                                                    <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_harga[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_harga }}</textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @else
-                                                        @foreach($tender_aanwidjzing as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_admin[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_admin[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_harga[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_ya" value="1">
-                                                                    <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_ya">Ya</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_tidak" value="0">
-                                                                    <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_harga[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @endif
-                                                    </tbody>
-                                                </table>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Admin & Teknis:</label>
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_dokumen[{{$val->aanwidjzing_id }}]" id="penilaian_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                            <label class="custom-control-label" for="penilaian_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Evaluasi Harga:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        @if($data->proses_st == 'PROSES_EDH')
-                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
-                                                        <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @endif
-                                </div>
-                            </div>
-                            <div id="sw-arrows-step-6" class="tab-pane step-content">
-                                <div class="add-klarifikasi">
-                                    <div class="row">
-                                        <label for="exampleInputEmail1"></label>
-                                        <div class="col-md-12">
-                                            <form action="{{ route('save.klarifikasi') }}" method="post" id="form-klarifikasi" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
-                                                <input type="hidden" name="metode" value="2_sampul" />
-                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                    <thead style="text-align: center">
-                                                        <tr>
-                                                            <th width="100%" colspan="5">KLARIFIKASI, KONFIRMASI DAN NEGOISASI</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
-                                                            <th width="20%" rowspan="2">TANGGAL KKN</th>
-                                                            <th width="15%" rowspan="2">HPS/PAGU</th>
-                                                            <th width="15%" rowspan="2">HARGA NEGOISASI</th>
-                                                            <th width="30%" rowspan="2">CATATAN KKN</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="vertical-align: top">
-                                                        @if($klarifikasi->count() > 0)
-                                                        @foreach($klarifikasi as $val)
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_kkn }}">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"> {{ $val->keterangan }}</textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @else
-                                                        @foreach($tender_aanwidjzing as $val)
-                                                        @php
-                                                        $pagu = $data->nilai_pr + $data->tax_value;
-                                                        @endphp
-                                                        <tr>
-                                                            <td>
-                                                                {{ $val->vendor_name }}
-                                                                <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{ $pagu }}">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi">
-                                                            </td>
-                                                            <td>
-                                                                <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"></textarea>
-                                                            </td>
-                                                        </tr>
-                                                        @endforeach
-                                                        @endif
-                                                    </tbody>
-                                                </table>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <label for="exampleInputEmail1"></label><br>
-                                                    <label for="exampleInputEmail1"></label><br>
-                                                    <label for="exampleInputEmail1"></label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Berita Acara Klarifikasi, Konfirmasi dan Negoisasi:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                        </div>
-                                                    </div>
-                                                </div>x
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="sw-arrows-step-7" class="tab-pane step-content">
-                                <div class="row">
-                                    <label for="exampleInputEmail1"></label>
-                                    <div class="col-md-12">
-                                        <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                        <form action="{{ route('save.bahp') }}" id="form-bahp" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                            <table class="table datatable-pagination" id="tabel-data" width="100%">
-                                                <thead style="text-align: center">
-                                                    <tr>
-                                                        <th width="100%" colspan="5">BERITA ACARA HASIL PELELANGAN</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>PESERTA TENDER</th>
-                                                        <th>TANGGAL BERITA ACARA</th>
-                                                        <th>CATATAN HASIL PELELANGAN</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody style="vertical-align: top">
-                                                    @if($bahp->count() > 0)
-                                                    @foreach($bahp as $val)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $val->vendor_name }}
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control datepicker" value="{{ $val->tanggal_berita_acara }}">
-                                                        </td>
-                                                        <td>
-                                                            <textarea class="form-control" value="{{ $val->catatan_berita_acara }}">{{ $val->catatan_berita_acara }}</textarea>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                    @else
-                                                    @foreach($tender_aanwidjzing as $val)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $val->vendor_name }}
-                                                            <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control datepicker" name="tanggal_berita_acara[]" placeholder="Please insert tanggal berita acara">
-                                                        </td>
-                                                        <td>
-                                                            <!-- <input type="file" name="berita_acara[]" class="form-control"> -->
-                                                            <textarea class="form-control" name="catatan_berita_acara[]" placeholder="please insert catatan"></textarea>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input type="file" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="sw-arrows-step-8" class="tab-pane step-content">
-                                <div class="add-pemenang">
-                                    <div class="row">
-                                        <label for="exampleInputEmail1"></label>
-                                        <div class="col-md-12">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_UPCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Calon Pemenang Tender:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <select class="form-control" name="vendor_code">
-                                                                <option value="">Select Vendor</option>
-                                                                @foreach($tender_aanwidjzing as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">File Berita Acara Usulan Pemenang:</label>
-                                                        </div>
-                                                    </div>
-                                                    @if($pemenang)
-                                                    <div class="col-md-6 mb-2">
-                                                        <h6>
-                                                            <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                                <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
-                                                            </a>
-                                                        </h6>
-                                                    </div>
-                                                    @else
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
-                                                        </div>
-                                                    </div>
-                                                    @endif
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Catatan:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="sw-arrows-step-9" class="tab-pane step-content">
-                                <div class="add-pemenang">
-                                    <div class="row">
-                                        <label for="exampleInputEmail1"></label>
-                                        <div class="col-md-12">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.pemenang') }}" id="form-penetapan-pemenang" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <select class="form-control" name="vendor_code">
-                                                                <option value="">Select Vendor</option>
-                                                                @foreach($tender_aanwidjzing as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">File Berita Acara Penetapan Pemenang:</label>
-                                                        </div>
-                                                    </div>
-                                                    @if($pemenang)
-                                                    <div class="col-md-6 mb-2">
-                                                        <h6>
-                                                            <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
-                                                                <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
-                                                            </a>
-                                                        </h6>
-                                                    </div>
-                                                    @else
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
-                                                        </div>
-                                                    </div>
-                                                    @endif
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Catatan:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @if($data->proses_st != 'PROSES_DC')
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
-                                                    </div>
-                                                </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_evaluasi[{{ $val->aanwidjzing_id }}]" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
                                                 @endif
-                                            </form>
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Evaluasi Dokumen:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                @if($evaluasi_1_sampul->count() > 0)
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                                <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div id="sw-arrows-step-10" class="tab-pane step-content">
-                                @php
-                                $spr = \App\Models\TrxSpr::where('sp3_id', $data->sp3_id)->first();
-                                @endphp
-                                <div class="add-pemenang">
+                            @endif
+                            @if($rks->metode == '2_sampul')
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-harga" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
+                                        <input type="hidden" name="metode" value="2_sampul" class="metode_sampul" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                            <thead style="text-align: center">
+                                                <tr>
+                                                    <th width="100%" colspan="9">EVALUASI DOKUMEN PENAWARAN</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                    <th width="10%" rowspan="2">TANGGAL EVALUASI (Admin & Teknis)</th>
+                                                    <th width="5%" rowspan="2">LOLOS</th>
+                                                    <th width="5%" rowspan="2">TIDAK LOLOS</th>
+                                                    <th width="20%" rowspan="2">CATATAN EVALUASI (Admin & Teknis)</th>
+                                                    <th width="10%" rowspan="2">TANGGAL EVALUASI (Harga)</th>
+                                                    <th width="5%" rowspan="2">LOLOS</th>
+                                                    <th width="5%" rowspan="2">TIDAK LOLOS</th>
+                                                    <th width="20%" rowspan="2">CATATAN EVALUASI (Harga)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="vertical-align: top">
+                                                @if($evaluasi_2_sampul->count() > 0)
+                                                @foreach($evaluasi_2_sampul as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" name="vendor_code[{{$val->document_evaluasi_id }}]" value="{{ $val->vendor_code}}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_admin[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_admin }}">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_admin == '1') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_ya">Ya</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->document_evaluasi_id }}]" id="admin_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_admin == '0') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="admin_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_admin[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_admin }}</textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_harga[{{$val->document_evaluasi_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_evaluasi_harga }}">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_ya" value="1" @if($val->penilaian_harga == '1') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_ya">Ya</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->document_evaluasi_id}}]" id="harga_{{$val->document_evaluasi_id }}_tidak" value="0" @if($val->penilaian_harga == '0') ' checked=""' : '' @endif>
+                                                            <label class="custom-control-label" for="harga_{{$val->document_evaluasi_id }}_tidak">Tidak</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_harga[{{$val->document_evaluasi_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $val->keterangan_evaluasi_harga }}</textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @else
+                                                @foreach($tender_aanwidjzing as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" name="vendor_code[{{$val->aanwidjzing_id }}]" value="{{ $val->vendor_code}}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_admin[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                            <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_ya">Ya</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_admin[{{$val->aanwidjzing_id }}]" id="admin_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                            <label class="custom-control-label" for="admin_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_admin[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_harga[{{$val->aanwidjzing_id }}]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_ya" value="1">
+                                                            <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_ya">Ya</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" name="penilaian_harga[{{$val->aanwidjzing_id}}]" id="harga_{{$val->aanwidjzing_id }}_tidak" value="0">
+                                                            <label class="custom-control-label" for="harga_{{$val->aanwidjzing_id }}_tidak">Tidak</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_harga[{{$val->aanwidjzing_id }}]" id="verif_1_note" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Evaluasi Admin & Teknis:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Evaluasi Harga:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                @if($data->proses_st == 'PROSES_EDH')
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
+                                                <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="{{ $data->proses_st }}">Reject</button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @endif
+                            @endif
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-6" class="tab-pane step-content">
+                        <div class="add-klarifikasi">
+                            <div class="row">
+                                <label for="exampleInputEmail1"></label>
+                                <div class="col-md-12">
+                                    <form action="{{ route('save.klarifikasi') }}" method="post" id="form-klarifikasi" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
+                                        <input type="hidden" name="metode" value="2_sampul" />
+                                        <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                            <thead style="text-align: center">
+                                                <tr>
+                                                    <th width="100%" colspan="5">KLARIFIKASI, KONFIRMASI DAN NEGOISASI</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                    <th width="20%" rowspan="2">TANGGAL KKN</th>
+                                                    <th width="15%" rowspan="2">HPS/PAGU</th>
+                                                    <th width="15%" rowspan="2">HARGA NEGOISASI</th>
+                                                    <th width="30%" rowspan="2">CATATAN KKN</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="vertical-align: top">
+                                                @if($klarifikasi->count() > 0)
+                                                @foreach($klarifikasi as $val)
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran" value="{{ $val->tanggal_kkn }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{  number_format($val->hps_pagu, 2) }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi" value="{{ number_format($val->harga_negosiasi, 2) }}">
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"> {{ $val->keterangan }}</textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @else
+                                                @foreach($tender_aanwidjzing as $val)
+                                                @php
+                                                $pagu = $data->nilai_pr + $data->tax_value;
+                                                @endphp
+                                                <tr>
+                                                    <td>
+                                                        {{ $val->vendor_name }}
+                                                        <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="tanggal_kkn[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{ $pagu }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi">
+                                                    </td>
+                                                    <td>
+                                                        <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"></textarea>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded add-button-vendor"><i class="uil uil-plus"></i> Add Form</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="exampleInputEmail1"></label><br>
+                                            <label for="exampleInputEmail1"></label><br>
+                                            <label for="exampleInputEmail1"></label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Berita Acara Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" name="file_draft" class="form-control" id="file-draft">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                </div>
+                                            </div>
+                                        </div>x
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-7" class="tab-pane step-content">
+                        <div class="row">
+                            <label for="exampleInputEmail1"></label>
+                            <div class="col-md-12">
+                                <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                <form action="{{ route('save.bahp') }}" id="form-bahp" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                    <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                        <thead style="text-align: center">
+                                            <tr>
+                                                <th width="100%" colspan="5">BERITA ACARA HASIL PELELANGAN</th>
+                                            </tr>
+                                            <tr>
+                                                <th>PESERTA TENDER</th>
+                                                <th>TANGGAL BERITA ACARA</th>
+                                                <th>CATATAN HASIL PELELANGAN</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="vertical-align: top">
+                                            @if($bahp->count() > 0)
+                                            @foreach($bahp as $val)
+                                            <tr>
+                                                <td>
+                                                    {{ $val->vendor_name }}
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control datepicker" value="{{ $val->tanggal_berita_acara }}">
+                                                </td>
+                                                <td>
+                                                    <textarea class="form-control" value="{{ $val->catatan_berita_acara }}">{{ $val->catatan_berita_acara }}</textarea>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            @foreach($tender_aanwidjzing as $val)
+                                            <tr>
+                                                <td>
+                                                    {{ $val->vendor_name }}
+                                                    <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control datepicker" name="tanggal_berita_acara[]" placeholder="Please insert tanggal berita acara">
+                                                </td>
+                                                <td>
+                                                    <!-- <input type="file" name="berita_acara[]" class="form-control"> -->
+                                                    <textarea class="form-control" name="catatan_berita_acara[]" placeholder="please insert catatan"></textarea>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
                                     <div class="row">
-                                        <label for="exampleInputEmail1"></label>
-                                        <div class="col-md-12">
-                                            <label for="exampleInputEmail1" class="font-weight-bold"></label>
-                                            <form action="{{ route('save.spr') }}" id="form-spr" method="post" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
-                                                <div class="row">
-                                                    <div class="col-md-3 mt-2">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Pemenang Tender:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="hidden" name="vendor_code" value="{{ $pemenang ? $pemenang->vendor_code : '' }}" />
-                                                            <select class="form-control" disabled>
-                                                                <option value="">Select Vendor</option>
-                                                                @foreach($tender_aanwidjzing as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3 mt-2">
-                                                        <label for="exampleInputEmail1">Upload SP Jamlak :</label>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        @if(!$spr)
-                                                        <input type="file" class="form-control" name="file_jamlak">
-                                                        @else
-                                                        <input type="file" class="form-control" name="file_jamlak" value="{{ $spr->file_jamlak }}">
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        @if($spr)
-                                                        <h6>
-                                                            <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
-                                                                <i class="uil uil-file-alt"></i> {{ $spr->file_jamlak }}
-                                                            </a>
-                                                        </h6>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-3">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>
-                                                        </div>
-                                                    </div>
-                                                    @if($pemenang)
-                                                    <div class="col-md-6 mb-2">
-                                                        <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
-                                                            <i class="uil uil-print"></i>
-                                                        </a>
-                                                    </div>
-                                                    @else
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
-                                                        </div>
-                                                    </div>
-                                                    @endif
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Total Hari Kalender:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
-                                                            @php
-                                                            $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
-                                                            $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
-                                                            $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
-                                                            $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
-                                                            $interval = $rksNew->diff($pcpNew);
-                                                            $days = $interval->days;
-                                                            @endphp
-                                                            {{ $days }} Days
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Total Hari Kerja:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->total_hari_kerja : '' }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Uncontrolled Days:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->uncontrolled_days : '' }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Catatan:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note" value="{{ $spr ? $spr->catatan_spr : '' }}">{{ $spr ? $spr->catatan_spr : '' }}</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Berita Acara Hasil Pelelangan:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input type="file" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                            </div>
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-8" class="tab-pane step-content">
+                        <div class="add-pemenang">
+                            <div class="row">
+                                <label for="exampleInputEmail1"></label>
+                                <div class="col-md-12">
+                                    <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                    <form action="{{ route('save.pemenang') }}" id="{{ $data->proses_st =='PROSES_UPCP' ? 'form-submit-contract' : 'form-pemenang'}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                        <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Calon Pemenang Tender:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select class="form-control" name="vendor_code">
+                                                        <option value="">Select Vendor</option>
+                                                        @foreach($tender_aanwidjzing as $val)
+                                                        <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">File Berita Acara Usulan Pemenang:</label>
+                                                </div>
+                                            </div>
+                                            @if($pemenang)
+                                            <div class="col-md-6 mb-2">
+                                                <h6>
+                                                    <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                        <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            @else
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Catatan:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-9" class="tab-pane step-content">
+                        <div class="add-pemenang">
+                            <div class="row">
+                                <label for="exampleInputEmail1"></label>
+                                <div class="col-md-12">
+                                    <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                    <form action="{{ route('save.pemenang') }}" id="form-penetapan-pemenang" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                        <input type="hidden" name="pemenang_id" value="{{ $pemenang ? $pemenang->pemenang_id : '' }}" />
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select class="form-control" name="vendor_code">
+                                                        <option value="">Select Vendor</option>
+                                                        @foreach($tender_aanwidjzing as $val)
+                                                        <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">File Berita Acara Penetapan Pemenang:</label>
+                                                </div>
+                                            </div>
+                                            @if($pemenang)
+                                            <div class="col-md-6 mb-2">
+                                                <h6>
+                                                    <a href="{{ asset('file/sp3/'. $pemenang->file_berita_acara) }}" target="_blank">
+                                                        <i class="uil uil-file-alt"></i> {{ $pemenang->file_berita_acara }}
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            @else
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Catatan:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if($data->proses_st != 'PROSES_DC')
+                                        <div class="row">
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit Draft Contract</button>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sw-arrows-step-10" class="tab-pane step-content">
+                        @php
+                        $spr = \App\Models\TrxSpr::where('sp3_id', $data->sp3_id)->first();
+                        @endphp
+                        <div class="add-pemenang">
+                            <div class="row">
+                                <label for="exampleInputEmail1"></label>
+                                <div class="col-md-12">
+                                    <label for="exampleInputEmail1" class="font-weight-bold"></label>
+                                    <form action="{{ route('save.spr') }}" id="form-spr" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}" />
+                                        <input type="hidden" name="trx_spr_id" id="trx_spr_id" value="{{ $data->trx_spr_id }}" />
+                                        <div class="row">
+                                            <div class="col-md-3 mt-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Pemenang Tender:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="hidden" name="vendor_code" value="{{ $pemenang ? $pemenang->vendor_code : '' }}" />
+                                                    <select class="form-control" disabled>
+                                                        <option value="">Select Vendor</option>
+                                                        @foreach($tender_aanwidjzing as $val)
+                                                        <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Total Hari Kalender:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <!-- <input type="text" name="calendarDays" class="form-control" placeholder="Please insert days" value=""> -->
+                                                    @php
+                                                    $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                    $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                    $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
+                                                    $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
+                                                    $interval = $rksNew->diff($pcpNew);
+                                                    $days = $interval->days;
+                                                    @endphp
+                                                    {{ $days }} Days
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 mt-2">
+                                                <label for="exampleInputEmail1">Upload SP Jamlak :</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                @if(!$spr)
+                                                <input type="file" class="form-control" name="file_jamlak">
+                                                @else
+                                                <input type="file" class="form-control" name="file_jamlak" value="{{ $spr->file_jamlak }}">
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Total Hari Kerja:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->total_hari_kerja : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 mt-2">
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                @if($spr)
+                                                <h6>
+                                                    <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
+                                                        <i class="uil uil-file-alt"></i> {{ $spr->file_jamlak }}
+                                                    </a>
+                                                </h6>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Uncontrolled Days:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->uncontrolled_days : '' }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Nomor SPR:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="nomor_spr" class="form-control" placeholder="Please insert no spr" value="{{ $spr ? $spr->nomor_spr : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Summary Dokumen SPR:</label>
+                                                </div>
+                                            </div>
+                                            @if($pemenang)
+                                            <div class="col-md-3 mb-2">
+                                                <a href="{{ route('evaluasi.print.sk')}}" target="_blank" class="btn btn-primary btn-sm btn-rounded">
+                                                    <i class="uil uil-print"></i>
+                                                </a>
+                                            </div>
+                                            @else
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                </div>
+                                            </div>
+                                            @endif
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Nama Penanda Tangan:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="nama_ttd" class="form-control" placeholder="Please nama penanda tangan" value="{{ $spr ? $spr->nama_ttd : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Catatan:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note" value="{{ $spr ? $spr->jabatan_ttd : '' }}">{{ $spr ? $spr->catatan_spr : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Jabatan Penanda Tangan:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="jabatan_ttd" class="form-control" placeholder="Please nama jabatan" value="{{ $spr ? $spr->nomor_spr : '' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary btn-sm btn-rounded">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -1796,6 +1826,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 @endsection
 @push('scripts')
@@ -1860,9 +1892,9 @@
             $('.ucp').addClass('done')
             $('.pcp').addClass('done')
             $('.spr').addClass('done')
-        } else if (status == 'PROSES_DC' || status == 'PROSES_DC' || status == 'PROSES_UJP' 
-            || status == 'PROSES_VJP' || status == 'PROSES_RDC' || status == 'PROSES_VAC'  
-            || status == 'PROSES_APU' || status == 'PROSES_ALG' || status == 'PROSES_KAC' || status == 'PROSES_CR') {
+        } else if (status == 'PROSES_DC' || status == 'PROSES_DC' || status == 'PROSES_UJP' ||
+            status == 'PROSES_VJP' || status == 'PROSES_RDC' || status == 'PROSES_VAC' ||
+            status == 'PROSES_APU' || status == 'PROSES_ALG' || status == 'PROSES_KAC' || status == 'PROSES_CR') {
             $('.rks').addClass('done')
             $('.calon-tender').addClass('done')
             $('.aanwidjzing').addClass('done')
