@@ -57,8 +57,8 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="exampleInputEmail1" class="font-weight-bold">Realisasi</label><br />
-                            <input type="radio" name="realisasi" class="realisasi" value="ya"> Timeline
-                            <input type="radio" name="realisasi" class="realisasi" value="no"> Diluar Timeline
+                            <input type="radio" name="realisasi" class="realisasi" value="ya" required> Timeline
+                            <input type="radio" name="realisasi" class="realisasi" value="no" required> Diluar Timeline
                         </div>
                     </div>
                     <div class="row row-timeline">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-md-6 add-vendor-form" style="display: none;">
                             <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
-                            @php 
+                            @php
                             $vendor = DB::select('select * from vendor');
                             @endphp
                             <select data-plugin="customselect" class="form-control" name="vendor_name[]" multiple>
@@ -200,22 +200,28 @@
                         <legend>Dokumen PR/RAB/Justifikasi Barang:</legend>
                         <div class="doc-pr-rab">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">No PR/IP</label>
                                         <input type="text" name="no_pr_ip[]" class="form-control" placeholder="Please Insert No. PR/IP">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tanggal PR/IP</label>
                                         <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr[]">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Dokumen PR/IP</label>
                                         <input type="file" name="file_pr[]" class="form-control" id="filePr" aria-describedby="filePr">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nominal PR/IP</label>
+                                        <input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip" required>
                                     </div>
                                 </div>
                             </div>
@@ -285,6 +291,14 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Dokumen MI</label>
                                     <input type="file" name="doc_mi" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Perihal MI</label>
+                                    <textarea name="perihal_mi" class="form-control" placeholder="please insert perihal MI"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -576,7 +590,7 @@
                 const convert = format.match(/\d{1,3}/g);
                 const rupiah = convert.join('.').split('').reverse().join('')
                 $(".nilai-tax").show()
-                $(".nilai-tax-value").attr("readonly", false); 
+                $(".nilai-tax-value").attr("readonly", false);
                 //$(".nilai-tax-value").val(' ')
                 $(".nilai-tax-value").val(tax)
                 //$(".nilai-tax-insert").val(' ')
@@ -680,25 +694,31 @@
         $('body').on('click', '.add-pr-rab', function() {
             var body = '<div style="border-top: 1px solid #ff3333;">'
             body += '<div class="row mt-2">'
-            body += '<div class="col-md-4">'
+            body += '<div class="col-md-3">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">No PR/IP</label>'
             body += '<input type="text" name="no_pr_ip[]" class="form-control" placeholder="Please Insert No. PR/IP">'
             body += '</div>'
             body += '</div>'
-            body += '<div class="col-md-4">'
+            body += '<div class="col-md-3">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Tanggal PR/IP</label>'
             body += '<input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr[]">'
             body += '</div>'
             body += '</div>'
-            body += '<div class="col-md-4">'
+            body += '<div class="col-md-3">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Dokumen PR/IP</label>'
             body += '<input name="file_pr[]" type="file" id="file_pr" multiple class="form-control" />'
             body += '</div>'
             body += '</div>'
 
+            body += '<div class="col-md-3">'
+            body += '<div class="form-group">'
+            body += '<label for="exampleInputEmail1">Nominal PR/IP</label>'
+            body += '<input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip" required>'
+            body += '</div>'
+            body += '</div>'
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">No RAB</label>'

@@ -36,12 +36,24 @@
 <body>
     <table width="100%">
         <tr>
-            <th>
-                <!-- <img src="{{ asset('assets/images/rks.png') }}"> -->
+            <th width="10%">
             </th>
-            <th>
+            <th width="70%">
+            </th>
+            <th width="4%" height="2em" style="background-color: red;">
+            </th>
+        </tr>
+    </table>
+    <table width="100%">
+        <tr>
+            <th width="10%">
+                <img src="data:image/png;base64, {{ base64_encode(file_get_contents(public_path('assets/images/Logo_KAI_Commuter.svg.png'))) }}" width="100px">
+            </th>
+            <th width="70%">
                 SURAT PERINTAH PELAKSANAAN PENGADAAN<br />
                 FR.KCJ.00175
+            </th>
+            <th width="20%">
             </th>
         </tr>
     </table>
@@ -52,10 +64,28 @@
             </th>
             <th style="width: 20%;"></th>
             <th style="width: 30%;" align="left">
-                TGL TERBIT &nbsp;&nbsp;&nbsp;&nbsp;: 09 NOVEMBER 2015 <br />
-                NO.TERBIT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1 <br />
-                NO. REVISI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 2 <br />
-                TGL REVISI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 10 JULI 2019
+                <table>
+                    <tr>
+                        <td>TGL TERBIT</td>
+                        <td>:</td>
+                        <td>{{ date('d M Y', strtotime($data->created_at)) }}</td>
+                    </tr>
+                    <tr>
+                        <td>NO.TERBIT</td>
+                        <td>:</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>NO. REVISI</td>
+                        <td>:</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>TGL REVISI</td>
+                        <td>:</td>
+                        <td>-</td>
+                    </tr>
+                </table>
             </th>
         </tr>
     </table>
@@ -67,7 +97,7 @@
             </th>
             <th>
                 <u>SURAT PERINTAH PELAKSANAAN PENGADAAN</u><br />
-                NOMOR : 093/REN-LOG/KCI/VII/2022
+                NOMOR : {{ $data->no_sp3 }}
             </th>
         </tr>
     </table>
@@ -77,7 +107,8 @@
                 <!-- <img src="{{ asset('assets/images/rks.png') }}"> -->
             </th>
             <td style="width: 30%;" align="left">
-                Jakarta, 18 - Juli - 2022 <br />
+                <!-- Tanggal ini nanti di update ke tanggal approval -->
+                Jakarta, {{date('d M Y', strtotime($data->updated_at)) }} <br />
                 Kepada Yth., <br />
                 Panitia Pengadaan <br />
                 {{ $timeline ? strtoupper($timeline->pbj) : '' }} <br />
@@ -85,47 +116,91 @@
             </td>
         </tr>
     </table>
+    <?php
+    $text = [];
+    $total = [];
+    foreach ($npp as $val) {
+        $text[] = 'No. ' . $val->no_pr . ' tanggal ' . $val->tanggal_pr . ' senilai Rp. ' . number_format($val->nominal_pr_ip,2,',','.') . ',-' . '';
+        $total[] = $val->nominal_pr_ip;
+    }
+    ?>
     <table width="100%">
         <tr>
             <td>
-                1. &nbsp; Menunjuk : <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp; a. MI dari COH ke CUG No.23/MI/COH/KCI/VII/2022 tanggal 13 Juli 2022 perihal : Permohonan Proses Pengadaan <b>{{ $data->judul_pengadaan }}</b>; <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp; b. Ijin Prinsip/PR/NPD ACC*) No. 2100074947 tanggal 6 Juni 2022 senilai Rp. 710.188.121,- dan No.2100074949 tanggal 6 Juni 2022 senilai
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp.12.249.243,- dengan total Rp. 722.437.364 (tujuh ratus dua puluh dua juta empat ratus tiga puluh tujuh ribu tiga ratus enam puluh empat rupiah).
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                2. &nbsp; Sehubungan hal tersebut diatas, agar dilaksanakan proses : <br /><br />
-                <center><b>{{ $data->judul_pengadaan }};<br />
-                        Pagu Dana Rp. {{ number_format($data->nilai_pr, 2)}},-
-                    </b></center>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                3. &nbsp; Terlampir kami sampaikan Dokumen Pendukung lainnya : <br /><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. RAB<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Nota Persetujuan Dana<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Justifikasi Kebutuhan Barang/Jasa;<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d. KAK
-                <br />
-                <br />
-                <br />
-                <br />
-                4. &nbsp; Dalam proses pengadaan mengacu kepada Petunjuk Pelaksanaan Pengadaan Barang/Jasa Nomor SK.016/CU/KCI/IV/2019 tanggal 02 April 2019,
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SK.010/CU/KCI/II/2020 tanggal 14 Februari 2020 dan Peraturan Direksi PT KCI Nomor 030.1/PERDIR/AL.106/VII/KCI/2021 tanggal 26 Juli 2021.
-                <br />
-                <br />
-                <br />
-                <br />
-                5. &nbsp; Mohon kabar setelah diperoleh hasil, terima kasih.
+                <table width="100%">
+                    <tr valign="top">
+                        <td width="1%">1. </td>
+                        <td width="8%" colspan="2">Menunjuk : </td>
+                    </tr>
+                    <tr valign="top">
+                        <td></td>
+                        <td width="1%">a. </td>
+                        <td>MI dari {{ $data->department_cd }} ke CUGP {{ $data->no_mi }} tanggal 13 Juli 2022 perihal : <b>{{ $data->perihal_mi }}</b>;</td>
+                    </tr>
+                    <tr valign="top">
+                        <td></td>
+                        <td width="1%">b. </td>
+                        <td>
+                            Ijin Prinsip/PR/NPD ACC*)  {{ implode(' dan ', $text) }} dengan total Rp. {{ number_format(array_sum($total), 2,',','.') }} -
+                            {{ terbilang(array_sum($total)) }} (rupiah)
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" style="margin-top: 3em">
+                    <tr>
+                        <td width="1%">2.</td>
+                        <td>Sehubungan hal tersebut diatas, agar dilaksanakan proses :</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <center>
+                                <b>{{ $data->judul_pengadaan }};<br />
+                                    Pagu Dana Rp. {{ number_format(array_sum($total), 2,',','.') }} -
+                                </b>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" style="margin-top: 3em">
+                    <tr>
+                        <td width="1%">3.</td>
+                        <td>Terlampir kami sampaikan Dokumen Pendukung lainnya :</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>a. RAB </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>b. Nota Persetujuan Dana / Ijin Prinsip</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>c. Justifikasi Kebutuhan Barang/Jasa; </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>d. KAK</td>
+                    </tr>
+                </table>
+                <table width="100%" style="margin-top: 3em">
+                    <tr>
+                        <td width="1%">4.</td>
+                        <td>Dalam proses pengadaan mengacu kepada Petunjuk Pelaksanaan Pengadaan Barang/Jasa Nomor SK.016/CU/KCI/IV/2019 tanggal 02 April 2019</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>SK.010/CU/KCI/II/2020 tanggal 14 Februari 2020 dan Peraturan Direksi PT KCI Nomor 030.1/PERDIR/AL.106/VII/KCI/2021 tanggal 26 Juli 2021. </td>
+                    </tr>
+                </table>
+                <table width="100%" style="margin-top: 3em">
+                    <tr>
+                        <td width="1%">5.</td>
+                        <td>Mohon kabar setelah diperoleh hasil, terima kasih.</td>
+                    </tr>
+                </table>
             </td>
-            <th align="right">
-
-            </th>
         </tr>
     </table>
     <table width="100%">
@@ -134,26 +209,41 @@
             </th>
             <th style="width: 20%;"></th>
             <td>
-                PLT Logistic Planning, Evaluation, and Import Manager (unit pengusul)
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <center><u><b>SUBAGYO</b></u><br />
-                    <b>NIPP. 41264</b></center>
+                <table align="center">
+                    <tr>
+                        <td>PLT Logistic Planning, Evaluation, and Import Manager (unit pengusul)</td>
+                    </tr>
+                </table>
+                <table style="margin-top: 7em;" align="center">
+                    <tr>
+                        <td>
+                            <u><b>SUBAGYO</b></u><br />
+                            <b>NIPP. 41264</b>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
     <table width="100%" style="page-break-before: always;">
         <tr>
-            <th>
-                <!-- <img src="{{ asset('assets/images/rks.png') }}"> -->
+            <th width="10%">
             </th>
-            <th>
+            <th width="70%">
+            </th>
+            <th width="4%" height="2em">
+                FORM G1
+            </th>
+        </tr>
+        <tr>
+            <th width="10%">
+                <img src="data:image/png;base64, {{ base64_encode(file_get_contents(public_path('assets/images/Logo_KAI_Commuter.svg.png'))) }}" width="100px">
+            </th>
+            <th width="70%">
                 FORM KENDALI PENERBITAN SP3<br />
                 (SURAT PERINTAH PELAKSANAAN PENGADAAN)
+            </th>
+            <th width="20%">
             </th>
         </tr>
     </table>
@@ -183,7 +273,7 @@
             <th>
                 :
             </th>
-            <td>{{ number_format($data->nilai_pr, 2) }}</td>
+            <td>Rp. {{ number_format(array_sum($total), 2,',','.') }} -</td>
         </tr>
         <tr>
             <th align="left" width="200" style="vertical-align: top">
@@ -192,7 +282,7 @@
             <th>
                 :
             </th>
-            <td>{{ $data->directorate_cd . '/' . $data->division_cd . '/' . $data->department_cd }}</td>
+            <td>{{ $data->division_cd }}</td>
         </tr>
         <tr>
             <th align="left" width="200" style="vertical-align: top">
@@ -201,7 +291,7 @@
             <th>
                 :
             </th>
-            <td>{{ $data->type_metode }}</td>
+            <td>{{ ($data->type_metode == 1 ? ' Penunjukan Langsung' : ($data->type_metode == 2 ? ' Pemilihan Langsung' : 'Pelelangan Terbuka')) }}</td>
         </tr>
     </table>
     </div>
@@ -405,7 +495,7 @@
             </tr>
             <tr>
                 <td>10</td>
-                <td>Catatan</td>
+                <td>Persetujuan Direksi (Justifikasi PNL)</td>
                 <td>@if($evaluasi){!! $nomor12 !!}@endif</td>
                 <td>@if($evaluasi){{ $tanggal12 }}@endif</td>
                 <td><input type="checkbox" @if($evaluasi) {{ $arr12 == 'Ya' ? ' checked' : ' ' }}@endif /></td>
@@ -413,5 +503,12 @@
                 <td>@if($evaluasi){{$arr12ket }}@endif</td>
             </tr>
         </tbody>
+    </table>
+    <table>
+        <tr>
+            <td>Catatan</td>
+            <td>:</td>
+            <td>@if($evalnotes) {{ $evalnotes->catatan_evaluasi }} @endif</td>
+        </tr>
     </table>
 </body>

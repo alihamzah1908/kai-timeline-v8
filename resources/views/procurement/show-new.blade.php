@@ -694,7 +694,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if($data->proses_st == 'PROSES_PDP')
+                                            {{-- @if($data->proses_st == 'PROSES_PDP')
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i>Approve</button>
@@ -703,6 +703,7 @@
                                                 </div>
                                             </div>
                                             @endif
+                                            --}}
                                         </div>
                                     </div>
                                     @endif

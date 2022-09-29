@@ -121,6 +121,13 @@
                                                 {{ $data->tanggal_mi ? date('d M Y', strtotime($data->tanggal_mi)) : '' }}
                                             </dd>
 
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Perihal MI
+                                            </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                {{ $data->perihal_mi }}
+                                            </dd>
+
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">No. Justifikasi Penunjukan/Pemilihan Langsung
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -187,7 +194,7 @@
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
                                                 <a href="{{ asset('file/sp3/'. $pr->file_justifikasi) }}" target="_blank">
-                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_justifikasi_pemilihan }}
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $pr->file_justifikasi }}
                                                 </a>
                                             </dd>
                                         </dl>
@@ -263,11 +270,11 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" placeholder="please insert uraian" value="MI Permohonan Pengadaan dari User">
                                                         </td>
                                                         <td>
-                                                            <p>23/MI/COHP/KCI/VII/2022</p>
+                                                            <p>{{ $data ? $data->no_mi : '' }}</p>
                                                             <input type="hidden" name="nomor[]" class="form-control" placeholder="please insert item" value="23/MI/COHP/KCI/VII/2022">
                                                         </td>
                                                         <td>
-                                                            <p>13 July 2022</p>
+                                                            <p>{{ $data->tanggal_mi != '' ? date('d M Y', strtotime($data->tanggal_mi)) : '' }}</p>
                                                             <input type="hidden" name="tanggal[]" class="form-control" placeholder="please insert uraian" value="2022-07-13">
                                                         </td>
                                                         <td>
@@ -280,6 +287,12 @@
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr0ket }}@endif"> @if($evaluasi){{ $arr0ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
+                                                    <?php
+                                                    $nilai_pr = [];
+                                                    foreach ($trx_npp as $val) {
+                                                        $nilai_pr[] = $val->no_pr;
+                                                    }
+                                                    ?>
                                                     <tr>
                                                         <th>2.</th>
                                                         <td>
@@ -287,11 +300,11 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="NPD">
                                                         </td>
                                                         <td>
-                                                            <p>2100074947 <br />2100074949</p>
+                                                            <p>{{ implode(', ', $nilai_pr) }}</p>
                                                             <input type="hidden" name="nomor[]" class="form-control" value="2100074947<br />2100074949">
                                                         </td>
                                                         <td>
-                                                            <p>06 June 2022</p>
+                                                            <p>{{ date('d M Y', strtotime($data->created_at)) }}</p>
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
                                                         </td>
                                                         <td>
@@ -335,11 +348,11 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD/Ijin Prinsip)">
                                                         </td>
                                                         <td>
-                                                            <p>2100074947 <br />2100074949</p>
+                                                            <p>{{ implode(', ', $nilai_pr) }}</p>
                                                             <input type="hidden" name="nomor[]" class="form-control" value="2100074947 <br />2100074949">
                                                         </td>
                                                         <td>
-                                                            <p>06 June 2022</p>
+                                                            <p>{{ date('d M Y', strtotime($data->created_at)) }}</p>
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="2022-06-06">
                                                         </td>
                                                         <td>
@@ -536,14 +549,19 @@
                                         <div class="col-md-12 d-flex justify-content-end">
                                             <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-sim-card"></i>
                                                 @if($evaluasi) Update @else Save @endif
+                                            </button>
+                                            <a href="{{ route('evaluasi.print.sp')}}?id={{ request()->id}}" target="_blank">
+                                                <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-print"></i> Print </button>
+                                            </a>
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        @if($data->proses_st == 'PROSES_SSP3')
+                        @if($data->proses_st == 'PROSES_SSP3' && $evaluasi != '')
                         @can('sp3.approval-list')
-                        <a class="approve d-flex justify-content-end" role="presentation" href="javascript:void(0)" data-bind="{{ $data->sp3_id }}">
+                        <a class="approve d-flex justify-content-start" role="presentation" href="javascript:void(0)" data-bind="{{ $data->sp3_id }}">
                             <button class="btn btn-warning btn-sm btn-rounded">
                                 <i class="uil uil-check"></i> Approve
                             </button>

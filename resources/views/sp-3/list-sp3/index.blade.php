@@ -29,6 +29,7 @@
                                     <th style='width:10%'>Tax Value</th>
                                     <th style='width:10%'>Realization</th>
                                     <th style='width:10%'>Status</th>
+                                    <th style='width:10%'></th>
                                     <th style='width:10%'>Action</th>
                                 </tr>
                             </thead>
@@ -266,6 +267,9 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('data.sp3') }}",
+            order: [
+                [7, 'desc']
+            ],
             columns: [{
                     data: 'no_sp3'
                 },
@@ -286,6 +290,10 @@
                 },
                 {
                     data: 'proses_st'
+                },
+                {
+                    data: 'created_at',
+                    visible: false
                 },
                 {
                     data: 'action',

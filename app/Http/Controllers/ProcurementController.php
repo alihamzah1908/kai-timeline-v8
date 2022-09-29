@@ -179,7 +179,7 @@ class ProcurementController extends Controller
             ->get();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
         $data["pemenangfinal"] = false;
-        return view('procurement.show', $data);
+        return view('procurement.show-new', $data);
     }
 
     public function summary($id)

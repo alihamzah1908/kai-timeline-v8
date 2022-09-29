@@ -262,7 +262,7 @@
             }).done(function(response) {
                 if (response.status == '200') {
                     $('#modal-timeline').modal('hide')
-                    timeline.ajax.reload();
+                    location.reload()
                     $('#form-timeline')[0].reset();
                 } else if (response.status == '400') {
                     alert("error insert timeline")

@@ -42,6 +42,7 @@ class Sp3Controller extends Controller
         if ($request["realisasi"] == 'ya') {
             foreach ($request["timeline_id"] as $val) {
                 $timeline = \App\Models\Timeline::where('timeline_id', $val)->first();
+                // dd($timeline);
                 $data = new \App\Models\SP3();
                 $data->timeline_id = $timeline ? $timeline->timeline_id : NULL;
                 $data->directorate_cd = $timeline ? $timeline->directorate_cd : Auth::user()->directorate_cd;
@@ -53,24 +54,16 @@ class Sp3Controller extends Controller
                 $data->nilai_tax =  $timeline ? $timeline->nilai_tax : $request["nilai_tax"];
                 $data->jenis_barang = $request["jenis_barang"];
                 $data->coa = json_encode($request["coa"]);
-                // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->type_metode =  $request["type_metode"];
-                // $data->tanggal_justifikasi = date('Y-m-d H:i:s');
-                // $data->tanggal_rab =  date('Y-m-d H:i:s');
-                // $data->tanggal_pr =  date('Y-m-d H:i:s');
                 $data->tanggal_kak =  date('Y-m-d H:i:s');
-                // if ($request["vendor_name"] == ''){
-                //     $data->nama_vendor = null;
-                // } else {
-                //     $data->nama_vendor = $request["vendor_name"];
-                // }
                 $data->nama_vendor = json_encode($request["vendor_name"]);
                 $data->no_mi = $request["no_mi"];
+                $data->tanggal_mi = $request["date_mi"];
+                $data->perihal_mi = $request["perihal_mi"];
                 $data->no_rab = $request["no_mi"];
                 $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
                 $data->tanggal_justifikasi_pemilihan = $request["date_justifikasi_pemilihan"];
                 $data->no_kak = $request["no_kak"];
-                // $data->no_pr = $request["no_pr_ip"];
                 $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
                 $data->keterangan = 'KETERANGAN';
                 $data->created_by = Auth::user()->id;
@@ -80,6 +73,7 @@ class Sp3Controller extends Controller
                         $npp = new \App\Models\TrxNpp();
                         $npp->sp3_id = $data->sp3_id;
                         $npp->no_pr = $request["no_pr_ip"][$key];
+                        $npp->nominal_pr_ip = str_replace('.', '', $request["nominal_pr_ip"][$key]);
                         $npp->no_rab = $request["no_rab"][$key];
                         $npp->no_justifikasi = $request["no_justifikasi_kebutuhan"][$key];
                         $npp->tanggal_pr = $request["date_pr"][$key];
@@ -123,12 +117,11 @@ class Sp3Controller extends Controller
                 }
                 if ($data) {
                     $data2 = \App\Models\SP3::find($data->sp3_id);
-                    $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+                    $data2->no_sp3 = $data->sp3_id . '/' . 'REN-LOG' . '/' . 'KCI' . '/' . numberToRomanRepresentation(date('m')) . '/' . date('Y');
                     $data2->save();
                 }
             }
         } else {
-            // dd($request->all());
             $data = new \App\Models\SP3();
             $data->directorate_cd = Auth::user()->directorate_cd;
             $data->division_cd = Auth::user()->division_cd;
@@ -143,6 +136,8 @@ class Sp3Controller extends Controller
             $data->tanggal_kak =  date('Y-m-d H:i:s');
             $data->nama_vendor = json_encode($request["vendor_name"]);
             $data->no_mi = $request["no_mi"];
+            $data->tanggal_mi = $request["date_mi"];
+            $data->perihal_mi = $request["perihal_mi"];
             $data->no_justifikasi = $request["no_justifikasi_pemilihan"];
             $data->tanggal_justifikasi_pemilihan = $request["date_justifikasi_pemilihan"];
             $data->no_kak = $request["no_kak"];
@@ -156,6 +151,7 @@ class Sp3Controller extends Controller
                     $npp = new \App\Models\TrxNpp();
                     $npp->sp3_id = $data->sp3_id;
                     $npp->no_pr = $request["no_pr_ip"][$key];
+                    $npp->nominal_pr_ip = str_replace('.', '', $request["nominal_pr_ip"][$key]);
                     $npp->no_rab = $request["no_rab"][$key];
                     $npp->no_justifikasi = $request["no_justifikasi_kebutuhan"][$key];
                     $npp->tanggal_pr = $request["date_pr"][$key];
@@ -186,7 +182,7 @@ class Sp3Controller extends Controller
                     $npp->save();
                 }
                 $data2 = \App\Models\SP3::find($data->sp3_id);
-                $data2->no_sp3 = 'OP/' . Auth::user()->division_cd  . '/' . date('Y') . '/' . $data->sp3_id;
+                $data2->no_sp3 = $data->sp3_id . '/' . 'REN-LOG' . '/' . 'KCI' . '/' . numberToRomanRepresentation(date('m')) . '/' . date('Y');
                 $data2->save();
             }
             if ($request->hasFile('file')) {
@@ -308,12 +304,14 @@ class Sp3Controller extends Controller
         $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         $data["data"] = \App\Models\SP3::find($request["id"]);
         $data["timeline"] = \App\Models\Timeline::where('timeline_id', $data["data"]["timeline_id"])->first();
+        $data["npp"] = \App\Models\TrxNpp::where('sp3_id', $request["id"])->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         if ($check->count() > 0) {
             $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         } else {
             $data["evaluasi"] = null;
         }
+        $data["evalnotes"] = DB::table('trx_eval_notes')->where('sp3_id', $request["id"])->first();
         if ($data) {
             $resultName = date('Ymd_His') . "_SURAT_PERINTAH.pdf";
             $view       = view('sp-3.evaluasi.sp', $data)->render();
@@ -428,8 +426,8 @@ class Sp3Controller extends Controller
                                 <button class="btn btn-primary btn-sm btn-rounded">
                                     <i class="uil uil-print"></i> 
                                 </button>
-                            </a>';
-                }else{
+                              </a>';
+                } else {
                     $print = false;
                 }
                 if (auth()->user()->can('sp3-list')) {
