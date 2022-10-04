@@ -145,6 +145,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/waste', 'App\Http\Controllers\WasteController@data')->name('data.waste');
     Route::get('/data/warehouse/waste', 'App\Http\Controllers\WasteController@index')->name('waste.index');
     
+    // INKLARING
+    Route::get('/data/inklaring', 'App\Http\Controllers\InklaringController@data')->name('data.inklaring');
+    Route::get('/data/inklaring/index', 'App\Http\Controllers\InklaringController@index')->name('inklaring.index');
+    Route::post('/data/inklaring/import', 'App\Http\Controllers\InklaringController@importInklaring')->name('import.inklaring');
+
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');

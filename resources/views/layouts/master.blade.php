@@ -293,6 +293,12 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="{{ route('inklaring.index') }}">
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Upload Import Inklaring </span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
                                 <span class="font-weight-bold"> Report </span>
