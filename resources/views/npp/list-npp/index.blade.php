@@ -107,14 +107,14 @@
                             </select>
                             <!-- <input type="text" name="metode" class="form-control" placeholder="Please insert metode"> -->
                         </div>
-                        <div class="col-md-6 vendor-name">
+                        <!-- <div class="col-md-6 vendor-name">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
                                 <input type="text" id="vendor_name" name="vendor_name[]" class="form-control form-vendor-name" placeholder="Please insert vendor name">
                                 <div id="loading"></div>
                             </div>
-                        </div>
-                        <div class="col-md-6 add-vendor-form" style="display: none;">
+                        </div> -->
+                        <div class="col-md-6 add-vendor-form">
                             <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
                             @php
                             $vendor = DB::select('select * from vendor');
@@ -370,7 +370,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-end">
-                            <input class="btn btn-sm btn-warning btn-rounded save" type="submit" name="save" value="Save As Draft">
+                            <!-- <input class="btn btn-sm btn-warning btn-rounded save" type="submit" name="save" value="Save As Draft"> -->
                             <input class="btn btn-sm btn-primary btn-rounded save ml-2" type="submit" name="save" value="Submit">
                         </div>
                     </div>
@@ -384,6 +384,7 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            "pageLength": 25,
             language: {
                 paginate: {
                     previous: "<i class='uil uil-angle-left'>",
@@ -674,19 +675,19 @@
 
         $('body').on('change', '.type-metode', function() {
             if ($(this).val() == '3') {
-                $("#no-justifikasi").css('display', 'none')
-                $(".add-vendor-form").css('display', 'none')
+                $("#no-justifikasi").css('display', '')
+                $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', true)
-                $(".vendor-name").show()
+                $(".vendor-name").hide()
             } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')
-                $(".add-vendor-form").css('display', 'none')
-                $(".form-vendor-name").prop('disabled', false)
-                $(".vendor-name").show()
+                $(".add-vendor-form").css('display', '')
+                $(".form-vendor-name").prop('disabled', true)
+                $(".vendor-name").hide()
             } else if ($(this).val() == '2') {
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', '')
-                $(".form-vendor-name").prop('disabled', false)
+                $(".form-vendor-name").prop('disabled', true)
                 $(".vendor-name").hide()
             }
         })

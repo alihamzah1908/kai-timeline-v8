@@ -184,7 +184,7 @@
                     <div class="row">
                         <input type="hidden" name="save" id="save" value="">
                         <div class="col-md-12 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-warning btn-rounded save" data-bind="draft" type="button">Save as Draft</button>
+                            <!-- <button class="btn btn-sm btn-warning btn-rounded save" data-bind="draft" type="button">Save as Draft</button> -->
                             <button class="btn btn-sm btn-primary btn-rounded ml-2 save" data-bind="submit" type="button">Submit</button>
                         </div>
                     </div>
@@ -198,6 +198,7 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            "pageLength": 25,
             language: {
                 paginate: {
                     previous: "<i class='uil uil-angle-left'>",

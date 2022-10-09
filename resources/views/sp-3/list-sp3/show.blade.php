@@ -26,7 +26,7 @@
                         <li class="nav-item">
                             <a href="#profile" data-toggle="tab" aria-expanded="false" class="nav-link">
                                 <span class="d-block d-sm-none"><i class="uil-user"></i></span>
-                                <span class="d-none d-sm-block">Form Evaluasi</span>
+                                <span class="d-none d-sm-block">Evaluasi</span>
                             </a>
                         </li>
                     </ul>
@@ -403,10 +403,10 @@
                                                     $no_just = [];
                                                     $tgl_just = [];
                                                     foreach ($trx_npp as $val) {
-                                                        $no_rab[] = $pr->no_rab . '/' . $pr->tanggal_rab . '/' . $data->judul_pengadaan;
-                                                        $tgl_rab[] = $pr->tanggal_rab;
-                                                        $no_just[] = $pr->no_justifikasi . '/' . $pr->tanggal_justifikasi . '/' . $data->judul_pengadaan;
-                                                        $tgl_just[] = $pr->tanggal_justifikasi;
+                                                        $no_rab[] = $val->no_rab . '/' . $val->tanggal_rab . '/' . $data->judul_pengadaan;
+                                                        $tgl_rab[] = $val->tanggal_rab;
+                                                        $no_just[] = $val->no_justifikasi . '/' . $val->tanggal_justifikasi . '/' . $data->judul_pengadaan;
+                                                        $tgl_just[] = $val->tanggal_justifikasi;
                                                     }
                                                     $rabImpld = implode(', ', $no_rab);
                                                     $tglImpld = implode(', ', $tgl_rab);
@@ -481,7 +481,7 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}">
                                                         </td>
                                                         <td>
-                                                            <p>19 Mei 2022</p>
+                                                            <p>{{ date('Y-m-d', strtotime($data->tanggal_kak)) }}</p>
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $data->tanggal_kak }}">
                                                         </td>
                                                         <td>
@@ -595,9 +595,11 @@
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-md-12 d-flex justify-content-end">
+                                            @if(!auth()->user()->hasRole('manajer_user'))
                                             <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-sim-card"></i>
-                                                @if($evaluasi) Update @else Save @endif
+                                            @if($evaluasi) Update @else Save @endif
                                             </button>
+                                            @endif
                                             @if($evaluasi)
                                             <a href="{{ route('evaluasi.print.sp')}}?id={{ request()->id}}" target="_blank">
                                                 <button class="btn btn-primary btn-sm btn-rounded ml-2" type="button"><i class="uil uil-print"></i> Print </button>

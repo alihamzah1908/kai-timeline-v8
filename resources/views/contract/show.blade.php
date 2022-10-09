@@ -28,16 +28,30 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-1">
-                            <dt class="font-weight-bold">Nomor SP3</dt>
+                            <dt class="font-weight-bold">Nomor SPR</dt>
                         </div>
                         <div class="col-md-3">
                             <dt class="font-weight-normal">: <span class="no-pr"></span> {{ $data->no_sp3 }}</dt>
                         </div>
                         <div class="col-md-3 mb-1">
-                            <dt class="font-weight-bold">Tanggal SP3</dt>
+                            <dt class="font-weight-bold">Tanggal SPR</dt>
                         </div>
                         <div class="col-md-3">
                             <dt class="font-weight-normal">: <span class="no-mi"></span>{{ date('d M Y', strtotime($data->created_at)) }}</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Nomor Contract</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-pr"></span></dt>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <dt class="font-weight-bold">Tanggal Contract</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal">: <span class="no-mi"></span></dt>
                         </div>
                     </div>
                     <div class="row">
@@ -59,35 +73,35 @@
                             <dt class="font-weight-bold">Metode</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ $data->type_metode }}</dt>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ ($data->type_metode == 1 ? 'Penunjukan Langsung' : ($data->type_metode == 2 ? 'Pemilihan Langsung' : 'Pelelangan Terbuka')) }}</dt>
                         </div>
-                        <div class="col-md-3 mb-1">
+                        <!-- <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Nomor MI</dt>
                         </div>
                         <div class="col-md-3">
                             <dt class="font-weight-normal">: <span class="tanggal-pr"></span>{{ $data->no_mi }}</dt>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
-                        <div class="col-md-3 mb-1">
+                        <!-- <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Tanggal MI</dt>
-                        </div>
-                        <div class="col-md-3">
+                        </div> -->
+                        <!-- <div class="col-md-3">
                             <dt class="font-weight-normal">: <span class="no-rab"></span>{{ date('d M Y', strtotime($data->no_mi)) }}</dt>
-                        </div>
-                        <div class="col-md-3 mb-1">
+                        </div> -->
+                        <!-- <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Nilai PR</dt>
                         </div>
                         <div class="col-md-3">
                             <dt class="font-weight-normal">: <span class="tanggal-rab"></span>{{ number_format($data->nilai_pr, 2) }}</dt>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Nilai Kontrak</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-kak"></span>{{ number_format($data->harga_negosiasi, 2) }}</dt>
+                            <dt class="font-weight-normal">: <span class="no-kak"></span>Rp. {{ number_format($data->harga_negosiasi, 2) }}</dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Jenis Barang</dt>
@@ -143,6 +157,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_submit" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
                                                                         <input type="file" name="file_draft" class="form-control" id="file-draft-contract" disabled value="{{ $val->file_draft_contract }}">
                                                                     </div>
@@ -158,16 +186,8 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Draft:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -176,16 +196,23 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
-                                                                        <input type="file" name="file_draft" class="form-control" id="file-draft-contract">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date :</label>
+                                                                        <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert start submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date :</label>
+                                                                        <input type="text" name="tanggal_end_submit" class="form-control datepicker" id="tanggal-end-contract" placeholder="please insert end submit">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_draft" class="form-control datepicker" id="tanggal-submit-contract" placeholder="please insert date submit">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Draft Contract:</label>
+                                                                        <input type="file" name="file_draft" class="form-control" id="file-draft-contract">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -228,12 +255,11 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Bank:</label>
-                                                                        <select name="bank" class="form-control" id="bank">
+                                                                        <select name="bank" class="custom-select" data-plugin="customselect" id="bank">
                                                                             <option value="">Pilih Bank</option>
-                                                                            <option value="BCA" {{ $val->bank == 'BCA' ? ' selected' : '' }}>Bank Central Asia</option>
-                                                                            <option value="MANDIRI" {{ $val->bank == 'MANDIRI' ? ' selected' : '' }}>Mandiri</option>
-                                                                            <option value="BNI" {{ $val->bank == 'BNI' ? ' selected' : '' }}>BNI</option>
-                                                                            <option value="BRI" {{ $val->bank == 'BRI' ? ' selected' : '' }}>BRI</option>
+                                                                            @foreach($bank as $bnk)
+                                                                                <option value="{{ $bnk->bank_name }}"{{ $bnk->bank_name == $val->bank_name ? ' selected' : '' }}>{{ $bnk->bank_name }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -311,12 +337,11 @@
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Bank:</label>
-                                                                        <select name="bank" class="form-control" id="bank">
+                                                                        <select name="bank" class="custom-select" data-plugin="customselect" id="bank">
                                                                             <option value="">Pilih Bank</option>
-                                                                            <option value="BCA">Bank Central Asia</option>
-                                                                            <option value="MANDIRI">Mandiri</option>
-                                                                            <option value="BNI">BNI</option>
-                                                                            <option value="BRI">BRI</option>
+                                                                            @foreach($bank as $bnk)
+                                                                                <option value="{{ $bnk->bank_name }}">{{ $bnk->bank_name }}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -403,6 +428,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
                                                                         <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi" disabled>
                                                                     </div>
@@ -418,16 +457,8 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -436,16 +467,22 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
-                                                                        <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_verifikasi" class="form-control datepicker" id="tanggal-submit-verifikasi" placeholder="please insert date submit">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Verifikasi Jaminan:</label>
+                                                                        <input type="file" name="file_verifikasi" class="form-control" id="file-verifikasi">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -478,6 +515,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date :</label>
+                                                                        <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date :</label>
+                                                                        <input type="text" name="tanggal_end_review" class="form-control datepicker" id="tanggal-end-review" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Review:</label>
                                                                         <input type="file" name="file_review" class="form-control" id="file-review" disabled>
                                                                     </div>
@@ -489,24 +540,33 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_review" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-8">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Verifikasi:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Review:</label>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div style="padding-top: 10px; border-top: 1px solid red;"></div>
                                                             @endforeach
                                                             @else
                                                             <div class="add-form-review">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                            <input type="text" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                            <input type="text" name="tanggal_end_review[]" class="form-control datepicker" id="tanggal-end-review" placeholder="please insert end submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
@@ -514,15 +574,9 @@
                                                                             <input type="file" name="file_review[]" class="form-control" id="file-review">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                            <input type="text" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-md-4">
+                                                                    <div class="col-md-8">
                                                                         <div class="form-group">
                                                                             <label for="exampleInputEmail1" class="font-weight-bold">Catatan Review:</label>
                                                                             <textarea class="form-control" name="catatan_review[]" placeholder="please insert catatan"></textarea>
@@ -556,6 +610,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
                                                                         <input type="file" name="file_vendor" class="form-control">
                                                                     </div>
@@ -567,12 +635,6 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
@@ -582,20 +644,29 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div style="padding-top: 10px; border-top: 1px solid red;"></div>
                                                             @endforeach
                                                             @else
                                                             <div class="form-layout-approval-logistik">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
-                                                                            <input type="file" name="file_approval_logistik[]" class="form-control" id="file-approval">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                            <input type="text" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-approval" placeholder="please insert date submit">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                            <input type="text" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-approval" placeholder="please insert date submit">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                            <input type="text" name="tanggal_end_logistik[]" class="form-control datepicker" id="tanggal-submit-approval" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Approval Logistik:</label>
+                                                                            <input type="file" name="file_approval_logistik[]" class="form-control" id="file-approval">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -634,6 +705,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Approval User:</label>
                                                                         <input type="file" name="file_vendor" class="form-control">
                                                                     </div>
@@ -645,35 +730,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval User:</label>
-                                                                        <textarea class="form-control" disabled>{{ $val->catatan_logistik }}</textarea>
+                                                                        <textarea class="form-control" disabled>{{ $val->catatan_user_contract }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div style="padding-top: 10px; border-top: 1px solid red;"></div>
                                                             @endforeach
                                                             @else
                                                             <div class="form-layout-approval-user">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Approval User:</label>
-                                                                            <input type="file" name="file_approval_user[]" class="form-control" id="file-approval-user">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                            <input type="text" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                            <input type="text" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                            <input type="text" name="tanggal_end_user[]" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Approval User:</label>
+                                                                            <input type="file" name="file_approval_user[]" class="form-control" id="file-approval-user">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -712,6 +800,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
                                                                         <input type="file" name="file_vendor" class="form-control">
                                                                     </div>
@@ -723,35 +825,38 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Catatan Tanda Tangan Vendor:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div style="padding-top: 10px; border-top: 1px solid red;"></div>
                                                             @endforeach
                                                             @else
                                                             <div class="form-layout-ttd-vendor">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
-                                                                            <input type="file" name="file_vendor[]" class="form-control" id="file-vendor">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                            <input type="text" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                            <input type="text" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                            <input type="text" name="tanggal_end_vendor[]" class="form-control datepicker" id="tanggal-submit-vendor" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan Vedor:</label>
+                                                                            <input type="file" name="file_vendor[]" class="form-control" id="file-vendor">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -790,6 +895,20 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">File Tanda Tangan KCI:</label>
                                                                         <input type="file" name="file_kci" class="form-control" id="file-kci" disabled>
                                                                     </div>
@@ -805,21 +924,27 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit" value="{{ $val->tanggal_submit }}" disabled>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
-                                                                        <textarea class="form-control" disabled></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD KCI:</label>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             @endforeach
                                                             @else
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_end_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
@@ -831,16 +956,8 @@
                                                             <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Submit:</label>
-                                                                        <input type="text" name="tanggal_submit_kci" class="form-control datepicker" id="tanggal-submit-kci" placeholder="please insert date submit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD Vendor:</label>
-                                                                        <textarea class="form-control" name="catatan_ttd_vendor" placeholder="please insert catatan"></textarea>
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan TTD KCI:</label>
+                                                                        <textarea class="form-control" name="catatan_ttd_kci" placeholder="please insert catatan"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -931,15 +1048,28 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label> &nbsp;&nbsp;
+                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>
+                                                        <br />
                                                         @if($pemenang)
                                                         <a href="{{ route('evaluasi.print.sp')}}" class="btn btn-primary btn-sm btn-rounded">
                                                             <i class="uil uil-print"></i>
                                                         </a>
                                                         @endif
                                                     </div>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Termin:</label>
+                                                        <select name="termin" class="form-control">
+                                                            <option value="">Pilih</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -960,25 +1090,48 @@
                         <div id="sw-arrows-step-10" class="tab-pane step-content">
                             <div class="row">
                                 <div class="col-12">
+                                <form action="{{ route('save.kontrak') }}" id="form-summary-contract" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}">
+                                    <input type="hidden" id="summary_contract" name="status" value="summary_contract">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
-                                                <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert total_hari_kerja">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Nomor Kontrak:</label>
+                                                <input type="text" name="nomor_kontrak" class="form-control" id="off-days" placeholder="please insert nomor kontrak" value="{{ $summary ? $summary->nomor_contract : '' }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
-                                                <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Kontrak:</label>
+                                                <input type="text" name="tanggal_kontrak" class="form-control datepicker" id="uncontroll-days" placeholder="please insert tanggal kontrak" value="{{ $summary ? $summary->tgl_contract : '' }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="font-weight-bold">Upload SPK :</label>
-                                                <input type="file" name="file_spk" class="form-control">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
+                                                <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert total_hari_kerja" value="{{ $summary ? $summary->total_day_work : '' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
+                                                <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $summary ? $summary->uncontroll_days : '' }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Upload Perjanjian :</label>
+                                                <input type="file" name="file_perjanjian" class="form-control">
+                                                @if($summary)
+                                                <a href="{{ asset('file/contract/' . $summary->file_perjanjian) }}" target="_blank">
+                                                    <i class="uil uil-file"></i> {{ $summary->file_perjanjian }}
+                                                </a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -986,11 +1139,17 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="font-weight-bold">Catatan :</label>
-                                                <textarea name="catatan_summary_contract" class="form-control" placeholder="Please insert catatan"></textarea>
+                                                <textarea name="catatan_summary_contract" class="form-control" placeholder="Please insert catatan">{{ $summary ? $summary->notes : '' }}</textarea>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary btn-rounded">Submit Summary</button> 
+                                        </div>
+                                    </div>
                                 </div> <!-- end col -->
+                            </form>
                             </div> <!-- end row -->
                         </div>
                     </div>
@@ -1228,19 +1387,28 @@
                         $("#form-mppl").submit()
                     }
                 })
+            }else if (status == 'PROSES_CR') {
             }
             // console.log($(this).closest('#smartwizard-arrows').find('.performance').addClass('test'));
         })
         $('body').on('click', '.add-review', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_review[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
+            body += '<div class="row">'
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<input type="date" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_end_review[]" class="form-control datepicker" id="tanggal-end-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_review[]" class="form-control" id="file-review">'
             body += '</div>'
             body += '</div>'
             body += '</div>'
@@ -1255,15 +1423,23 @@
         })
 
         $('body').on('click', '.add-approval-logistik', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_approval_logistik[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
+            body += '<div class="row">'
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<input type="date" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_end_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_approval_logistik[]" class="form-control" id="file-review">'
             body += '</div>'
             body += '</div>'
             body += '</div>'
@@ -1278,15 +1454,23 @@
         })
 
         $('body').on('click', '.add-approval-user', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
+            body += '<div class="row">'
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<input type="date" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_end_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
             body += '</div>'
             body += '</div>'
             body += '</div>'
@@ -1301,15 +1485,23 @@
         })
 
         $('body').on('click', '.add-ttd-vendor', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;"><div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_vendor[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
+            body += '<div class="row">'
             body += '<div class="col-md-4">'
             body += '<div class="form-group">'
             body += '<input type="date" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_end_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_vendor[]" class="form-control" id="file-review">'
             body += '</div>'
             body += '</div>'
             body += '</div>'

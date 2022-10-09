@@ -255,6 +255,7 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            "pageLength": 25,
             language: {
                 paginate: {
                     previous: "<i class='uil uil-angle-left'>",

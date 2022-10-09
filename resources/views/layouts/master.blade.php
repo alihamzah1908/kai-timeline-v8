@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    
+
     <div id="wrapper">
         <!-- end Topbar -->
 
@@ -107,6 +107,7 @@
                                 <span> Dashboard </span>
                             </a>
                         </li> -->
+                        @if(auth()->user()->hasRole('super admin'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="users" class="text-white"></i>
@@ -135,6 +136,9 @@
                             </ul>
                             @endcan
                         </li>
+                        @endif
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('manajer_logistic_nonsarana') || auth()->user()->hasRole('manajer_user')
+                        || auth()->user()->hasRole('admin_pbj') || auth()->user()->hasRole('admin_contract') || auth()->user()->hasRole('manajer_logistic_sarana'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -157,6 +161,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @if(auth()->user()->hasRole('super admin') ||auth()->user()->hasRole('manajer_user'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -171,6 +176,7 @@
                                 @endcan
                             </ul>
                         </li>
+                        @endif
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -233,6 +239,8 @@
                                 @endcan
                             </ul>
                         </li>
+                        @endif
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('admin_waste'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -258,6 +266,8 @@
                                 @endcan
                             </ul>
                         </li>
+                        @endif
+                        @if(auth()->user()->hasRole('super admin'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -293,6 +303,12 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="{{ route('bank.index') }}">
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Master Bank </span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('inklaring.index') }}">
                                 <i data-feather="bookmark" class="text-white"></i>
                                 <span class="font-weight-bold"> Upload Import Inklaring </span>
@@ -317,6 +333,7 @@
                                 <span class="font-weight-bold"> Tutorial </span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- End Sidebar -->

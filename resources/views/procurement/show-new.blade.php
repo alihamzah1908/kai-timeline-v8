@@ -46,7 +46,7 @@
                             <dt class="font-weight-bold">Nilai PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>{{ number_format($data->nilai_pr, 0); }}</dt>
+                            <dt class="font-weight-normal">: <span class="nilai-pr"></span>rP. {{ number_format($data->nilai_pr, 0); }}</dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Nilai Tax</dt>
@@ -171,6 +171,9 @@
                         <input type="hidden" value="{{ $data->proses_st }}" id="contract_status">
                         <input type="hidden" value="{{ $data->sp3_id }}" id="id">
                         <ul class="nav nav-tabs step-anchor">
+                            @if($data->type_metode == '1' || $data->type_metode == '2')
+                            <li class="nav-item undangan"><a href="#sw-arrows-step-undangan" class="nav-link">Undangan<small class="d-block">Step description</small></a></li>
+                            @endif
                             <li class="nav-item rks"><a href="#sw-arrows-step-1" class="nav-link">RKS<small class="d-block">Step description</small></a></li>
                             <li class="nav-item calon-tender"><a href="#sw-arrows-step-2" class="nav-link">Calon Peserta Tender<small class="d-block">Step description</small></a></li>
                             <li class="nav-item aanwidjzing"><a href="#sw-arrows-step-3" class="nav-link">Aanwidjzing<small class="d-block">Step description</small></a></li>
@@ -178,11 +181,91 @@
                             <li class="nav-item eval-penawaran"><a href="#sw-arrows-step-5" class="nav-link">Evaluasi Penawaran<small class="d-block">Step description</small></a></li>
                             <li class="nav-item kkn"><a href="#sw-arrows-step-6" class="nav-link">Klarifikasi, Konfirmasi dan Negoisasi<small class="d-block">Step description</small></a></li>
                             <li class="nav-item bahp"><a href="#sw-arrows-step-7" class="nav-link">Berita Acara Hasil Pelelangan<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item ucp"><a href="#sw-arrows-step-8" class="nav-link">Usulan Calon Pemenang<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item pcp"><a href="#sw-arrows-step-9" class="nav-link">Penetapan Calon Pemenang<small class="d-block">Step description</small></a></li>
-                            <li class="nav-item spr"><a href="#sw-arrows-step-10" class="nav-link">SPR<small class="d-block">Step description</small></a></li>
+                            <li class="nav-item ucp"><a href="#sw-arrows-step-8" class="nav-link">Pengumuman Pemenang<small class="d-block">Step description</small></a></li>
+                            <li class="nav-item pcp"><a href="#sw-arrows-step-9" class="nav-link">Usulan dan Penetapan Calon Pemenang<small class="d-block">Step description</small></a></li>
+                            <li class="nav-item spr"><a href="#sw-arrows-step-10" class="nav-link">SPR dan Pengantar Jamlak<small class="d-block">Step description</small></a></li>
                         </ul>
                         <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">
+                            @if($data->type_metode == '1' || $data->type_metode == '2')
+                            <div id="sw-arrows-step-undangan" class="tab-pane step-content">
+                                <h6>Undangan</h6>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row mb-2">
+                                            <div class="col-md-12">
+                                                <form action="{{ route('procurement.store') }}" id="form-undangan" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" name="undangan" value="undangan" />
+                                                    @csrf
+                                                    <input type="hidden" name="sp3_id" id="sp3-id" value="{{ $data->sp3_id }}" />
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Template Proposal/Dokumen Penawaran:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @if($undangan)
+                                                                <h6>
+                                                                    <a href="{{ asset('file/rks/'. $undangan->file_penawaran) }}" target="_blank">
+                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_penawaran }}
+                                                                    </a>
+                                                                </h6>
+                                                                @else
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Template Dokumen Undangan:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                @if($undangan)
+                                                                <h6>
+                                                                    <a href="{{ asset('file/rks/'. $undangan->file_dokumen) }}" target="_blank">
+                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_dokumen }}
+                                                                    </a>
+                                                                </h6>
+                                                                @else
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Catatan:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <textarea name="catatan_rks" id="catatan-rks" class="form-control" placeholder="Please insert RKS note">{{ $undangan ? $undangan->catatan : '' }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             <div id="sw-arrows-step-1" class="tab-pane step-content">
                                 <h6>Draft RKS</h6>
                                 <div class="row">
@@ -1826,7 +1909,13 @@
 <script>
     $(document).ready(function() {
         var status = $('#contract_status').val();
-        if (status == 'PROSES_PP') {
+        if (status == 'PROSES_DRKS') {
+            $('.undangan').addClass('done')
+            $('.rks').addClass('done')
+        }else if (status == 'PROSES_RRKS') {
+            $('.undangan').addClass('done')
+            $('.rks').addClass('done')
+        }else if (status == 'PROSES_PP') {
             $('.rks').addClass('done')
             $('.calon-tender').addClass('done')
         } else if (status == 'PROSES_AL') {
@@ -1989,9 +2078,10 @@
 
         $('body').on('click', '.sw-btn-next', function(e) {
             if (status == 'PROSES_DRKS') {
+                var undangan = '{{ $undangan }}'
                 $('.calon-tender').removeClass('active')
                 Swal.fire({
-                    title: 'Are you sure save Draft RKS ?',
+                    title: undangan.length > 0 ? 'Are you sure save Draft RKS ?' : 'Are you sure save Undangan ?',
                     // text: 'Your procurement are send to contract!',
                     icon: 'warning',
                     showCancelButton: true,
@@ -2001,7 +2091,11 @@
                 }).then((result) => {
                     if (result.value) {
                         e.preventDefault()
-                        $("#form-draftrks").submit();
+                        if(undangan.length > 0){
+                            $("#form-draftrks").submit();
+                        }else{
+                            $("#form-undangan").submit();
+                        }
                     }
                 })
             } else if (status == 'PROSES_PP') {

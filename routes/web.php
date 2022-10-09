@@ -56,8 +56,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/roles/{id}', 'App\Http\Controllers\Auth\RoleController@show')->name('roles.show');
     Route::get('/roles/delete/{id}', 'App\Http\Controllers\Auth\RoleController@destroy')->name('roles.delete');
     Route::post('/roles/store', 'App\Http\Controllers\Auth\RoleController@store')->name('roles.store');
-
-
     // TIMELINE
     Route::get('/data/timeline', 'App\Http\Controllers\TimelineController@data')->name('data.timeline');
     Route::get('/data/timeline/get-timeline', 'App\Http\Controllers\TimelineController@get_timeline')->name('get.timeline');
@@ -149,6 +147,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/inklaring', 'App\Http\Controllers\InklaringController@data')->name('data.inklaring');
     Route::get('/data/inklaring/index', 'App\Http\Controllers\InklaringController@index')->name('inklaring.index');
     Route::post('/data/inklaring/import', 'App\Http\Controllers\InklaringController@importInklaring')->name('import.inklaring');
+
+    // BANK
+    Route::get('/data/bank', 'App\Http\Controllers\BankController@data')->name('data.bank');
+    Route::get('/data/get/bank', 'App\Http\Controllers\BankController@getBanks')->name('get.bank');
+    Route::get('/data/bank/index', 'App\Http\Controllers\BankController@index')->name('bank.index');
+    Route::post('/data/bank/update', 'App\Http\Controllers\BankController@update')->name('bank.update');
 
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');

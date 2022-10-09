@@ -39,23 +39,49 @@ class ProcurementController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        if ($request->hasFile('file_penawaran')) {
-            // PROPOSAL/TEMPLATE FILE
-            $file_penawaran = $request->file('file_penawaran');
+        if ($request["undangan"]) {
+            $undangan = new \App\Models\TrxUndangan();
+            $undangan->sp3_id = $request["sp3_id"];
+            $undangan->catatan = $request["catatan_rks"];
+            $undangan->tanggal_rks = date('Y-m-d');
+            if ($request->hasFile('file_penawaran')) {
+                $file_penawaran = $request->file('file_penawaran');
+                $extension = $file_penawaran->getClientOriginalExtension();
+                $new_name = 'SP3-undangan' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file_penawaran->move(public_path('file/rks'), $new_name);
+                $undangan->file_penawaran = $new_name;
+            }
+            if ($request->hasFile('file_dokumen')) {
+                $file_dokumen = $request->file('file_dokumen');
+                $extension_draft = $file_dokumen->getClientOriginalExtension();
+                $new_name_draft = 'SP3-undangan' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_draft;
+                $file_dokumen->move(public_path('file/rks'), $new_name_draft);
+                $undangan->file_dokumen = $new_name_draft;
+            }
+            $undangan->save();
+            if ($undangan) {
+                return redirect(route('procurement.show', $request['sp3_id']));
+            } else {
+                return response()->json(["status" => 400]);
+            }
+        } else {
             $files = new \App\Models\DraftRks();
             $files->sp3_id = $request["sp3_id"];
-            $extension = $file_penawaran->getClientOriginalExtension();
-            $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
-            $file_penawaran->move(public_path('file/rks'), $new_name);
-            $files->file_penawaran = $new_name;
-
-            // DRAFT FILE
-            $file_dokumen = $request->file('file_dokumen');
-            // dd($file_draft);
-            $extension_draft = $file_dokumen->getClientOriginalExtension();
-            $new_name_draft = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_draft;
-            $file_dokumen->move(public_path('file/rks'), $new_name_draft);
-            $files->file_dokumen = $new_name_draft;
+            if ($request->hasFile('file_penawaran')) {
+                // PROPOSAL/TEMPLATE FILE
+                $file_penawaran = $request->file('file_penawaran');
+                $extension = $file_penawaran->getClientOriginalExtension();
+                $new_name = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file_penawaran->move(public_path('file/rks'), $new_name);
+                $files->file_penawaran = $new_name;
+            }
+            if ($request->hasFile('file_dokumen')) {
+                $file_dokumen = $request->file('file_dokumen');
+                $extension_draft = $file_dokumen->getClientOriginalExtension();
+                $new_name_draft = 'SP3' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_draft;
+                $file_dokumen->move(public_path('file/rks'), $new_name_draft);
+                $files->file_dokumen = $new_name_draft;
+            }
             $files->metode = $request["metode_dokumen"];
             $files->catatan = $request["catatan_rks"];
             $files->created_by = Auth::user()->id;
@@ -66,28 +92,29 @@ class ProcurementController extends Controller
                 $sp3->save();
                 return redirect(route('procurement.show', $request["sp3_id"]));
             }
-        } elseif ($request["penjadwalan"]) {
-            $jadwal = new \App\Models\TrxJadwalPelaksaan();
-            $jadwal->sp3_id = $request["sp3_id"];
-            $jadwal->penjelasan_start_date = $request["penjelasan_start_date"];
-            $jadwal->penjelasan_end_date = $request["penjelasan_end_date"];
-            $jadwal->pemasukan_start_date = $request["pemasukan_start_date"];
-            $jadwal->pemasukan_end_date = $request["pemasukan_end_date"];
-            $jadwal->penawaran_start_date = $request["penawaran_start_date"];
-            $jadwal->penawaran_end_date = $request["penawaran_end_date"];
-            $jadwal->evaluasi_start_date = $request["evaluasi_start_date"];
-            $jadwal->evaluasi_end_date = $request["evaluasi_end_date"];
-            $jadwal->pengumuman_start_date = $request["pengumuman_start_date"];
-            $jadwal->pengumuman_end_date = $request["pengumuman_end_date"];
-            $jadwal->tandatangan_start_date = $request["tandatangan_start_date"];
-            $jadwal->tandatangan_end_date = $request["tandatangan_end_date"];
-            $jadwal->created_by = Auth::user()->id;
-            $jadwal->updated_by = Auth::user()->id;
-            $jadwal->save();
-            if ($jadwal) {
-                return response()->json(["status" => 200]);
-            } else {
-                return response()->json(["status" => 400]);
+            if ($request["penjadwalan"]) {
+                $jadwal = new \App\Models\TrxJadwalPelaksaan();
+                $jadwal->sp3_id = $request["sp3_id"];
+                $jadwal->penjelasan_start_date = $request["penjelasan_start_date"];
+                $jadwal->penjelasan_end_date = $request["penjelasan_end_date"];
+                $jadwal->pemasukan_start_date = $request["pemasukan_start_date"];
+                $jadwal->pemasukan_end_date = $request["pemasukan_end_date"];
+                $jadwal->penawaran_start_date = $request["penawaran_start_date"];
+                $jadwal->penawaran_end_date = $request["penawaran_end_date"];
+                $jadwal->evaluasi_start_date = $request["evaluasi_start_date"];
+                $jadwal->evaluasi_end_date = $request["evaluasi_end_date"];
+                $jadwal->pengumuman_start_date = $request["pengumuman_start_date"];
+                $jadwal->pengumuman_end_date = $request["pengumuman_end_date"];
+                $jadwal->tandatangan_start_date = $request["tandatangan_start_date"];
+                $jadwal->tandatangan_end_date = $request["tandatangan_end_date"];
+                $jadwal->created_by = Auth::user()->id;
+                $jadwal->updated_by = Auth::user()->id;
+                $jadwal->save();
+                if ($jadwal) {
+                    return response()->json(["status" => 200]);
+                } else {
+                    return response()->json(["status" => 400]);
+                }
             }
         }
     }
@@ -131,6 +158,7 @@ class ProcurementController extends Controller
             ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->get();
         $data["rks"] = \App\Models\DraftRks::where('sp3_id', $id)->first();
+        $data["undangan"] = \App\Models\TrxUndangan::where('sp3_id', $id)->first();
         $data["aandwidjzing"] = DB::table('trx_aanwidjzing as a')->where('sp3_id', $id)
             ->select(
                 DB::raw('a.*'),

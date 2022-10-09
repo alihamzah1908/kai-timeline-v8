@@ -16,6 +16,8 @@ class TrxVerifikasiContract extends Model
         'sp3_id',
         'file_verifikasi_contract',
         'tanggal_submit',
+        'tanggal_end_submit',
+        'notes',
         'created_by',
         'updated_by'
     ];

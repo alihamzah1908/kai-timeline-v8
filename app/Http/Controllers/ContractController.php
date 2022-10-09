@@ -117,6 +117,8 @@ class ContractController extends Controller
         $data["trx_kci"] = \App\Models\TrxKciContract::where('sp3_id', $id)->get();
         $data["trx_mppl"] = \App\Models\TrxMppl::where('sp3_id', $id)->get();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
+        $data["summary"] = \App\Models\TrxSummaryContract::where('sp3_id', $id)->first();
+        $data["bank"] = DB::select('SELECT * FROM bank_master');
         return view('contract.show', $data);
     }
 
@@ -170,6 +172,8 @@ class ContractController extends Controller
                 $trx_contract->file_draft_contract = $new_name;
             }
             $trx_contract->tanggal_submit = $request["tanggal_submit_draft"];
+            $trx_contract->tanggal_end_submit = $request["tanggal_end_submit"];
+            $trx_contract->notes = $request["catatan_draft"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
@@ -220,6 +224,8 @@ class ContractController extends Controller
                 $trx_contract->file_verifikasi_contract = $new_name;
             }
             $trx_contract->tanggal_submit = $request["tanggal_submit_verifikasi"];
+            $trx_contract->tanggal_end_submit = $request["tanggal_end_verifikasi"];
+            $trx_contract->notes = $request["catatan_verifikasi"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
@@ -241,6 +247,8 @@ class ContractController extends Controller
                     $trx_contract->file_review_contract = $new_name;
                 }
                 $trx_contract->tanggal_submit = $val;
+                $trx_contract->tanggal_end_submit = $request["tanggal_end_review"][$key];
+                $trx_contract->notes = $request["catatan_review"][$key];
                 $trx_contract->created_by = Auth::user()->id;
                 $trx_contract->save();
                 if ($trx_contract) {
@@ -263,7 +271,8 @@ class ContractController extends Controller
                     $trx_contract->file_approval_logistik = $new_name;
                 }
                 $trx_contract->tanggal_submit = $val;
-                // $trx_contract->catatan_logistik = $request["catatan_logistik"];
+                $trx_contract->tanggal_end_submit = $request["tanggal_end_logistik"][$key];
+                $trx_contract->catatan_logistik = $request["catatan_logistik"][$key];
                 $trx_contract->created_by = Auth::user()->id;
                 $trx_contract->save();
                 if ($trx_contract) {
@@ -286,7 +295,8 @@ class ContractController extends Controller
                     $trx_contract->file_approval_user = $new_name;
                 }
                 $trx_contract->tanggal_submit = $val;
-                // $trx_contract->catatan_logistik = $request["catatan_logistik"];
+                $trx_contract->tanggal_end_submit = $request["tanggal_end_user"][$key];
+                $trx_contract->catatan_user_contract = $request["catatan_user"][$key];
                 $trx_contract->created_by = Auth::user()->id;
                 $trx_contract->save();
                 if ($trx_contract) {
@@ -309,6 +319,8 @@ class ContractController extends Controller
                     $trx_contract->file_vendor_contract = $new_name;
                 }
                 $trx_contract->tanggal_submit = $val;
+                $trx_contract->tanggal_end_submit = $request["tanggal_end_vendor"][$key];
+                $trx_contract->notes = $request["catatan_vendor"][$key];
                 $trx_contract->created_by = Auth::user()->id;
                 $trx_contract->save();
                 if ($trx_contract) {
@@ -330,6 +342,8 @@ class ContractController extends Controller
                 $trx_contract->file_kci_contract = $new_name;
             }
             $trx_contract->tanggal_submit = $request["tanggal_submit_kci"];
+            $trx_contract->tanggal_end_submit = $request["tanggal_end_kci"];
+            $trx_contract->notes = $request["catatan_ttd_kci"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
@@ -346,6 +360,25 @@ class ContractController extends Controller
             $trx_contract->end_date_mppl = $request["end_date_mppl"];
             $trx_contract->off_days = $request["off_days"];
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
+            $trx_contract->save();
+            return redirect(route('contract.show', $sp3_id));
+        }else if ($request["status"] == 'summary_contract') {
+            $trx_contract = new \App\Models\TrxSummaryContract();
+            // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
+            $trx_contract->sp3_id = $contract->sp3_id;
+            $trx_contract->nomor_contract = $request["nomor_kontrak"];
+            $trx_contract->tgl_contract= $request["tanggal_kontrak"];
+            $trx_contract->total_day_work = $request["off_days"];
+            $trx_contract->uncontroll_days = $request["uncontroll_days"];
+            $trx_contract->notes = $request["catatan_summary_contract"];
+            $trx_contract->created_by = Auth::user()->id;
+            if ($request->hasFile('file_perjanjian')) {
+                $file = $request->file('file_perjanjian');
+                $extension = $file->getClientOriginalExtension();
+                $new_name = 'file-perjanjian' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/contract'), $new_name);
+                $trx_contract->file_perjanjian = $new_name;
+            }
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             return redirect(route('contract.show', $sp3_id));
