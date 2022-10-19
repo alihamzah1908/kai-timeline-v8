@@ -73,6 +73,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Beban Biaya</label>
                                 <select class="form-control beban_biaya" name="beban_biaya">
+                                    <option value="">Pilih</option>
                                     <option value="CAPEX">Capex</option>
                                     <option value="OPEX">Opex</option>
                                 </select>
@@ -87,18 +88,17 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">PBJ</label>
                                 <select class="form-control obj" name="pbj">
+                                    <option value="">Pilih</option>
                                     <option value="Sarana">Sarana</option>
                                     <option value="Non Sarana">Non Sarana</option>
                                 </select>
-                                <div class="invalid-feedback error-pbj" style="display: none;">
-                                    Mohon isi pbj.
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana</label>
                                 <select class="form-control sumber_dana" name="sumber_dana">
+                                    <option value="">Pilih</option>
                                     <option value="2022">2021</option>
                                     <option value="2023">2022</option>
                                     <option value="2023">2023</option>
@@ -251,6 +251,34 @@
         $('body').on('click', '.create-timeline', function() {
             $('#modal-timeline').modal('show')
         })
+        // validasi form timeline
+        $("#form-timeline").validate({
+            rules: {
+                judul_pengadaan: "required",
+                beban_biaya: "required",
+                pbj: "required",
+                sumber_dana: "required",
+                jenis_kontrak: "required",
+                nilai_pr: "required",
+                start_date: "required",
+                end_date: "required",
+            },
+            messages: {
+                judul_pengadaan: "Please insert judul pengadaan",
+                beban_biaya: "Please insert beban biaya",
+                pbj: "Please insert pbj",
+                sumber_dana: "Please insert sumber dana",
+                jenis_kontrak: "Please insert Jenis Kontrak",
+                nilai_pr: "Please insert Nilai RKAP",
+                start_date: "Please insert start date pengadaan",
+                end_date: "Please insert end date pengadaan",
+            }
+        })
+        $('.save').click(function() {
+            $("#form-timeline").valid();
+        });
+
+        // save timeline
         $('body').on('click', '.save', function() {
             var data = $('#form-timeline').serialize();
             var type = $(this).attr('data-bind');

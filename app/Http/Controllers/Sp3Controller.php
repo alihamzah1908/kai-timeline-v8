@@ -219,6 +219,7 @@ class Sp3Controller extends Controller
             $data["evaluasi"] = null;
         }
         $data["evalnotes"] = DB::table('trx_eval_notes')->where('sp3_id', $id)->first();
+        $data["summary"] = DB::table('trx_summary_contract')->where('sp3_id', $id)->first();
         return view('sp-3.list-sp3.show', $data);
     }
 
@@ -288,10 +289,22 @@ class Sp3Controller extends Controller
         }
     }
 
-    public function generate_sk()
+    public function generate_sk(Request $request)
     {
+        $data["spr"] = \App\Models\TrxSpr::where('sp3_id', $request["id"])->first();
+        $data["data"] = \App\Models\SP3::where('sp3_id', $request["id"])->first();
+        $data["vendor"] = DB::table('trx_penetapan_pemenang as a')
+            ->select('a.*', 'b.vendor_name', 'b.vendor_code', 'b.street', 'b.city', 'b.postal_code')
+            ->leftJoin('vendor as b', 'a.vendor_code', 'b.vendor_code')
+            ->where('a.sp3_id', $request["id"])
+            ->first();
+        $data["negosiasi"] = DB::table('trx_klasifikasi_konfirmasi_negosiasi as a')
+            ->select('a.*', 'b.vendor_name', 'b.vendor_code')
+            ->leftJoin('vendor as b', 'a.vendor_code', 'b.vendor_code', 'b.street', 'b.city', 'b.postal_code')
+            ->where('a.sp3_id', $request["id"])
+            ->first();
         $resultName = date('Ymd_His') . "_SURAT_KEPUTUSAN.pdf";
-        $view       = view('sp-3.evaluasi.print-sk')->render();
+        $view       = view('sp-3.evaluasi.print-sk', $data)->render();
         // return $view;
         $pdf        = FacadePdf::loadHtml($view);
         $pdf->setOptions(['isHtml5ParserEnabled' => true, 'setIsRemoteEnabled' => true]);
@@ -421,65 +434,58 @@ class Sp3Controller extends Controller
                 return '<badges class="badge badge-danger">' . $row->get_status->keterangan . '</badges>';
             })
             ->addColumn('action', function ($row) {
-                if ($row->proses_st != 'PROSES_SSP3') {
-                    $print = '<a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
-                                <button class="btn btn-primary btn-sm btn-rounded">
-                                    <i class="uil uil-print"></i> 
-                                </button>
-                              </a>';
-                } else {
-                    $print = false;
-                }
-                if (auth()->user()->can('sp3-list')) {
-                    $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
-                                <button class="btn btn-primary btn-rounded btn-sm">
-                                    <i class="uil uil-search"></i> 
-                                </button>
-                            </a>
-                            ' . $print . '';
-                    return $btn;
-                } else {
-                    $action = '<a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
-                                    <button class="btn btn-warning btn-sm btn-rounded">
-                                        <i class="uil uil-check"></i> 
-                                    </button>
-                               </a>
+                $evaluasi = \App\Models\EvaluasiSp3::where('sp3_id', $row->sp3_id)->get();
+                if (auth()->user()->hasRole('manajer_logistic_sarana') ||  auth()->user()->hasRole('manajer_logistic_nonsarana') ||  auth()->user()->hasRole('Manajer Logistik')) {
+                    if ($row->proses_st == 'PROSES_SSP3') {
+                        $approve = '<a class="approve" role="presentation" href="javascript:void(0)" data-bind=' . $row->sp3_id . '> 
+                                        <button class="btn btn-warning btn-sm btn-rounded">
+                                            <i class="uil uil-check"></i> 
+                                        </button>
+                                </a>';
+                    } else {
+                        $approve = false;
+                    }
+                    $action1 = $approve . ' ' . '
                                <a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
                                     <button class="btn btn-primary btn-rounded btn-sm">
                                         <i class="uil uil-search"></i> 
                                     </button>
-                               </a>
-                               ' . $print . '';
-                    if ($row->proses_st == 'PROSES_SSP3') {
-                        $btn = $action;
-                        return $btn;
-                    } elseif ($row->proses_st == 'PROSES_DRKS' || $row->proses_st == 'PROSES_PGL') {
-                        $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
-                                    <button class="btn btn-primary btn-rounded btn-sm">
-                                        <i class="uil uil-search"></i> 
-                                    </button>
                                 </a>
-                                ' . $print . '';
-                        return $btn;
-                    } elseif (
-                        $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
-                        || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
-                        || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
-                        || $row->proses_st == 'PROSES_CR'
-                    ) {
-                        $btn = '<a href="' . route('sp3.show', $row->sp3_id) . '">
-                                    <button class="btn btn-primary btn-rounded btn-sm">
-                                        <i class="uil uil-search"></i> 
-                                    </button>
-                                </a>
-                                ' . $print . '
-                               <a href="' . route('evaluasi.print.sk') . '">
+                                <a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
                                     <button class="btn btn-primary btn-sm btn-rounded">
                                         <i class="uil uil-print"></i> 
                                     </button>
-                               </a>';
-                        return $btn;
-                    }
+                                  </a>';
+                    return $action1;
+                } else if (auth()->user()->hasRole('manajer_user')) {
+                    $action = '<a href="' . route('sp3.show', $row->sp3_id) . '" target="_blank">
+                                    <button class="btn btn-primary btn-rounded btn-sm">
+                                        <i class="uil uil-search"></i> 
+                                    </button>
+                                </a>
+                                <a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
+                                    <button class="btn btn-primary btn-sm btn-rounded">
+                                        <i class="uil uil-print"></i> 
+                                    </button>
+                                </a>';
+                    return $action;
+                } else if (
+                    $row->proses_st == 'PROSES_PCP' || $row->proses_st == 'SPR' || $row->proses_st == 'PROSES_DC'
+                    || $row->proses_st == 'PROSES_UJP' || $row->proses_st == 'PROSES_VJP' || $row->proses_st == 'PROSES_RDC'
+                    || $row->proses_st == 'PROSES_VAC' || $row->proses_st == 'PROSES_ALG' || $row->proses_st == 'PROSES_KAC'
+                    || $row->proses_st == 'PROSES_CR'
+                ) {
+                    $action = '<a href="' . route('sp3.show', $row->sp3_id) . '">
+                                <button class="btn btn-primary btn-rounded btn-sm">
+                                    <i class="uil uil-search"></i> 
+                                </button>
+                            </a>
+                            <a href="' . route('evaluasi.print.sp') . '?id=' . $row->sp3_id . '" target="_blank">
+                                <button class="btn btn-primary btn-sm btn-rounded">
+                                    <i class="uil uil-print"></i> 
+                                </button>
+                            </a>';
+                    return $action;
                 }
             })
 

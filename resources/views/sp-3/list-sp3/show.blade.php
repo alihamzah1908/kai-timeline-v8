@@ -327,7 +327,7 @@
                                                         <th>3.</th>
                                                         <td>
                                                             <p>Permohonan Dana dari User (NPD)</p>
-                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD/Ijin Prinsip)">
+                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD)">
                                                         </td>
                                                         <td>
                                                             <p>{{ implode(', ', $nilai_pr) }}</p>
@@ -338,13 +338,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr2ket }}@endif"> @if($evaluasi){{ $arr2ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     @else
@@ -363,20 +363,20 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr1 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr1 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr2ket }}@endif"> @if($evaluasi){{ $arr2ket }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr1ket }}@endif"> @if($evaluasi){{ $arr1ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <th>3.</th>
                                                         <td>
                                                             <p>Permohonan Dana dari User (Ijin Prinsip)</p>
-                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (NPD/Ijin Prinsip)">
+                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Dana dari User (Ijin Prinsip)">
                                                         </td>
                                                         <td>
                                                             <p>{{ implode(', ', $nilai_pr) }}</p>
@@ -387,13 +387,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr2 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr2ket }}@endif"> @if($evaluasi){{ $arr2ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     @endif
@@ -428,13 +428,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_rab[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr4 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr3 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr4ket }}@endif"> @if($evaluasi){{ $arr4ket }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr3ket }}@endif"> @if($evaluasi){{ $arr3ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -452,13 +452,13 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_just[0] }}">
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr5 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr5 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr4 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr5ket }}@endif</textarea>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr4ket }}@endif"> @if($evaluasi){{ $arr4ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -485,22 +485,22 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="{{ $data->tanggal_kak }}">
                                                         </td>
                                                         <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr5 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr6 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr7 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr8 == 'Ya' ? ' checked' : ''}}@endif> Ya <br /><br /><br /><br />
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr9 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr8 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr5 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
                                                             <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr6 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
                                                             <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr7 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak <br /><br /><br /><br />
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr9 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr7ket }}@endif"> @if($evaluasi){{ $arr7ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr8ket }}@endif"> @if($evaluasi){{ $arr8ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr9ket }}@endif"> @if($evaluasi){{ $arr9ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr7ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr7ket }}@endif"> @if($evaluasi){{ $arr8ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr8ket }}@endif"> @if($evaluasi){{ $arr9ket }}@endif</textarea><br />
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -524,6 +524,30 @@
                                                             <input type="hidden" name="tanggal[]" class="form-control" value="">
                                                         </td>
                                                         <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr9 == 'Ya' ? ' checked' : ''}}@endif> Ya
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr9 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
+                                                        </td>
+                                                        <td>
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr9ket }}@endif"> @if($evaluasi){{ $arr9ket }}@endif</textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8.</td>
+                                                        <td>
+                                                            <p>Permohonan Persetujuan Direksi</p>
+                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Persetujuan Direksi">
+                                                        </td>
+                                                        <td>
+                                                            <p></p>
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="">
+                                                        </td>
+                                                        <td>
+                                                            <p></p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="">
+                                                        </td>
+                                                        <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr10 == 'Ya' ? ' checked' : ''}}@endif> Ya
                                                         </td>
                                                         <td>
@@ -534,10 +558,10 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>8.</td>
+                                                        <td>9.</td>
                                                         <td>
-                                                            <p>Permohonan Persetujuan Direksi</p>
-                                                            <input type="hidden" name="item_value[]" class="form-control" value="Permohonan Persetujuan Direksi">
+                                                            <p>Persetujuan Direksi (Justifikasi PNL)</p>
+                                                            <input type="hidden" name="item_value[]" class="form-control" value="Persetujuan Direksi (Justifikasi PNL)">
                                                         </td>
                                                         <td>
                                                             <p></p>
@@ -557,30 +581,6 @@
                                                             <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr11ket }}@endif"> @if($evaluasi){{ $arr11ket }}@endif</textarea>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>9.</td>
-                                                        <td>
-                                                            <p>Persetujuan Direksi (Justifikasi PNL)</p>
-                                                            <input type="hidden" name="item_value[]" class="form-control" value="Persetujuan Direksi (Justifikasi PNL)">
-                                                        </td>
-                                                        <td>
-                                                            <p></p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="">
-                                                        </td>
-                                                        <td>
-                                                            <p></p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="">
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr12 == 'Ya' ? ' checked' : ''}}@endif> Ya
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr12 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
-                                                        </td>
-                                                        <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr12ket }}@endif"> @if($evaluasi){{ $arr12ket }}@endif</textarea>
-                                                        </td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <table class="ml-3">
@@ -597,7 +597,7 @@
                                         <div class="col-md-12 d-flex justify-content-end">
                                             @if(!auth()->user()->hasRole('manajer_user'))
                                             <button class="btn btn-primary btn-sm btn-rounded save ml-2" type="button"><i class="uil uil-sim-card"></i>
-                                            @if($evaluasi) Update @else Save @endif
+                                                @if($evaluasi) Update @else Save @endif
                                             </button>
                                             @endif
                                             @if($evaluasi)

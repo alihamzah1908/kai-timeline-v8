@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/roles/{id}', 'App\Http\Controllers\Auth\RoleController@show')->name('roles.show');
     Route::get('/roles/delete/{id}', 'App\Http\Controllers\Auth\RoleController@destroy')->name('roles.delete');
     Route::post('/roles/store', 'App\Http\Controllers\Auth\RoleController@store')->name('roles.store');
+
+
     // TIMELINE
     Route::get('/data/timeline', 'App\Http\Controllers\TimelineController@data')->name('data.timeline');
     Route::get('/data/timeline/get-timeline', 'App\Http\Controllers\TimelineController@get_timeline')->name('get.timeline');
@@ -102,6 +104,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/data/procurement/save-document-penawaran', 'App\Http\Controllers\ProcurementController@save_dokumen_penawaran')->name('save.document-penawaran');
     Route::post('/data/procurement/save-evaluasi-penawaran', 'App\Http\Controllers\ProcurementController@save_evaluasi_penawaran')->name('save.evaluasi-penawaran');
     Route::post('/data/procurement/save-klarifikasi', 'App\Http\Controllers\ProcurementController@save_klarifikasi')->name('save.klarifikasi');
+    Route::post('/data/procurement/save-undangan-kkn', 'App\Http\Controllers\ProcurementController@save_undangan_kkn')->name('save.undangan_kkn');
     Route::post('/data/procurement/save-pemenang', 'App\Http\Controllers\ProcurementController@save_pemenang')->name('save.pemenang');
     Route::post('/data/procurement/save-bahp', 'App\Http\Controllers\ProcurementController@save_bahp')->name('save.bahp');
     Route::post('/data/procurement/save-spr', 'App\Http\Controllers\ProcurementController@save_spr')->name('save.spr');
@@ -128,6 +131,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/contract/approval', 'App\Http\Controllers\ContractController@index')->name('contract.approval');
     Route::post('/data/contract/contract', 'App\Http\Controllers\ContractController@draft_kontrak')->name('save.kontrak');
 
+    //JAMLAK
+    Route::get('/data/jamlak', 'App\Http\Controllers\JamlakController@data')->name('data.jamlak');
+    Route::get('/data/jamlak/list', 'App\Http\Controllers\JamlakController@index')->name('jamlak.index');
+    Route::get('/data/jamlak/show/{id}', 'App\Http\Controllers\JamlakController@show')->name('jamlak.show');
+
      // CARD 
      Route::get('/data/warehouse-card', 'App\Http\Controllers\WarehouseController@data_card')->name('data.card');
      Route::get('/data/warehouse/card', 'App\Http\Controllers\WarehouseController@card')->name('card.index');
@@ -142,7 +150,7 @@ Route::group(['middleware' => ['auth']], function () {
     // WASTE
     Route::get('/data/waste', 'App\Http\Controllers\WasteController@data')->name('data.waste');
     Route::get('/data/warehouse/waste', 'App\Http\Controllers\WasteController@index')->name('waste.index');
-    
+
     // INKLARING
     Route::get('/data/inklaring', 'App\Http\Controllers\InklaringController@data')->name('data.inklaring');
     Route::get('/data/inklaring/index', 'App\Http\Controllers\InklaringController@index')->name('inklaring.index');
@@ -153,7 +161,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/get/bank', 'App\Http\Controllers\BankController@getBanks')->name('get.bank');
     Route::get('/data/bank/index', 'App\Http\Controllers\BankController@index')->name('bank.index');
     Route::post('/data/bank/update', 'App\Http\Controllers\BankController@update')->name('bank.update');
-
+    
     Route::get('/dashboard/monitoring-rup', function () {
         return view('dashboard.monitoring-rup.index');
     })->name('monitoring.rup');

@@ -45,13 +45,13 @@
                             <dt class="font-weight-bold">Nomor Contract</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-pr"></span></dt>
+                            <dt class="font-weight-normal">: <span class="no-pr">{{ $summary ? $summary->nomor_contract : '' }}</span></dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Tanggal Contract</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-mi"></span></dt>
+                            <dt class="font-weight-normal">: <span class="no-mi">{{ $summary ?  $summary->tgl_contract : '' }}</span></dt>
                         </div>
                     </div>
                     <div class="row">
@@ -136,10 +136,11 @@
                                     <li class="nav-item review"><a href="#sw-arrows-step-4" class="nav-link">Review Legal<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item approval-logistik"><a href="#sw-arrows-step-5" class="nav-link">Approval Logistik<small class="d-block">Step description</small></a></li>
                                     <li class="nav-item approval-user"><a href="#sw-arrows-step-6" class="nav-link">Approval User<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item ttd-vendor {{ $data->proses_st == 'PROSES_KAC' ? 'active' : ''}}"><a href="#sw-arrows-step-7" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item ttd-kci"><a href="#sw-arrows-step-8" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item mppl"><a href="#sw-arrows-step-9" class="nav-link">MPPL<small class="d-block">Step description</small></a></li>
-                                    <li class="nav-item summary-contract"><a href="#sw-arrows-step-10" class="nav-link">Summary Contract<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item approval-legal"><a href="#sw-arrows-step-7" class="nav-link">Approval Legal<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item ttd-vendor {{ $data->proses_st == 'PROSES_KAC' ? 'active' : ''}}"><a href="#sw-arrows-step-8" class="nav-link">Tanda Tangan Vendor<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item ttd-kci"><a href="#sw-arrows-step-9" class="nav-link">Tanda Tangan KCI<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item mppl"><a href="#sw-arrows-step-10" class="nav-link">MPPL<small class="d-block">Step description</small></a></li>
+                                    <li class="nav-item summary-contract"><a href="#sw-arrows-step-11" class="nav-link">Summary Contract<small class="d-block">Step description</small></a></li>
                                 </ul>
 
                                 <div class="p-3 sw-container tab-content" style="min-height: 198.133px;">
@@ -308,16 +309,22 @@
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Jumlah Hari Kalender:</label>
+                                                                        <input type="text" name="jumlah_hari_kalender" id="jumlah_hari_kalender" class="form-control" value="" placeholder="please insert nilai jaminan" value="{{ $val->jumlah_hari_kalender }}"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row"> 
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Nilai Jaminan:</label>
                                                                         <input type="text" name="nilai_jaminan" id="nilai_jaminan" class="form-control money" value="{{ $val->nilai_jaminan }}" placeholder="please insert nilai jaminan" />
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Terbit Jamlak:</label>
-                                                                        <input type="text" name="tanggal_jamlak" id="tanggal_jamlak" class="form-control datepicker" value="{{ $val->tanggal_jamlak }}" placeholder="please insert tanggal jamlak" />
+                                                                        <input type="text" name="tanggal_jamlak" id="tanggal_jamlak" class="form-control datepicker" value="{{ $val->tanggal_terbit_jamlak }}" placeholder="please insert tanggal jamlak" />
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -388,14 +395,21 @@
                                                                         <input type="text" name="end_berlaku" id="end_berlaku" class="form-control datepicker" value="" placeholder="please insert masa berlaku" />
                                                                     </div>
                                                                 </div>
+                                                                
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Jumlah Hari Kalender:</label>
+                                                                        <input type="text" name="jumlah_hari_kalender" id="jumlah_hari_kalender" class="form-control" value="" placeholder="please insert nilai jaminan" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Nilai Jaminan:</label>
                                                                         <input type="text" name="nilai_jaminan" id="nilai_jaminan" class="form-control money" value="" placeholder="please insert nilai jaminan" />
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Terbit Jamlak:</label>
@@ -791,6 +805,101 @@
                                             <div class="col-12">
                                                 <div class="row mb-2">
                                                     <div class="col-md-12">
+                                                        <form action="{{ route('save.kontrak') }}" id="form-approval-legal" method="post" enctype="multipart/form-data">
+                                                            <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}">
+                                                            <input type="hidden" name="status" value="{{ $data->proses_st }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                            @if($trx_approval_legal->count() > 0)
+                                                            @foreach($trx_approval_legal as $val)
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" value="{{ $val->tanggal_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                        <input type="text" name="tanggal_submit_vendor" class="form-control datepicker" value="{{ $val->tanggal_end_submit }}" disabled>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">File Approval Legal:</label>
+                                                                        <input type="file" name="file_vendor" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4" style="margin-top: 2rem;">
+                                                                    <div class="form-group">
+                                                                        <a href="{{ asset('file/contract/' . $val->file_approval_legal) }}">
+                                                                            <i class="uil uil-file"></i> {{ $val->file_approval_legal }}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval Legal:</label>
+                                                                        <textarea class="form-control" disabled>{{ $val->notes }}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="padding-top: 10px; border-top: 1px solid red;"></div>
+                                                            @endforeach
+                                                            @else
+                                                            <div class="form-layout-approval-user">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                                            <input type="text" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                                            <input type="text" name="tanggal_end_user[]" class="form-control datepicker" id="tanggal-submit-user" placeholder="please insert date submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">File Approval Legal:</label>
+                                                                            <input type="file" name="file_approval_user[]" class="form-control" id="file-approval-user">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan Approval Legal:</label>
+                                                                            <textarea class="form-control" name="catatan_user[]"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <button class="btn btn-primary btn-rounded btn-sm add-approval-legal" type="button"><i class="uil uil-plus"></i> add form</button>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row -->
+                                    </div>
+                                    <div id="sw-arrows-step-8" class="tab-pane step-content">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12">
                                                         <form action="{{ route('save.kontrak') }}" id="form-ttd-vendor" method="post" enctype="multipart/form-data">
                                                             <input type="hidden" name="sp3_id" id="sp3_id" value="{{ $data->sp3_id }}">
                                                             <input type="hidden" name="status" value="{{ $data->proses_st }}">
@@ -881,7 +990,7 @@
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div>
-                                    <div id="sw-arrows-step-8" class="tab-pane step-content">
+                                    <div id="sw-arrows-step-9" class="tab-pane step-content">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row mb-2">
@@ -968,7 +1077,7 @@
                                             </div> <!-- end col -->
                                         </div> <!-- end row -->
                                     </div>
-                                    <div id="sw-arrows-step-9" class="tab-pane step-content">
+                                    <div id="sw-arrows-step-10" class="tab-pane step-content">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row mb-2">
@@ -980,53 +1089,50 @@
                                                             @if($trx_mppl->count() > 0)
                                                             @foreach($trx_mppl as $val)
                                                             <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
-                                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
-                                                                        <input type="text" name="start_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit" value="{{ $val->start_date_mppl }}">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
-                                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit" value="{{ $val->end_date_mppl }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {{--<div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label> &nbsp;&nbsp;
-                                                                        @if($pemenang)
-                                                                        <a href="{{ route('evaluasi.print.sk')}}" class="btn btn-primary btn-sm btn-rounded">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">Start Date:</label>
+                                                        <!-- <input type="file" name="file_kci" class="form-control" id="file-kci"> -->
+                                                        <input type="text" name="start_date_mppl" class="form-control datepicker" id="start-date-mppl" placeholder="please insert date submit" value="{{ $val->start_date_mppl }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1" class="font-weight-bold">End Date:</label>
+                                                        <input type="text" name="end_date_mppl" class="form-control datepicker" id="end-date-mppl" placeholder="please insert date submit" value="{{ $val->end_date_mppl }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Sumamry Dokumen SPR:</label>
+                                                        <br />
+                                                        @if($pemenang)
+                                                        <a href="{{ route('evaluasi.print.sk')}}?id={{request()->id}}" target="_blank" class="btn btn-primary btn-sm btn-rounded">
                                                             <i class="uil uil-print"></i>
-                                                            </a>
-                                                            @endif
+                                                        </a>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            </div>
-                                            --}}
-                                            {{--<div class="row">
+                                                
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
-                                                        <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert off days" value="{{ $val->off_days }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
-                                                        <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $val->uncontroll_days }}">
-                                                    </div>
+                                                        <label for="exampleInputEmail1">Termin:</label>
+                                                        <select name="termin" class="form-control">
+                                                            <option value="">Pilih</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                     </div>
                                                 </div>
                                             </div>
-                                            --}}
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1" class="font-weight-bold">Pengawas Pekerjaan:</label>
-                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan"></textarea>
+                                                        <textarea class="form-control" name="catatan_penanggung_jawab" placeholder="please insert catatan">{{ $val->pengawas_pekerjaan }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1087,7 +1193,7 @@
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
                         </div>
-                        <div id="sw-arrows-step-10" class="tab-pane step-content">
+                        <div id="sw-arrows-step-11" class="tab-pane step-content">
                             <div class="row">
                                 <div class="col-12">
                                 <form action="{{ route('save.kontrak') }}" id="form-summary-contract" method="post" enctype="multipart/form-data">
@@ -1166,6 +1272,10 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
+        var user = "{{ auth()->user()->hasRole('manajer_user') }}";
+        if(user){
+            $(".sw-toolbar-bottom").hide()
+        }
         var status = $('#contract_status').val();
         if (status == 'PROSES_UJP') {
             $('.draft-contract').addClass('done')
@@ -1181,6 +1291,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_VAC') {
@@ -1190,6 +1301,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_ALG') {
@@ -1199,6 +1311,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_APU') {
@@ -1208,6 +1321,17 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
+            $('.ttd-vendor').addClass('done')
+            $('.ttd-kci').addClass('done')
+        } else if (status == 'PROSES_APL') {
+            $('.draft-contract').addClass('done')
+            $('.performance').addClass('done')
+            $('.verifikasi').addClass('done')
+            $('.review').addClass('done')
+            $('.approval-logistik').addClass('done')
+            $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_VAC') {
@@ -1217,6 +1341,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_KAC') {
@@ -1226,6 +1351,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
         } else if (status == 'PROSES_CR') {
@@ -1235,6 +1361,7 @@
             $('.review').addClass('done')
             $('.approval-logistik').addClass('done')
             $('.approval-user').addClass('done')
+            $('.approval-legal').addClass('done')
             $('.ttd-vendor').addClass('done')
             $('.ttd-kci').addClass('done')
             $('.mppl').addClass('done')
@@ -1341,6 +1468,23 @@
                     }
                 })
             } else if (status == 'PROSES_APU') {
+                $('.ttd-kci').removeClass('active')
+                Swal.fire({
+                    title: 'Are you sure save Approval Legal ?',
+                    // text: 'Your procurement are send to contract!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        // $('.ttd-kci').removeClass('active')
+                        e.preventDefault()
+                        $("#form-approval-legal").submit()
+                    }
+                })
+            } else if (status == 'PROSES_APL') {
                 $('.ttd-kci').removeClass('active')
                 Swal.fire({
                     title: 'Are you sure save Tanda Tangan Vendor ?',
@@ -1484,6 +1628,37 @@
             $('.form-layout-approval-user').append(body)
         })
 
+        $('body').on('click', '.add-approval-legal', function() {
+            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="date" name="tanggal_end_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
+            body += '</div>'
+            body += '</div>'
+            body += '</div>'
+            body += '<div class="row">'
+            body += '<div class="col-md-4">'
+            body += '<div class="form-group">'
+            body += '<textarea class="form-control" name="catatan_user[]" placeholder="please insert catatan"></textarea>'
+            body += '</div>'
+            body += '</div>'
+            body += '</div></div>'
+            $('.form-layout-approval-user').append(body)
+        })
+
         $('body').on('click', '.add-ttd-vendor', function() {
             var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
             body += '<div class="row">'
@@ -1513,6 +1688,33 @@
             body += '</div>'
             body += '</div></div>'
             $('.form-layout-ttd-vendor').append(body)
+        })
+
+        // MENGHITUNG KALENDAR
+        $('body').on('change','#start_berlaku', function(){
+            var start = $(this).val();
+            var end = $("#end_berlaku").val();
+
+            var startDay = new Date(start);
+            var endDay = new Date(end);
+            var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+            var millisBetween = endDay.getTime() - startDay.getTime();
+            var days = millisBetween / millisecondsPerDay;
+            $("#jumlah_hari_kalender").val(Math.floor(days))
+        })
+
+        $('body').on('change','#end_berlaku', function(){
+            var start = $("#start_berlaku").val();
+            var end = $(this).val();
+
+            var startDay = new Date(start);
+            var endDay = new Date(end);
+            var millisecondsPerDay = 1000 * 60 * 60 * 24;
+
+            var millisBetween = endDay.getTime() - startDay.getTime();
+            var days = millisBetween / millisecondsPerDay;
+            $("#jumlah_hari_kalender").val(Math.floor(days))
         })
     })
 </script>

@@ -35,6 +35,20 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        label.error {
+            color: red;
+            font-size: 0.7rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        input.error {
+            border: 1px dashed red;
+            font-weight: 300;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -138,7 +152,7 @@
                         </li>
                         @endif
                         @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('manajer_logistic_nonsarana') || auth()->user()->hasRole('manajer_user')
-                        || auth()->user()->hasRole('admin_pbj') || auth()->user()->hasRole('admin_contract') || auth()->user()->hasRole('manajer_logistic_sarana'))
+                        || auth()->user()->hasRole('admin_pbj') || auth()->user()->hasRole('admin_contract') || auth()->user()->hasRole('manajer_logistic_sarana') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -156,12 +170,14 @@
                                     <a href="{{ route('list.timeline') }}">List Timeline</a>
                                 </li>
                                 @endcan
+                                @if(!auth()->user()->hasRole('manajer_user'))
                                 <li>
                                     <a href="{{ route('signed.timeline') }}">Upload Timeline Final</a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
-                        @if(auth()->user()->hasRole('super admin') ||auth()->user()->hasRole('manajer_user'))
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('manajer_user'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -169,14 +185,13 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                @can('npp-list')
                                 <li>
                                     <a href="{{ route('list.npp') }}">List NPP</a>
                                 </li>
-                                @endcan
                             </ul>
                         </li>
                         @endif
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -201,6 +216,7 @@
                                 @endcan
                             </ul>
                         </li>
+                        @endif
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -240,7 +256,21 @@
                             </ul>
                         </li>
                         @endif
-                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('admin_waste'))
+                        
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="bookmark" class="text-white"></i>
+                                <span class="font-weight-bold"> Jaminan Pelaksanaan </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>
+                                    <a href="{{ route('jamlak.index') }}">List Jamlak</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('admin_waste') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -267,7 +297,7 @@
                             </ul>
                         </li>
                         @endif
-                        @if(auth()->user()->hasRole('super admin'))
+                        @if(auth()->user()->hasRole('super admin')|| auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -504,6 +534,7 @@
     <script src="{{ asset('assets/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script>
         $('.money').mask('000.000.000.000.000', {
             reverse: true

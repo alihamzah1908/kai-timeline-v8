@@ -114,6 +114,7 @@ class ContractController extends Controller
         $data["trx_vendor"] = \App\Models\TrxVendorContract::where('sp3_id', $id)->get();
         $data["trx_approval"] = \App\Models\TrxApprovalLogistik::where('sp3_id', $id)->get();
         $data["trx_approval_user"] = \App\Models\TrxApprovalUser::where('sp3_id', $id)->get();
+        $data["trx_approval_legal"] = \App\Models\TrxApprovalLegal::where('sp3_id', $id)->get();
         $data["trx_kci"] = \App\Models\TrxKciContract::where('sp3_id', $id)->get();
         $data["trx_mppl"] = \App\Models\TrxMppl::where('sp3_id', $id)->get();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
@@ -204,6 +205,7 @@ class ContractController extends Controller
             $trx_contract->nilai_jaminan = str_replace('.', '', $request["nilai_jaminan"]);
             $trx_contract->tanggal_terbit_jamlak = $request["tanggal_jamlak"];
             $trx_contract->catatan_performance = $request["catatan_performance"];
+            $trx_contract->jumlah_hari_kalender = $request["jumlah_hari_kalender"];
             $trx_contract->created_by = Auth::user()->id;
             $trx_contract->save();
             if ($trx_contract) {
@@ -307,6 +309,30 @@ class ContractController extends Controller
             }
             return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_APU') {
+            $arr = $request["tanggal_submit_user"];
+            foreach ($arr as $key => $val) {
+                $trx_contract = new \App\Models\TrxApprovalLegal();
+                $trx_contract->sp3_id = $contract->sp3_id;
+                if ($request->hasFile('file_approval_user')) {
+                    $file = $request->file('file_approval_user')[$key];
+                    $extension = $file->getClientOriginalExtension();
+                    $new_name = 'file-approval-legal' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/contract'), $new_name);
+                    $trx_contract->file_approval_legal = $new_name;
+                }
+                $trx_contract->tanggal_submit = $val;
+                $trx_contract->tanggal_end_submit = $request["tanggal_end_user"][$key];
+                $trx_contract->notes = $request["catatan_user"][$key];
+                $trx_contract->created_by = Auth::user()->id;
+                $trx_contract->save();
+                if ($trx_contract) {
+                    $trx_status = \App\Models\SP3::find($sp3_id);
+                    $trx_status->proses_st = 'PROSES_APL';
+                    $trx_status->save();
+                }
+            }
+            return redirect(route('contract.show', $sp3_id));
+        } else if ($request["status"] == 'PROSES_APL') {
             $arr = $request["tanggal_submit_vendor"];
             foreach ($arr as $key => $val) {
                 $trx_contract = new \App\Models\TrxVendorContract();
@@ -360,14 +386,15 @@ class ContractController extends Controller
             $trx_contract->end_date_mppl = $request["end_date_mppl"];
             $trx_contract->off_days = $request["off_days"];
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
+            $trx_contract->pengawas_pekerjaan = $request["catatan_penanggung_jawab"];
             $trx_contract->save();
             return redirect(route('contract.show', $sp3_id));
-        }else if ($request["status"] == 'summary_contract') {
+        } else if ($request["status"] == 'summary_contract') {
             $trx_contract = new \App\Models\TrxSummaryContract();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
             $trx_contract->sp3_id = $contract->sp3_id;
             $trx_contract->nomor_contract = $request["nomor_kontrak"];
-            $trx_contract->tgl_contract= $request["tanggal_kontrak"];
+            $trx_contract->tgl_contract = $request["tanggal_kontrak"];
             $trx_contract->total_day_work = $request["off_days"];
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
             $trx_contract->notes = $request["catatan_summary_contract"];
@@ -414,12 +441,12 @@ class ContractController extends Controller
                 return $btn;
             })
             ->addColumn('harga_negosiasi', function ($row) {
-                return number_format($row->harga_negosiasi, 2);
+                return $row->harga_negosiasi;
             })
             ->addColumn('proses_st', function ($row) {
                 return '<badges class="badge badge-danger">' . $row->contract_status . '</badges>';
             })
-            ->rawColumns(['action', 'sp3_no','proses_st'])
+            ->rawColumns(['action', 'sp3_no', 'proses_st'])
             ->make(true);
     }
 }

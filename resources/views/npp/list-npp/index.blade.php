@@ -171,6 +171,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Jenis Barang</label>
                                 <select class="form-control" name="jenis_barang">
+                                    <option value="">Pilih</option>
                                     <option value="Non-Import">Non-Import</option>
                                     <option value="Import">Import</option>
                                 </select>
@@ -180,6 +181,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Kurs</label>
                                 <select class="form-control kurs" name="kurs">
+                                    <option value="">Pilih</option>
                                     <option value="IDR"><i class="uil uil-money-stack"></i> IDR</option>
                                     <option value="JPY"><i class="uil uil-dollar-sign"></i> JPY</option>
                                     <option value="EUR"><i class="uil uil-yen"></i> EUR</option>
@@ -221,7 +223,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nominal PR/IP</label>
-                                        <input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip" required>
+                                        <input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip">
                                     </div>
                                 </div>
                             </div>
@@ -346,13 +348,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">No. Lainnya</label>
-                                    <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
+                                    <input type="text" name="no_lainya" class="form-control" placeholder="Please Insert No. KAK">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tanggal</label>
-                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
+                                    <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_lainya">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -438,7 +440,6 @@
                 },
             ]
         });
-
 
         // SEARCH VENDOR
         $("#vendor_name").autocomplete({
@@ -717,7 +718,7 @@
             body += '<div class="col-md-3">'
             body += '<div class="form-group">'
             body += '<label for="exampleInputEmail1">Nominal PR/IP</label>'
-            body += '<input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip" required>'
+            body += '<input type="text" name="nominal_pr_ip[]" class="form-control nominal-pr-ip" placeholder="please insert nominal pr/ip" required>'
             body += '</div>'
             body += '</div>'
             body += '<div class="col-md-4">'
@@ -769,6 +770,86 @@
             body += '</div>'
             $(".vendor-name").append(body)
         })
+
+        // VALIDASI FORM NPP
+        $("#form-timeline").validate({
+            rules: {
+                realisasi: "required",
+                "timeline_id[]": "required",
+                type_metode: "required",
+                "vendor_name[]": "required",
+                jenis_barang: "required",
+                kurs: "required",
+                "no_pr_ip[]": "required",
+                "date_pr[]": "required",
+                "file_pr[]": "required",
+                "nominal_pr_ip[]": "required",
+                "no_rab[]": "required",
+                "date_rab[]": "required",
+                "file_rab[]": "required",
+                "no_justifikasi_kebutuhan[]": "required",
+                "date_justifikasi[]": "required",
+                "file_jus_br[]": "required",
+                no_mi: "required",
+                date_mi: "required",
+                doc_mi: "required",
+                no_justifikasi_pemilihan: "required",
+                date_justifikasi_pemilihan: "required",
+                file_just_langsung: "required",
+                no_kak: "required",
+                date_kak: "required",
+                doc_kak: "required",
+                // no_lainya: "required",
+                // date_lainya: "required",
+                // doc_lainya: "required",
+            },
+            messages: {
+                realisasi: "Please insert realisasi",
+                "timeline_id[]": "Please insert timeline",
+                type_metode: "Please insert metode",
+                "vendor_name[]": "Please insert vendor name",
+                jenis_barang: "Please insert jenis barang",
+                kurs: "Please insert Kurs",
+                "no_pr_ip[]": "Please insert no pr/ip",
+                "date_pr[]": "Please insert date pr",
+                "file_pr[]": "Please insert file pr/ip",
+                "nominal_pr_ip[]": "Please insert nominal pr/ip",
+                "no_rab[]": "Please insert no rab",
+                "date_rab[]": "Please insert date rab",
+                "file_rab[]": "Please insert file rab",
+                "no_justifikasi_kebutuhan[]": "Please insert no justifikasi",
+                "date_justifikasi[]": "Please insert date justifikasi",
+                "file_jus_br[]": "Please insert file justifikasi",
+                no_mi: "Please insert no mi",
+                date_mi: "Please insert date mi",
+                doc_mi: "Please insert doc mi",
+                no_justifikasi_pemilihan: "Please insert no justifikasi pemilihan",
+                date_justifikasi_pemilihan: "Please insert date justifikasi pemilihan",
+                file_just_langsung: "Please insert file justifikasi",
+                no_kak: "Please insert no kak",
+                date_kak: "Please insert date kak",
+                doc_kak: "Please insert doc kak",
+                // no_lainya: "Please insert no lainya",
+                // date_lainya: "Please insert date lainya",
+                // doc_lainya: "Please insert file justifikasi",
+            }
+        })
+
+        $('.save').click(function() {
+            $("#form-timeline").valid();
+        });
+
+        // CONVERT RUPIAH NUMBER NOMINAL PR IP
+        $('body').on('keyup', '.nominal-pr-ip', function() {
+            $(this).val(format($(this).val()));
+        })
+        var format = function(num) {
+            var perse = num.replace(/\./g, '')
+            const format = perse.toString().split('').reverse().join('');
+            const convert = format.match(/\d{1,3}/g);
+            const rupiah = convert.join('.').split('').reverse().join('')
+            return rupiah
+        };
     })
 </script>
 @endpush
