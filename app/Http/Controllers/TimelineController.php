@@ -162,7 +162,9 @@ class TimelineController extends Controller
         } else {
             if(Auth::user()->id == 14){
                 $timeline;
-            }else{
+            } else if (Auth::user()->id == 20) {
+                $timeline;
+            } else {
                 $timeline->where('directorate_cd', Auth::user()->directorate_cd);
             }
             

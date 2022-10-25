@@ -211,6 +211,10 @@ class Sp3Controller extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
+        $data["vendor"] = DB::table('vendor')
+                    ->select('vendor_name')
+                    ->whereIn('vendor_code', json_decode($data["data"]["nama_vendor"]))
+                    ->get();
         $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $id)->get();
         if ($check->count() > 0) {
@@ -316,6 +320,7 @@ class Sp3Controller extends Controller
     {
         $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         $data["data"] = \App\Models\SP3::find($request["id"]);
+        // dd($data["data"]);
         $data["timeline"] = \App\Models\Timeline::where('timeline_id', $data["data"]["timeline_id"])->first();
         $data["npp"] = \App\Models\TrxNpp::where('sp3_id', $request["id"])->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();

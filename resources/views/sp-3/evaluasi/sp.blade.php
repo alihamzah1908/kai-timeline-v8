@@ -68,7 +68,8 @@
                     <tr>
                         <td>TGL TERBIT</td>
                         <td>:</td>
-                        <td>{{ date('d M Y', strtotime($data->created_at)) }}</td>
+                        <!-- <td>{{ date('d M Y', strtotime($data->created_at)) }}</td> -->
+                        <td>09 NOVEMBER 2015</td>
                     </tr>
                     <tr>
                         <td>NO.TERBIT</td>
@@ -83,7 +84,8 @@
                     <tr>
                         <td>TGL REVISI</td>
                         <td>:</td>
-                        <td>-</td>
+                        <!-- <td>-</td> -->
+                        <td>10 JULI 2019</td>
                     </tr>
                 </table>
             </th>
@@ -122,6 +124,7 @@
     foreach ($npp as $val) {
         $text[] = 'No. ' . $val->no_pr . ' tanggal ' . $val->tanggal_pr . ' senilai Rp. ' . number_format($val->nominal_pr_ip,2,',','.') . ',-' . '';
         $total[] = $val->nominal_pr_ip;
+        $no_pr = is_numeric($val->no_pr);
     }
     ?>
     <table width="100%">
@@ -141,7 +144,7 @@
                         <td></td>
                         <td width="1%">b. </td>
                         <td>
-                            Ijin Prinsip/PR/NPD ACC*)  {{ implode(' dan ', $text) }} dengan total Rp. {{ number_format(array_sum($total), 2,',','.') }} -
+                            @if($no_pr == false)Ijin Prinsip @elseif($no_pr == true) PR/NPD ACC*) @endif  {{ implode(' dan ', $text) }} dengan total Rp. {{ number_format(array_sum($total), 2,',','.') }} -
                             {{ terbilang(array_sum($total)) }} (rupiah)
                         </td>
                     </tr>
@@ -173,7 +176,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>b. Nota Persetujuan Dana / Ijin Prinsip</td>
+                        <td>b. Nota Persetujuan Dana / @if($no_pr == false)Ijin Prinsip @elseif($no_pr == true) PR/NPD @endif</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -312,15 +315,18 @@
         $tanggal2 = array_key_exists('2', $arr) ? $arr[2]["tanggal_evaluasi"] : '';
         $arr3 = array_key_exists('3', $arr) ? $arr[3]["pemenuhan"] : '';
         $arr3ket = array_key_exists('3', $arr) ? $arr[3]["keterangan"] : '';
+        // $nomor3 = array_key_exists('3', $arr) ? $arr[3]["nomor_evaluasi"] : '';
         $nomor3 = array_key_exists('3', $arr) ? $arr[3]["nomor_evaluasi"] : '';
         $tanggal3 = array_key_exists('3', $arr) ? $arr[3]["tanggal_evaluasi"] : '';
         $arr4 = array_key_exists('4', $arr) ? $arr[4]["pemenuhan"] : '';
         $arr4ket = array_key_exists('4', $arr) ? $arr[4]["keterangan"] : '';
+        // $nomor4 = array_key_exists('4', $arr) ? $arr[4]["nomor_evaluasi"] : '';
         $nomor4 = array_key_exists('4', $arr) ? $arr[4]["nomor_evaluasi"] : '';
         $tanggal4 = array_key_exists('4', $arr) ? $arr[4]["tanggal_evaluasi"] : '';
         $arr5 = array_key_exists('5', $arr) ? $arr[5]["pemenuhan"] : '';
         $arr5ket = array_key_exists('5', $arr) ? $arr[5]["keterangan"] : '';
         $nomor5 = array_key_exists('5', $arr) ? $arr[5]["nomor_evaluasi"] : '';
+        // $nomor5 = array_key_exists('5', $arr) ? $arr[5]["nomor_evaluasi"] : '';
         $tanggal5 = array_key_exists('5', $arr) ? $arr[5]["tanggal_evaluasi"] : '';
         $arr6 = array_key_exists('6', $arr) ? $arr[6]["pemenuhan"] : '';
         $arr6ket = array_key_exists('6', $arr) ? $arr[6]["keterangan"] : '';

@@ -52,7 +52,7 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Vendor Name
                                             </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ str_replace(array( '"', '[', ']' ),'' , $data->nama_vendor); }}</dd>
+                                            <dd class="col-sm-6 font-weight-normal">@foreach($vendor as $val) {{ $val->vendor_name }} @endforeach</dd>
 
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">Department</dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>

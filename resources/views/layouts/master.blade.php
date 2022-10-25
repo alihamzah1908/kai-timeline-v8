@@ -257,6 +257,8 @@
                         </li>
                         @endif
                         
+                        @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('manajer_logistic_nonsarana')
+                        || auth()->user()->hasRole('admin_pbj') || auth()->user()->hasRole('admin_contract') || auth()->user()->hasRole('manajer_logistic_sarana') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
                                 <i data-feather="bookmark" class="text-white"></i>
@@ -269,6 +271,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
                         
                         @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('admin_waste') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>

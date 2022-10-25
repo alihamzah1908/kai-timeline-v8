@@ -121,7 +121,7 @@
                             @endphp
                             <select data-plugin="customselect" class="form-control" name="vendor_name[]" multiple>
                                 @foreach($vendor as $val)
-                                <option value="{{ $val->vendor_name }}">{{ $val->vendor_name}}</option>
+                                <option value="{{ $val->vendor_code }}">{{ $val->vendor_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -679,6 +679,7 @@
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', true)
+                $("input[name*='vendor_name']" ).prop('required',false);
                 $(".vendor-name").hide()
             } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')

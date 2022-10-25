@@ -159,6 +159,7 @@ class ContractController extends Controller
 
     public function draft_kontrak(Request $request)
     {
+        // dd($request->all());
         $sp3_id = $request["sp3_id"] != '' || $request["sp3_id"] != null ? $request["sp3_id"] : $request["id"];
         $contract = \App\Models\SP3::find($sp3_id);
         if ($request["status"] == 'PROSES_DC') {
@@ -179,7 +180,7 @@ class ContractController extends Controller
             $trx_contract->save();
             if ($trx_contract) {
                 $trx_status = \App\Models\SP3::find($sp3_id);
-                $trx_status->proses_st = 'PROSES_UJP';
+                $trx_status->proses_st = 'PROSES_DC';
                 $trx_status->save();
             }
             return redirect(route('contract.show', $sp3_id));
@@ -210,7 +211,7 @@ class ContractController extends Controller
             $trx_contract->save();
             if ($trx_contract) {
                 $trx_status = \App\Models\SP3::find($sp3_id);
-                $trx_status->proses_st = 'PROSES_VJP';
+                $trx_status->proses_st = $request["status"];
                 $trx_status->save();
             }
             return redirect(route('contract.show', $sp3_id));
@@ -232,7 +233,7 @@ class ContractController extends Controller
             $trx_contract->save();
             if ($trx_contract) {
                 $trx_status = \App\Models\SP3::find($sp3_id);
-                $trx_status->proses_st = 'PROSES_RDC';
+                $trx_status->proses_st = $request["status"];
                 $trx_status->save();
             }
             return redirect(route('contract.show', $sp3_id));
@@ -255,12 +256,12 @@ class ContractController extends Controller
                 $trx_contract->save();
                 if ($trx_contract) {
                     $trx_status = \App\Models\SP3::find($sp3_id);
-                    $trx_status->proses_st = 'PROSES_VAC';
+                    $trx_status->proses_st = 'PROSES_RDC';
                     $trx_status->save();
                 }
             }
             return redirect(route('contract.show', $sp3_id));
-        } else if ($request["status"] == 'PROSES_VAC') {
+        } else if ($request["status"] == 'PROSES_ALG') {
             $arr = $request["tanggal_submit_logistik"];
             foreach ($arr as $key => $val) {
                 $trx_contract = new \App\Models\TrxApprovalLogistik();
@@ -284,7 +285,7 @@ class ContractController extends Controller
                 }
             }
             return redirect(route('contract.show', $sp3_id));
-        } else if ($request["status"] == 'PROSES_ALG') {
+        } else if ($request["status"] == 'PROSES_APU') {
             $arr = $request["tanggal_submit_user"];
             foreach ($arr as $key => $val) {
                 $trx_contract = new \App\Models\TrxApprovalUser();
@@ -308,7 +309,7 @@ class ContractController extends Controller
                 }
             }
             return redirect(route('contract.show', $sp3_id));
-        } else if ($request["status"] == 'PROSES_APU') {
+        } else if ($request["status"] == 'PROSES_APL') {
             $arr = $request["tanggal_submit_user"];
             foreach ($arr as $key => $val) {
                 $trx_contract = new \App\Models\TrxApprovalLegal();
@@ -332,7 +333,7 @@ class ContractController extends Controller
                 }
             }
             return redirect(route('contract.show', $sp3_id));
-        } else if ($request["status"] == 'PROSES_APL') {
+        } else if ($request["status"] == 'PROSES_VAC') {
             $arr = $request["tanggal_submit_vendor"];
             foreach ($arr as $key => $val) {
                 $trx_contract = new \App\Models\TrxVendorContract();
@@ -351,7 +352,7 @@ class ContractController extends Controller
                 $trx_contract->save();
                 if ($trx_contract) {
                     $trx_status = \App\Models\SP3::find($sp3_id);
-                    $trx_status->proses_st = 'PROSES_KAC';
+                    $trx_status->proses_st = 'PROSES_VAC';
                     $trx_status->save();
                 }
             }
@@ -374,20 +375,27 @@ class ContractController extends Controller
             $trx_contract->save();
             if ($trx_contract) {
                 $trx_status = \App\Models\SP3::find($sp3_id);
-                $trx_status->proses_st = 'PROSES_CR';
+                $trx_status->proses_st = 'PROSES_KAC';
                 $trx_status->save();
             }
             return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'PROSES_CR') {
+            // dd($request->all());
             $trx_contract = new \App\Models\TrxMppl();
             // $trx_contract->report_pbj_contract_id = $contract->report_pbj_contract_id;
-            $trx_contract->sp3_id = $contract->sp3_id;
+            $trx_contract->sp3_id = $request["sp3_id"];
             $trx_contract->start_date_mppl = $request["start_date_mppl"];
             $trx_contract->end_date_mppl = $request["end_date_mppl"];
             $trx_contract->off_days = $request["off_days"];
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
             $trx_contract->pengawas_pekerjaan = $request["catatan_penanggung_jawab"];
+            $trx_contract->termin = $request["termin"];
             $trx_contract->save();
+            if ($trx_contract) {
+                $trx_status = \App\Models\SP3::find($sp3_id);
+                $trx_status->proses_st = 'PROSES_CR';
+                $trx_status->save();
+            }
             return redirect(route('contract.show', $sp3_id));
         } else if ($request["status"] == 'summary_contract') {
             $trx_contract = new \App\Models\TrxSummaryContract();
@@ -441,7 +449,12 @@ class ContractController extends Controller
                 return $btn;
             })
             ->addColumn('harga_negosiasi', function ($row) {
-                return $row->harga_negosiasi;
+		if($row->harga_negosiasi != ''){
+                   return number_format($row->harga_negosiasi,2,",",".");
+		}else{
+                   return '-';
+		}
+
             })
             ->addColumn('proses_st', function ($row) {
                 return '<badges class="badge badge-danger">' . $row->contract_status . '</badges>';
