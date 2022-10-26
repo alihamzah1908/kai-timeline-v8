@@ -405,6 +405,7 @@ class ContractController extends Controller
             $trx_contract->tgl_contract = $request["tanggal_kontrak"];
             $trx_contract->total_day_work = $request["off_days"];
             $trx_contract->uncontroll_days = $request["uncontroll_days"];
+            $trx_contract->hari_libur = $request["hari_libur"];
             $trx_contract->notes = $request["catatan_summary_contract"];
             $trx_contract->created_by = Auth::user()->id;
             if ($request->hasFile('file_perjanjian')) {

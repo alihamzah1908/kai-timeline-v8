@@ -497,6 +497,7 @@
                                             </fieldset>
                                             @endforeach
                                             @else
+                                            @if($vendor->count() > 0)
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1"></label>
@@ -564,6 +565,79 @@
                                                 </fieldset>
                                                 @endforeach
                                             </div>
+                                            @else 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"></label>
+                                                </div>
+                                                <fieldset>
+                                                <legend>Vendor Information</legend>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Vendor Name:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <select name="vendor_code[]" class="form-control">
+                                                                    <option value="">Pilih Vendor</option>
+                                                                    <?php
+                                                                    foreach ($vendor_list as $val) {
+                                                                    ?>
+                                                                    <option value="{{ $val->vendor_code }}">{{ $val->vendor_name }}</option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Phone Number:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="phone_number[]" class="form-control" placeholder="Please insert phone number" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">PIC Name:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="pic_name[]" class="form-control" placeholder="Please insert pic name" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Email Corporate:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="email[]" class="form-control" placeholder="Please insert email" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Vendor Address:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <textarea name="vendor_address[]" class="form-control" placeholder="Please insert vendor addres" value=""></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            @endif
                                             @endif
                                         </div>
                                     </div>
@@ -2938,21 +3012,35 @@
 <script>
     $(document).ready(function() {
         var status = $('#contract_status').val();
+        var metode = '{{ $data->type_metode }}'
         if (status == 'PROSES_DRKS') {
             $('.rks').addClass('done')
             $("#sw-arrows-step-1").css("display", "block")
         } else if (status == 'PROSES_RRKS') {
-            $('.rks').addClass('done')
+            
         } else if (status == 'PROSES_URKS') {
             $('.rks').addClass('done')
-            $('.undangan').addClass('active')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "block")
-            $('a[href="#sw-arrows-step-1"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "block")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $('.undangan').addClass('done')
-            });
+            if(metode == 1 || metode == 2){
+                $('.rks').addClass('done')
+                $('.undangan').addClass('active')
+                $("#sw-arrows-step-1").css("display", "")
+                $("#sw-arrows-step-undangan").css("display", "block")
+                $('a[href="#sw-arrows-step-1"]').click(function() {
+                    $("#sw-arrows-step-1").css("display", "block")
+                    $("#sw-arrows-step-undangan").css("display", "")
+                    $('.undangan').addClass('done')
+                });
+            }else if(metode == 3){
+                $('.rks').addClass('done')
+                $('.calon-tender').addClass('active')
+                $("#sw-arrows-step-1").css("display", "")
+                $("#sw-arrows-step-2").css("display", "block")
+                $('a[href="#sw-arrows-step-1"]').click(function() {
+                    $("#sw-arrows-step-1").css("display", "block")
+                    $("#sw-arrows-step-2").css("display", "")
+                    $('.calon-tender').addClass('done')
+                });
+            }
         } else if (status == 'PROSES_PP') {
             $('.rks').addClass('done')
             $('.undangan').addClass('done')
@@ -3314,7 +3402,6 @@
         });
         $('body').on('click', '.sw-btn-next', function(e) {
             var status_process = $(this).closest('#smartwizard-arrows').find('[style*="display: block"]').attr('id');
-            console.log(status_process)
             if (status == 'PROSES_DRKS') {
                 var metode = '{{ $data->type_metode }}'
                 $('.calon-tender').removeClass('active')
@@ -3334,8 +3421,15 @@
                 })
             } else if (status == 'PROSES_URKS') {
                 $('.calon-tender').removeClass('active')
+                var metode = '{{ $data->type_metode }}'
+                console.log(metode)
+                if(metode == 3){
+                    var title = 'Are you sure save Calon Peserta Tender ?'
+                }else {
+                    var title = 'Are you sure save Undangan RKS'
+                }
                 Swal.fire({
-                    title: 'Are you sure save Undangan RKS',
+                    title: title,
                     // text: 'Your procurement are send to contract!',
                     icon: 'warning',
                     showCancelButton: true,
@@ -3345,7 +3439,11 @@
                 }).then((result) => {
                     if (result.value) {
                         e.preventDefault()
-                        $("#form-undangan").submit();
+                        if(metode == 3){
+                            $("#tender").submit();
+                        }else{
+                            $("#form-undangan").submit();
+                        }
                     }
                 })
             } else if (status == 'PROSES_PP') {
@@ -3562,7 +3660,7 @@
             body += '<select data-plugin="customselect" class="form-control" name="vendor_code[]">'
             body += '<option value="">Select Vendor</option>'
             <?php
-            foreach ($vendor as $val) {
+            foreach ($vendor_list as $val) {
             ?>
                 body += '<option value="<?php echo $val->vendor_code ?>"><?php echo $val->vendor_name ?></option>'
 

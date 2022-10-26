@@ -403,9 +403,9 @@
                                                     $no_just = [];
                                                     $tgl_just = [];
                                                     foreach ($trx_npp as $val) {
-                                                        $no_rab[] = $val->no_rab . '/' . $val->tanggal_rab . '/' . $data->judul_pengadaan;
+                                                        $no_rab[] = $val->no_rab;
                                                         $tgl_rab[] = $val->tanggal_rab;
-                                                        $no_just[] = $val->no_justifikasi . '/' . $val->tanggal_justifikasi . '/' . $data->judul_pengadaan;
+                                                        $no_just[] = $val->no_justifikasi;
                                                         $tgl_just[] = $val->tanggal_justifikasi;
                                                     }
                                                     $rabImpld = implode(', ', $no_rab);
@@ -420,7 +420,7 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No RAB, Tanggal RAB dan Judul Pengadaan di RAB">
                                                         </td>
                                                         <td>
-                                                            @foreach($trx_npp as $pr){{ $pr->no_rab . '/' . $pr->tanggal_rab . '/' . $data->judul_pengadaan}} <br />@endforeach
+                                                            @foreach($trx_npp as $pr){{ $pr->no_rab }} <br />@endforeach
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ $rabImpld }}">
                                                         </td>
                                                         <td>
@@ -477,8 +477,8 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="METODE PEMBAYARAN">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}</p>
-                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ $data->no_kak . '/' . date('Y-m-d', strtotime($data->tanggal_kak)) . '/' . $data->judul_pengadaan}}">
+                                                            <p>{{ $data->no_kak }}</p>
+                                                            <input type="hidden" name="nomor[]" class="form-control" value="{{ $data->no_kak }}">
                                                         </td>
                                                         <td>
                                                             <p>{{ date('Y-m-d', strtotime($data->tanggal_kak)) }}</p>

@@ -211,10 +211,12 @@ class Sp3Controller extends Controller
     public function show($id)
     {
         $data["data"] = \App\Models\SP3::find($id);
+        $where = json_decode($data["data"]["nama_vendor"]) ? json_decode($data["data"]["nama_vendor"]) : [];
+        // dd($where);
         $data["vendor"] = DB::table('vendor')
-                    ->select('vendor_name')
-                    ->whereIn('vendor_code', json_decode($data["data"]["nama_vendor"]))
-                    ->get();
+            ->select('vendor_name')
+            ->whereIn('vendor_code', $where)
+            ->get();
         $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $id)->get();
         if ($check->count() > 0) {
@@ -318,14 +320,18 @@ class Sp3Controller extends Controller
 
     public function generate_sp(Request $request)
     {
-        $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
+        // $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])
+        //     ->orderBy('eval_sp3_id', 'desc')
+        //     ->get();
         $data["data"] = \App\Models\SP3::find($request["id"]);
         // dd($data["data"]);
         $data["timeline"] = \App\Models\Timeline::where('timeline_id', $data["data"]["timeline_id"])->first();
         $data["npp"] = \App\Models\TrxNpp::where('sp3_id', $request["id"])->get();
         $check = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
         if ($check->count() > 0) {
-            $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])->get();
+            $data["evaluasi"] = \App\Models\EvaluasiSp3::where('sp3_id', $request["id"])
+                ->orderBy('eval_sp3_id', 'asc')
+                ->get();
         } else {
             $data["evaluasi"] = null;
         }
@@ -344,14 +350,14 @@ class Sp3Controller extends Controller
     public function evaluasi_store(Request $request)
     {
         // dd($request->all());
-        foreach ($request["pemenuhan"] as $key => $val) {
+        foreach ($request["item_value"] as $key => $val) {
             $data = new \App\Models\EvaluasiSp3();
             $data->sp3_id = $request["sp3_id"];
             $data->tanggal_evaluasi = $request["tanggal"][$key];
             $data->nomor_evaluasi = $request["nomor"][$key];
             // $data->item_cd = $request["item_cd"][$key];
             $data->item_value = $request["item_value"][$key];
-            $data->pemenuhan = $val;
+            $data->pemenuhan = $request["pemenuhan"][$key];
             $data->keterangan = $request["keterangan"][$key];
             $data->created_by = Auth::user()->id;
             $data->save();

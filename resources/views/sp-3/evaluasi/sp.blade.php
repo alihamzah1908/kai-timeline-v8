@@ -1,3 +1,25 @@
+<?php
+function tgl_indos($tanggal)
+{
+    $bulan = array(
+        1 => 'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+    $pecahkan = explode('-', $tanggal);
+    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+}
+?>
+
 <style>
     body {
         font-size: 10px;
@@ -110,7 +132,10 @@
             </th>
             <td style="width: 30%;" align="left">
                 <!-- Tanggal ini nanti di update ke tanggal approval -->
-                Jakarta, {{date('d M Y', strtotime($data->updated_at)) }} <br />
+                @php
+                $datesp = date('Y-m-d', strtotime($data->updated_at));
+                @endphp
+                Jakarta, {{ tgl_indos($datesp) }} <br />
                 Kepada Yth., <br />
                 Panitia Pengadaan <br />
                 {{ $timeline ? strtoupper($timeline->pbj) : '' }} <br />
@@ -144,8 +169,8 @@
                         <td></td>
                         <td width="1%">b. </td>
                         <td>
-                            @if($no_pr == false)Ijin Prinsip @elseif($no_pr == true) PR/NPD ACC*) @endif  {{ implode(' dan ', $text) }} dengan total Rp. {{ number_format(array_sum($total), 2,',','.') }} -
-                            {{ terbilang(array_sum($total)) }} (rupiah)
+                            @if($no_pr == false)IP @elseif($no_pr == true) PR @endif  {{ implode(' dan ', $text) }} dengan total Rp. {{ number_format(array_sum($total), 2,',','.') }} -
+                            ({{ terbilang(array_sum($total)) }} rupiah )
                         </td>
                     </tr>
                 </table>
@@ -176,7 +201,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>b. Nota Persetujuan Dana / @if($no_pr == false)Ijin Prinsip @elseif($no_pr == true) PR/NPD @endif</td>
+                        <td>b. Nota Persetujuan Dana / @if($no_pr == false)IP @elseif($no_pr == true) PR @endif</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -301,6 +326,7 @@
     <?php
     if ($evaluasi) {
         $arr = $evaluasi->toArray();
+        // dd($arr);
         $arr0 = array_key_exists('0', $arr) ? $arr[0]["pemenuhan"] : '';
         $arr0ket = array_key_exists('0', $arr) ? $arr[0]["keterangan"] : '';
         $nomor0 = array_key_exists('0', $arr) ? $arr[0]["nomor_evaluasi"] : '';

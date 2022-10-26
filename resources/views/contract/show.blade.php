@@ -1205,30 +1205,51 @@
                                                     <input type="hidden" id="summary_contract" name="status" value="summary_contract">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1" class="font-weight-bold">Nomor Kontrak:</label>
                                                                 <input type="text" name="nomor_kontrak" class="form-control" id="off-days" placeholder="please insert nomor kontrak" value="{{ $summary ? $summary->nomor_contract : '' }}">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1" class="font-weight-bold">Tanggal Kontrak:</label>
                                                                 <input type="text" name="tanggal_kontrak" class="form-control datepicker" id="uncontroll-days" placeholder="please insert tanggal kontrak" value="{{ $summary ? $summary->tgl_contract : '' }}">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
+                                                            <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kalender:</label>
                                                             <div class="form-group">
-                                                                <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
-                                                                <input type="text" name="off_days" class="form-control" id="off-days" placeholder="please insert total_hari_kerja" value="{{ $summary ? $summary->total_day_work : '' }}">
+                                                                @php
+                                                                $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                                $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                                $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
+                                                                $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
+                                                                $interval = $rksNew->diff($pcpNew);
+                                                                $days = $interval->days;
+                                                                @endphp
+                                                                {{ $days }} Days
+                                                                <input type="hidden" id="total-hari-kalender" value="{{ $days }}">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1" class="font-weight-bold">Hari Libur:</label>
+                                                                <input type="text" name="hari_libur" class="form-control" id="hari-libur" placeholder="please insert hari libur" value="{{ $summary ? $summary->hari_libur : '' }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1" class="font-weight-bold">Uncontroll Days:</label>
                                                                 <input type="text" name="uncontroll_days" class="form-control" id="uncontroll-days" placeholder="please insert uncontroll days" value="{{ $summary ? $summary->uncontroll_days : '' }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kerja:</label>
+                                                                <input type="text" name="off_days" class="form-control" id="hari-kerja" placeholder="please insert total_hari_kerja" value="{{ $summary ? $summary->total_day_work : '' }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2089,6 +2110,20 @@
                     var millisBetween = endDay.getTime() - startDay.getTime();
                     var days = millisBetween / millisecondsPerDay;
                     $("#jumlah_hari_kalender").val(Math.floor(days))
+                })
+
+                // kalkulasi hari kerja dari hari libur
+                $('body').on('keyup','#hari-libur', function(){
+                    var hari_kalender = $('#total-hari-kalender').val()
+                    var uncontroll_days = $("#uncontroll-days").val()
+                    $('#hari-kerja').val(parseFloat(hari_kalender) - parseFloat($(this).val()) - parseFloat(uncontroll_days))
+                })
+
+                // kalkulasi hari kerja dari uncontroll days
+                $('body').on('keyup','#uncontroll-days', function(){
+                    var hari_kalender = $('#total-hari-kalender').val()
+                    var hari_libur = $("#hari-libur").val()
+                    $('#hari-kerja').val(parseFloat(hari_kalender) - parseFloat($(this).val()) - parseFloat(hari_libur))
                 })
             })
         </script>

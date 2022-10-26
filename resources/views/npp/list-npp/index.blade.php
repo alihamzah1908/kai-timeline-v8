@@ -119,7 +119,7 @@
                             @php
                             $vendor = DB::select('select * from vendor');
                             @endphp
-                            <select data-plugin="customselect" class="form-control" name="vendor_name[]" multiple>
+                            <select data-plugin="customselect" class="form-control input-vendor-name" name="vendor_name[]" multiple>
                                 @foreach($vendor as $val)
                                 <option value="{{ $val->vendor_code }}">{{ $val->vendor_name}}</option>
                                 @endforeach
@@ -672,24 +672,26 @@
         //         body += '</div>'
         //         $(".row-timeline").append(body)
         //     })
-        // })
+        // })r
 
         $('body').on('change', '.type-metode', function() {
             if ($(this).val() == '3') {
-                $("#no-justifikasi").css('display', '')
+                $("#no-justifikasi").css('display', 'none')
                 $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', true)
-                $("input[name*='vendor_name']" ).prop('required',false);
+                $(".input-vendor-name" ).prop('disabled', true);
                 $(".vendor-name").hide()
             } else if ($(this).val() == '1') {
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', true)
+                $(".input-vendor-name" ).prop('disabled', false);
                 $(".vendor-name").hide()
             } else if ($(this).val() == '2') {
                 $("#no-justifikasi").css('display', '')
                 $(".add-vendor-form").css('display', '')
                 $(".form-vendor-name").prop('disabled', true)
+                $(".input-vendor-name" ).prop('disabled', false);    
                 $(".vendor-name").hide()
             }
         })

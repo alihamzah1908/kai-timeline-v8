@@ -253,10 +253,13 @@ class ProcurementController extends Controller
             ->where('a.sp3_id', $id)
             ->join('public.vendor as b', 'a.vendor_code', 'b.vendor_code')
             ->get();
+        $where = json_decode($data["data"]["nama_vendor"]) ? json_decode($data["data"]["nama_vendor"]) : [];
         $data["vendor"] = DB::table('vendor')
             ->select('vendor_name', 'vendor_code', 'street')
-            ->whereIn('vendor_code', json_decode($data["data"]["nama_vendor"]))
+            ->whereIn('vendor_code', $where)
             ->get();
+
+        $data["vendor_list"] = DB::select('SELECT * FROM vendor LIMIT 10');
         $data["berita_acara"] = \App\Models\TrxBeritaAcara::where('sp3_id', $id)->get();
         $data["pemenangfinal"] = false;
         return view('procurement.show-new', $data);
@@ -440,9 +443,9 @@ class ProcurementController extends Controller
             $tender->save();
         }
         $status = \App\Models\SP3::find($request["sp3_id"]);
-        if ($status->proses_st == 'PROSES_PP') {
-            $status->proses_st = 'PROSES_AL';
-        }
+        // if ($status->proses_st == 'PROSES_PP') {
+        $status->proses_st = 'PROSES_AL';
+        // }
         $status->save();
         // return response()->json(['status' => 200]);
         return redirect(route('procurement.show', $request["sp3_id"]));
