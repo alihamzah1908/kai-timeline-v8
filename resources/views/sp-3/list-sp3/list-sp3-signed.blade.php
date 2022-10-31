@@ -109,6 +109,7 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            "pageLength": 25,
             language: {
                 paginate: {
                     previous: "<i class='uil uil-angle-left'>",
@@ -125,13 +126,13 @@
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'created_by'
+                    data: 'upload_by'
                 },
                 {
-                    data: 'nilai_pr'
+                    data: 'signed_by'
                 },
                 {
-                    data: 'created_at'
+                    data: 'upload_date'
                 },
                 {
                     data: 'nilai_tax'

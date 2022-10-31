@@ -160,14 +160,13 @@ class TimelineController extends Controller
                 $timeline->orWhere('proses_st', 'PROSES_CT');
             }
         } else {
-            if(Auth::user()->id == 14){
+            if (auth()->user()->hasRole('super admin')) {
                 $timeline;
-            } else if (Auth::user()->id == 20) {
+            } else if (auth()->user()->hasRole('Manajer Logistik')) {
                 $timeline;
             } else {
                 $timeline->where('directorate_cd', Auth::user()->directorate_cd);
             }
-            
         };
         $data = $timeline->get();
         return FacadesDataTables::of($data)
@@ -205,6 +204,15 @@ class TimelineController extends Controller
                     return 'MULTI YEAR';
                 }
             })
+            ->addColumn('upload_date', function ($row) {
+                return date('d M Y', strtotime($row->created_at));
+            })
+            ->addColumn('signed_by', function ($row) {
+                return $row->get_user ? $row->get_user->department_cd : '';
+            })
+            ->addColumn('upload_by', function ($row) {
+                return $row->get_user ? $row->get_user->name : '';
+            })
             ->addColumn('proses_st', function ($row) {
                 if ($row->proses_st == 'PROSES_DT') {
                     return '<badges class="badge badge-danger">Draft Timeline</badges>';
@@ -224,7 +232,7 @@ class TimelineController extends Controller
                                 </button>
                             </a>';
                     return $btn;
-                } else if(auth()->user()->hasRole('manajer_logistic_sarana') || auth()->user()->hasRole('manajer_logistic_nonsarana') && $row->proses_st == 'PROSES_ST') {
+                } else if (auth()->user()->hasRole('manajer_logistic_sarana') || auth()->user()->hasRole('manajer_logistic_nonsarana') && $row->proses_st == 'PROSES_ST') {
                     $btn = '<a href="' . route('timeline.show', $row->timeline_id) . '">
                                 <button class="btn btn-sm btn-primary btn-rounded">
                                     <i class="uil uil-search"></i>

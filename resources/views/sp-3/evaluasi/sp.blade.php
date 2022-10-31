@@ -197,11 +197,11 @@ function tgl_indos($tanggal)
                     </tr>
                     <tr>
                         <td></td>
-                        <td>a. RAB </td>
+                        <td>a. RAB; </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td>b. Nota Persetujuan Dana / @if($no_pr == false)IP @elseif($no_pr == true) PR @endif</td>
+                        <td>b. Nota Persetujuan Dana @if($no_pr == false)IP @elseif($no_pr == true) PR @endif</td>
                     </tr>
                     <tr>
                         <td></td>
@@ -209,7 +209,7 @@ function tgl_indos($tanggal)
                     </tr>
                     <tr>
                         <td></td>
-                        <td>d. KAK</td>
+                        <td>d. KAK;</td>
                     </tr>
                 </table>
                 <table width="100%" style="margin-top: 3em">
@@ -242,7 +242,7 @@ function tgl_indos($tanggal)
                         <td>PLT Logistic Planning, Evaluation, and Import Manager (unit pengusul)</td>
                     </tr>
                 </table>
-                <table style="margin-top: 7em;" align="center">
+                <table style="margin-top: 7em;" align="left">
                     <tr>
                         <td>
                             <u><b>SUBAGYO</b></u><br />

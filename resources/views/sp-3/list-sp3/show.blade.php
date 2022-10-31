@@ -83,6 +83,24 @@
                                             <dd class="col-sm-6 font-weight-normal">
                                                 {{ ($data->type_metode == '1' ? 'Penunjukan Langsung' : ($data->type_metode == '2' ? 'Pemilihan Langsung' : 'Lelang Terbuka')) }}
                                             </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach
+                                            </dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }}, <br />@endforeach
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->no_kak }}</dd>
+
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_kak ? date('d M Y', strtotime($data->tanggal_kak)) : '' }}</dd>
                                         </dl>
                                     </div>
                                     <div class="col-md-6">
@@ -139,25 +157,6 @@
                                             <dd class="col-sm-6 font-weight-normal">
                                                 {{ $data->tanggal_justifikasi_pemilihan ? date('d M Y', strtotime($data->tanggal_justifikasi_pemilihan)) : '' }}
                                             </dd>
-
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No. RAB</dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach
-                                            </dd>
-
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">RAB Date </dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">
-                                                @foreach($trx_npp as $pr){{ $pr->tanggal_rab ? date('d M Y', strtotime($pr->tanggal_rab)) : '' }}, <br />@endforeach
-                                            </dd>
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">No KAK </dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->no_kak }}</dd>
-
-                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">Tanggal KAK </dt>
-                                            <dd class="col-sm-1 font-weight-normal">:</dd>
-                                            <dd class="col-sm-6 font-weight-normal">{{ $data->tanggal_kak ? date('d M Y', strtotime($data->tanggal_kak)) : '' }}</dd>
                                             @if($data->timeline_id == '')
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">COA </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -197,6 +196,39 @@
                                                     <i class="uil uil-file"></i>&nbsp; {{ $pr->file_justifikasi }}
                                                 </a>
                                             </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File KAK </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @if($data->file_kak != '')
+                                                <a href="{{ asset('file/sp3/'. $data->file_kak) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_kak }}
+                                                </a>
+                                                @else 
+                                                <span>No file available</span>
+                                                @endif
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File MI </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @if($data->file_mi != '')
+                                                <a href="{{ asset('file/sp3/'. $data->file_mi) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_mi }}
+                                                </a>
+                                                @else 
+                                                <span>No file available</span>
+                                                @endif
+                                            </dd>
+                                            <dt class="col-sm-5 font-weight-normal font-weight-bold">File Lainya </dt>
+                                            <dd class="col-sm-1 font-weight-normal">:</dd>
+                                            <dd class="col-sm-6 font-weight-normal">
+                                                @if($data->file_lainya != '')
+                                                <a href="{{ asset('file/sp3/'. $data->file_lainya) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_lainya }}
+                                                </a>
+                                                @else 
+                                                <span>No file available</span>
+                                                @endif
+                                            </dd>
                                         </dl>
                                     </div>
                                 </div>
@@ -204,6 +236,7 @@
                         </div>
                         <?php
                         if ($evaluasi) {
+                            // dd($evaluasi);
                             $arr = $evaluasi->toArray();
                             $arr0 = array_key_exists('0', $arr) ? $arr[0]["pemenuhan"] : '';
                             $arr0ket = array_key_exists('0', $arr) ? $arr[0]["keterangan"] : '';
@@ -444,7 +477,7 @@
                                                             <input type="hidden" name="item_value[]" class="form-control" value="No Justifikasi, Tanggal Justifikasi dan Judul Pengadaan di Justifikasi">
                                                         </td>
                                                         <td>
-                                                            @foreach($trx_npp as $pr){{ $pr->no_justifikasi . '/' . $pr->tanggal_justifikasi . '/' . $data->judul_pengadaan}} <br />@endforeach
+                                                            @foreach($trx_npp as $pr){{ $pr->no_justifikasi }} <br />@endforeach
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ $justImpld }}">
                                                         </td>
                                                         <td>
@@ -497,10 +530,10 @@
                                                             <input type="checkbox" name="pemenuhan[]" value="Tidak" @if($evaluasi){{ $arr8 == 'Tidak' ? ' checked' : ''}}@endif> Tidak
                                                         </td>
                                                         <td>
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr7ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr7ket }}@endif"> @if($evaluasi){{ $arr8ket }}@endif</textarea><br />
-                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr8ket }}@endif"> @if($evaluasi){{ $arr9ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr5ket }}@endif"> @if($evaluasi){{ $arr5ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr6ket }}@endif"> @if($evaluasi){{ $arr6ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr7ket }}@endif"> @if($evaluasi){{ $arr7ket }}@endif</textarea><br />
+                                                            <textarea name="keterangan[]" class="form-control" value="@if($evaluasi){{ $arr8ket }}@endif"> @if($evaluasi){{ $arr8ket }}@endif</textarea><br />
                                                         </td>
                                                     </tr>
                                                     <tr>

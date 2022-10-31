@@ -262,7 +262,7 @@ class ProcurementController extends Controller
         $data["vendor_list"] = DB::select('SELECT * FROM vendor LIMIT 10');
         $data["berita_acara"] = \App\Models\TrxBeritaAcara::where('sp3_id', $id)->get();
         $data["pemenangfinal"] = false;
-        return view('procurement.show-new', $data);
+        return view('procurement.show-new1', $data);
     }
 
     public function summary($id)
@@ -506,7 +506,29 @@ class ProcurementController extends Controller
                 $dokumen->created_by = Auth::user()->id;
             } else if ($request["metode"] == '2_sampul') {
                 // dd($request->all());
-                if ($request["type"] == 'undangan_pembukaan_dokumen') {
+                if ($request["type"] == 'pemasukan_dokumen_penawaran') {
+                    $dokumen->tanggal_submit_dokumen = $request["dok_admin_date"][$key];
+                    $dokumen->created_by = Auth::user()->id;
+                    if ($request->hasFile('file_dokumen')) {
+                        $file = $request->file('file_dokumen')[$key];
+                        $extension = $file->getClientOriginalExtension();
+                        $new_name = 'dokumen-penawaran-admin' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                        $file->move(public_path('file/sp3'), $new_name);
+                    }
+                    if ($request->hasFile('file_harga')) {
+                        $file = $request->file('file_harga')[$key];
+                        $extension = $file->getClientOriginalExtension();
+                        $name_harga = 'dokumen-harga-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                        $file->move(public_path('file/sp3'), $name_harga);
+                    }
+                    $dokumen->file_dokumen = $new_name;
+                    $dokumen->file_harga = $name_harga;
+                    $dokumen->created_by = Auth::user()->id;
+                    
+                    $status = \App\Models\SP3::find($request["sp3_id"]);
+                    $status->step_process = 1;
+                    $status->save();
+                } else if ($request["type"] == 'undangan_pembukaan_dokumen') {
                     $dokumen->tanggal_undangan_pembukaan = $request["tanggal_undangan_pembukaan"][$key];
                     $dokumen->created_by = Auth::user()->id;
                     if ($request->hasFile('surat_undangan_pembukaan')) {
@@ -520,7 +542,7 @@ class ProcurementController extends Controller
                     // update step process dokumen penawaran
                     $dokumen->created_by = Auth::user()->id;
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 1;
+                    $status->step_process = 2;
                     $status->save();
                 } else if ($request["type"] == 'pembukaan_dokumen') {
                     $dokumen->tanggal_pembukaan_doc = $request["tanggal_pembukaan_doc"][$key];
@@ -534,7 +556,7 @@ class ProcurementController extends Controller
                     }
                     $dokumen->created_by = Auth::user()->id;
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 2;
+                    $status->step_process = 3;
                     $status->save();
                 } else if ($request["type"] == 'undangan_pembukaan_harga') {
                     $dokumen->tgl_pemb_doc_harga = $request["tgl_pemb_doc_harga"][$key];
@@ -548,7 +570,7 @@ class ProcurementController extends Controller
                     }
                     $dokumen->created_by = Auth::user()->id;
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 3;
+                    $status->step_process = 6;
                     $status->save();
                 } else if ($request["type"] == 'pembukaan_dokumen_harga') {
                     $dokumen->tgl_doc_pemb_harga = $request["tgl_doc_pemb_harga"][$key];
@@ -562,7 +584,7 @@ class ProcurementController extends Controller
                     }
                     $dokumen->created_by = Auth::user()->id;
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 4;
+                    $status->step_process = 7;
                     $status->save();
                 } else {
                     $dokumen->tanggal_submit_teknis = $request["tanggal_submit_teknis"][$key];
@@ -603,7 +625,21 @@ class ProcurementController extends Controller
             }
             $berita_acara->save();
         } else {
-            if ($request["type"] == 'undangan_pembukaan_dokumen') {
+            if($request["type"] == 'pemasukan_dokumen_penawaran'){
+                $berita_acara = new \App\Models\TrxBeritaAcara();
+                $berita_acara->sp3_id = $request["sp3_id"];
+                $berita_acara->step_process = 'pemasukan_dokumen_penawaran';
+                $berita_acara->nomor_spr = $request["nomor_pembukaan_penawaran"];
+                $berita_acara->notes = $request["catatan_pembukaan_penawaran"];
+                if ($request->hasFile('file_pembukaan_penawaran')) {
+                    $file_berita = $request->file('file_pembukaan_penawaran');
+                    $extensions = $file_berita->getClientOriginalExtension();
+                    $new_names = 'dok-pembukaan-penawaran' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extensions;
+                    $file_berita->move(public_path('file/sp3'), $new_names);
+                    $berita_acara->file_berita_acara = $new_names;
+                }
+                $berita_acara->save();
+            }else if ($request["type"] == 'undangan_pembukaan_dokumen') {
                 // insert dokumen penawaran berita acara
                 $berita_acara = new \App\Models\TrxBeritaAcara();
                 $berita_acara->sp3_id = $request["sp3_id"];
@@ -691,7 +727,7 @@ class ProcurementController extends Controller
                     $dokumen->save();
                     // UPDATE STATUS
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 5;
+                    $status->step_process = 4;
                     $status->save();
                 } else if ($request["type"] == 'pengumuman_admin_teknis') {
                     $dokumen->tanggal_evaluasi_admin = $request["tanggal_admin"][$key];
@@ -701,7 +737,7 @@ class ProcurementController extends Controller
 
                     // UPDATE STATUS
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 6;
+                    $status->step_process = 5;
                     $status->save();
                 } else if ($request["type"] == 'evaluasi_dokumen_penawaran_harga') {
                     $dokumen->tanggal_evaluasi_harga = $request["tanggal_harga"][$key];
@@ -712,7 +748,7 @@ class ProcurementController extends Controller
 
                     // UPDATE STATUS
                     $status = \App\Models\SP3::find($request["sp3_id"]);
-                    $status->step_process = 7;
+                    $status->step_process = 8;
                     $status->save();
                 } else {
                     if ($request["tanggal_admin"] || $request["penilaian_admin"] || $request["catatan_admin"]) {
@@ -785,6 +821,7 @@ class ProcurementController extends Controller
                 $berita_acara = new \App\Models\TrxBeritaAcara();
                 $berita_acara->sp3_id = $request["sp3_id"];
                 $berita_acara->step_process = 'evaluasi_dokumen_penawaran_harga';
+                $berita_acara->nomor_spr = $request["nomor_evaluasi_penawaran_harga"];
                 if ($request->hasFile('file_evaluasi_harga')) {
                     $file_berita = $request->file('file_evaluasi_harga');
                     $extensions = $file_berita->getClientOriginalExtension();
@@ -848,6 +885,13 @@ class ProcurementController extends Controller
         $berita_acara->sp3_id = $request["sp3_id"];
         $berita_acara->step_process = 'undangan_kkn';
         $berita_acara->nomor_spr = $request["nomor_undangan_kkn"];
+        if ($request->hasFile('file_undangan_kkn')) {
+            $file_berita = $request->file('file_undangan_kkn');
+            $extensions = $file_berita->getClientOriginalExtension();
+            $new_names = 'berita-undangan-kkn' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extensions;
+            $file_berita->move(public_path('file/sp3'), $new_names);
+            $berita_acara->file_berita_acara = $new_names;
+        }
         $berita_acara->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }
@@ -961,6 +1005,8 @@ class ProcurementController extends Controller
         $data->nomor_spr = $request["nomor_spr"];
         $data->nama_ttd = $request["nama_ttd"];
         $data->jabatan_ttd = $request["jabatan_ttd"];
+        $data->start_jamlak = $request["start_jamlak"];
+        $data->start_mppl = $request["start_mppl"];
         $data->save();
         return redirect(route('procurement.show', $request["sp3_id"]));
     }

@@ -45,4 +45,8 @@ class SP3 extends Model
     public function get_status(){
         return $this->belongsTo('\App\Models\MappingStatus','proses_st','mapping_desc');
     }
+
+    public function get_user(){
+        return $this->belongsTo('\App\Models\User','created_by','id');
+    }
 }

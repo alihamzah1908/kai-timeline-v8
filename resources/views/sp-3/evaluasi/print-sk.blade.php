@@ -64,13 +64,16 @@ function tgl_indos($tanggal)
         <table border="0" width="100%">
             @php
             $tgl_penetapan = $vendor ? date('Y-m-d', strtotime($vendor->created_at)) : '';
+            $evaluasi_harga = $berita_acara->where('step_process','evaluasi_dokumen_penawaran_harga')
+            ->where('sp3_id', $data->sp3_id)
+            ->first();
             @endphp
             <thead>
                 <tr align="left">
                     <th style="width: 10%" valign="top">MENUNJUK </th>
                     <th style="width: 2%;" valign="top">: </th>
                     <td style="width: 70%" valign="top">
-                        Surat Penawaran Harga dari {{ $vendor ? $vendor->vendor_name : '' }} Nomor : SRT-229/INFRAS-VI/BAW/2022, tanggal {{ tgl_indos($tgl_penetapan) }}.
+                        Surat Penawaran Harga dari {{ $vendor ? $vendor->vendor_name : '' }} Nomor : {{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}, tanggal {{ tgl_indos($tgl_penetapan) }}.
                     </td>
                 </tr>
                 <tr align="left">

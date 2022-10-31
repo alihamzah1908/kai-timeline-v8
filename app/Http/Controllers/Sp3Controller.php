@@ -67,6 +67,27 @@ class Sp3Controller extends Controller
                 $data->proses_st = $request["save"] == 'Save As Draft' ? 'PROSES_DSP3' : 'PROSES_SSP3';
                 $data->keterangan = 'KETERANGAN';
                 $data->created_by = Auth::user()->id;
+                if ($request->hasFile('doc_mi')) {
+                    $file = $request->file('doc_mi');
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = 'DOC-MI' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/sp3'), $fileName);
+                    $data->file_mi = $fileName;
+                }
+                if ($request->hasFile('doc_kak')) {
+                    $file = $request->file('doc_kak');
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = 'DOC-KAK' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/sp3'), $fileName);
+                    $data->file_kak = $fileName;
+                }
+                if ($request->hasFile('doc_lainya')) {
+                    $file = $request->file('doc_lainya');
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = 'DOC-LAINYA' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/sp3'), $fileName);
+                    $data->file_lainya = $fileName;
+                }
                 $data->save();
                 if ($data) {
                     foreach ($request["no_pr_ip"] as $key => $val) {
@@ -79,21 +100,23 @@ class Sp3Controller extends Controller
                         $npp->tanggal_pr = $request["date_pr"][$key];
                         $npp->tanggal_rab = $request["date_rab"][$key];
                         $npp->tanggal_justifikasi = $request["date_justifikasi"][$key];
-                        if ($request->file('file_pr') || $request->file('file_rab') || $request->file('file_jus_br')) {
+                        if ($request->file('file_pr')) {
                             // INSERT FILE PR  
                             $file_pr = $request->file('file_pr')[$key];
                             $extension = $file_pr->getClientOriginalExtension();
                             $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                             $file_pr->move(public_path('file/sp3'), $file_pr_name);
                             $npp->file_pr = $file_pr_name;
-
+                        }
+                        if ($request->file('file_rab')) {
                             // INSERT FILE RAB  
                             $file_rab = $request->file('file_rab')[$key];
                             $extension = $file_rab->getClientOriginalExtension();
                             $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                             $file_rab->move(public_path('file/sp3'), $file_rab_name);
                             $npp->file_rab = $file_rab_name;
-
+                        }
+                        if ($request->file('file_jus_br')) {
                             // INSERT FILE JUSTIFIKASI  
                             $file_just = $request->file('file_jus_br')[$key];
                             $extension = $file_just->getClientOriginalExtension();
@@ -145,6 +168,27 @@ class Sp3Controller extends Controller
             $data->keterangan = 'KETERANGAN';
             $data->created_by = Auth::user()->id;
             $data->updated_by = Auth::user()->id;
+            if ($request->hasFile('doc_mi')) {
+                $file = $request->file('doc_mi');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = 'DOC-MI' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/sp3'), $fileName);
+                $data->file_mi = $fileName;
+            }
+            if ($request->hasFile('doc_kak')) {
+                $file = $request->file('doc_kak');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = 'DOC-KAK' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/sp3'), $fileName);
+                $data->file_kak = $fileName;
+            }
+            if ($request->hasFile('doc_lainya')) {
+                $file = $request->file('doc_lainya');
+                $extension = $file->getClientOriginalExtension();
+                $fileName = 'DOC-LAINYA' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                $file->move(public_path('file/sp3'), $fileName);
+                $data->file_lainya = $fileName;
+            }
             $data->save();
             if ($data) {
                 foreach ($request["no_pr_ip"] as $key => $val) {
@@ -157,25 +201,27 @@ class Sp3Controller extends Controller
                     $npp->tanggal_pr = $request["date_pr"][$key];
                     $npp->tanggal_rab = $request["date_rab"][$key];
                     $npp->tanggal_justifikasi = $request["date_justifikasi"][$key];
-                    if ($request->file('file_pr') || $request->file('file_rab') || $request->file('file_jus_br')) {
+                    if ($request->file('file_pr')) {
                         // INSERT FILE PR  
                         $file_pr = $request->file('file_pr')[$key];
-                        $extension_pr = $file_pr->getClientOriginalExtension();
-                        $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_pr;
+                        $extension = $file_pr->getClientOriginalExtension();
+                        $file_pr_name = 'PR-DOC' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                         $file_pr->move(public_path('file/sp3'), $file_pr_name);
                         $npp->file_pr = $file_pr_name;
-
+                    }
+                    if ($request->file('file_rab')) {
                         // INSERT FILE RAB  
                         $file_rab = $request->file('file_rab')[$key];
-                        $extension_rab = $file_rab->getClientOriginalExtension();
-                        $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_rab;
+                        $extension = $file_rab->getClientOriginalExtension();
+                        $file_rab_name = 'PR-RAB' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                         $file_rab->move(public_path('file/sp3'), $file_rab_name);
                         $npp->file_rab = $file_rab_name;
-
+                    }
+                    if ($request->file('file_jus_br')) {
                         // INSERT FILE JUSTIFIKASI  
                         $file_just = $request->file('file_jus_br')[$key];
-                        $extension_just = $file_just->getClientOriginalExtension();
-                        $file_just_name = 'PR-JUSTIFIKASI-BRG' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension_just;
+                        $extension = $file_just->getClientOriginalExtension();
+                        $file_just_name = 'PR-JUSTIFIKASI-BRG' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
                         $file_just->move(public_path('file/sp3'), $file_just_name);
                         $npp->file_justifikasi = $file_just_name;
                     }
@@ -309,6 +355,7 @@ class Sp3Controller extends Controller
             ->leftJoin('vendor as b', 'a.vendor_code', 'b.vendor_code', 'b.street', 'b.city', 'b.postal_code')
             ->where('a.sp3_id', $request["id"])
             ->first();
+        $data["berita_acara"] = \App\Models\TrxBeritaAcara::where('sp3_id', $request["id"])->get();
         $resultName = date('Ymd_His') . "_SURAT_KEPUTUSAN.pdf";
         $view       = view('sp-3.evaluasi.print-sk', $data)->render();
         // return $view;
@@ -349,7 +396,6 @@ class Sp3Controller extends Controller
 
     public function evaluasi_store(Request $request)
     {
-        // dd($request->all());
         foreach ($request["item_value"] as $key => $val) {
             $data = new \App\Models\EvaluasiSp3();
             $data->sp3_id = $request["sp3_id"];
@@ -408,6 +454,15 @@ class Sp3Controller extends Controller
                 return '<a href="' . route('sp3.show', $row->sp3_id) . '">
                            ' . $row->no_sp3 . '
                         </a>';
+            })
+            ->addColumn('upload_date', function ($row) {
+                return date('d M Y', strtotime($row->created_at));
+            })
+            ->addColumn('signed_by', function ($row) {
+                return $row->get_user ? $row->get_user->department_cd : '';
+            })
+            ->addColumn('upload_by', function ($row) {
+                return $row->get_user ? $row->get_user->name : '';
             })
             ->addColumn('nilai_pr', function ($row) {
                 return number_format($row->nilai_pr, 2);

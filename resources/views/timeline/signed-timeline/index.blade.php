@@ -24,10 +24,10 @@
                     </div>
                     <div class="table-responsive">
                         <!-- <table id="datatable" class="table nowrap"> -->
-                        <table id="datatable" style="width:100%">
+                        <table id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
-                                    <th style='width:20%'>Upload Signed Title</th>
+                                    <th style='width:20%;'>Upload Signed Title</th>
                                     <th style='width:10%'>Upload By</th>
                                     <th style='width:20%'>Signed By</th>
                                     <th style='width:10%'>Upload Date</th>
@@ -109,6 +109,7 @@
 <script>
     $(document).ready(function() {
         var timeline = $('#datatable').DataTable({
+            "pageLength": 25,
             language: {
                 paginate: {
                     previous: "<i class='uil uil-angle-left'>",
@@ -125,14 +126,13 @@
                     data: 'judul_pengadaan'
                 },
                 {
-                    data: 'created_by'
+                    data: 'upload_by'
                 },
                 {
-                    data: 'nilai_pr'
+                    data: 'signed_by'
                 },
-
                 {
-                    data: 'created_at'
+                    data: 'upload_date'
                 },
                 {
                     data: 'jenis_kontrak'

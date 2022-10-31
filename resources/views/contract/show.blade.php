@@ -1221,9 +1221,9 @@
                                                             <label for="exampleInputEmail1" class="font-weight-bold">Total Hari Kalender:</label>
                                                             <div class="form-group">
                                                                 @php
-                                                                $rks = \App\Models\DraftRks::select('created_at')->where('sp3_id', $data->sp3_id)->first();
+                                                                $ttd_kci = \App\Models\TrxKciContract::select('tanggal_submit')->where('sp3_id', $data->sp3_id)->first();
                                                                 $pcp = \App\Models\TrxPenetapanPemenang::select('created_at')->where('sp3_id', $data->sp3_id)->first();
-                                                                $rksNew = $rks ? new DateTime($rks->created_at) : new DateTime();
+                                                                $rksNew = $ttd_kci ? new DateTime($ttd_kci->created_at) : new DateTime();
                                                                 $pcpNew = $pcp ? new DateTime($pcp->created_at) : new DateTime();
                                                                 $interval = $rksNew->diff($pcpNew);
                                                                 $days = $interval->days;

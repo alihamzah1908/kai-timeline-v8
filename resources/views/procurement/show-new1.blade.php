@@ -735,7 +735,9 @@
                                         </div>
                                     </div>
                                     @php 
-                                    $berita = $berita_acara->where('step_process','aanwidjzing')->first();
+                                    $berita = $berita_acara->where('step_process','aanwidjzing')
+                                    ->where('sp3_id', $data->sp3_id)
+                                    ->first();
                                     @endphp
                                     <div class="row">
                                         <div class="col-md-2">
@@ -895,7 +897,9 @@
                                                 </tbody>
                                             </table>
                                             @php 
-                                            $berita_sampul_1 = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')->first();
+                                            $berita_sampul_1 = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
+                                            ->where('sp3_id', $data->sp3_id)
+                                            ->first();
                                             @endphp
                                             <div class="row">
                                                 <div class="col-md-3">
@@ -959,10 +963,136 @@
                                     @if($data->proses_st == 'PROSES_PDP' || $data->proses_st == 'PROSES_UPD' || $data->proses_st == 'PROSES_PD' || $data->proses_st == 'PROSES_PDH'
                                     || $data->proses_st == 'PROSES_DH' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_EDP')
                                     <fieldset>
+                                        <legend>PEMASUKAN DOKUMEN PENAWARAN</legend>
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                                <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
+                                                    <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <input type="hidden" name="type" value="pemasukan_dokumen_penawaran" />
+                                                    <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                        <thead style="text-align: center">
+                                                            <tr>
+                                                                <th width="100%" colspan="4">PEMASUKAN DOKUMEN PENAWARAN</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" rowspan="2">PESERTA TENDER</th>
+                                                                <th width="20%" rowspan="2">DOKUMEN (Admin, Teknis)</th>
+                                                                <th width="20%" rowspan="2">DOKUMEN (Harga)</th>
+                                                                <th width="30%" rowspan="2">TANGGAL SUBMIT</th>
+                                                            </tr>
+                                                        </thead>
+                                                        @if($dokumen_penawaran->where('tanggal_submit_dokumen', '!=', '')->count() > 0)
+                                                        @foreach($dokumen_penawaran->where('tanggal_submit_dokumen', '!=', '') as $val)
+                                                        <tbody style="vertical-align: top">
+                                                            <tr>
+                                                                <td>
+                                                                    {{ $val->vendor_name}}
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ asset('file/sp3/'. $val->file_dokumen) }}">
+                                                                        <p><i class="uil uil-file-alt"></i> {{ $val->file_dokumen }}</p>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="{{ asset('file/sp3/'. $val->file_harga) }}">
+                                                                        <p><i class="uil uil-file-alt"></i> {{ $val->file_harga }}</p>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" id="dok_admin_date" name="tanggal_pembukaan_doc[]" class="form-control datepicker" placeholder="Tanggal Undangan Pembukaan" value="{{ $val->tanggal_submit_dokumen }}">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        @endforeach
+                                                        @else 
+                                                        <tbody style="vertical-align: top">
+                                                            @foreach($tender_aanwidjzing as $val)
+                                                            <tr>
+                                                                <td>
+                                                                    {{ $val->vendor_name }}
+                                                                    <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="file" name="file_dokumen[]" class="form-control" id="file-dokumen">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="file" name="file_harga[]" class="form-control" id="file-harga">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" id="dok_admin_date" name="dok_admin_date[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                        @endif
+                                                    </table>
+                                                    @php 
+                                                    $penawaran = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
+                                                        ->where('sp3_id', $data->sp3_id)
+                                                        ->first();
+                                                    @endphp 
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen Penawaran Nomor:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="nomor_pembukaan_penawaran" class="form-control" placeholder="please insert nomor" value="{{ $penawaran ? $penawaran->nomor_spr : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Berita Acara Pemasukan Dokumen:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_pembukaan_penawaran" class="form-control">
+                                                                @if($penawaran)
+                                                                @if($penawaran->file_berita_acara != '')
+                                                                    <a href="{{ asset('file/SP3/'. $penawaran->file_berita_acara) }}" target="_blank">
+                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $penawaran->file_berita_acara }}
+                                                                    </a>
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Catatan:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <textarea name="catatan_pembukaan_penawaran" id="catatan_pembukaan_penawaran" class="form-control" placeholder="Penjelasan">{{ $penawaran ? $penawaran->notes : '' }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    @endif
+                                    @if($data->step_process == 1)
+                                    <fieldset>
                                         <legend>Undangan Pembukaan Dokumen Admin & Teknis</legend>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
+                                                <form action="{{ route('save.document-penawaran') }}" method="post" id="form-undangan-dokumen-penawaran" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
                                                     <input type="hidden" name="metode" value="{{ $rks->metode }}" />
@@ -979,25 +1109,6 @@
                                                                 <th width="20%" rowspan="2">SURAT UNDANGAN</th>
                                                             </tr>
                                                         </thead>
-                                                        @if($dokumen_penawaran->count() > 0)
-                                                        <tbody style="vertical-align: top">
-                                                            @foreach($dokumen_penawaran->where('tanggal_undangan_pembukaan', '!=', '') as $val)
-                                                            <tr>
-                                                                <td>
-                                                                    {{ $val->vendor_name}}
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" id="dok_admin_date" name="tanggal_undangan_pembukaan[]" class="form-control datepicker" placeholder="Tanggal Undangan Pembukaan" value="{{ $val->tanggal_undangan_pembukaan }}">
-                                                                </td>
-                                                                <td>
-                                                                    <a href="{{ asset('file/sp3/'. $val->surat_undangan_pembukaan) }}">
-                                                                        <p><i class="uil uil-file-alt"></i> {{ $val->surat_undangan_pembukaan }}</p>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                        @else
                                                         <tbody style="vertical-align: top">
                                                             @foreach($tender_aanwidjzing as $val)
                                                             <tr>
@@ -1014,10 +1125,11 @@
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
-                                                        @endif
                                                     </table>
                                                     @php 
-                                                    $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')->first();
+                                                    $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp 
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1072,9 +1184,102 @@
                                         </div>
                                     </fieldset>
                                     @endif
-
+                                    @if($dokumen_penawaran->where('tanggal_undangan_pembukaan', '!=', '')->count() > 0)
+                                    <fieldset>
+                                        <legend>Undangan Pembukaan Dokumen Admin & Teknis</legend>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                
+                                                <table class="table datatable-pagination" id="tabel-data" width="100%">
+                                                    <thead style="text-align: center">
+                                                        <tr>
+                                                            <th width="100%" colspan="5">UNDANGAN PEMBUKAAN DOKUMEN ADMIN & TEKNIS</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="20%" rowspan="2">PESERTA TENDER</th>
+                                                            <th width="20%" rowspan="2">TANGGAL UNDANGAN PEMBUKAAN DOK (Admin & Teknis)</th>
+                                                            <th width="20%" rowspan="2">SURAT UNDANGAN</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="vertical-align: top">
+                                                        @foreach($dokumen_penawaran->where('tanggal_undangan_pembukaan', '!=', '') as $val)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $val->vendor_name}}
+                                                                <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code }}" />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="dok_admin_date" name="tanggal_undangan_pembukaan[]" class="form-control datepicker" placeholder="Tanggal Undangan Pembukaan" value="{{ $val->tanggal_undangan_pembukaan }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="file" name="surat_undangan_pembukaan[]" class="form-control">
+                                                                <a href="{{ asset('file/sp3/'. $val->surat_undangan_pembukaan) }}">
+                                                                    <p><i class="uil uil-file-alt"></i> {{ $val->surat_undangan_pembukaan }}</p>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                                @php 
+                                                $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
+                                                @endphp 
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen Penawaran Nomor:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="nomor_undangan" class="form-control" placeholder="please insert nomor" value="{{ $undangan ? $undangan->nomor_spr : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Undangan Pembukaan Dok. Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_undangan" class="form-control">
+                                                            @if($undangan)
+                                                            @if($undangan->file_berita_acara != '')
+                                                                <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
+                                                                </a>
+                                                            @endif
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Catatan Undangan Pembukaan Dok. Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <textarea name="catatan_undangan_pembukaan" class="form-control" placeholder="Penjelasan">{{ $undangan ? $undangan->notes : '' }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    @endif
                                     <!-- Kondisi pengisian pembukaan dokumen admin -->
-                                    @if($data->step_process == 1)
+                                    @if($data->step_process == 2)
                                     <fieldset>
                                         <legend>Pembukaan Dokumen Admin & Teknis</legend>
                                         <div class="row">
@@ -1096,25 +1301,6 @@
                                                                 <th width="20%" rowspan="2">TANGGAL PEMBUKAAN (Admin & Teknis)</th>
                                                             </tr>
                                                         </thead>
-                                                        @if($dokumen_penawaran->where('tanggal_pembukaan_doc', '!=', '')->count() > 0)
-                                                        <tbody style="vertical-align: top">
-                                                            @foreach($dokumen_penawaran->where('tanggal_pembukaan_doc', '!=', '') as $val)
-                                                            <tr>
-                                                                <td>
-                                                                    {{ $val->vendor_name}}
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" id="dok_admin_date" name="tanggal_pembukaan_doc[]" class="form-control datepicker" placeholder="Tanggal Undangan Pembukaan" value="{{ $val->tanggal_pembukaan_doc }}">
-                                                                </td>
-                                                                <td>
-                                                                    <a href="{{ asset('file/sp3/'. $val->doc_pembukaan) }}">
-                                                                        <p><i class="uil uil-file-alt"></i> {{ $val->doc_pembukaan }}</p>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                        @else
                                                         <tbody style="vertical-align: top">
                                                             @foreach($tender_aanwidjzing as $doc)
                                                             <tr>
@@ -1131,7 +1317,6 @@
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
-                                                        @endif
                                                     </table>
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1222,7 +1407,9 @@
                                                         </tbody>
                                                     </table>
                                                     @php 
-                                                    $pembukaan = $berita_acara->where('step_process','pembukaan_dokumen')->first();
+                                                    $pembukaan = $berita_acara->where('step_process','pembukaan_dokumen')
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1279,7 +1466,7 @@
                                     @endif
 
                                     <!-- Kondisi pengisian undangan pembukaan dokumen harga -->
-                                    @if($data->step_process == 2)
+                                    @if($data->step_process == 5)
                                     <fieldset>
                                         <legend>UNDANGAN PEMBUKAAN DOKUMEN HARGA</legend>
                                         <div class="row">
@@ -1287,7 +1474,7 @@
                                                 <form action="{{ route('save.document-penawaran') }}" method="post" id="form-pembukaan-harga" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
-                                                    <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                                    <input type="hidden" name="metode" class="metode_sampul" value="{{ $rks->metode }}" />
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                     <input type="hidden" name="type" value="undangan_pembukaan_harga" />
                                                     <table class="table datatable-pagination" id="tabel-data" width="100%">
@@ -1421,7 +1608,9 @@
                                                     </tbody>
                                                 </table>
                                                 @php 
-                                                $pembukaan_harga = $berita_acara->where('step_process','undangan_pembukaan_harga')->first();
+                                                $pembukaan_harga = $berita_acara->where('step_process','undangan_pembukaan_harga')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -1475,7 +1664,7 @@
                                         </div>
                                     </fieldset>
                                     @endif
-                                    @if($data->step_process == 3)
+                                    @if($data->step_process == 6)
                                     <fieldset>
                                         <legend>Pembukaan Dokumen Harga</legend>
                                         <div class="row">
@@ -1483,7 +1672,7 @@
                                                 <form action="{{ route('save.document-penawaran') }}" method="post" id="form-doc-harga" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id }}" />
-                                                    <input type="hidden" name="metode" value="{{ $rks->metode }}" />
+                                                    <input type="hidden" name="metode" class="metode_sampul" value="{{ $rks->metode }}" />
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                                     <input type="hidden" name="type" value="pembukaan_dokumen_harga" />
                                                     <table class="table datatable-pagination" id="tabel-data" width="100%">
@@ -1616,7 +1805,9 @@
                                                     </tbody>
                                                 </table>
                                                 @php
-                                                $doc_harga = $berita_acara->where('step_process','pembukaan_harga')->first();
+                                                $doc_harga = $berita_acara->where('step_process','pembukaan_harga')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -1670,9 +1861,9 @@
                                         </div>
                                     </fieldset>
                                     @endif
-                                    @if($data->step_process == 4)
+                                    @if($data->step_process == 3)
                                     <div class="col-md-12 d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i> Approve</button>
+                                        <button class="btn btn-primary btn-sm btn-rounded approve" data-bind="{{ $data->proses_st }}"><i class="uil uil-check"></i> Evaluasi Penawaran</button>
                                     </div>
                                     @endif
                                     @elseif($data->proses_st == 'PROSES_PPDP')
@@ -1767,7 +1958,9 @@
                                                     </tbody>
                                                 </table>
                                                 @php 
-                                                $eval_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')->first();
+                                                $eval_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -1820,7 +2013,7 @@
                                     @if($rks->metode == '2_sampul')
                                     <div class="row">
                                         <div class="col-md-12">
-                                            @if($data->step_process == 4)
+                                            @if($data->step_process == 3)
                                             <fieldset>
                                                 <legend>EVALUASI DOKUMEN PENAWARAN ADMIN & TEKNIS</legend>
                                                 <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran-teknis" enctype="multipart/form-data">
@@ -1980,7 +2173,9 @@
                                                     </tbody>
                                                 </table>
                                                 @php 
-                                                $evaluasi_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')->first();
+                                                $evaluasi_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -2020,7 +2215,7 @@
                                                 </div>
                                             </fieldset>
                                             @endif
-                                            @if($data->step_process == 5)
+                                            @if($data->step_process == 4)
                                             <fieldset>
                                                 <legend>PENGUMUMAN ADMIN & TEKNIS</legend>
                                                 <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-evaluasi-penawaran-admin" enctype="multipart/form-data">
@@ -2111,7 +2306,9 @@
                                                     </tbody>
                                                 </table>
                                                 @php
-                                                $admin_teknis = $berita_acara->where('step_process','pengumuman_admin_teknis')->first();
+                                                $admin_teknis = $berita_acara->where('step_process','pengumuman_admin_teknis')
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -2140,7 +2337,7 @@
                                             </fieldset>
                                             </form>
                                             @endif
-                                            @if($data->step_process == 6)
+                                            @if($data->step_process == 7)
                                             <fieldset>
                                                 <legend>EVALUASI DOKUMEN PENAWARAN HARGA</legend>
                                             <!-- //--------------------------------// -->
@@ -2224,6 +2421,18 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
+                                                                <label for="exampleInputEmail1">Evaluasi Dokumen Penawaran Harga:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <input type="text" name="nomor_evaluasi_penawaran_harga" class="form-control" placeholder="please insert nomor">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
                                                                 <label for="exampleInputEmail1">Berita Acara Evaluasi Harga:</label>
                                                             </div>
                                                         </div>
@@ -2295,8 +2504,22 @@
                                                         </tbody>
                                                     </table>
                                                     @php 
-                                                    $evaluasi_harga = $berita_acara->where('step_process','evaluasi_dokumen_penawaran_harga')->first();
+                                                    $evaluasi_harga = $berita_acara->where('step_process','evaluasi_dokumen_penawaran_harga')
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Evaluasi Dokumen Penawaran Harga:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <input type="text" name="nomor_evaluasi_penawaran_harga" class="form-control" placeholder="please insert nomor" value="{{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -2326,7 +2549,7 @@
                                             @endif
                                             <div class="row">
                                                 <div class="col-md-12 d-flex justify-content-end">
-                                                    @if($data->step_process == 7)
+                                                    @if($data->step_process == 8)
                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded approve" data-bind="PROSES_PAT"><i class="uil uil-check"></i>Approve</button>
                                                     <button type="button" class="btn btn-warning btn-sm btn-rounded reject ml-1" data-bind="PROSES_PAT">Reject</button>
                                                     @endif
@@ -2403,6 +2626,30 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <input type="text" name="nomor_undangan_kkn" class="form-control" placeholder="please insert nomor" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->nomor_spr : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Berita Acara Undangan KKN:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="file" name="file_undangan_kkn" class="form-control" id="file-draft">
+                                                            @if($undangan_berita_kkn)
+                                                            @if($undangan_berita_kkn->file_berita_acara != '')
+                                                                <a href="{{ asset('file/SP3/'. $undangan_berita_kkn->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $undangan_berita_kkn->file_berita_acara }}
+                                                                </a>
+                                                            @endif
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2963,6 +3210,28 @@
                                                 <div class="row mt-3">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label for="exampleInputEmail1">Start Jaminan Pelaksanaan:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="start_jamlak" class="form-control datepicker" placeholder="Please insert jamlak" value="{{ $spr ? $spr->start_jamlak : '' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Start MPPL:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="start_mppl" class="form-control datepicker" placeholder="Please nama jabatan" value="{{ $spr ? $spr->start_mppl : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label for="exampleInputEmail1">Nama Penanda Tangan:</label>
                                                         </div>
                                                     </div>
@@ -3494,16 +3763,19 @@
                         e.preventDefault()
                         if (step == '') {
                             $("#form-dokumen-penawaran").submit();
-                        } else if (step == 1) {
+                        }else if(step == 1){
+                            $("#form-undangan-dokumen-penawaran").submit();
+                        } else if (step == 2) {
                             // step 1 to 2
                             $("#form-pembukaan-dokumen").submit();
-                        } else if (step == 2) {
-                            // step 2 to 3
-                            $("#form-pembukaan-harga").submit();
-                        } else if (step == 3) {
-                            // step 3 to 4
-                            $("#form-doc-harga").submit();
-                        }
+                        } 
+                        // else if (step == 6) {
+                        //     // step 2 to 3
+                        //     $("#form-pembukaan-harga").submit();
+                        // } else if (step == 7) {
+                        //     // step 3 to 4
+                        //     $("#form-doc-harga").submit();
+                        // }
                     }
                 })
             } else if (status == 'PROSES_EP') {
@@ -3527,8 +3799,13 @@
                 } else if (metode == '2_sampul') {
                     $('.kkn').removeClass('active')
                     var step = '{{ $data->step_process }}'
+                    if(step == 5 || step == 6){
+                        var title = 'Are you sure save Document Penawaran ?'
+                    }else{
+                        var title = 'Are you sure save Evaluasi Dokumen Penawaran ?'
+                    }
                     Swal.fire({
-                        title: 'Are you sure save Evaluasi Dokumen Penawaran ?',
+                        title: title,
                         // text: 'Your procurement are send to contract!',
                         icon: 'warning',
                         showCancelButton: true,
@@ -3538,11 +3815,17 @@
                     }).then((result) => {
                         if (result.value) {
                             e.preventDefault()
-                            if (step == 4) {
+                            if (step == 3) {
                                 $("#form-evaluasi-penawaran-teknis").submit();
-                            } else if (step == 5) {
+                            } else if (step == 4) {
                                 $("#form-evaluasi-penawaran-admin").submit();
+                            } else if (step == 5) {
+                                $("#form-pembukaan-harga").submit();
                             } else if (step == 6) {
+                            // step 2 to 3
+                                $("#form-doc-harga").submit();
+                            } else if (step == 7) {
+                                // step 3 to 4
                                 $("#form-harga").submit();
                             }
                             // else if(step == 5){
@@ -3607,7 +3890,7 @@
                 })
             } else if (status == 'PROSES_DC' || status == 'PROSES_PCP') {
                 $('.pcp').removeClass('active')
-                var pemenang = '{{ $pemenang ? $pemenang->status : '' }}';
+                var pemenang = '{{ $pemenang ? $pemenang->status : "" }}';
                 if (pemenang == 'pemenang') {
                     Swal.fire({
                         title: 'Are you sure save SPR ?',
