@@ -23,93 +23,111 @@
             background-repeat: no-repeat;
             /* background-size: 100% 100%; */
         }
+
+        .body-bg {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 23px 31px rgba(0, 0, 0, 0.19);
+            border-radius: 20px;
+            width: 453px;
+            height: 569.67px;
+            flex-direction: column;
+            align-items: center;
+            padding: 35px 30px;
+            gap: 10px;
+            background: #FFFFFF;
+            padding: 35px 30px;
+        }
+
+        .border-login {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 23px 31px rgba(0, 0, 0, 0.19);
+            border-radius: 20px;
+        }
     </style>
 </head>
 
 <body class="authentication-bg">
     <div class="container">
-    <div class="row pt-5">
-    </div>
-    <div class="row pt-5">
-    </div>
-    <div class="row pt-3">
-        <div class="col-xl-7">
+        <div class="row pt-5">
         </div>
-        <div class="col-xl-5">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <div class="card">
-                        <div class="row pt-3">
-                            <div class="col-md-12">
-                                <div class="mx-auto p-3 d-flex justify-content-center">
-                                    <a href="javascript:void(0)">
-                                        <img src="{{ asset('assets/images/c-log.png') }}" />
-                                        <h3 class="d-inline align-middle ml-1 text-logo"></h3>
-                                    </a>
+        <div class="row pt-5">
+        </div>
+        <div class="row pt-3">
+            <div class="col-xl-7">
+            </div>
+            <div class="col-xl-5">
+                <div class="col-md-6 border-login">
+                    <div class="card-body body-bg">
+                        <div class="card">
+                            <div class="row pt-3">
+                                <div class="col-md-12">
+                                    <div class="mx-auto p-3 d-flex justify-content-center">
+                                        <a href="javascript:void(0)">
+                                            <img src="{{ asset('assets/images/c-log.png') }}" />
+                                            <h3 class="d-inline align-middle ml-1 text-logo"></h3>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- <div class="row">
+                            <!-- <div class="row">
                             <div class="col-md-12 p-3 d-flex justify-content-center"">
                                 <h6 class=" h5 mb-0 mt-4">Welcome Back !</h6>
                                 <p class="text-muted mt-1 mb-4"></p>
                             </div>
                         </div> -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form action="{{ route('process.login') }}" class="authentication-form p-3" method="post">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label class="form-control-label">Username</label>
-                                        <div class="input-group input-group-merge">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="uil uil-user"></i>
-                                                </span>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="{{ route('process.login') }}" class="authentication-form p-3" method="post">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label class="form-control-label">Username</label>
+                                            <div class="input-group input-group-merge">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="uil uil-user"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" required>
                                             </div>
-                                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" required>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group mt-4">
-                                        <label class="form-control-label">Password</label>
-                                        <div class="input-group input-group-merge">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="uil uil-lock"></i>
-                                                </span>
+                                        <div class="form-group mt-4">
+                                            <label class="form-control-label">Password</label>
+                                            <div class="input-group input-group-merge">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="uil uil-lock"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
                                             </div>
-                                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group mb-4">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
-                                            <label class="custom-control-label" for="checkbox-signin">Remember
-                                                me</label>
+                                        <div class="form-group mb-4">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
+                                                <label class="custom-control-label" for="checkbox-signin">Remember
+                                                    me</label>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-primary btn-block btn-rounded" type="submit"> Log In
-                                        </button>
-                                    </div>     
-                                    <br>
-                                    <!-- <div class="col-xl-6">
+                                        <div class="form-group mb-0 text-center">
+                                            <button class="btn btn-primary btn-block btn-rounded" type="submit"> Log In
+                                            </button>
+                                        </div>
+                                        <br>
+                                        <!-- <div class="col-xl-6">
                                     <img src="{{ asset('assets/images/applestore.png') }}" alt="" width="100" />   
                                     </div>
                                     <div class="col-xl-6">
                                     <img src="{{ asset('assets/images/googleplay.png') }}" alt="" width="55" />
                                     </div>                        -->
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

@@ -4,7 +4,8 @@
     label {
         font-size: 10px;
     }
-    legend{
+
+    legend {
         font-size: 15px;
     }
 </style>
@@ -85,13 +86,13 @@
                             <dt class="font-weight-bold">No PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, <br />@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="no-pr"></span> @foreach($trx_npp as $pr){{ $pr->no_pr }}, @endforeach</dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Tanggal PR</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_pr)) }}, @endforeach</dt>
                         </div>
                     </div>
 
@@ -114,13 +115,13 @@
                             <dt class="font-weight-bold">No RAB</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, <br />@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="no-rab"></span>@foreach($trx_npp as $pr){{ $pr->no_rab }}, @endforeach</dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Tanggal RAB</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="tanggal-rab"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_rab)) }}, @endforeach</dt>
                         </div>
                     </div>
                     <div class="row">
@@ -128,13 +129,13 @@
                             <dt class="font-weight-bold">No Justifikasi Barang</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, <br />@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="no-mi"></span>@foreach($trx_npp as $pr){{ $pr->no_justifikasi }}, @endforeach</dt>
                         </div>
                         <div class="col-md-3 mb-1">
                             <dt class="font-weight-bold">Tanggal Justifikasi Barang</dt>
                         </div>
                         <div class="col-md-3">
-                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}@endforeach</dt>
+                            <dt class="font-weight-normal">: <span class="tanggal-pr"></span>@foreach($trx_npp as $pr){{ date('d/m/Y', strtotime($pr->tanggal_justifikasi)) }}, @endforeach</dt>
                         </div>
                     </div>
                     <div class="row">
@@ -193,13 +194,14 @@
                     <p class="sub-header">Procces of PBJ</p>
                     <div id="smartwizard-arrows" class="sw-main sw-theme-arrows">
                         <input type="hidden" value="{{ $data->proses_st }}" id="contract_status">
+                        <input type="hidden" value="{{ $data->type_metode }}" id="type_metode">
                         <input type="hidden" value="{{ $data->sp3_id }}" id="id">
                         <ul class="nav nav-tabs step-anchor">
                             <li class="nav-item rks"><a href="#sw-arrows-step-1" class="nav-link">RKS<small class="d-block">Step description</small></a></li>
                             @if($data->type_metode == '1' || $data->type_metode == '2')
                             <li class="nav-item undangan"><a href="#sw-arrows-step-undangan" class="nav-link">Undangan RKS<small class="d-block">Step description</small></a></li>
                             @endif
-                            <li class="nav-item calon-tender"><a href="#sw-arrows-step-2" class="nav-link">Calon Peserta Tender<small class="d-block">Step description</small></a></li>
+                            <li class="nav-item calon-tender"><a href="#sw-arrows-step-2" class="nav-link step-process">Calon Peserta Tender<small class="d-block">Step description</small></a></li>
                             <li class="nav-item aanwidjzing"><a href="#sw-arrows-step-3" class="nav-link">Aanwidjzing<small class="d-block">Step description</small></a></li>
                             <li class="nav-item doc-penawaran"><a href="#sw-arrows-step-4" class="nav-link">Dokumen Penawaran<small class="d-block">Step description</small></a></li>
                             <li class="nav-item eval-penawaran"><a href="#sw-arrows-step-5" class="nav-link">Evaluasi Penawaran<small class="d-block">Step description</small></a></li>
@@ -229,6 +231,18 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <input type="text" name="nomor_rks" class="form-control" placeholder="please insert nomor rks" value="{{ $rks ? $rks->nomor_rks : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Rencana Kerja dan Syarat Nomor:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_rks" class="form-control datepicker" placeholder="please insert tanggal rks" value="{{ $rks ? $rks->tanggal_rks : '' }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -341,7 +355,19 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <input type="text" name="nomor_pengumuman" class="form-control" placeholder="please inset nomor" value="{{ $undangan ? $undangan->nomor_pengumuman : '' }}">
+                                                                <input type="text" name="nomor_pengumuman" class="form-control" placeholder="please insert nomor" value="{{ $undangan ? $undangan->nomor_pengumuman : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Pengumuman Pengadaan:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_rks" class="form-control datepicker" placeholder="please tanggal pengadaan nomor" value="{{ $undangan ? $undangan->tanggal_rks : '' }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -504,7 +530,7 @@
                                                 </div>
                                                 @foreach($vendor as $val)
                                                 <fieldset>
-                                                <legend>Vendor Information</legend>
+                                                    <legend>Vendor Information</legend>
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
@@ -565,13 +591,13 @@
                                                 </fieldset>
                                                 @endforeach
                                             </div>
-                                            @else 
+                                            @else
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1"></label>
                                                 </div>
                                                 <fieldset>
-                                                <legend>Vendor Information</legend>
+                                                    <legend>Vendor Information</legend>
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <div class="form-group">
@@ -585,7 +611,7 @@
                                                                     <?php
                                                                     foreach ($vendor_list as $val) {
                                                                     ?>
-                                                                    <option value="{{ $val->vendor_code }}">{{ $val->vendor_name }}</option>
+                                                                        <option value="{{ $val->vendor_code }}">{{ $val->vendor_name }}</option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
@@ -734,11 +760,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @php 
+                                    @php
                                     $berita = $berita_acara->where('step_process','aanwidjzing')
                                     ->where('sp3_id', $data->sp3_id)
                                     ->first();
                                     @endphp
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tanggal Berita Acara Rapat Penjelasan/Aanwidjzing & Addendum:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please tanggal berita acara" value="{{ $berita ? $berita->tanggal_berita_acara : ''}}">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
@@ -762,9 +800,9 @@
                                                 <input type="file" name="file_berita_acara" class="form-control" id="file-draft">
                                                 @if($berita)
                                                 @if($berita->file_berita_acara != '')
-                                                    <a href="{{ asset('file/SP3/'. $berita->file_berita_acara) }}" target="_blank">
-                                                        <i class="uil uil-file-alt mt-4"></i> {{ $berita->file_berita_acara }}
-                                                    </a>
+                                                <a href="{{ asset('file/SP3/'. $berita->file_berita_acara) }}" target="_blank">
+                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita->file_berita_acara }}
+                                                </a>
                                                 @endif
                                                 @endif
                                             </div>
@@ -820,6 +858,18 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dokumen Penawaran:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control" placeholder="please insert nomor" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -896,7 +946,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            @php 
+                                            @php
                                             $berita_sampul_1 = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
                                             ->where('sp3_id', $data->sp3_id)
                                             ->first();
@@ -924,9 +974,9 @@
                                                         <input type="file" name="file_pembukaan_penawaran" class="form-control">
                                                         @if($berita_sampul_1)
                                                         @if($berita_sampul_1->file_berita_acara != '')
-                                                            <a href="{{ asset('file/SP3/'. $berita_sampul_1->file_berita_acara) }}" target="_blank">
-                                                                <i class="uil uil-file-alt mt-4"></i> {{ $berita_sampul_1->file_berita_acara }}
-                                                            </a>
+                                                        <a href="{{ asset('file/SP3/'. $berita_sampul_1->file_berita_acara) }}" target="_blank">
+                                                            <i class="uil uil-file-alt mt-4"></i> {{ $berita_sampul_1->file_berita_acara }}
+                                                        </a>
                                                         @endif
                                                         @endif
                                                     </div>
@@ -964,7 +1014,7 @@
                                     || $data->proses_st == 'PROSES_DH' || $data->proses_st == 'PROSES_EP' || $data->proses_st == 'PROSES_EDP')
                                     <fieldset>
                                         <legend>PEMASUKAN DOKUMEN PENAWARAN</legend>
-                                          <div class="row">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <form action="{{ route('save.document-penawaran') }}" method="post" id="form-dokumen-penawaran" enctype="multipart/form-data">
                                                     @csrf
@@ -1007,7 +1057,7 @@
                                                             </tr>
                                                         </tbody>
                                                         @endforeach
-                                                        @else 
+                                                        @else
                                                         <tbody style="vertical-align: top">
                                                             @foreach($tender_aanwidjzing as $val)
                                                             <tr>
@@ -1029,11 +1079,23 @@
                                                         </tbody>
                                                         @endif
                                                     </table>
-                                                    @php 
+                                                    @php
                                                     $penawaran = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
-                                                        ->where('sp3_id', $data->sp3_id)
-                                                        ->first();
-                                                    @endphp 
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
+                                                    @endphp
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dokumen Penawaran:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $penawaran ? $penawaran->tanggal_berita_acara : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -1057,9 +1119,9 @@
                                                                 <input type="file" name="file_pembukaan_penawaran" class="form-control">
                                                                 @if($penawaran)
                                                                 @if($penawaran->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $penawaran->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $penawaran->file_berita_acara }}
-                                                                    </a>
+                                                                <a href="{{ asset('file/SP3/'. $penawaran->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $penawaran->file_berita_acara }}
+                                                                </a>
                                                                 @endif
                                                                 @endif
                                                             </div>
@@ -1126,11 +1188,23 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                    @php 
+                                                    @php
                                                     $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
                                                     ->where('sp3_id', $data->sp3_id)
                                                     ->first();
-                                                    @endphp 
+                                                    @endphp
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Acara Pembukaan Dokumen Penawaran:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $undangan ? $undangan->tanggal_berita_acara : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -1154,9 +1228,9 @@
                                                                 <input type="file" name="file_undangan" class="form-control">
                                                                 @if($undangan)
                                                                 @if($undangan->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
-                                                                    </a>
+                                                                <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
+                                                                </a>
                                                                 @endif
                                                                 @endif
                                                             </div>
@@ -1189,7 +1263,7 @@
                                         <legend>Undangan Pembukaan Dokumen Admin & Teknis</legend>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                
+
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -1221,11 +1295,11 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                                @php 
+                                                @php
                                                 $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
                                                 ->where('sp3_id', $data->sp3_id)
                                                 ->first();
-                                                @endphp 
+                                                @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1249,9 +1323,9 @@
                                                             <input type="file" name="file_undangan" class="form-control">
                                                             @if($undangan)
                                                             @if($undangan->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -1321,7 +1395,19 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label for="exampleInputEmail1">Berita Acara Pembukaan Dokumen Penawaran Nomor:</label>
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dok. Admin & Teknis:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Berita Berita Acara Pembukaan Dok. Admin & Teknis:</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -1406,11 +1492,23 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                    @php 
+                                                    @php
                                                     $pembukaan = $berita_acara->where('step_process','pembukaan_dokumen')
                                                     ->where('sp3_id', $data->sp3_id)
                                                     ->first();
                                                     @endphp
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dok. Admin & Teknis:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor" value="{{ $pembukaan ? $pembukaan->tanggal_berita_acara : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -1434,9 +1532,9 @@
                                                                 <input type="file" name="file_pembukaan" class="form-control" id="file-draft">
                                                                 @if($pembukaan)
                                                                 @if($pembukaan->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $pembukaan->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan->file_berita_acara }}
-                                                                    </a>
+                                                                <a href="{{ asset('file/SP3/'. $pembukaan->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan->file_berita_acara }}
+                                                                </a>
                                                                 @endif
                                                                 @endif
                                                             </div>
@@ -1528,6 +1626,18 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Undangan Pembukaan Dok. Harga:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
                                                                 <label for="exampleInputEmail1">Berita Acara Undangan Pembukaan Dok. Harga Nomor:</label>
                                                             </div>
                                                         </div>
@@ -1607,11 +1717,23 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                                @php 
+                                                @php
                                                 $pembukaan_harga = $berita_acara->where('step_process','undangan_pembukaan_harga')
                                                 ->where('sp3_id', $data->sp3_id)
                                                 ->first();
                                                 @endphp
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Berita Acara Undangan Pembukaan Dok. Harga:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor" value="{{ $pembukaan_harga ? $pembukaan_harga->tanggal_berita_acara : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -1635,9 +1757,9 @@
                                                             <input type="file" name="file_pembukaan_harga" class="form-control" id="file-draft">
                                                             @if($pembukaan_harga)
                                                             @if($pembukaan_harga->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $pembukaan_harga->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan_harga->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $pembukaan_harga->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan_harga->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -1723,6 +1845,18 @@
                                                         </tbody>
                                                         @endif
                                                     </table>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dok. Harga:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -1812,6 +1946,18 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Berita Acara Pembukaan Dok. Harga:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $doc_harga ? $doc_harga->tanggal_berita_acara : ''}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label for="exampleInputEmail1">Berita Acara Pembukaan Dok. Harga Nomor:</label>
                                                         </div>
                                                     </div>
@@ -1832,9 +1978,9 @@
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                             @if($doc_harga)
                                                             @if($doc_harga->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $doc_harga->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $doc_harga->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $doc_harga->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $doc_harga->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -1957,7 +2103,7 @@
                                                         @endif
                                                     </tbody>
                                                 </table>
-                                                @php 
+                                                @php
                                                 $eval_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
                                                 ->where('sp3_id', $data->sp3_id)
                                                 ->first();
@@ -1985,9 +2131,9 @@
                                                             <input type="file" name="file_evaluasi_penawaran" class="form-control" id="file-draft">
                                                             @if($eval_penawaran)
                                                             @if($eval_penawaran->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $eval_penawaran->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $eval_penawaran->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $eval_penawaran->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $eval_penawaran->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -2096,7 +2242,19 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label for="exampleInputEmail1">Berita Acara Evaluasi Dokumen Penawaran Nomor:</label>
+                                                                <label for="exampleInputEmail1">Tanggal Berita Acara Evaluasi Admin & Teknis:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Berita Acara Evaluasi Admin & Teknis Nomor:</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -2172,11 +2330,23 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                                @php 
+                                                @php
                                                 $evaluasi_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
                                                 ->where('sp3_id', $data->sp3_id)
                                                 ->first();
                                                 @endphp
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Berita Acara Evaluasi Admin & Teknis:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $evaluasi_penawaran ? $evaluasi_penawaran->tanggal_berita_acara : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -2200,9 +2370,9 @@
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                             @if($evaluasi_penawaran)
                                                             @if($evaluasi_penawaran->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $evaluasi_penawaran->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_penawaran->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $evaluasi_penawaran->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_penawaran->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -2277,7 +2447,7 @@
                                             @if($evaluasi_2_sampul->where('tanggal_evaluasi_admin', '!=', '')->count() > 0)
                                             <fieldset>
                                                 <legend>PENGUMUMAN ADMIN & TEKNIS</legend>
-                                            <!-- //--------------------------------// -->
+                                                <!-- //--------------------------------// -->
                                                 <table class="table datatable-pagination" id="tabel-data" width="100%">
                                                     <thead style="text-align: center">
                                                         <tr>
@@ -2321,9 +2491,9 @@
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                             @if($admin_teknis)
                                                             @if($admin_teknis->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $admin_teknis->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $admin_teknis->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $admin_teknis->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $admin_teknis->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -2333,14 +2503,14 @@
                                                             <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                         </div>
                                                     </div>
-                                                </div>    
+                                                </div>
                                             </fieldset>
                                             </form>
                                             @endif
                                             @if($data->step_process == 7)
                                             <fieldset>
                                                 <legend>EVALUASI DOKUMEN PENAWARAN HARGA</legend>
-                                            <!-- //--------------------------------// -->
+                                                <!-- //--------------------------------// -->
                                                 <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-harga" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
@@ -2421,6 +2591,18 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Evaluasi Dokumen Penawaran:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
                                                                 <label for="exampleInputEmail1">Evaluasi Dokumen Penawaran Harga:</label>
                                                             </div>
                                                         </div>
@@ -2454,7 +2636,7 @@
                                             @if($evaluasi_2_sampul->where('tanggal_evaluasi_harga', '!=', '')->count() > 0)
                                             <fieldset>
                                                 <legend>EVALUASI DOKUMEN PENAWARAN HARGA</legend>
-                                            <!-- //--------------------------------// -->
+                                                <!-- //--------------------------------// -->
                                                 <form action="{{ route('save.evaluasi-penawaran') }}" method="post" id="form-harga" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="hidden" name="sp3_id" value="{{ $data->sp3_id}}" />
@@ -2503,11 +2685,23 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                    @php 
+                                                    @php
                                                     $evaluasi_harga = $berita_acara->where('step_process','evaluasi_dokumen_penawaran_harga')
                                                     ->where('sp3_id', $data->sp3_id)
                                                     ->first();
                                                     @endphp
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Evaluasi Dokumen Penawaran:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $evaluasi_harga ? $evaluasi_harga->tanggal_berita_acara : '' }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <div class="form-group">
@@ -2531,9 +2725,9 @@
                                                                 <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                                 @if($evaluasi_harga)
                                                                 @if($evaluasi_harga->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $evaluasi_harga->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_harga->file_berita_acara }}
-                                                                    </a>
+                                                                <a href="{{ asset('file/SP3/'. $evaluasi_harga->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_harga->file_berita_acara }}
+                                                                </a>
                                                                 @endif
                                                                 @endif
                                                             </div>
@@ -2614,9 +2808,21 @@
                                                         @endif
                                                     </tbody>
                                                 </table>
-                                                @php 
+                                                @php
                                                 $undangan_berita_kkn = $berita_acara->where('step_process','undangan_kkn')->first();
                                                 @endphp
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Undangan Klarifiksai, Konfirmasi dan Negosiasi:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->tanggal_berita_acara : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -2640,9 +2846,9 @@
                                                             <input type="file" name="file_undangan_kkn" class="form-control" id="file-draft">
                                                             @if($undangan_berita_kkn)
                                                             @if($undangan_berita_kkn->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $undangan_berita_kkn->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $undangan_berita_kkn->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $undangan_berita_kkn->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $undangan_berita_kkn->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -2717,9 +2923,10 @@
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="hps_pagu[]" class="form-control money" placeholder="Please insert hps/pagu" value="{{ $pagu }}">
+                                                                <input type="hidden" class="hps-pagu" value="{{ $pagu }}" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control money" placeholder="Please insert harga negosiasi">
+                                                                <input type="text" name="harga_negosiasi[]" class="form-control harga-negosiasi" placeholder="Please insert harga negosiasi">
                                                             </td>
                                                             <td>
                                                                 <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"></textarea>
@@ -2739,9 +2946,25 @@
                                                     <label for="exampleInputEmail1"></label><br>
                                                     <label for="exampleInputEmail1"></label>
                                                 </div>
-                                                @php 
+                                                @php
                                                 $berita_kkn = $berita_acara->where('step_process','kkn')->first();
+                                                $memo_internal = $berita_acara->where('step_process','kkn')
+                                                                    ->where('nomor_memo_internal','!=','')
+                                                                    ->where('tanggal_memo_internal'','!=','')
+                                                                    ->first();
                                                 @endphp
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Berita Acara Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita_kkn ? $berita_kkn->tanggal_berita_acara : '' }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
@@ -2765,9 +2988,9 @@
                                                             <input type="file" name="file_kkn" class="form-control" id="file-draft">
                                                             @if($berita_kkn)
                                                             @if($berita_kkn->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $berita_kkn->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita_kkn->file_berita_acara }}
-                                                                </a>
+                                                            <a href="{{ asset('file/SP3/'. $berita_kkn->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $berita_kkn->file_berita_acara }}
+                                                            </a>
                                                             @endif
                                                             @endif
                                                         </div>
@@ -2780,18 +3003,92 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Memo Internal:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_memo_internal" class="form-control datepicker" id="file-draft" placeholder="Please insert tanggal memo" value="{{ $berita_kkn ? $berita_kkn->tanggal_memo_internal : '' }}">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <input type="file" name="file_memo_kkn" class="form-control" id="file-draft">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Nomor Memo Internal:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="nomor_memo_internal" class="form-control" id="file-draft" placeholder="Please insert nomor memo" value="{{ $berita_kkn ? $berita_kkn->nomor_memo_internal : '' }}">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_memo_kkn" class="form-control" id="file-draft">
+                                                                @if($berita_kkn)
+                                                                @if($berita_kkn->file_memo_internal != '')
+                                                                <a href="{{ asset('file/SP3/'. $berita_kkn->file_memo_internal) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita_kkn->file_memo_internal }}
+                                                                </a>
+                                                                @endif
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="memo-internal" style="display: none;">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Tanggal Memo Internal:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="tanggal_memo_internal" class="form-control datepicker" id="file-draft" placeholder="Please insert tanggal memo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Nomor Memo Internal:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" name="nomor_memo_internal" class="form-control" id="file-draft" placeholder="Please insert nomor memo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Memo Internal Klarifikasi, Konfirmasi dan Negoisasi:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="file" name="file_memo_kkn" class="form-control" id="file-draft">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2853,9 +3150,21 @@
                                                     @endif
                                                 </tbody>
                                             </table>
-                                            @php 
+                                            @php
                                             $berita_bahp = $berita_acara->where('step_process','berita_hasil_pelelangan')->first();
                                             @endphp
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Tanggal Berita Acara Hasil Pelelangan:</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <input type="text" name="tanggal_bahp" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita_bahp ? $berita_bahp->tanggal_berita_acara : '' }}">
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -2879,9 +3188,9 @@
                                                         <input type="file" name="file_bahp" class="form-control">
                                                         @if($berita_bahp)
                                                         @if($berita_bahp->file_berita_acara != '')
-                                                            <a href="{{ asset('file/SP3/'. $berita_bahp->file_berita_acara) }}" target="_blank">
-                                                                <i class="uil uil-file-alt mt-4"></i> {{ $berita_bahp->file_berita_acara }}
-                                                            </a>
+                                                        <a href="{{ asset('file/SP3/'. $berita_bahp->file_berita_acara) }}" target="_blank">
+                                                            <i class="uil uil-file-alt mt-4"></i> {{ $berita_bahp->file_berita_acara }}
+                                                        </a>
                                                         @endif
                                                         @endif
                                                     </div>
@@ -2909,6 +3218,16 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Usulan dan Penetapan Calon Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="form-control datepicker" name="tanggal_usulan_pemenang" placeholder="please insert tanggal" value="@if($pemenang) {{ $pemenang->tanggal_usulan_pemenang }} @endif">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label for="exampleInputEmail1">Usulan dan Penetapan Calon Pemenang Nomor:</label>
                                                         </div>
                                                     </div>
@@ -2927,7 +3246,7 @@
                                                             <select class="form-control" name="vendor_code">
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_lolos_evaluasi as $val)
-                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $val->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
+                                                                <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -2985,6 +3304,16 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tanggal Pengumuman Pemenang Pemenang:</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="form-control datepicker" name="tanggal_pemenang" placeholder="please insert tanggal" value="@if($pemenang) {{ $pemenang->tanggal_pemenang }} @endif">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
                                                             <label for="exampleInputEmail1">Pengumuman Pemenang Nomor:</label>
                                                         </div>
                                                     </div>
@@ -3000,12 +3329,14 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <select class="form-control" name="vendor_code">
+                                                            <input type="text" class="form-control" value="{{ $pemenang ? $pemenang->get_vendor->vendor_name : '' }}" disabled />
+                                                            <input type="hidden" name="vendor_code" class="form-control" value="{{ $pemenang ? $pemenang->get_vendor->vendor_code : '' }}"/>
+                                                            <!-- <select class="form-control" name="vendor_code">
                                                                 <option value="">Select Vendor</option>
                                                                 @foreach($tender_lolos_evaluasi as $val)
                                                                 <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
-                                                            </select>
+                                                            </select> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3135,7 +3466,7 @@
                                                     </div>
                                                     @endif
                                                 </div>
-                                                
+
                                                 <div class="row">
                                                     <div class="col-md-3 mt-2">
 
@@ -3153,7 +3484,7 @@
                                                 <div class="row mt-3">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Total Hari Kerja:</label>
+                                                            <label for="exampleInputEmail1">Total Hari MPPL:</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -3161,7 +3492,7 @@
                                                             <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->total_hari_kerja : '' }}">
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Uncontrolled Days:</label>
@@ -3184,7 +3515,7 @@
                                                             <input type="text" name="nomor_spr" class="form-control" placeholder="Please insert no spr" value="{{ $spr ? $spr->nomor_spr : '' }}">
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-md-3 mt-2">
                                                         <label for="exampleInputEmail1">Upload SPR :</label>
                                                     </div>
@@ -3275,312 +3606,41 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="undangan-kkn" value="{{ $undangan_kkn->count() }}">
+<input type="hidden" id="pemenang" value="{{ $pemenang }}">
+<input type="hidden" id="total_pagu" value="">
 <!-- new source -->
 @endsection
 @push('scripts')
+<script src="{{ asset('assets/js/process-pbj.js') }}"></script>
 <script>
     $(document).ready(function() {
         var status = $('#contract_status').val();
-        var metode = '{{ $data->type_metode }}'
+        var metode = $('#type_metode').val();
+        var total_pagu = $('#total_pagu').val();
+        var total = 0;
+        $('.hps-pagu').each(function (index, element) {
+            total = total + parseFloat($(element).val());
+        });
+        $("#total_pagu").val(total)
+        $('body').on('keyup', '.harga-negosiasi', function(){
+            var total = 0;
+            $('.harga-negosiasi').each(function (index, element) {
+                total = total + parseFloat($(element).val());
+            });
+            if(total_pagu < total){
+                $('.memo-internal').show()
+            }
+        })
         if (status == 'PROSES_DRKS') {
-            $('.rks').addClass('done')
+            $('.rks').addClass('active')
             $("#sw-arrows-step-1").css("display", "block")
         } else if (status == 'PROSES_RRKS') {
-            
-        } else if (status == 'PROSES_URKS') {
+            $('.rks').addClass('active')
+            $("#sw-arrows-step-1").css("display", "block")
+        } else {
             $('.rks').addClass('done')
-            if(metode == 1 || metode == 2){
-                $('.rks').addClass('done')
-                $('.undangan').addClass('active')
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "block")
-                $('a[href="#sw-arrows-step-1"]').click(function() {
-                    $("#sw-arrows-step-1").css("display", "block")
-                    $("#sw-arrows-step-undangan").css("display", "")
-                    $('.undangan').addClass('done')
-                });
-            }else if(metode == 3){
-                $('.rks').addClass('done')
-                $('.calon-tender').addClass('active')
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-2").css("display", "block")
-                $('a[href="#sw-arrows-step-1"]').click(function() {
-                    $("#sw-arrows-step-1").css("display", "block")
-                    $("#sw-arrows-step-2").css("display", "")
-                    $('.calon-tender').addClass('done')
-                });
-            }
-        } else if (status == 'PROSES_PP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
             $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "block")
-            $('.calon-tender').addClass('active')
-            $('a[href="#sw-arrows-step-undangan"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "block")
-                $("#sw-arrows-step-2").css("display", "")
-                $('.calon-tender').addClass('done')
-            });
-        } else if (status == 'PROSES_AL') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "block")
-            $('.aanwidjzing').addClass('active')
-            $('a[href="#sw-arrows-step-2"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "block")
-                $("#sw-arrows-step-3").css("display", "")
-                $('.aanwidjzing').addClass('done')
-            });
-        } else if (status == 'PROSES_PDP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('active')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "block")
-            $('a[href="#sw-arrows-step-3"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "block")
-                $("#sw-arrows-step-4").css("display", "")
-                $('.doc-penawaran').addClass('done')
-            });
-        } else if (status == 'PROSES_EP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('active')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "")
-            $("#sw-arrows-step-5").css("display", "block")
-            $('a[href="#sw-arrows-step-4"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "block")
-                $("#sw-arrows-step-5").css("display", "")
-                $('.eval-penawaran').addClass('done')
-            });
-        } else if (status == 'PROSES_KKN' || status == 'PROSES_EDH') {
-            var undangan = "{{ $undangan_kkn->count() }}";
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            if (undangan > 0) {
-                $('.kkn').addClass('active')
-                $('.undangan-kkn').addClass('done')
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "")
-                $("#sw-arrows-step-7").css("display", "block")
-                $('a[href="#sw-arrows-step-6"]').click(function() {
-                    $("#sw-arrows-step-1").css("display", "")
-                    $("#sw-arrows-step-undangan").css("display", "")
-                    $("#sw-arrows-step-2").css("display", "")
-                    $("#sw-arrows-step-3").css("display", "")
-                    $("#sw-arrows-step-4").css("display", "")
-                    $("#sw-arrows-step-5").css("display", "")
-                    $("#sw-arrows-step-6").css("display", "block")
-                    $("#sw-arrows-step-7").css("display", "")
-                    $('.kkn').addClass('done')
-                });
-            } else {
-                $('.kkn').removeClass('done')
-                $('.undangan-kkn').addClass('active')
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "block")
-                $('a[href="#sw-arrows-step-5"]').click(function() {
-                    $("#sw-arrows-step-1").css("display", "")
-                    $("#sw-arrows-step-undangan").css("display", "")
-                    $("#sw-arrows-step-2").css("display", "")
-                    $("#sw-arrows-step-3").css("display", "")
-                    $("#sw-arrows-step-4").css("display", "")
-                    $("#sw-arrows-step-5").css("display", "block")
-                    $("#sw-arrows-step-6").css("display", "")
-                    $('.undangan-kkn').addClass('done')
-                });
-            }
-        } else if (status == 'PROSES_BAHP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.undangan-kkn').addClass('done')
-            $('.bahp').addClass('active')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "")
-            $("#sw-arrows-step-5").css("display", "")
-            $("#sw-arrows-step-6").css("display", "")
-            $("#sw-arrows-step-7").css("display", "")
-            $("#sw-arrows-step-8").css("display", "block")
-            $('a[href="#sw-arrows-step-7"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "")
-                $("#sw-arrows-step-7").css("display", "block")
-                $("#sw-arrows-step-8").css("display", "")
-                $('.bahp').addClass('done')
-            });
-        } else if (status == 'PROSES_UPCP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('active')
-            $('.undangan-kkn').addClass('done')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "")
-            $("#sw-arrows-step-5").css("display", "")
-            $("#sw-arrows-step-6").css("display", "")
-            $("#sw-arrows-step-7").css("display", "")
-            $("#sw-arrows-step-8").css("display", "")
-            $("#sw-arrows-step-9").css("display", "block")
-            $('a[href="#sw-arrows-step-8"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "")
-                $("#sw-arrows-step-7").css("display", "")
-                $("#sw-arrows-step-8").css("display", "block")
-                $("#sw-arrows-step-9").css("display", "")
-                $('.ucp').addClass('done')
-            });
-        } else if (status == 'PROSES_PCP') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('done')
-            $('.pcp').addClass('active')
-            $('.spr').addClass('done')
-            $('.undangan-kkn').addClass('done')
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "")
-            $("#sw-arrows-step-5").css("display", "")
-            $("#sw-arrows-step-6").css("display", "")
-            $("#sw-arrows-step-7").css("display", "")
-            $("#sw-arrows-step-8").css("display", "")
-            $("#sw-arrows-step-9").css("display", "")
-            $("#sw-arrows-step-10").css("display", "block")
-            $('a[href="#sw-arrows-step-9"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "")
-                $("#sw-arrows-step-7").css("display", "")
-                $("#sw-arrows-step-8").css("display", "")
-                $("#sw-arrows-step-9").css("display", "block")
-                $("#sw-arrows-step-10").css("display", "")
-                $('.pcp').addClass('done')
-            });
-        } else if (status == 'PROSES_DC' || status == 'PROSES_DC' || status == 'PROSES_UJP' ||
-            status == 'PROSES_VJP' || status == 'PROSES_RDC' || status == 'PROSES_VAC' ||
-            status == 'PROSES_APU' || status == 'PROSES_ALG' || status == 'PROSES_KAC' || status == 'PROSES_CR') {
-            $('.rks').addClass('done')
-            $('.undangan').addClass('done')
-            $('.calon-tender').addClass('done')
-            $('.aanwidjzing').addClass('done')
-            $('.doc-penawaran').addClass('done')
-            $('.eval-penawaran').addClass('done')
-            $('.kkn').addClass('done')
-            $('.undangan-kkn').addClass('done')
-            $('.bahp').addClass('done')
-            $('.ucp').addClass('done')
-            $('.pcp').addClass('done')
-            // $('.spr').addClass('done')
-            $('.sw-btn-next').prop("disabled", false);
-            var pemenang = "{{ $pemenang }}"
-            if(pemenang.length > 0){
-                $('.spr').addClass('active')
-            }
-            $("#sw-arrows-step-1").css("display", "")
-            $("#sw-arrows-step-undangan").css("display", "")
-            $("#sw-arrows-step-2").css("display", "")
-            $("#sw-arrows-step-3").css("display", "")
-            $("#sw-arrows-step-4").css("display", "")
-            $("#sw-arrows-step-5").css("display", "")
-            $("#sw-arrows-step-6").css("display", "")
-            $("#sw-arrows-step-7").css("display", "")
-            $("#sw-arrows-step-8").css("display", "")
-            $("#sw-arrows-step-9").css("display", "")
-            $("#sw-arrows-step-10").css("display", "")
-            $("#sw-arrows-step-11").css("display", "block")
-            $('a[href="#sw-arrows-step-10"]').click(function() {
-                $("#sw-arrows-step-1").css("display", "")
-                $("#sw-arrows-step-undangan").css("display", "")
-                $("#sw-arrows-step-2").css("display", "")
-                $("#sw-arrows-step-3").css("display", "")
-                $("#sw-arrows-step-4").css("display", "")
-                $("#sw-arrows-step-5").css("display", "")
-                $("#sw-arrows-step-6").css("display", "")
-                $("#sw-arrows-step-7").css("display", "")
-                $("#sw-arrows-step-8").css("display", "")
-                $("#sw-arrows-step-9").css("display", "")
-                $("#sw-arrows-step-10").css("display", "block")
-                $("#sw-arrows-step-11").css("display", "")
-                $('.spr').addClass('done')
-            });
         }
         // APPROVE RKS
         $('body').on('click', '.approve', function() {
@@ -3692,9 +3752,9 @@
                 $('.calon-tender').removeClass('active')
                 var metode = '{{ $data->type_metode }}'
                 console.log(metode)
-                if(metode == 3){
+                if (metode == 3) {
                     var title = 'Are you sure save Calon Peserta Tender ?'
-                }else {
+                } else {
                     var title = 'Are you sure save Undangan RKS'
                 }
                 Swal.fire({
@@ -3708,9 +3768,9 @@
                 }).then((result) => {
                     if (result.value) {
                         e.preventDefault()
-                        if(metode == 3){
+                        if (metode == 3) {
                             $("#tender").submit();
-                        }else{
+                        } else {
                             $("#form-undangan").submit();
                         }
                     }
@@ -3763,12 +3823,12 @@
                         e.preventDefault()
                         if (step == '') {
                             $("#form-dokumen-penawaran").submit();
-                        }else if(step == 1){
+                        } else if (step == 1) {
                             $("#form-undangan-dokumen-penawaran").submit();
                         } else if (step == 2) {
                             // step 1 to 2
                             $("#form-pembukaan-dokumen").submit();
-                        } 
+                        }
                         // else if (step == 6) {
                         //     // step 2 to 3
                         //     $("#form-pembukaan-harga").submit();
@@ -3799,9 +3859,9 @@
                 } else if (metode == '2_sampul') {
                     $('.kkn').removeClass('active')
                     var step = '{{ $data->step_process }}'
-                    if(step == 5 || step == 6){
+                    if (step == 5 || step == 6) {
                         var title = 'Are you sure save Document Penawaran ?'
-                    }else{
+                    } else {
                         var title = 'Are you sure save Evaluasi Dokumen Penawaran ?'
                     }
                     Swal.fire({
@@ -3822,7 +3882,7 @@
                             } else if (step == 5) {
                                 $("#form-pembukaan-harga").submit();
                             } else if (step == 6) {
-                            // step 2 to 3
+                                // step 2 to 3
                                 $("#form-doc-harga").submit();
                             } else if (step == 7) {
                                 // step 3 to 4
@@ -3839,7 +3899,7 @@
                 var undangan = "{{ $undangan_kkn->count() }}";
                 $('.bahp').removeClass('active')
                 Swal.fire({
-                    title: undangan > 0 ? 'Are you sure save Klarifikasi, Konformasi dan Negosiasi ?' : 'Are you sure save Undangan Klarifikasi, Konformasi dan Negosiasi ?',
+                    title: undangan > 0 ? 'Are you sure save Klarifikasi, Konfirmasi dan Negosiasi ?' : 'Are you sure save Undangan Klarifikasi, Konfirmasi dan Negosiasi ?',
                     // text: 'Your procurement are send to contract!',
                     icon: 'warning',
                     showCancelButton: true,
@@ -3906,7 +3966,7 @@
                             $("#form-spr").submit();
                         }
                     })
-                } else if(pemenang == 'usulan') {
+                } else if (pemenang == 'usulan') {
                     Swal.fire({
                         title: 'Are you sure save Pemenang Tender ?',
                         // text: 'Your procurement are send to contract!',

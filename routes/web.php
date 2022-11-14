@@ -123,6 +123,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/vendor/list', 'App\Http\Controllers\VendorController@index')->name('vendor.index');
     Route::get('/data/vendor/blacklist/list', 'App\Http\Controllers\VendorController@blacklist')->name('blacklist.index');
     Route::get('/data/vendor/autovendor', 'App\Http\Controllers\VendorController@autovendor')->name('vendor.autocomplete');
+    Route::post('/data/vendor/store', 'App\Http\Controllers\VendorController@store')->name('vendor.store');
 
     // CONTRACT
     Route::get('/data/contract', 'App\Http\Controllers\ContractController@data')->name('data.contract');
@@ -135,6 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/data/jamlak', 'App\Http\Controllers\JamlakController@data')->name('data.jamlak');
     Route::get('/data/jamlak/list', 'App\Http\Controllers\JamlakController@index')->name('jamlak.index');
     Route::get('/data/jamlak/show/{id}', 'App\Http\Controllers\JamlakController@show')->name('jamlak.show');
+    Route::post('/data/jamlak/ubah/tanggal-jamlak', 'App\Http\Controllers\JamlakController@ubah_tanggal_jamlak')->name('ubah.tanggal-jamlak');
 
      // CARD 
      Route::get('/data/warehouse-card', 'App\Http\Controllers\WarehouseController@data_card')->name('data.card');
@@ -218,6 +220,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/hs/list-hs', function () {
         return view('hs.index');
     })->name('list.hs');
+
+    // memo internal
+    Route::get('/data/memo-internal', function () {
+        return view('memo-internal.index');
+    })->name('list.memo-internal');
+    Route::post('/data/memo-internal-user/save', 'App\Http\Controllers\ProcurementController@save_memo_internal_user')->name('save.memo-user');
 });
 Route::get('/sp-3/evaluasi/print/spr', 'App\Http\Controllers\Sp3Controller@generate_sk')->name('evaluasi.print.sk');
 Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');
+Route::get('/notifikasi', 'App\Http\Controllers\DashboardController@notifikasi')->name('notifikasi');
+Route::get('/send-email', 'App\Http\Controllers\DashboardController@kirim_email')->name('send-mail');

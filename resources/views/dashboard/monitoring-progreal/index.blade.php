@@ -1,10 +1,149 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    .btn-export {
+        background: linear-gradient(183.55deg, #FE432A 1.65%, #FF7D61 21.76%, #F20C0C 63.44%, #AD1703 95.8%);
+
+        /* Stacks/Level 3 */
+        box-shadow: 0px 0px 2px rgba(40, 41, 61, 0.04), 0px 4px 8px rgba(96, 97, 112, 0.16);
+        border-radius: 30px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+    .text-vector {
+        width: 111.69px;
+        /* Headline */
+        font-family: 'Trueno';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+
+        /* or 133% */
+
+        /* Red/Light 300 */
+        color: #FE4128;
+
+
+        /* Inside auto layout */
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+    .vector-1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8.10306px;
+        gap: 8.1px;
+
+        width: 50px;
+        height: 50px;
+
+        background: #FF543E;
+        box-shadow: 0px 1px 9px rgba(255, 147, 133, 0.85);
+        border-radius: 100px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .vector-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8.10306px;
+        gap: 8.1px;
+
+        width: 50px;
+        height: 50px;
+
+        background: #FF9E57;
+        box-shadow: 0px 1px 9px rgba(255, 158, 87, 0.85);
+        border-radius: 100px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+    }
+
+    .vector-3 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8.10306px;
+        gap: 8.1px;
+
+        width: 50px;
+        height: 50px;
+
+        background: #66D364;
+        box-shadow: 0px 1px 9px rgba(44, 219, 40, 0.85);
+        border-radius: 100px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .vector-4 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8.10306px;
+        gap: 8.1px;
+
+        width: 50px;
+        height: 50px;
+
+        background: #29B5F1;
+        box-shadow: 0px 1px 9px rgba(81, 205, 212, 0.85);
+        border-radius: 100px;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .vector-5 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8.10306px;
+        gap: 8.1px;
+
+        width: 50px;
+        height: 50px;
+
+        background: #A47FF2;
+        box-shadow: 0px 1px 9px rgba(164, 127, 242, 0.85);
+        border-radius: 100px;
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+</style>
 <div class="card">
 </div>
 <div class="content">
     <div class="container-fluid">
-    <img src="{{ asset('assets/images/dash_summary.png') }}" />
+        <img src="{{ asset('assets/images/dash_summary.png') }}" />
         <div class="row page-title align-items-center">
             <div class="col-sm-4 col-xl-6">
                 <h2 class="mb-1 mt-0">Dashboard Program Realisasi</h2>
@@ -15,7 +154,7 @@
                         <input type="text" class="form-control" id="dash-daterange" style="min-width: 190px;" />
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-export" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class='uil uil-file-alt mr-1'></i>Download
                             <i class="icon"><span data-feather="chevron-down"></span></i>
                         </button>
@@ -41,103 +180,115 @@
 
         <!-- OPEX -->
         <div class="row">
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
-                    <div class="media px-3 py-4 border-bottom">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1 font-size-16">Summary OPEX:</h5>
-                            <!-- <h5 class="mt-0 mb-1 font-size-16">Realisasi vs Program</h5> -->
-                            <span class="text-muted">Realisasi vs Program</span>
+                    <div class="card-body p-0">
+                        <div class="media px-3 py-4 border-bottom">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1 font-size-16">Summary OPEX:</h5>
+                                <!-- <h5 class="mt-0 mb-1 font-size-16">Realisasi vs Program</h5> -->
+                                <span class="text-muted">Realisasi vs Program</span>
+                            </div>
+                            <!-- <i data-feather="users" class="align-self-center icon-dual icon-lg"></i> -->
                         </div>
-                        <!-- <i data-feather="users" class="align-self-center icon-dual icon-lg"></i> -->
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
                     <div class="card-body p-0">
                         <!-- stat 1 -->
                         <div class="media px-3 py-4 border-bottom">
-                            <div class="media-body">
-                                <h6 class="mt-0 mb-1 font-size-16">CU</h6>
+                            <div class="vector-1 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
                                 @php
                                 $cu = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CU'
                                 AND beban_biaya='OPEX'");
                                 @endphp
-                                <h6 class="mt-0 mb-1 font-size-16">{{ $cu[0]->total }}</h6>
+                                <h6 class="mt-0 mb-1 font-size-16">CU</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $cu[0]->total }}</h6>
                             </div>
-                            <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
                     <div class="card-body p-0">
-                        <!-- stat 2 -->
                         <div class="media px-3 py-4 border-bottom">
-                            <div class="media-body">
+                            <!-- stat 2 -->
+                            <div class="vector-2 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
                                 <h6 class="mt-0 mb-1 font-size-16">CF</h6>
                                 @php
                                 $cf = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CF'
                                 AND beban_biaya='OPEX'");
                                 @endphp
-                                <h6 class="mt-0 mb-1 font-size-16">{{ $cf[0]->total }}</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $cf[0]->total }}</h6>
                             </div>
-                            <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
                     <div class="card-body p-0">
                         <!-- stat 3 -->
                         <div class="media px-3 py-4 border-bottom">
-                            <div class="media-body">
+                            <div class="vector-3 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
                                 <h6 class="mt-0 mb-1 font-size-16">CT</h6>
                                 @php
                                 $ct = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CT'
                                 AND beban_biaya='OPEX'");
                                 @endphp
-                                <h6 class="mt-0 mb-1 font-size-16">{{ $ct[0]->total }}</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $ct[0]->total }}</h6>
                             </div>
-                            <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
                     <div class="card-body p-0">
                         <!-- stat 4 -->
                         <div class="media px-3 py-4 border-bottom">
+                            <div class="vector-4 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
                             @php
                             $co = DB::select("SELECT COUNT(*) as total FROM trx_timeline
                             WHERE directorate_cd='CO' AND beban_biaya='OPEX'");
                             @endphp
-                            <div class="media-body">
+                            <div class="media-body p-2">
                                 <h6 class="mt-0 mb-1 font-size-16">CO</h6>
-                                <h6 class="mt-0 mb-1 font-size-16">{{ $co[0]->total }}</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $co[0]->total }}</h6>
                             </div>
-                            <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-2">
                 <div class="card">
                     <!-- stat 5 -->
                     <div class="media px-3 py-4 border-bottom">
-                        <div class="media-body">
+                        <div class="vector-5 mr-1">
+                            <img src="{{ asset('assets/images/Vector.png') }}">
+                        </div>
+                        <div class="media-body p-2">
                             @php
                             $ka_bandara = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='KB'
                             AND beban_biaya='OPEX'");
                             @endphp
                             <h6 class="mt-0 mb-1 font-size-16">KA BANDARA</h6>
-                            <h6 class="mt-0 mb-1 font-size-16">{{ $ka_bandara[0]->total }}</h6>
+                            <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $ka_bandara[0]->total }}</h6>
                         </div>
-                        <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                     </div>
                 </div>
             </div>
@@ -161,7 +312,7 @@
         <div class="col-xl-8">
             <div class="card">
                 <div class="card-body">
-                    <a href="" class="btn btn-primary btn-sm float-right">
+                    <a href="" class="btn btn-primary btn-sm float-right btn-export">
                         <i class='uil uil-export ml-1'></i> Export
                     </a>
                     <h5 class="card-title mt-0 mb-0">Detail OPEX</h5>
@@ -406,7 +557,7 @@
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
-                    <a href="" class="btn btn-primary btn-sm float-right">
+                    <a href="" class="btn btn-primary btn-sm float-right btn-export">
                         <i class='uil uil-export ml-1'></i> Export
                     </a>
                     <h5 class="card-title mt-0 mb-0">OPEX Diluar Timeline</h5>
@@ -523,107 +674,120 @@
 
     <!-- CAPEX -->
     <div class="row">
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="media px-3 py-4 border-bottom">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1 font-size-16">Summary CAPEX:</h5>
-                        <!-- <h5 class="mt-0 mb-1 font-size-16">Realisasi vs Program</h5> -->
-                        <span class="text-muted">Realisasi vs Program</span>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="media px-3 py-4 border-bottom">
+                            <div class="media-body">
+                                <h5 class="mt-0 mb-1 font-size-16">Summary CAPEX:</h5>
+                                <!-- <h5 class="mt-0 mb-1 font-size-16">Realisasi vs Program</h5> -->
+                                <span class="text-muted">Realisasi vs Program</span>
+                            </div>
+                            <!-- <i data-feather="users" class="align-self-center icon-dual icon-lg"></i> -->
+                        </div>
                     </div>
-                    <!-- <i data-feather="users" class="align-self-center icon-dual icon-lg"></i> -->
                 </div>
             </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body p-0">
-                    <!-- stat 1 -->
-                    <div class="media px-3 py-4 border-bottom">
-                        <div class="media-body">
-                            <h6 class="mt-0 mb-1 font-size-16">CU</h6>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- stat 1 -->
+                        <div class="media px-3 py-4 border-bottom">
+                            <div class="vector-1 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
+                                @php
+                                $cu = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CU'
+                                AND beban_biaya='CAPEX'");
+                                @endphp
+                                
+                                <h6 class="mt-0 mb-1 font-size-16">CU</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $cu[0]->total }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="media px-3 py-4 border-bottom">
+                            <!-- stat 2 -->
+                            <div class="vector-2 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
+                                <h6 class="mt-0 mb-1 font-size-16">CF</h6>
+                                @php
+                                $cf = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CF'
+                                AND beban_biaya='CAPEX'");
+                                @endphp
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $cf[0]->total }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- stat 3 -->
+                        <div class="media px-3 py-4 border-bottom">
+                            <div class="vector-3 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
+                            <div class="media-body p-2">
+                                <h6 class="mt-0 mb-1 font-size-16">CT</h6>
+                                @php
+                                $ct = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CT'
+                                AND beban_biaya='CAPEX'");
+                                @endphp
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $ct[0]->total }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- stat 4 -->
+                        <div class="media px-3 py-4 border-bottom">
+                            <div class="vector-4 mr-1">
+                                <img src="{{ asset('assets/images/Vector.png') }}">
+                            </div>
                             @php
-                            $cu = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CU'
+                            $co = DB::select("SELECT COUNT(*) as total FROM trx_timeline
+                            WHERE directorate_cd='CO' AND beban_biaya='CAPEX'");
+                            @endphp
+                            <div class="media-body p-2">
+                                <h6 class="mt-0 mb-1 font-size-16">CO</h6>
+                                <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $co[0]->total }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2">
+                <div class="card">
+                    <!-- stat 5 -->
+                    <div class="media px-3 py-4 border-bottom">
+                        <div class="vector-5 mr-1">
+                            <img src="{{ asset('assets/images/Vector.png') }}">
+                        </div>
+                        <div class="media-body p-2">
+                            @php
+                            $ka_bandara = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='KB'
                             AND beban_biaya='CAPEX'");
                             @endphp
-                            <h6 class="mt-0 mb-1 font-size-16">{{ $cu[0]->total }}</h6>
+                            <h6 class="mt-0 mb-1 font-size-16">KA BANDARA</h6>
+                            <h6 class="mt-0 mb-1 font-size-16 text-vector">{{ $ka_bandara[0]->total }}</h6>
                         </div>
-                        <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body p-0">
-                    <!-- stat 2 -->
-                    <div class="media px-3 py-4 border-bottom">
-                        <div class="media-body">
-                            <h6 class="mt-0 mb-1 font-size-16">CF</h6>
-                            @php
-                            $cf = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CF'
-                            AND beban_biaya='CAPEX'");
-                            @endphp
-                            <h6 class="mt-0 mb-1 font-size-16">{{ $cf[0]->total }}</h6>
-                        </div>
-                        <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body p-0">
-                    <!-- stat 3 -->
-                    <div class="media px-3 py-4 border-bottom">
-                        <div class="media-body">
-                            <h6 class="mt-0 mb-1 font-size-16">CT</h6>
-                            @php
-                            $ct = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='CT'
-                            AND beban_biaya='CAPEX'");
-                            @endphp
-                            <h6 class="mt-0 mb-1 font-size-16">{{ $ct[0]->total }}</h6>
-                        </div>
-                        <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body p-0">
-                    <!-- stat 4 -->
-                    <div class="media px-3 py-4 border-bottom">
-                        @php
-                        $co = DB::select("SELECT COUNT(*) as total FROM trx_timeline
-                        WHERE directorate_cd='CO' AND beban_biaya='CAPEX'");
-                        @endphp
-                        <div class="media-body">
-                            <h6 class="mt-0 mb-1 font-size-16">CO</h6>
-                            <h6 class="mt-0 mb-1 font-size-16">{{ $co[0]->total }}</h6>
-                        </div>
-                        <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <!-- stat 5 -->
-                <div class="media px-3 py-4 border-bottom">
-                    <div class="media-body">
-                        @php
-                        $ka_bandara = DB::select("SELECT COUNT(*) as total FROM trx_timeline WHERE directorate_cd='KB'
-                        AND beban_biaya='CAPEX'");
-                        @endphp
-                        <h6 class="mt-0 mb-1">KA BANDARA</h6>
-                        <h6 class="mt-0 mb-1">{{ $ka_bandara[0]->total }}</h6>
-                    </div>
-                    <i data-feather="users" class="align-self-center icon-dual icon-lg"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row">
     <div class="col-xl-6">
@@ -641,7 +805,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <a href="" class="btn btn-primary btn-sm float-right">
+                <a href="" class="btn btn-primary btn-sm float-right btn-export">
                     <i class='uil uil-export ml-1'></i> Export
                 </a>
                 <h5 class="card-title mt-0 mb-0">Detail CAPEX</h5>
@@ -983,39 +1147,39 @@
             name: "Program",
             data: [{
                 y: response.cu,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: response.cf,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: response.ct,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: response.co,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: response.ka_bandara,
-                color: 'red'
+                color: '#e60000'
             }],
             url: "{{ route('task.approval') }}",
-            color: 'red'
+            color: '#e60000'
         });
         seriesData.push({
             name: "Realization",
             data: [{
-                y: 0,
+                y: 10,
                 color: 'orange'
             }, {
-                y: 0,
+                y: 15,
                 color: 'orange'
             }, {
-                y: 0,
+                y: 7,
                 color: 'orange'
             }, {
-                y: 0,
+                y: 9,
                 color: 'orange'
             }, {
-                y: 0,
+                y: 11,
                 color: 'orange'
             }],
             url: "{{ route('task.approval') }}",
@@ -1070,7 +1234,10 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 5,
+                    borderRadius: 6,
+                    borderWidth: 0,
+                    pointWidth: 15,
+                    shadow: true,
                     cursor: 'pointer',
                     point: {
                         events: {
@@ -1096,6 +1263,7 @@
             series: seriesData
         });
     });
+
     // BY STATUS TIMELINE
     $.ajax({
         url: '{{ route("realisasi.opex") }}',
@@ -1106,42 +1274,44 @@
         var seriesData = [];
         seriesData.push({
             name: "Program",
+            color: "#4d79ff",
             data: [{
                 y: response.cu,
-                color: 'blue'
+                color: '#4d79ff'
             }, {
                 y: response.cf,
-                color: 'blue'
+                color: '#4d79ff'
             }, {
                 y: response.ct,
-                color: 'blue'
+                color: '#4d79ff'
             }, {
                 y: response.co,
-                color: 'blue'
+                color: '#4d79ff'
             }, {
                 y: response.ka_bandara,
-                color: 'blue'
+                color: '#4d79ff'
             }],
             url: "{{ route('task.approval') }}",
             color: 'blue'
         });
         seriesData.push({
             name: "Realization",
+            color: "#e60000",
             data: [{
-                y: 0,
-                color: 'orange'
+                y: 10,
+                color: '#e60000'
             }, {
-                y: 0,
-                color: 'orange'
+                y: 20,
+                color: '#e60000'
             }, {
-                y: 0,
-                color: 'orange'
+                y: 25,
+                color: '#e60000'
             }, {
-                y: 0,
-                color: 'orange'
+                y: 26,
+                color: '#e60000'
             }, {
-                y: 0,
-                color: 'orange'
+                y: 22,
+                color: '#e60000'
             }],
             url: "{{ route('task.approval') }}",
             color: 'orange'
@@ -1195,7 +1365,9 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 5,
+                    pointWidth: 17,
+                    shadow: true,
+                    borderRadius: 7,
                     cursor: 'pointer',
                     point: {
                         events: {
@@ -1269,7 +1441,9 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 3,
+                    pointWidth: 15,
+                    shadow: true,
+                    borderRadius: 7,
                 },
                 column: {
                     pointPadding: 0.2,
@@ -1278,80 +1452,80 @@
             },
             series: [{
                 name: 'Program',
-                color: 'red',
+                color: '#e60000',
                 data: [{
                     y: response.cus,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cfh,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cti,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.ctp,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cts,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.coc,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.coh,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cos,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cot,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.cola,
-                    color: 'red'
+                    color: '#e60000'
                 }, {
                     y: response.ka_bandara,
-                    color: 'red'
+                    color: '#e60000'
                 }],
 
             }, {
                 name: 'Realization',
                 color: 'orange',
                 data: [{
-                        y: 0,
-                        color: 'orange'
+                        y: 30,
+                        color: '#4d79ff'
                     },
                     {
-                        y: 0,
-                        color: 'orange'
+                        y: 35,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 25,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 50,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 45,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 25,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 34,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 25,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 56,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
+                        y: 43,
+                        color: '#4d79ff'
                     }, {
-                        y: 0,
-                        color: 'orange'
-                    }
+                        y: 30,
+                        color: '#4d79ff'
+                    },
                 ]
             }]
         });
@@ -1405,7 +1579,10 @@
             },
             plotOptions: {
                 series: {
-                    borderRadius: 3
+                    borderWidth: 0,
+                    pointWidth: 15,
+                    shadow: true,
+                    borderRadius: 6
                 },
                 column: {
                     pointPadding: 0.2,
@@ -1414,41 +1591,41 @@
             },
             series: [{
                 name: 'Program',
-                color: '#3385ff',
+                color: '#e60000',
                 data: [{
                         y: response.cus,
-                        color: '#3385ff'
+                        color: '#e60000'
                     },
                     {
                         y: response.cfh,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.cti,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.ctp,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.cts,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.coc,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.coh,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.cos,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.cot,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.cola,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }, {
                         y: response.ka_bandara,
-                        color: '#3385ff'
+                        color: '#e60000'
                     }
                 ]
 
@@ -1457,37 +1634,37 @@
                 color: '#47d147',
                 data: [{
                     y: 49.9,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 71.5,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 106.4,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 129.2,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 144.0,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 135.6,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 148.5,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 216.4,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 194.1,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 95.6,
-                    color: '#47d147'
+                    color: 'orange'
                 }, {
                     y: 5.6,
-                    color: '#47d147'
+                    color: 'orange'
                 }],
             }]
         });

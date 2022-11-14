@@ -56,7 +56,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Realisasi</label><br />
+                            <label for="exampleInputEmail1" class="font-weight-bold">Realisasi <i class="text-danger">*</i></label><br />
                             <input type="radio" name="realisasi" class="realisasi" value="ya" required> Timeline
                             <input type="radio" name="realisasi" class="realisasi" value="no" required> Diluar Timeline
                         </div>
@@ -87,7 +87,7 @@
                     <div class="row judul-pengadaan">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan <i class="text-danger">*</i></label>
                                 <input type="text" class="form-control" placeholder="Please insert judul pengadaan" name="judul_pengadaan">
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <input type="text" name="nomor_sp3" class="form-control" placeholder="Please insert no sp3">
                         </div> -->
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Metode</label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Metode <i class="text-danger">*</i></label>
                             <select class="form-control type-metode" name="type_metode">
                                 <option value="">Pilih Metode</option>
                                 <option value="1">Penunjukan Langsung</option>
@@ -115,7 +115,7 @@
                             </div>
                         </div> -->
                         <div class="col-md-6 add-vendor-form">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name</label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Vendor Name <i class="text-danger">*</i></label>
                             @php
                             $vendor = DB::select('select * from vendor');
                             @endphp
@@ -130,13 +130,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Nilai PR</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Nilai PR <i class="text-danger">*</i></label>
                                     <input type="text" class="form-control nilai-pr money" placeholder="Please insert nilai_pr" name="nilai_pr">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">COA</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">COA <i class="text-danger">*</i></label>
                                     <select class="form-control" name="coa[]" data-plugin="customselect" multiple placeholder="Please insert coa">
                                         <option value="">Pilih COA</option>
                                         <option value="default-1">Default 1</option>
@@ -149,7 +149,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Type TAX</label>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Type TAX <i class="text-danger">*</i></label>
                                     <select class="form-control type-tax" name="type_tax">
                                         <option value="1">Pajak Tidak Dipungut</option>
                                         <option value="2">Pajak Dipungut</option>
@@ -169,7 +169,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Jenis Barang</label>
+                                <label for="exampleInputEmail1">Jenis Barang <i class="text-danger">*</i></label>
                                 <select class="form-control" name="jenis_barang">
                                     <option value="">Pilih</option>
                                     <option value="Non-Import">Non-Import</option>
@@ -179,7 +179,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Kurs</label>
+                                <label for="exampleInputEmail1">Kurs <i class="text-danger">*</i></label>
                                 <select class="form-control kurs" name="kurs">
                                     <option value="">Pilih</option>
                                     <option value="IDR"><i class="uil uil-money-stack"></i> IDR</option>
@@ -204,25 +204,25 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">No PR/IP</label>
+                                        <label for="exampleInputEmail1">No PR/IP <i class="text-danger">*</i></label>
                                         <input type="text" name="no_pr_ip[]" class="form-control" placeholder="Please Insert No. PR/IP">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tanggal PR/IP</label>
+                                        <label for="exampleInputEmail1">Tanggal PR/IP <i class="text-danger">*</i></label>
                                         <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_pr[]">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Dokumen PR/IP</label>
+                                        <label for="exampleInputEmail1">Dokumen PR/IP <i class="text-danger">*</i></label>
                                         <input type="file" name="file_pr[]" class="form-control" id="filePr" aria-describedby="filePr">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nominal PR/IP</label>
+                                        <label for="exampleInputEmail1">Nominal PR/IP <i class="text-danger">*</i></label>
                                         <input type="text" name="nominal_pr_ip[]" class="form-control money" placeholder="please insert nominal pr/ip">
                                     </div>
                                 </div>
@@ -230,19 +230,19 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">No RAB</label>
+                                        <label for="exampleInputEmail1">No RAB <i class="text-danger">*</i></label>
                                         <input type="text" name="no_rab[]" class="form-control" placeholder="Please Insert No. RAB">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tanggal RAB</label>
+                                        <label for="exampleInputEmail1">Tanggal RAB <i class="text-danger">*</i></label>
                                         <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_rab[]">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Dokumen RAB</label>
+                                        <label for="exampleInputEmail1">Dokumen RAB <i class="text-danger">*</i></label>
                                         <input type="file" name="file_rab[]" class="form-control" id="fileRab" aria-describedby="fileRab">
                                     </div>
                                 </div>
@@ -250,19 +250,19 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang</label>
+                                        <label for="exampleInputEmail1">No Justifikasi Kebutuhan Barang <i class="text-danger">*</i></label>
                                         <input type="text" name="no_justifikasi_kebutuhan[]" class="form-control" placeholder="Please Insert No. Justifikasi">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tanggal Justifikasi</label>
+                                        <label for="exampleInputEmail1">Tanggal Justifikasi <i class="text-danger">*</i></label>
                                         <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_justifikasi[]">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Dokumen Justifikasi Barang</label>
+                                        <label for="exampleInputEmail1">Dokumen Justifikasi Barang <i class="text-danger">*</i></label>
                                         <input type="file" name="file_jus_br[]" class="form-control" id="fileJustifikasiBarang" aria-describedby="fileJustifikasiBarang">
                                     </div>
                                 </div>
@@ -279,19 +279,19 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">No MI</label>
+                                    <label for="exampleInputEmail1">No MI <i class="text-danger">*</i></label>
                                     <input type="text" name="no_mi" class="form-control" placeholder="Please Insert No. MI">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal MI</label>
+                                    <label for="exampleInputEmail1">Tanggal MI <i class="text-danger">*</i></label>
                                     <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_mi">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen MI</label>
+                                    <label for="exampleInputEmail1">Dokumen MI <i class="text-danger">*</i></label>
                                     <input type="file" name="doc_mi" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Perihal MI</label>
+                                    <label for="exampleInputEmail1">Perihal MI <i class="text-danger">*</i></label>
                                     <textarea name="perihal_mi" class="form-control" placeholder="please insert perihal MI"></textarea>
                                 </div>
                             </div>
@@ -307,19 +307,19 @@
                         <div class="row" id="no-justifikasi">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung</label>
+                                    <label for="exampleInputEmail1">No Justifikasi Penunjukan/Pemilihan Langsung <i class="text-danger">*</i></label>
                                     <input type="text" name="no_justifikasi_pemilihan" class="form-control" placeholder="Please Insert No. Justifikasi">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                    <label for="exampleInputEmail1">Tanggal Justifikasi Penunjukan/ Pemilihan Langsung <i class="text-danger">*</i></label>
                                     <input type="date" name="date_justifikasi_pemilihan" class="form-control datepicker" placeholder="Please Insert Date">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung</label>
+                                    <label for="exampleInputEmail1">Dokumen Justifikasi Penunjukan/ Pemilihan Langsung <i class="text-danger">*</i></label>
                                     <input type="file" name="file_just_langsung" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
@@ -327,19 +327,19 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">No KAK</label>
+                                    <label for="exampleInputEmail1">No KAK <i class="text-danger">*</i></label>
                                     <input type="text" name="no_kak" class="form-control" placeholder="Please Insert No. KAK">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal KAK</label>
+                                    <label for="exampleInputEmail1">Tanggal KAK <i class="text-danger">*</i></label>
                                     <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_kak">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen KAK</label>
+                                    <label for="exampleInputEmail1">Dokumen KAK <i class="text-danger">*</i></label>
                                     <input type="file" name="doc_kak" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>
@@ -347,19 +347,19 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">No. Lainnya</label>
+                                    <label for="exampleInputEmail1">No. Lainnya <i class="text-danger">*</i></label>
                                     <input type="text" name="no_lainya" class="form-control" placeholder="Please Insert No. KAK">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal</label>
+                                    <label for="exampleInputEmail1">Tanggal <i class="text-danger">*</i></label>
                                     <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_lainya">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen Lainya</label>
+                                    <label for="exampleInputEmail1">Dokumen Lainya <i class="text-danger">*</i></label>
                                     <input type="file" name="doc_lainya" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>

@@ -147,7 +147,7 @@ function tgl_indos($tanggal)
     $text = [];
     $total = [];
     foreach ($npp as $val) {
-        $text[] = 'No. ' . $val->no_pr . ' tanggal ' . $val->tanggal_pr . ' senilai Rp. ' . number_format($val->nominal_pr_ip,2,',','.') . ',-' . '';
+        $text[] = 'No. ' . $val->no_pr . ' tanggal ' . tgl_indos($val->tanggal_pr) . ' senilai Rp. ' . number_format($val->nominal_pr_ip,2,',','.') . ',-' . '';
         $total[] = $val->nominal_pr_ip;
         $no_pr = is_numeric($val->no_pr);
     }

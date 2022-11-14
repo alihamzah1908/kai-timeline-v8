@@ -55,7 +55,7 @@
                 [5, 'desc']
             ],
             columns: [{
-                    data: 'no_jamlak'
+                    data: 'no_bank_garansi'
                 },
                 {
                     data: 'judul_pengadaan'

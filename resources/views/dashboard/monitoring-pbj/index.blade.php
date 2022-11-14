@@ -1,159 +1,160 @@
 @extends('layouts.master')
-
 @section('content')
-<div class="card">
-</div>
-<div class="card">
-    <!-- <div class="col-md-6"> -->
-    <div class="card-header">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="card-title">
-                    <h5>PBJ Monitoring Dashboard</h5>
+<div class="container-fluid">
+    <div class="card">
+        <!-- <div class="col-md-6"> -->
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="card-title">
+                        <h5>PBJ Monitoring Dashboard</h5>
+                    </div>
+                </div>
+
+                <div class="col-md-2 d-flex justify-content-end">
+                    <!-- <label for="exampleInputEmail1" class="font-weight-bold">Tahun</label> -->
+                    <select class="form-control type-metode" name="type_metode">
+                        <option value="">Tahun</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <!-- <option value="3">Pelelangan Terbuka</option> -->
+                    </select>
                 </div>
             </div>
 
-            <div class="col-md-2 d-flex justify-content-end">
-                <!-- <label for="exampleInputEmail1" class="font-weight-bold">Tahun</label> -->
-                <select class="form-control type-metode" name="type_metode">
-                    <option value="">Tahun</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <!-- <option value="3">Pelelangan Terbuka</option> -->
-                </select>
-            </div>
+            <!-- </div> -->
         </div>
-
-        <!-- </div> -->
     </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/rks.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">RKS</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">14</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/rks-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">RKS</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">14</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/aan.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">AAN</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">26</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/aand-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">AAN</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">26</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/pdp.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">PDP</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">9</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/pdp-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">PDP</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">9</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/kkn.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">KKN</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">5</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/kkn-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">KKN</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">5</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/pp.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">PP</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">35</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/pp-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">PP</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">35</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/logo-kai-icon.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <h6 class="mt-1 mb-0 font-size-15">SPR</h6>
-                                <h6 class="mt-1 mb-0 font-size-15">28</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/spr-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <h6 class="mt-1 mb-0 font-size-15">SPR</h6>
+                                    <h6 class="mt-1 mb-0 font-size-15">28</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -161,28 +162,31 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
 
-        <div class="row">
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="progress_bar"></div>
-                </figure>
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="progress_bar"></div>
+                    </figure>
+                </div>
             </div>
-        </div>
 
-        <div class="row mt-4">
-            <div class="col-xl-6">
-                <figure class="highcharts-figure">
-                    <div id="pbj-opex"></div>
-                </figure>
+            <div class="row mt-4">
+                <div class="col-xl-6">
+                    <figure class="highcharts-figure">
+                        <div id="pbj-opex"></div>
+                    </figure>
+                </div>
+                <div class="col-xl-6">
+                    <figure class="highcharts-figure">
+                        <div id="pbj-capex"></div>
+                    </figure>
+                </div>
             </div>
-            <div class="col-xl-6">
-                <figure class="highcharts-figure">
-                    <div id="pbj-capex"></div>
-                </figure>
-            </div>
-        </div>
-        <!-- <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <figure class="highcharts-figure">
                         <div id="line_chart"></div>
@@ -194,23 +198,24 @@
                     </figure>
                 </div>
             </div> -->
-        <div class="row">
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="donut_chart_1"></div>
-                </figure>
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="donut_chart_1"></div>
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="donut_chart_2"></div>
+                    </figure>
+                </div>
             </div>
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="donut_chart_2"></div>
-                </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="bar_chart"></div>
-                </figure>
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="bar_chart"></div>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
@@ -328,6 +333,7 @@
         plotOptions: {
             series: {
                 borderRadius: 3,
+                shadow: true,
             },
             column: {
                 pointPadding: 0.2,
@@ -337,37 +343,40 @@
         series: [{
             name: 'Pemilihan Langsung',
             color: 'red',
+            color: '#e60000',
             data: [{
-                y: 49.9,
-                color: 'red'
-            }, {
-                y: 71.5,
-                color: 'red'
-            }, {
-                y: 106.4,
-                color: 'red'
-            }, {
-                y: 129.2,
-                color: 'red'
-            }, {
-                y: 144.0,
-                color: 'red'
-            }, {
-                y: 135.6,
-                color: 'red'
-            }, {
-                y: 148.5,
-                color: 'red'
-            }, {
-                y: 216.4,
-                color: 'red'
-            }, {
-                y: 194.1,
-                color: 'red'
-            }, {
-                y: 95.6,
-                color: 'red'
-            }],
+                    y: 83.6,
+                    color: '#e60000'
+                },
+                {
+                    y: 78.8,
+                    color: '#e60000'
+                }, {
+                    y: 93.4,
+                    color: '#e60000'
+                }, {
+                    y: 98.5,
+                    color: '#e60000'
+                }, {
+                    y: 106.0,
+                    color: '#e60000'
+                }, {
+                    y: 84.5,
+                    color: '#e60000'
+                }, {
+                    y: 105.0,
+                    color: '#e60000'
+                }, {
+                    y: 91.2,
+                    color: '#e60000'
+                }, {
+                    y: 83.5,
+                    color: '#e60000'
+                }, {
+                    y: 106.6,
+                    color: '#e60000'
+                }
+            ]
 
         }, {
             name: 'Penunjukan Langsung',
@@ -407,38 +416,38 @@
             ]
         }, {
             name: 'Lelang Terbuka',
-            color: 'green',
+            color: '#4d79ff',
             data: [{
                     y: 83.6,
-                    color: 'green'
+                    color: '#4d79ff'
                 },
                 {
                     y: 78.8,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 93.4,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 98.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 106.0,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 84.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 105.0,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 91.2,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 83.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 106.6,
-                    color: 'green'
+                    color: '#4d79ff'
                 }
             ]
         }]
@@ -487,7 +496,8 @@
         },
         plotOptions: {
             series: {
-                borderRadius: 3
+                borderRadius: 3,
+                shadow: true,
             },
             column: {
                 pointPadding: 0.2,
@@ -496,75 +506,74 @@
         },
         series: [{
             name: 'Pemilihan Langsung',
-            color: '#3385ff',
+            color: '#e60000',
             data: [{
                     y: 83.6,
-                    color: '#3385ff'
+                    color: '#e60000'
                 },
                 {
                     y: 78.8,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 93.4,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 98.5,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 106.0,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 84.5,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 105.0,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 91.2,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 83.5,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }, {
                     y: 106.6,
-                    color: '#3385ff'
+                    color: '#e60000'
                 }
             ]
-
         }, {
             name: 'Penunjukan Langsung',
             color: 'green',
             data: [{
                     y: 83.6,
-                    color: 'green'
+                    color: '#4d79ff'
                 },
                 {
                     y: 78.8,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 93.4,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 98.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 106.0,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 84.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 105.0,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 91.2,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 83.5,
-                    color: 'green'
+                    color: '#4d79ff'
                 }, {
                     y: 106.6,
-                    color: 'green'
+                    color: '#4d79ff'
                 }
             ]
         }, {
@@ -643,14 +652,17 @@
         series: [{
                 name: "Fill",
                 data: [100],
-                color: "gray",
+                color: "#ffe6e6",
                 grouping: false
                 // enableMouseTracking: false, disable tooltip on just this data element
             },
             {
                 name: "Percentage",
                 data: [getRandomInt(100)],
-                color: "orange",
+                color: "#e60000",
+                pointWidth: 30,
+                shadow: true,
+                borderRadius: 15,
                 dataLabels: {
                     enabled: true,
                     inside: true,
@@ -755,7 +767,7 @@
         chart: {
             type: 'bar'
         },
-        colors: ['#c9962f'],
+        colors: ['#e60000'],
         title: {
             text: 'Top 3 Out of SLA'
         },
@@ -796,7 +808,10 @@
         },
         series: [{
             name: 'Jumlah Hari',
-            data: [getRandomInt(100), getRandomInt(100), getRandomInt(100)]
+            data: [getRandomInt(100), getRandomInt(100), getRandomInt(100)],
+            pointWidth: 30,
+            shadow: true,
+            borderRadius: 15,
         }, ]
     });
 </script>

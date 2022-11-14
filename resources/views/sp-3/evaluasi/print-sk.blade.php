@@ -34,10 +34,11 @@ function tgl_indos($tanggal)
         th {
             height: 30px;
         }
+
         div.halaman {
-			page-break-after: always;
-			page-break-inside: avoid;
-		}
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
 
         @media print {}
     </style>
@@ -45,6 +46,15 @@ function tgl_indos($tanggal)
 
 <body>
     <div class="halaman">
+        <table width="100%">
+            <tr>
+                <th width="10%"></th>
+                <th width="70%"></th>
+                <th width="20%">
+                    <img src="data:image/png;base64, {{ base64_encode(file_get_contents(public_path('assets/images/Logo_KAI_Commuter.svg.png'))) }}" width="130px">
+                </th>
+            </tr>
+        </table>
         <table border="0" width="100%" style="margin-top: 5em">
             <tr>
                 <th>
@@ -96,11 +106,12 @@ function tgl_indos($tanggal)
                 <tr align="left">
                     <td style="width: 50%" valign="top">1. Nama Kegiatan</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         <b>
                             {{ strtoupper($data ? $data->judul_pengadaan : '') }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top"></td>
                 </tr>
                 <tr align="left">
                     <td style="width: 50%" valign="top">2. Rencana Kerja dan Syarat Nomor</td>
@@ -113,11 +124,12 @@ function tgl_indos($tanggal)
                             {{ $rks ? $rks->nomor_rks : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">{{ $rks->tanggal_rks != '' ? tgl_indos($rks->tanggal_rks) : ''}}</td>
                 </tr>
                 <tr align="left">
                     <td style="width: 50%" valign="top">3. Pengumuman Pengadaan Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $rks = \App\Models\TrxUndangan::where('sp3_id', request()->id)->first();
                         @endphp
@@ -125,11 +137,12 @@ function tgl_indos($tanggal)
                             {{ $rks ? $rks->nomor_pengumuman : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">{{ $rks ? tgl_indos($rks->tanggal_rks) : '' }}</td>
                 </tr>
                 <tr align="left">
                     <td style="width: 50%" valign="top">4. Berita Acara Rapat Penjelasan/Aanwijzing & Addendum Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'aanwidjzing')
                         ->where('sp3_id', request()->id)
@@ -139,11 +152,12 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">@if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif</td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">4. Berita Acara Pembukaan Dokumen Penawaran Nomor</td>
+                    <td style="width: 50%" valign="top">5. Berita Acara Pembukaan Dokumen Penawaran Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'undangan_pembukaan_dokumen_penawaran')
                         ->where('sp3_id', request()->id)
@@ -153,9 +167,12 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">5. Pengumuman Ulang Nomor</td>
+                    <td style="width: 50%" valign="top">6. Pengumuman Ulang Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
                     <td style="width: 40%" valign="top">
                         <b>
@@ -164,9 +181,9 @@ function tgl_indos($tanggal)
                     </td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">6. Berita Acara Pembukaan Dokumen Penawaran Nomor</td>
+                    <td style="width: 50%" valign="top">7. Berita Acara Pembukaan Dokumen Penawaran Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'pembukaan_dokumen')
                         ->where('sp3_id', request()->id)
@@ -176,11 +193,14 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">7. Berita Acara Evaluasi Dokumen Penawaran Nomor</td>
+                    <td style="width: 50%" valign="top">8. Berita Acara Evaluasi Dokumen Penawaran Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'evaluasi_dokumen_penawaran')
                         ->where('sp3_id', request()->id)
@@ -190,11 +210,14 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">8. Undangan Klarifikasi, Konfirmasi dan Negosiasi Nomor</td>
+                    <td style="width: 50%" valign="top">9. Undangan Klarifikasi, Konfirmasi dan Negosiasi Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'undangan_kkn')
                         ->where('sp3_id', request()->id)
@@ -204,11 +227,14 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
                 <tr align="left">
-                    <td style="width: 50%" valign="top">9. Berita Acara Klarifikasi, Konfirmasi dan Negosiasi Nomor</td>
+                    <td style="width: 50%" valign="top">10. Berita Acara Klarifikasi, Konfirmasi dan Negosiasi Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'kkn')
                         ->where('sp3_id', request()->id)
@@ -218,25 +244,28 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
-                <tr align="left">
-                    <td style="width: 50%" valign="top">10. Undangan Negosiasi Nomor</td>
+                <!-- <tr align="left">
+                    <td style="width: 50%" valign="top">11. Undangan Negosiasi Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
                     <td style="width: 40%" valign="top">
 
                     </td>
-                </tr>
-                <tr align="left">
-                    <td style="width: 50%" valign="top">11. Berita Acara Negosiasi Nomor</td>
+                </tr> -->
+                <!-- <tr align="left">
+                    <td style="width: 50%" valign="top">12. Berita Acara Negosiasi Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
                     <td style="width: 40%" valign="top">
 
                     </td>
-                </tr>
+                </tr> -->
                 <tr align="left">
-                    <td style="width: 50%" valign="top">13. Berita Acara Hasil Pelelangan Nomor</td>
+                    <td style="width: 50%" valign="top">11. Berita Acara Hasil Pelelangan Nomor</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxBeritaAcara::where('step_process', 'berita_hasil_pelelangan')
                         ->where('sp3_id', request()->id)
@@ -246,11 +275,38 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_spr : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                    @if($berita){{ $berita->tanggal_berita_acara != '' ? tgl_indos($berita->tanggal_berita_acara) : '' }}@endif
+                    </td>
                 </tr>
+                @php
+                $mi_pbj = \App\Models\TrxBeritaAcara::where('step_process', 'kkn')
+                    ->where('sp3_id', request()->id)
+                    ->where('nomor_memo_internal', '!=', '')
+                    ->first();
+                $mi_user = \App\Models\TrxBeritaAcara::where('step_process', 'kkn')
+                    ->where('sp3_id', request()->id)
+                    ->where('nomor_memo_user', '!=', '')
+                    ->first();
+                @endphp
+                @if($mi_pbj)
                 <tr align="left">
-                    <td style="width: 50%" valign="top">14. Usulan dan Penetapan Calon Pemenang</td>
+                    <td style="width: 50%" valign="top">12. MI dari PBJ</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
+                        <b>
+                            {{ $mi_pbj ? $mi_pbj->nomor_memo_internal : '' }}
+                        </b>
+                    </td>
+                    <td style="width: 20%" valign="top">
+                        @if($mi_pbj){{ $mi_pbj->tanggal_memo_internal != '' ? tgl_indos($mi_pbj->tanggal_memo_internal) : '' }}@endif
+                    </td>
+                </tr>
+                @else
+                <tr align="left">
+                    <td style="width: 50%" valign="top">12. Usulan dan Penetapan Calon Pemenang</td>
+                    <td style="width: 2%;" valign="top">: </td>
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxPenetapanPemenang::where('sp3_id', request()->id)
                         ->first();
@@ -259,11 +315,29 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_usulan_pemenang : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                        @if($berita){{ $berita->tanggal_usulan_pemenang != '' ? tgl_indos($berita->tanggal_usulan_pemenang) : '' }}@endif
+                    </td>
                 </tr>
+                @endif
+                @if($mi_pbj)
                 <tr align="left">
-                    <td style="width: 50%" valign="top">15. Pengumuman Pemenang</td>
+                    <td style="width: 50%" valign="top">12. MI dari User</td>
                     <td style="width: 2%;" valign="top">: </td>
-                    <td style="width: 40%" valign="top">
+                    <td style="width: 20%" valign="top">
+                        <b>
+                            {{ $mi_user ? $mi_pbj->nomor_memo_user : '' }}
+                        </b>
+                    </td>
+                    <td style="width: 20%" valign="top">
+                        @if($mi_user){{ $mi_user->tanggal_memo_internal != '' ? tgl_indos($mi_user->tanggal_memo_internal) : '' }}@endif
+                    </td>
+                </tr>
+                @else
+                <tr align="left">
+                    <td style="width: 50%" valign="top">13. Pengumuman Pemenang</td>
+                    <td style="width: 2%;" valign="top">: </td>
+                    <td style="width: 20%" valign="top">
                         @php
                         $berita = \App\Models\TrxPenetapanPemenang::where('sp3_id', request()->id)
                         ->first();
@@ -272,7 +346,11 @@ function tgl_indos($tanggal)
                             {{ $berita ? $berita->nomor_pemenang : '' }}
                         </b>
                     </td>
+                    <td style="width: 20%" valign="top">
+                        @if($berita){{ $berita->tanggal_pemenang != '' ? tgl_indos($berita->tanggal_pemenang) : '' }}@endif
+                    </td>
                 </tr>
+                @endif
             </thead>
         </table>
         <br />
@@ -280,6 +358,13 @@ function tgl_indos($tanggal)
             <thead>
                 <tr align="left">
                     <th style="width: 10%" valign="top">MENETAPKAN </th>
+                    <th style="width: 2%;" valign="top"> : </th>
+                    <td style="width: 70%" style="text-align: justify;">
+                        
+                    </td>
+                </tr>
+                <tr align="left">
+                    <th style="width: 10%" valign="top">PERTAMA </th>
                     <th style="width: 2%;" valign="top">: </th>
                     <td style="width: 70%" style="text-align: justify;">
                         Kepada <b>{{ $vendor ? $vendor->vendor_name : '' }}</b> yang beralamat di {{ $vendor ? $vendor->street : '' }}, {{ $vendor ? $vendor->city : '' }} {{ $vendor ? $vendor->postal_code : '' }}, diberikan pekerjaan <b>{{ $data ? strtoupper($data->judul_pengadaan) : '' }}</b>,
@@ -301,7 +386,7 @@ function tgl_indos($tanggal)
                     $interval = $rksNew->diff($pcpNew);
                     $days = $interval->days;
                     @endphp
-                    <th style="width: 10%" valign="top">PERTAMA </th>
+                    <th style="width: 10%" valign="top">KEDUA </th>
                     <th style="width: 2%;" valign="top">: </th>
                     <td style="width: 70%" style="text-align: justify;">
                         Berdasarkan usulan dan penetapan calon pemenang Nomor : 83/LL/NONSAR/KCI/UPP/VIII/2022, tanggal
@@ -312,18 +397,11 @@ function tgl_indos($tanggal)
                     </td>
                 </tr>
                 <tr align="left">
-                    <th style="width: 10%" valign="top">KEDUA </th>
+                    <th style="width: 10%" valign="top">KETIGA </th>
                     <th style="width: 2%;" valign="top">: </th>
                     <td style="width: 70%">
                         Segala hal yang berhubungan dengan hak, kewajiban dan pelaksanaan di dalam pekerjaan ini akan diatur
                         dalam Surat Perjanjian/Kontrak.
-                    </td>
-                </tr>
-                <tr align="left">
-                    <th style="width: 10%" valign="top">KETIGA </th>
-                    <th style="width: 2%;" valign="top">: </th>
-                    <td style="width: 70%">
-                        Surat Perjanjian dimaksud pada butir Kedua akan segera ditandatangani oleh kedua belah pihak.
                     </td>
                 </tr>
             </thead>

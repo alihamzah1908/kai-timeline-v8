@@ -18,7 +18,7 @@ class VendorController extends Controller
     {
         return view('vendor.index');
     }
-    
+
     public function blacklist()
     {
         return view('vendor.blacklist');
@@ -42,7 +42,21 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new \App\Models\MasterVendor();
+        $data->vendor_code = $request["vendor_code"];
+        $data->vendor_name = $request["vendor_name"];
+        $data->country = $request["country"];
+        $data->postal_code = $request["postal_code"];
+        $data->city = $request["city"];
+        $data->account_group = $request["account_group"];
+        $data->search_term = $request["search_term"];
+        $data->purch_org = $request["purch_org"];
+        $data->purch_org_descr = $request["purch_org_descr"];
+        $data->term_of_payment = $request["term_of_payment"];
+        $data->order_currency = $request["currency"];
+        $data->street = $request["address"];
+        $data->save();
+        return redirect(route('vendor.index'));
     }
 
     /**
@@ -95,7 +109,7 @@ class VendorController extends Controller
     public function autovendor(Request $request)
     {
         $data = DB::table('public.vendor')
-            ->select('vendor_name','vendor_code')
+            ->select('vendor_name', 'vendor_code')
             ->where('vendor_name', 'LIKE', '%' . $request->get('search') . '%')
             ->get();
         $response = array();

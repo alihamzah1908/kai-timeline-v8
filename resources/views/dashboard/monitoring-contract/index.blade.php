@@ -1,157 +1,161 @@
 @extends('layouts.master')
-
 @section('content')
-<div class="card">
-    <!-- <div class="col-md-6"> -->
-    <div class="card-header">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="card-title">
-                    <h5>Contract Monitoring Dashboard</h5>
+<div class="container-fluid">
+    <div class="card">
+        <!-- <div class="col-md-6"> -->
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="card-title">
+                        <h5>Contract Monitoring Dashboard</h5>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-2 d-flex justify-content-end">
-                <!-- <label for="exampleInputEmail1" class="font-weight-bold">Tahun</label> -->
-                <select class="form-control type-metode" name="type_metode">
-                    <option value="">Tahun</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <!-- <option value="3">Pelelangan Terbuka</option> -->
-                </select>
+                <div class="col-md-2 d-flex justify-content-end">
+                    <!-- <label for="exampleInputEmail1" class="font-weight-bold">Tahun</label> -->
+                    <select class="form-control type-metode" name="type_metode">
+                        <option value="">Tahun</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <!-- <option value="3">Pelelangan Terbuka</option> -->
+                    </select>
+                </div>
             </div>
+            <!-- </div> -->
         </div>
-        <!-- </div> -->
     </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/jamlak.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <label>Menunggu Jamlak</label>
-                                <h6 class="mt-1 mb-0 font-size-15">10</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/VectorContract Completed.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <label>Menunggu Jamlak</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">10</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/legal.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <label>Review Legal</label>
-                                <h6 class="mt-1 mb-0 font-size-15">12</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/VectorReview Legal.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <label>Review Legal</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">12</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/appLegal.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <!-- <h6 class="mt-1 mb-0 font-size-15">Approval</h6> -->
-                                <label>Approval Legal</label>
-                                <h6 class="mt-1 mb-0 font-size-15">9</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/VectorApproval Legal.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <!-- <h6 class="mt-1 mb-0 font-size-15">Approval</h6> -->
+                                    <label>Approval Legal</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">9</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/appuser.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <label>Approval User</label>
-                                <h6 class="mt-1 mb-0 font-size-15">5</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/pp-vector.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <label>Approval User</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">5</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/sign.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <label>TTD Vendor</label>
-                                <h6 class="mt-1 mb-0 font-size-15">35</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="{{ asset('assets/images/VectorContract Completed.png') }}" class="mr-2">
+                                <div class="media-body">
+                                    <label>TTD Vendor</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">35</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-2">
-                <div class="card">
-                    <div class="card-body pt-2">
-                        <div class="media border-top pt-3">
-                            <img src="../assets/images/contract.png" class="avatar rounded mr-3" alt="shreyu">
-                            <div class="media-body">
-                                <label>Contract Completed</label>
-                                <h6 class="mt-1 mb-0 font-size-15">28</h6>
-                            </div>
-                            <div class="dropdown align-self-center float-right">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="uil uil-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                <div class="col-xl-2">
+                    <div class="card">
+                        <div class="card-body pt-2">
+                            <div class="media border-top pt-3">
+                                <img src="../assets/images/contract.png" class="avatar rounded mr-3" alt="shreyu">
+                                <div class="media-body">
+                                    <label>Contract Completed</label>
+                                    <h6 class="mt-1 mb-0 font-size-15">28</h6>
+                                </div>
+                                <div class="dropdown align-self-center float-right">
+                                    <a href="#" class="dropdown-toggle arrow-none text-muted" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="uil uil-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item"><i class="uil uil-edit-alt mr-2"></i>Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,23 +163,27 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="pbj-opex"></div>
-                </figure>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="pbj-opex"></div>
+                    </figure>
+                </div>
+                <div class="col">
+                    <figure class="highcharts-figure">
+                        <div id="donut_chart_1"></div>
+                    </figure>
+                </div>
             </div>
-            <div class="col">
-                <figure class="highcharts-figure">
-                    <div id="donut_chart_1"></div>
-                </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                </figure>
+            <div class="row">
+                <div class="col-xl-12">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
@@ -248,37 +256,37 @@
         name: "Pemilihan Langsung",
         data: [{
             y: 19,
-            color: 'red'
+            color: 'orange'
         }, {
             y: 16,
-            color: 'red'
+            color: 'orange'
         }],
         url: "{{ route('task.approval') }}",
-        color: 'red'
+        color: 'orange'
     });
     seriesData.push({
         name: "Penunjukan Langsung",
         data: [{
             y: 17,
-            color: 'blue'
+            color: '#4d79ff'
         }, {
             y: 19,
-            color: 'blue'
+            color: '#4d79ff'
         }],
         url: "{{ route('task.approval') }}",
-        color: 'blue'
+        color: '#4d79ff'
     });
     seriesData.push({
         name: "Lelang Terbuka",
         data: [{
             y: 16,
-            color: 'orange'
+            color: '#e60000'
         }, {
             y: 18,
-            color: 'orange'
+            color: '#e60000'
         }],
         url: "{{ route('task.approval') }}",
-        color: 'orange'
+        color: '#e60000'
     });
     // PROGRAM & REALIZATION PBJ OPEX
     Highcharts.chart('pbj-opex', {
@@ -323,7 +331,8 @@
         },
         plotOptions: {
             series: {
-                borderRadius: 3,
+                borderRadius: 6,
+                shadow: true
             },
             column: {
                 pointPadding: 0.2,
@@ -332,37 +341,37 @@
         },
         series: [{
             name: 'Sarana',
-            color: 'red',
+            color: '#e60000',
             data: [{
                 y: 49.9,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 71.5,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 106.4,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 129.2,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 144.0,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 135.6,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 148.5,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 216.4,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 194.1,
-                color: 'red'
+                color: '#e60000'
             }, {
                 y: 95.6,
-                color: 'red'
+                color: '#e60000'
             }],
 
         }, {
@@ -492,8 +501,9 @@
         },
         plotOptions: {
             series: {
-                borderRadius: 15,
+                borderRadius: 10,
                 cursor: 'pointer',
+                shadow: true,
                 point: {
                     events: {
                         click: function() {

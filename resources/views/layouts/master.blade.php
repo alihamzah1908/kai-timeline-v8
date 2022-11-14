@@ -232,6 +232,11 @@
                                     <a href="{{ route('list.procurement') }}">List PBJ</a>
                                 </li>
                                 @endcan
+                                @can('pbj-list')
+                                <li>
+                                    <a href="{{ route('list.memo-internal') }}">Memo Internal</a>
+                                </li>
+                                @endcan
                             </ul>
                         </li>
                         <li>
@@ -254,7 +259,7 @@
                             </ul>
                         </li>
                         @endif
-                        
+
                         @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('manajer_logistic_nonsarana')
                         || auth()->user()->hasRole('admin_pbj') || auth()->user()->hasRole('admin_contract') || auth()->user()->hasRole('manajer_logistic_sarana') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
@@ -270,7 +275,7 @@
                             </ul>
                         </li>
                         @endif
-                        
+
                         @if(auth()->user()->hasRole('super admin') || auth()->user()->hasRole('admin_waste') || auth()->user()->hasRole('Manajer Logistik'))
                         <li>
                             <a href="javascript: void(0);">
@@ -387,13 +392,88 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         @php $date = date('d M Y H:i:s') @endphp
                                         <i class="uil uil-home-alt"></i> {{ $date }} Login as <b>{{ Auth::user()->name }}</b>
                                     </div>
-                                    <div class="col-md-6 d-flex justify-content-end">
+                                    <div class="col-md-1" style="margin-left: 16rem">
+                                        <ul class="navbar-nav flex-row ml-auto d-flex list-unstyled topnav-menu float-right mb-0">
+                                            <li class="dropdown notification-list" data-toggle="tooltip" data-placement="left">
+                                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                    <i data-feather="bell" height="20"></i>
+                                                    <span class="noti-icon-badge total_notif" style="display: none"></span>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                                                    <!-- item-->
+                                                    <div class="dropdown-item noti-title border-bottom">
+                                                        <h5 class="m-0 font-size-16">
+                                                            Notifikasi
+                                                        </h5>
+                                                    </div>
+
+                                                    <div class="slimscroll noti-scroll">
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon bg-primary"><i class="uil uil-user-plus"></i></div>
+                                                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
+                                                            </p>
+                                                        </a>
+
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon">
+                                                                <img src="{{ asset('new-assets/images/users/avatar-1.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                            </div>
+                                                            <p class="notify-details">Karen Robinson</p>
+                                                            <p class="text-muted mb-0 user-msg">
+                                                                <small>Wow ! this admin looks good and awesome design</small>
+                                                            </p>
+                                                        </a>
+
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon">
+                                                                <img src="{{ asset('new-assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
+                                                            </div>
+                                                            <p class="notify-details">Cristina Pride</p>
+                                                            <p class="text-muted mb-0 user-msg">
+                                                                <small>Hi, How are you? What about our next meeting</small>
+                                                            </p>
+                                                        </a>
+
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom active">
+                                                            <div class="notify-icon bg-success"><i class="uil uil-comment-message"></i> </div>
+                                                            <p class="notify-details">Jaclyn Brunswick commented on Dashboard<small class="text-muted">1
+                                                                    min
+                                                                    ago</small></p>
+                                                        </a>
+
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
+                                                            <div class="notify-icon bg-danger"><i class="uil uil-comment-message"></i></div>
+                                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days
+                                                                    ago</small></p>
+                                                        </a>
+
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                                            <div class="notify-icon bg-primary">
+                                                                <i class="uil uil-heart"></i>
+                                                            </div>
+                                                            <p class="notify-details">Carlos Crouch liked
+                                                                <b>Admin</b>
+                                                                <small class="text-muted">13 days ago</small>
+                                                            </p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
                                         <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <div class="media">
+                                            <div class="media-header">
                                                 <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-sm rounded-circle mr-2" alt="Shreyu" />
                                                 <!-- <img src="{{ asset('assets/images/users/avatar-7.jpg') }}" class="avatar-xs rounded-circle mr-2" alt="Shreyu" /> -->
 
@@ -545,6 +625,56 @@
         $('.mask-phone').mask('00000000000');
 
         $(".datepicker").flatpickr()
+
+
+        // notifikasi
+        function loadlink() {
+            var user = "{{ auth()->user()->hasRole('Manajer Logistik') }}"
+            $.ajax({
+                'url': '{{ route("notifikasi") }}',
+                'method': 'get',
+                'dataType': 'json'
+            }).done(function(response) {
+                if (response.length > 0) {
+                    $(".dropdown.notification-list").attr('data-original-title', 'C-LOG Notification')
+                    $('.total_notif').css('display', '')
+                    // console.log(response)
+                    $('.slimscroll.noti-scroll').html(' ')
+                    $.each(response, function(index, value) {
+                        if (value.type == 'timeline') {
+                            var url = "{{ route('timeline.show',':id') }}"
+                            url = url.replace(':id', value.transaksi_id)
+                            if(value.department == 'CUGP'){
+                                $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> Your Timeline (no pengadaan) was approved by ' + value.department + '</small></div>')
+                            }else{
+                                $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> You have new task to Approve Timeline</small></div>')
+                            }
+                            
+                        } else if (value.type == 'npp') {
+                            var url = "{{ route('sp3.show',':id') }}"
+                            url = url.replace(':id', value.transaksi_id)
+                            $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> You have new task for SPR</small></div></a>')
+                        } else if (value.type == 'pbj') {
+                            var url = "{{ route('procurement.show',':id') }}"
+                            url = url.replace(':id', value.transaksi_id)
+                            $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> Your NPP (no pengadaan) was approved by ' + value.department + '</small></div></a>')
+                        }else if (value.type == 'contract') {
+                            var url = "{{ route('contract.show',':id') }}"
+                            url = url.replace(':id', value.transaksi_id)
+                            $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> You have new task for Contract</small></div></a>')
+                        }
+
+                    })
+                    return false
+                } else {
+                    $('.slimscroll.noti-scroll').html('<p class="ml-3">anda tidak memiliki data baru</p>')
+                }
+            })
+        }
+        loadlink();
+        setInterval(function() {
+            loadlink()
+        }, 10000);
     </script>
     @stack('scripts')
 

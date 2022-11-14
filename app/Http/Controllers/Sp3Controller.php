@@ -6,6 +6,8 @@ use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\KCIMail;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class Sp3Controller extends Controller
@@ -244,7 +246,19 @@ class Sp3Controller extends Controller
                 }
             }
         }
+        // create notifikasi
+        $notifikasi = new \App\Models\TrxNotifikasi();
+        $notifikasi->is_read = 1;
+        $notifikasi->department = Auth::user()->department_cd;
+        $notifikasi->type = 'npp';
+        $notifikasi->created_by =  Auth::user()->id;
+        $notifikasi->transaksi_id =  $data->sp3_id;
+        $notifikasi->save();
 
+        // create notifikasi by email
+        // $email = Auth::user()->email;
+        // $type = 'npp';
+        // Mail::to($email)->send(new KCIMail($type));
         return redirect(route('list.npp'));
     }
 
@@ -322,7 +336,21 @@ class Sp3Controller extends Controller
             $timeline = \App\Models\SP3::find($request["sp3_id"]);
             $timeline->proses_st = 'PROSES_DRKS';
             $timeline->save();
+
+            // create notifikasi
+            $notifikasi = new \App\Models\TrxNotifikasi();
+            $notifikasi->is_read = 1;
+            $notifikasi->department = Auth::user()->department_cd;
+            $notifikasi->type = 'pbj';
+            $notifikasi->created_by =  Auth::user()->id;
+            $notifikasi->transaksi_id =  $request["sp3_id"];
+            $notifikasi->save();
             return response()->json(['status' => '200']);
+            
+            // create notifikasi by email
+            $email = Auth::user()->email;
+            $type = 'pbj';
+            Mail::to($email)->send(new KCIMail($type));
         } else {
             return response()->json(['status' => '400']);
         }

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\KCIMail;
+use App\Mail\KCIMailTest;
 
 class DashboardController extends Controller
 {
@@ -338,5 +342,57 @@ class DashboardController extends Controller
                 'sisa_qty' => DB::select("SELECT (SUM(estimasi_user) - SUM(realisasi_qty)) as total FROM warehouse_waste WHERE uraian='Limbah Pelumas'"),
             ],
         ]);
+    }
+
+    public function notifikasi(Request $request)
+    {
+        if (Auth::user()->department_cd == 'CUGP') {
+            $data = DB::table('notifikasi')
+                ->where('is_read', '=', 1)
+                ->where('department', '=', 'CTIP')
+                ->orWhere('department', '=', 'CUGR')
+                ->orWhere('department', '=', 'COHC')
+                ->orWhere('department', '=', 'CUSE')
+                ->orWhere('department', '=', 'COTC')
+                ->orderBy('trx_notifikasi_id', 'desc')
+                ->get();
+        } else if (Auth::user()->department_cd == 'COHC' || Auth::user()->department_cd == 'CTIP' || Auth::user()->department_cd == 'CUSE' || Auth::user()->department_cd == 'COTC') {
+            $data = DB::table('notifikasi')
+                ->where('is_read', '=', 1)
+                ->where('department', '=', 'CUGP')
+                // ->where('type', '=', 'timeline')
+                ->orderBy('trx_notifikasi_id', 'desc')
+                ->get();
+        } else if (Auth::user()->department_cd == 'CUGR') {
+            if (Auth::user()->users_cd == 'CUGR2') {
+                $data = DB::table('notifikasi')
+                    ->where('is_read', '=', 1)
+                    ->Where('department', '=', 'CUGR')
+                    ->orderBy('trx_notifikasi_id', 'desc')
+                    ->get();
+            } else {
+                $data = DB::table('notifikasi')
+                    ->where('is_read', '=', 1)
+                    ->where('department', '=', 'CUGP')
+                    ->orderBy('trx_notifikasi_id', 'desc')
+                    ->get();
+            }
+        } else if (Auth::user()->department_cd == 'CUGN') {
+            $data = DB::table('notifikasi')
+                ->where('is_read', '=', 1)
+                ->where('department', '=', 'CUGP')
+                ->orWhere('department', '=', 'CUGR')
+                ->orderBy('trx_notifikasi_id', 'desc')
+                ->get();
+        } else {
+            $data = [];
+        }
+        return response()->json($data);
+    }
+
+    public function kirim_email(Request $request)
+    {
+        Mail::to("amrun.hakim@krl.co.id")->send(new KCIMailTest());
+        return "Email telah dikirim";
     }
 }

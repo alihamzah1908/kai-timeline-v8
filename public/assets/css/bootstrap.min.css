@@ -6152,6 +6152,17 @@ a.badge-dark:focus {
     -ms-flex-align: start;
     align-items: flex-start;
     /* custom  */
+    height: 90px;
+}
+
+.media-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    /* custom  */
     /* height: 90px; */
 }
 

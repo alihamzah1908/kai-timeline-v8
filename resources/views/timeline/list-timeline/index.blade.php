@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan <i class="text-danger">*</i></label>
                                 <textarea name="judul_pengadaan" class="form-control judul_pengadaan" placeholder="Please insert judul pengadaan"></textarea>
                                 <div class="invalid-feedback error-judul" style="display: none;">
                                     Mohon isi judul pengadaan.
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Beban Biaya</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Beban Biaya <i class="text-danger">*</i></label>
                                 <select class="form-control beban_biaya" name="beban_biaya">
                                     <option value="">Pilih</option>
                                     <option value="CAPEX">Capex</option>
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">PBJ</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">PBJ <i class="text-danger">*</i></label>
                                 <select class="form-control obj" name="pbj">
                                     <option value="">Pilih</option>
                                     <option value="Sarana">Sarana</option>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana <i class="text-danger">*</i></label>
                                 <select class="form-control sumber_dana" name="sumber_dana">
                                     <option value="">Pilih</option>
                                     <option value="2022">2021</option>
@@ -112,7 +112,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Jenis Kontrak</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Jenis Kontrak<i class="text-danger">*</i></label>
                                 <br />
                                 <input type="radio" class="jenis_kontrak" name="jenis_kontrak" value="single_year"> Single Year
                                 <input type="radio" class="jenis_kontrak" name="jenis_kontrak" value="multi_year"> Multi Year
@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-md-6 jenis_kontrak_year" style="display: none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Total Year</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Total Year <i class="text-danger">*</i></label>
                                 <select class="form-control">
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -132,8 +132,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP</label>
-                            <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai_pr" name="nilai_pr">
+                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP <i class="text-danger">*</i></label>
+                            <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai rkap" name="nilai_pr">
                             <div class="invalid-feedback nilai-rkap" style="display: none;">
                                 Mohon isi nilai rkap.
                             </div>
@@ -142,7 +142,7 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Type TAX</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Type TAX <i class="text-danger">*</i></label>
                                 <select class="form-control type-tax" name="type_tax">
                                     <option value="">Pilih</option>/option>
                                     <option value="1">Pajak Tidak Dipungut</option>
@@ -162,13 +162,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Start Date Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Start Date Pengadaan <i class="text-danger">*</i></label>
                                 <input type="date" class="form-control datepicker" placeholder="Please insert start date" name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">End Date Pengadaan</label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">End Date Pengadaan <i class="text-danger">*</i></label>
                                 <input type="date" class="form-control datepicker" placeholder="Please insert end date" name="end_date">
                             </div>
                         </div>
@@ -400,7 +400,7 @@
                 $(".nilai-tax-value").prop('disabled', true)
             } else if (jenis == '2') {
                 var persen = (11 / 100);
-                var tax = parseInt(new_nilai_pr) * persen
+                var tax = Math.ceil(parseInt(new_nilai_pr) * persen)
                 var pr = parseInt(new_nilai_pr)
                 const format = pr.toString().split('').reverse().join('');
                 const convert = format.match(/\d{1,3}/g);
@@ -439,6 +439,32 @@
             const rupiah = convert.join('.').split('').reverse().join('')
             $('.nilai-pr').val(rupiah)
         })
+
+        // $('body').on('keyup', '.nilai-pr', function() {
+        //     var typeTax = $('.type-tax').val()
+        //     var new_nilai_pr = parseFloat($(this).val())
+        //     if(typeTax == 2){
+        //         var persen = (11 / 100);
+        //         var tax = Math.ceil(parseInt(new_nilai_pr) * persen)
+        //         var pr = parseInt(new_nilai_pr)
+        //         console.log(new_nilai_pr)
+        //         const format = pr.toString().split('').reverse().join('');
+        //         const convert = format.match(/\d{1,3}/g);
+        //         const rupiah = convert.join('.').split('').reverse().join('')
+
+        //         // convert nilai tax to rupiah
+        //         const formatTax = tax.toString().split('').reverse().join('');
+        //         const converts = formatTax.match(/\d{1,3}/g);
+        //         const taxAfterClick = converts.join('.').split('').reverse().join('')
+
+        //         $(".nilai-tax").show()
+        //         $(".nilai-tax-value").val(taxAfterClick)
+        //         $(".nilai-tax-insert").val(tax)
+        //         $(".nilai-tax-percent").html('%')
+        //         // $(".nilai-pr").val(rupiah)
+        //         $(".nilai-tax-value").prop('disabled', true)
+        //     }
+        // })
     })
 </script>
 @endpush

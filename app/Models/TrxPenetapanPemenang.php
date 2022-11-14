@@ -19,4 +19,9 @@ class TrxPenetapanPemenang extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function get_vendor()
+    {
+        return $this->belongsTo('\App\Models\MasterVendor', 'vendor_code', 'vendor_code')->select('vendor_code','vendor_name');
+    }
 }

@@ -117,9 +117,16 @@ class ContractController extends Controller
         $data["trx_approval_legal"] = \App\Models\TrxApprovalLegal::where('sp3_id', $id)->get();
         $data["trx_kci"] = \App\Models\TrxKciContract::where('sp3_id', $id)->get();
         $data["trx_mppl"] = \App\Models\TrxMppl::where('sp3_id', $id)->get();
+        $data["spr"] = \App\Models\TrxSpr::where('sp3_id', $id)->first();
         $data["pemenang"] = \App\Models\TrxPenetapanPemenang::where('sp3_id', $id)->first();
         $data["summary"] = \App\Models\TrxSummaryContract::where('sp3_id', $id)->first();
         $data["bank"] = DB::select('SELECT * FROM bank_master');
+        $data["trx_npp"] = \App\Models\TrxNpp::where('sp3_id', $id)->get();
+        $where = json_decode($data["data"]->nama_vendor) ? json_decode($data["data"]->nama_vendor) : [];
+        $data["vendor"] = DB::table('vendor')
+            ->select('vendor_name', 'vendor_code', 'street')
+            ->whereIn('vendor_code', $where)
+            ->get();
         return view('contract.show', $data);
     }
 
@@ -450,12 +457,11 @@ class ContractController extends Controller
                 return $btn;
             })
             ->addColumn('harga_negosiasi', function ($row) {
-		if($row->harga_negosiasi != ''){
-                   return number_format($row->harga_negosiasi,2,",",".");
-		}else{
-                   return '-';
-		}
-
+                if ($row->harga_negosiasi != '') {
+                    return number_format($row->harga_negosiasi, 2, ",", ".");
+                } else {
+                    return '-';
+                }
             })
             ->addColumn('proses_st', function ($row) {
                 return '<badges class="badge badge-danger">' . $row->contract_status . '</badges>';

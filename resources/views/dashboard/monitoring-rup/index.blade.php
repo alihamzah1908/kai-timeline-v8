@@ -49,14 +49,13 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="media p-3">
+                        <div class="align-self-center">
+                            <img src="{{ asset('assets/images/graph-timeline.png') }}" class="mr-2">
+                        </div>
                         <div class="media-body">
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Total
                                 Timeline</span>
                             <h6 class="mb-0 total_timeline"></h6>
-                        </div>
-                        <div class="align-self-center">
-                            <div id="today-revenue-chart" class="apex-charts"></div>
-                            <!-- <span class="text-success font-weight-bold font-size-13"><i class='uil uil-arrow-up'></i> 10.21%</span> -->
                         </div>
                     </div>
                 </div>
@@ -67,15 +66,18 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="media p-3">
+                        <div class="align-self-center">
+                            <img src="{{ asset('assets/images/graph-sp3.png') }}" class="mr-2">
+                        </div>
                         <div class="media-body">
                             <span class="text-muted text-uppercase font-size-9 font-weight-bold">Total
                                 SP3</span>
                             <h6 class="mb-0 total_sp3"></h6>
                         </div>
-                        <div class="align-self-center">
-                            <div id="today-product-sold-chart" class="apex-charts"></div>
+                        <!-- <div class="align-self-center">
+                            <div id="today-product-sold-chart" class="apex-charts"></div> -->
                             <!-- <span class="text-danger font-weight-bold font-size-13"><i class='uil uil-arrow-down'></i> 5.05%</span> -->
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -203,37 +205,46 @@
                 name: "Submitted Proposal",
                 data: [{
                     y: response.st_timeline,
-                    color: '#ff751a'
+                    color: 'orange'
                 }, {
                     y: response.st_sp3,
-                    color: '#ff751a'
+                    color: 'orange'
                 }],
                 url: "{{ route('task.approval') }}?status=PROSES_ST",
-                color: '#ff751a'
+                color: 'orange',
+                pointWidth: 30,
+                shadow: true,
+                borderRadius: 10
             });
             seriesData.push({
                 name: "Approval Proposal",
                 data: [{
                     y: response.at_timeline,
-                    color: '#47d147'
+                    color: '#6699ff'
                 }, {
                     y: response.at_sp3,
-                    color: '#47d147'
+                    color: '#6699ff'
                 }],
                 url: "{{ route('task.approval') }}?status=PROSES_AT",
-                color: '#47d147'
+                color: '#6699ff',
+                pointWidth: 30,
+                shadow: true,
+                borderRadius: 10
             });
             seriesData.push({
                 name: "Rejected Proposal",
                 data: [{
                     y: response.ct_timeline,
-                    color: '#ff3333'
+                    color: '#e60000'
                 }, {
                     y: response.ct_sp3,
-                    color: '#ff3333'
+                    color: '#e60000'
                 }],
                 url: "{{ route('task.approval') }}?status=PROSES_CT",
-                color: '#ff3333'
+                color: '#e60000',
+                pointWidth: 30,
+                shadow: true,
+                borderRadius: 10
             });
             Highcharts.chart('container', {
                 chart: {
@@ -301,7 +312,7 @@
 
                     },
                     column: {
-                        pointPadding: 0.2,
+                        pointPadding: 1,
                         borderWidth: 0
                     }
 
@@ -358,10 +369,13 @@
                 },
                 plotOptions: {
                     series: {
-                        borderRadius: 3,
+                        borderRadius: 10,
+                        pointWidth: 30,
+                        shadow: true,
+                        borderRadius: 10
                     },
                     column: {
-                        pointPadding: 0.2,
+                        pointPadding: 1,
                         borderWidth: 0
                     }
                 },
@@ -370,34 +384,34 @@
                     color: 'red',
                     data: [{
                         y: response.cus_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cfh_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cti_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.ctp_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cts_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.coc_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.coh_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cos_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cot_timeline,
-                        color: 'red'
+                        color: 'red',
                     }, {
                         y: response.cola_timeline,
-                        color: 'red'
+                        color: 'red',
                     }],
 
                 }, {
@@ -476,7 +490,9 @@
                 },
                 plotOptions: {
                     series: {
-                        borderRadius: 8
+                        pointWidth: 30,
+                        shadow: true,
+                        borderRadius: 10
                     },
                     column: {
                         pointPadding: 0.2,
@@ -506,32 +522,32 @@
                     name: 'Penunjukan Langsung',
                     data: [{
                         y: response.penunjukan_langsung,
-                        color: "#ff751a",
+                        color: "orange",
                     }, {
                         y: 1,
-                        color: "#ff751a",
+                        color: "orange",
                     }],
-                    color: '#ff751a'
+                    color: 'orange'
                 }, {
                     name: 'Pemilihan Langsung',
                     data: [{
                         y: response.pemilihan_langsung,
-                        color: "#47d147",
+                        color: "#6699ff",
                     }, {
                         y: 50,
-                        color: "#47d147",
+                        color: "#6699ff",
                     }],
-                    color: '#47d147'
+                    color: '#6699ff'
                 }, {
                     name: 'Pelelangan Terbuka',
                     data: [{
                         y: response.pelelangan_terbuka,
-                        color: "#ff3333",
+                        color: "#e60000",
                     }, {
                         y: 50,
-                        color: "#ff3333",
+                        color: "#e60000",
                     }],
-                    color: '#ff3333'
+                    color: '#e60000'
                 }]
             });
         })
@@ -629,6 +645,9 @@
                 plotOptions: {
                     series: {
                         borderWidth: 0,
+                        pointWidth: 30,
+                        shadow: true,
+                        borderRadius: 10,
                         dataLabels: {
                             enabled: true,
                             format: '{point.y}'
@@ -741,6 +760,9 @@
                 plotOptions: {
                     series: {
                         borderWidth: 0,
+                        pointWidth: 30,
+                        shadow: true,
+                        borderRadius: 10,
                         dataLabels: {
                             enabled: true,
                             format: '{point.y}'

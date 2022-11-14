@@ -5,6 +5,7 @@
         font-size: 10px;
     }
 </style>
+{{-- {{ dd($data) }} --}}
 <div class="container-fluid">
     <div class="row">
         <div class="col">
@@ -12,7 +13,7 @@
                 <ol class="breadcrumb">
                     <li><i class="uil uil-chart-infographic"></i></li>
                     <li class="breadcrumb-item"><a href="{{ route('list.contract') }}"><b>Back to list</b></a></li>
-                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->no_jamlak }}</b></a></li>
+                    <li class="breadcrumb-item"><a href="#"><b>Detail {{ $data->no_bank_garansi }}</b></a></li>
                 </ol>
             </nav>
         </div>
@@ -34,7 +35,7 @@
                             <dt class="font-weight-normal">:</dt>
                         </div>
                         <div class="col-md-6">
-                            <dt class="font-weight-normal">{{ $data->no_jamlak }}</dt>
+                            <dt class="font-weight-normal">{{ $data->no_bank_garansi }}</dt>
                         </div>
                     </div>
                     <div class="row">
@@ -61,25 +62,43 @@
                     </div>
                     <div class="row">
                         <div class="col-md-2 mb-1">
-                            <dt class="font-weight-bold">Status</dt>
+                            <dt class="font-weight-bold">File Jaminan Kontrak</dt>
                         </div>
                         <div>
                             <dt class="font-weight-normal">:</dt>
                         </div>
                         <div class="col-md-6">
-                            <!-- <dt class="font-weight-normal"> {{ $data->status_jamlak }}</dt> -->
-                            <select name="status_jamlak">
-                                <option value="1">Active</option>
-                                <option value="2">Adendum</option>
-                                <option value="3">Bermasalah</option>
-                                <option value="4">Non-Active</option>
-                            </select>
+                            <a href="{{ asset('file/contract/' . $data->file_performance_contract) }}" target="_blank">
+                                <i class="uil uil-file"></i> {{ $data->file_performance_contract }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 mb-1">
+                            <dt class="font-weight-bold">Status</dt>
+                        </div>
+                        <div>
+                            <dt class="font-weight-normal">:</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal"><badges class="badge badge-danger">{{ $data->status_jamlak }}</badges></dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 mb-1">
+                            <dt class="font-weight-bold">Catatan</dt>
+                        </div>
+                        <div>
+                            <dt class="font-weight-normal">:</dt>
+                        </div>
+                        <div class="col-md-3">
+                            <dt class="font-weight-normal"> {{ $data->catatan }}</dt>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-end">
                             <!-- <input class="btn btn-sm btn-warning btn-rounded save" type="submit" name="save" value="Save As Draft"> -->
-                            <input class="btn btn-sm btn-primary btn-rounded save ml-2" type="submit" name="save" value="Submit">
+                            <input class="btn btn-sm btn-primary btn-rounded edit ml-2" type="button" name="save" value="Edit" data-start="{{ $data->start_berlaku}}" data-end="{{ $data->end_berlaku }}" data-id="{{ $data->performance_contract_id }}" data-status="{{ $data->status_jamlak }}" data-catatan="{{ $data->catatan }}">
                         </div>
                     </div>
                 </div>
@@ -88,361 +107,84 @@
     </div><!-- end col-->
 </div>
 </div>
+<div class="modal fade" id="modal-jamlak" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Ubah Tanggal Berlaku Jamlak</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('ubah.tanggal-jamlak') }}" id="form-ubah-tanggal" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="performance_contract_id" id="performance_contract_id" value="{{ $data->performance_contract_id }}" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (Start Date)</label>
+                                <input type="text" name="start_date" class="form-control start_date datepicker" placeholder="Please insert Masa Berlaku (Start Date)">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Masa Berlaku (Start End)</label>
+                                <input type="text" name="end_date" class="form-control end_date datepicker" placeholder="Please insert Masa Berlaku (End Date)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Status</label>
+                                <select name="status_jamlak" class="form-control status_jamlak">
+                                    <option value="">Pilih</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Bermasalah">Bermasalah</option>
+                                    <option value="Adendum">Adendum</option>
+                                    <option value="Expired">Expired</option>
+                                    <option value="Akan Expired">Akan Expired</option>
+                                    <option value="Sudah Diterima Vendor">Sudah Diterima Vendor</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan</label>
+                                <textarea class="form-control catatan" name="catatan"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <!-- <button class="btn btn-sm btn-warning btn-rounded save" data-bind="draft" type="button">Save as Draft</button> -->
+                            <button class="btn btn-sm btn-primary btn-rounded ml-2 save" data-bind="submit" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 @endsection
 @push('scripts')
 <script>
     $(document).ready(function() {
-        var user = "{{ auth()->user()->hasRole('manajer_user') }}";
-        if(user){
-            $(".sw-toolbar-bottom").hide()
-        }
-        var status = $('#contract_status').val();
-        if (status == 'PROSES_UJP') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-        } else if (status == 'PROSES_VJP') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-        } else if (status == 'PROSES_RDC') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_VAC') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_ALG') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_APU') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_VAC') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_KAC') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-        } else if (status == 'PROSES_CR') {
-            $('.draft-contract').addClass('done')
-            $('.performance').addClass('done')
-            $('.verifikasi').addClass('done')
-            $('.review').addClass('done')
-            $('.approval-logistik').addClass('done')
-            $('.approval-user').addClass('done')
-            $('.ttd-vendor').addClass('done')
-            $('.ttd-kci').addClass('done')
-            $('.mppl').addClass('done')
-            $('.summary-contract').addClass('done')
-        }
-        $('body').on('click', '.sw-btn-next', function(e) {
-            // conditional contract prosess
-            // if status 
-            var id = $(this).closest('#smartwizard-arrows').find('#id').val();
-            var status = $(this).closest('#smartwizard-arrows').find('#contract_status').val();
-            if (status == 'PROSES_DC') {
-                $('.performance').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Draft Contract ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-draft-kontrak").submit();
-                    }
-                })
-            } else if (status == 'PROSES_UJP') {
-                $('.verifikasi').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Jaminan Pelaksanaan ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-draft-performance").submit();
-                    }
-                })
-            } else if (status == 'PROSES_VJP') {
-                $('.review').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Verifikasi Jaminan ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-verif-jamlak").submit();
-                    }
-                })
-            } else if (status == 'PROSES_RDC') {
-                $('.review').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Review Legal ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    e.preventDefault()
-                    $("#form-review-legal").submit();
-                })
-            } else if (status == 'PROSES_VAC') {
-                $('.approval-user').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Approval Logistik ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-approval-logistik").submit();
-                    }
-                })
-            } else if (status == 'PROSES_ALG') {
-                $('.ttd-vendor').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Approval User ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        // $('.ttd-kci').removeClass('active')
-                        e.preventDefault()
-                        $("#form-approval-user").submit();
-                    }
-                })
-            } else if (status == 'PROSES_APU') {
-                $('.ttd-kci').removeClass('active')
-                Swal.fire({
-                    title: 'Are you sure save Tanda Tangan Vendor ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        // $('.ttd-kci').removeClass('active')
-                        e.preventDefault()
-                        $("#form-ttd-vendor").submit()
-                    }
-                })
-            } else if (status == 'PROSES_KAC') {
-                Swal.fire({
-                    title: 'Are you sure save Tanda Tangan KCI ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-ttd-kci").submit()
-                    }
-                })
-            } else if (status == 'PROSES_CR') {
-                Swal.fire({
-                    title: 'Are you sure save MPPL ?',
-                    // text: 'Your procurement are send to contract!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        e.preventDefault()
-                        $("#form-mppl").submit()
-                    }
-                })
-            }else if (status == 'PROSES_CR') {
-            }
-            // console.log($(this).closest('#smartwizard-arrows').find('.performance').addClass('test'));
-        })
-        $('body').on('click', '.add-review', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_submit_review[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_end_review[]" class="form-control datepicker" id="tanggal-end-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_review[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<textarea class="form-control" name="catatan_review[]" placeholder="please insert catatan"></textarea>'
-            body += '</div>'
-            body += '</div>'
-            body += '</div></div>'
-            $('.add-form-review').append(body)
-        })
-
-        $('body').on('click', '.add-approval-logistik', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_submit_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_end_logistik[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_approval_logistik[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<textarea class="form-control" name="catatan_logistik[]" placeholder="please insert catatan"></textarea>'
-            body += '</div>'
-            body += '</div>'
-            body += '</div></div>'
-            $('.form-layout-approval-logistik').append(body)
-        })
-
-        $('body').on('click', '.add-approval-user', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_submit_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_end_user[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_approval_user[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<textarea class="form-control" name="catatan_user[]" placeholder="please insert catatan"></textarea>'
-            body += '</div>'
-            body += '</div>'
-            body += '</div></div>'
-            $('.form-layout-approval-user').append(body)
-        })
-
-        $('body').on('click', '.add-ttd-vendor', function() {
-            var body = '<div style="padding-top: 10px; border-top: 1px solid red;">'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_submit_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="date" name="tanggal_end_vendor[]" class="form-control datepicker" id="tanggal-submit-review" placeholder="please insert date submit">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<input type="file" name="file_vendor[]" class="form-control" id="file-review">'
-            body += '</div>'
-            body += '</div>'
-            body += '</div>'
-            body += '<div class="row">'
-            body += '<div class="col-md-4">'
-            body += '<div class="form-group">'
-            body += '<textarea class="form-control" name="catatan_vendor[]" placeholder="please insert catatan"></textarea>'
-            body += '</div>'
-            body += '</div>'
-            body += '</div></div>'
-            $('.form-layout-ttd-vendor').append(body)
+        $('body').on('click', '.edit', function() {
+            $('#modal-jamlak').modal('show')
+            var start = $(this).attr('data-start')
+            var end = $(this).attr('data-end')
+            var id = $(this).attr('data-id')
+            var status = $(this).attr('data-status')
+            var catatan = $(this).attr('data-catatan')
+            $('.performance_contract_id').val(id)
+            $('.start_date').val(start)
+            $('.end_date').val(end)
+            $('.status_jamlak').val(status)
+            $('.catatan').val(catatan)
         })
     })
 </script>
