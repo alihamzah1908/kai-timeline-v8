@@ -42,3 +42,14 @@ function numberToRomanRepresentation($number)
     }
     return $returnValue;
 }
+
+function userRole()
+{
+    $user = DB::table('users as a')
+        ->select('a.*', 'c.name as role_name')
+        ->join('model_has_roles as b', 'a.id', 'b.model_id')
+        ->join('roles as c', 'b.role_id', 'c.id')
+        ->where('a.id', Auth::user()->id)
+        ->get();
+    return $user;
+}

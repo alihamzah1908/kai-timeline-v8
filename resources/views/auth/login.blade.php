@@ -75,8 +75,11 @@
                         </div> -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{ route('process.login') }}" class="authentication-form p-3" method="post">
+                                    <form action="{{ route('process.login') }}" class="authentication-form" method="post">
                                         @csrf
+                                        @if($errors->any())
+                                        <i class="text-danger">{{ implode('', $errors->all(':message')) }}</i>
+                                        @endif
                                         <div class="form-group">
                                             <label class="form-control-label">Username</label>
                                             <div class="input-group input-group-merge">

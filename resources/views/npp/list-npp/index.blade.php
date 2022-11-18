@@ -87,7 +87,7 @@
                     <div class="row judul-pengadaan">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan <i class="text-danger">*</i></label>
+                                <label for="exampleInputEmail1" class="font-weight-bold">Judul Pengadaan </label>
                                 <input type="text" class="form-control" placeholder="Please insert judul pengadaan" name="judul_pengadaan">
                             </div>
                         </div>
@@ -347,19 +347,19 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">No. Lainnya <i class="text-danger">*</i></label>
+                                    <label for="exampleInputEmail1">No. Lainnya</label>
                                     <input type="text" name="no_lainya" class="form-control" placeholder="Please Insert No. KAK">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal <i class="text-danger">*</i></label>
+                                    <label for="exampleInputEmail1">Tanggal </label>
                                     <input type="date" class="form-control datepicker" placeholder="Please Insert Date" name="date_lainya">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Dokumen Lainya <i class="text-danger">*</i></label>
+                                    <label for="exampleInputEmail1">Dokumen Lainya </label>
                                     <input type="file" name="doc_lainya" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                 </div>
                             </div>

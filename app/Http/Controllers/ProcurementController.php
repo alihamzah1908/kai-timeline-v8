@@ -956,6 +956,7 @@ class ProcurementController extends Controller
                 $notifikasi->type = 'contract';
                 $notifikasi->created_by =  Auth::user()->id;
                 $notifikasi->transaksi_id = $request["sp3_id"];
+                $notifikasi->user_role = userRole()[0]->role_name;
                 $notifikasi->save();
 
                 // create notifikasi by email

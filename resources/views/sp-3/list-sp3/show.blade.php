@@ -192,9 +192,13 @@
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">File Justifikasi Penunjukan/Pemilihan Langsung </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
                                             <dd class="col-sm-6 font-weight-normal">
-                                                <a href="{{ asset('file/sp3/'. $pr->file_justifikasi) }}" target="_blank">
-                                                    <i class="uil uil-file"></i>&nbsp; {{ $pr->file_justifikasi }}
+                                                @if($data->file_justifikasi_langsung != '')
+                                                <a href="{{ asset('file/sp3/'. $data->file_justifikasi_langsung) }}" target="_blank">
+                                                    <i class="uil uil-file"></i>&nbsp; {{ $data->file_justifikasi_langsung }}
                                                 </a>
+                                                @else 
+                                                <span>No file available</span>
+                                                @endif
                                             </dd>
                                             <dt class="col-sm-5 font-weight-normal font-weight-bold">File KAK </dt>
                                             <dd class="col-sm-1 font-weight-normal">:</dd>
@@ -343,8 +347,8 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $tanggal_pr[0] }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
+                                                            <p>{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : '' }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr1 == 'Ya' ? ' checked' : ''}}@endif> Ya
@@ -367,8 +371,8 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $tanggal_pr[0] }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
+                                                            <p>{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : '' }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
@@ -416,8 +420,8 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ implode(', ', $nilai_pr) }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $tanggal_pr[0] }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tanggal_pr[0] }}">
+                                                            <p>{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : ''}}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ count($tanggal_pr) > 0 ? $tanggal_pr[0] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr2 == 'Ya' ? ' checked' : ''}}@endif> Ya
@@ -457,8 +461,8 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ $rabImpld }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $tgl_rab[0] }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_rab[0] }}">
+                                                            <p>{{ count($tgl_rab) > 0 ? $tgl_rab[0] : ''}}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ count($tgl_rab) > 0 ? $tgl_rab[0] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr3 == 'Ya' ? ' checked' : ''}}@endif> Ya
@@ -481,8 +485,8 @@
                                                             <input type="hidden" name="nomor[]" class="form-control" value="{{ $justImpld }}">
                                                         </td>
                                                         <td>
-                                                            <p>{{ $tgl_just[0] }}</p>
-                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ $tgl_just[0] }}">
+                                                            <p>{{ count($tgl_just) > 0 ? $tgl_just[0] : '' }}</p>
+                                                            <input type="hidden" name="tanggal[]" class="form-control" value="{{ count($tgl_just) > 0 ? $tgl_just[0] : '' }}">
                                                         </td>
                                                         <td>
                                                             <input type="checkbox" name="pemenuhan[]" value="Ya" @if($evaluasi){{ $arr4 == 'Ya' ? ' checked' : ''}}@endif> Ya

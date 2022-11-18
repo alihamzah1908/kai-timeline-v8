@@ -226,6 +226,10 @@ Route::group(['middleware' => ['auth']], function () {
         return view('memo-internal.index');
     })->name('list.memo-internal');
     Route::post('/data/memo-internal-user/save', 'App\Http\Controllers\ProcurementController@save_memo_internal_user')->name('save.memo-user');
+
+    // My Account
+    Route::get('/data/account','App\Http\Controllers\Auth\AuthController@account')->name('account');
+    Route::post('/data/account/update','App\Http\Controllers\Auth\AuthController@account_update')->name('account.update');
 });
 Route::get('/sp-3/evaluasi/print/spr', 'App\Http\Controllers\Sp3Controller@generate_sk')->name('evaluasi.print.sk');
 Route::get('/sp-3/evaluasi/print/sp', 'App\Http\Controllers\Sp3Controller@generate_sp')->name('evaluasi.print.sp');

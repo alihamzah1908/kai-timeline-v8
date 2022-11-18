@@ -485,7 +485,7 @@
                                             </div>
                                         </a>
                                         <div class="dropdown-menu profile-dropdown-items dropdown-menu-right">
-                                            <a href="javascript:void(0)" class="dropdown-item notify-item">
+                                            <a href="{{ route('account') }}" class="dropdown-item notify-item">
                                                 <i data-feather="user" class="icon-dual icon-xs mr-2 text-kai"></i>
                                                 <span>My Account</span>
                                             </a>
@@ -644,12 +644,11 @@
                         if (value.type == 'timeline') {
                             var url = "{{ route('timeline.show',':id') }}"
                             url = url.replace(':id', value.transaksi_id)
-                            if(value.department == 'CUGP'){
+                            if (value.department == 'CUGP') {
                                 $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> Your Timeline (no pengadaan) was approved by ' + value.department + '</small></div>')
-                            }else{
+                            } else {
                                 $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> You have new task to Approve Timeline</small></div>')
                             }
-                            
                         } else if (value.type == 'npp') {
                             var url = "{{ route('sp3.show',':id') }}"
                             url = url.replace(':id', value.transaksi_id)
@@ -658,12 +657,11 @@
                             var url = "{{ route('procurement.show',':id') }}"
                             url = url.replace(':id', value.transaksi_id)
                             $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> Your NPP (no pengadaan) was approved by ' + value.department + '</small></div></a>')
-                        }else if (value.type == 'contract') {
+                        } else if (value.type == 'contract') {
                             var url = "{{ route('contract.show',':id') }}"
                             url = url.replace(':id', value.transaksi_id)
                             $('.slimscroll.noti-scroll').append('<a href=' + url + '><div class="ml-2 p-1"><p class="notify-details"><small class="text-muted"> You have new task for Contract</small></div></a>')
                         }
-
                     })
                     return false
                 } else {

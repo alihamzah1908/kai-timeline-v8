@@ -346,42 +346,36 @@ class DashboardController extends Controller
 
     public function notifikasi(Request $request)
     {
-        if (Auth::user()->department_cd == 'CUGP') {
+        if (auth()->user()->hasRole('Manajer Logistik')) {
             $data = DB::table('notifikasi')
                 ->where('is_read', '=', 1)
-                ->where('department', '=', 'CTIP')
-                ->orWhere('department', '=', 'CUGR')
-                ->orWhere('department', '=', 'COHC')
-                ->orWhere('department', '=', 'CUSE')
-                ->orWhere('department', '=', 'COTC')
+                ->where('user_role', 'manajer_user')
                 ->orderBy('trx_notifikasi_id', 'desc')
                 ->get();
-        } else if (Auth::user()->department_cd == 'COHC' || Auth::user()->department_cd == 'CTIP' || Auth::user()->department_cd == 'CUSE' || Auth::user()->department_cd == 'COTC') {
+        } else if (auth()->user()->hasRole('manajer_user')) {
             $data = DB::table('notifikasi')
                 ->where('is_read', '=', 1)
-                ->where('department', '=', 'CUGP')
-                // ->where('type', '=', 'timeline')
+                ->where('user_role', 'Manajer Logistik')
                 ->orderBy('trx_notifikasi_id', 'desc')
                 ->get();
-        } else if (Auth::user()->department_cd == 'CUGR') {
-            if (Auth::user()->users_cd == 'CUGR2') {
-                $data = DB::table('notifikasi')
-                    ->where('is_read', '=', 1)
-                    ->Where('department', '=', 'CUGR')
-                    ->orderBy('trx_notifikasi_id', 'desc')
-                    ->get();
-            } else {
-                $data = DB::table('notifikasi')
-                    ->where('is_read', '=', 1)
-                    ->where('department', '=', 'CUGP')
-                    ->orderBy('trx_notifikasi_id', 'desc')
-                    ->get();
-            }
-        } else if (Auth::user()->department_cd == 'CUGN') {
+        } else if (auth::user()->hasRole('manajer_logistic_sarana') || auth::user()->hasRole('admin_pbj')) {
             $data = DB::table('notifikasi')
                 ->where('is_read', '=', 1)
-                ->where('department', '=', 'CUGP')
-                ->orWhere('department', '=', 'CUGR')
+                ->where('type', '=', 'pbj')
+                ->where('user_role', '=', 'Manajer Logistik')
+                ->orderBy('trx_notifikasi_id', 'desc')
+                ->get();
+        } else if (auth::user()->hasRole('manajer_logistic_sarana') || auth::user()->hasRole('admin_contract')) {
+            $data = DB::table('notifikasi')
+                ->where('is_read', '=', 1)
+                ->where('user_role', 'manajer_logistic_sarana')
+                ->orderBy('trx_notifikasi_id', 'desc')
+                ->get();
+        } else if (auth::user()->hasRole('manajer_logistic_nonsarana')) {
+            $data = DB::table('notifikasi')
+                ->where('is_read', '=', 1)
+                ->where('user_role', '=', 'Manajer Logistik')
+                ->orWhere('user_role', '=', 'manajer_logistic_sarana')
                 ->orderBy('trx_notifikasi_id', 'desc')
                 ->get();
         } else {

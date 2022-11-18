@@ -5,6 +5,11 @@
         height: 100px;
     }
 </style>
+<?php
+$currentlySelected = date('Y');
+$earliestyear = 2021;
+$lastYear = date('Y') + 1;
+?>
 <div class="container-fluid">
     <div class="row mt-4">
         <div class="col-md-12">
@@ -34,6 +39,7 @@
                                     <th style='width:10%'>PBJ</th>
                                     <th style='width:10%'>Cost</th>
                                     <th style='width:10%'>Status</th>
+                                    <th style='width:10%'>Tahun RKAP</th>
                                     <th></th>
                                     <th style='width:5%'>Action</th>
                                 </tr>
@@ -99,9 +105,10 @@
                                 <label for="exampleInputEmail1" class="font-weight-bold">Sumber Dana <i class="text-danger">*</i></label>
                                 <select class="form-control sumber_dana" name="sumber_dana">
                                     <option value="">Pilih</option>
-                                    <option value="2022">2021</option>
-                                    <option value="2023">2022</option>
-                                    <option value="2023">2023</option>
+                                    <?php
+                                    foreach (range($earliestyear, $lastYear) as $i) { ?>
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    <?php } ?>
                                 </select>
                                 <div class="invalid-feedback error-sumber" style="display: none;">
                                     Mohon isi sumber dana.
@@ -122,6 +129,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="font-weight-bold">Total Year <i class="text-danger">*</i></label>
                                 <select class="form-control">
+                                    <option value="">Pilih</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -132,11 +140,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP <i class="text-danger">*</i></label>
+                            <label for="exampleInputEmail1" class="font-weight-bold">Nilai RKAP (Sebelum Pajak) <i class="text-danger">*</i></label>
                             <input type="text" class="form-control money nilai-pr" placeholder="Please insert nilai rkap" name="nilai_pr">
                             <div class="invalid-feedback nilai-rkap" style="display: none;">
                                 Mohon isi nilai rkap.
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1" class="font-weight-bold">Tahun RKAP<i class="text-danger">*</i></label>
+                            <select class="form-control" name="tahun_rkap">
+                                <option value="">Pilih</option>
+                                <?php
+                                foreach (range($earliestyear, $lastYear) as $i) { ?>
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -237,6 +255,9 @@
                     data: 'proses_st'
                 },
                 {
+                    data: 'tahun_rkap'
+                },
+                {
                     data: 'created_at',
                     visible: false
                 },
@@ -258,6 +279,7 @@
                 beban_biaya: "required",
                 pbj: "required",
                 sumber_dana: "required",
+                tahun_rkap: "required",
                 jenis_kontrak: "required",
                 nilai_pr: "required",
                 start_date: "required",
@@ -268,6 +290,7 @@
                 beban_biaya: "Please insert beban biaya",
                 pbj: "Please insert pbj",
                 sumber_dana: "Please insert sumber dana",
+                tahun_rkap: "Please insert tahun RKAP",
                 jenis_kontrak: "Please insert Jenis Kontrak",
                 nilai_pr: "Please insert Nilai RKAP",
                 start_date: "Please insert start date pengadaan",
@@ -440,31 +463,31 @@
             $('.nilai-pr').val(rupiah)
         })
 
-        // $('body').on('keyup', '.nilai-pr', function() {
-        //     var typeTax = $('.type-tax').val()
-        //     var new_nilai_pr = parseFloat($(this).val())
-        //     if(typeTax == 2){
-        //         var persen = (11 / 100);
-        //         var tax = Math.ceil(parseInt(new_nilai_pr) * persen)
-        //         var pr = parseInt(new_nilai_pr)
-        //         console.log(new_nilai_pr)
-        //         const format = pr.toString().split('').reverse().join('');
-        //         const convert = format.match(/\d{1,3}/g);
-        //         const rupiah = convert.join('.').split('').reverse().join('')
+        $('body').on('keyup', '.nilai-pr', function() {
+            var typeTax = $('.type-tax').val()
+            var new_nilai_pr = $(this).val().replace(/\./g, '')
+            if (typeTax == 2) {
+                var persen = (11 / 100);
+                var tax = Math.ceil(parseInt(new_nilai_pr) * persen)
+                var pr = parseInt(new_nilai_pr)
+                console.log(new_nilai_pr)
+                const format = pr.toString().split('').reverse().join('');
+                const convert = format.match(/\d{1,3}/g);
+                const rupiah = convert.join('.').split('').reverse().join('')
 
-        //         // convert nilai tax to rupiah
-        //         const formatTax = tax.toString().split('').reverse().join('');
-        //         const converts = formatTax.match(/\d{1,3}/g);
-        //         const taxAfterClick = converts.join('.').split('').reverse().join('')
+                // convert nilai tax to rupiah
+                const formatTax = tax.toString().split('').reverse().join('');
+                const converts = formatTax.match(/\d{1,3}/g);
+                const taxAfterClick = converts.join('.').split('').reverse().join('')
 
-        //         $(".nilai-tax").show()
-        //         $(".nilai-tax-value").val(taxAfterClick)
-        //         $(".nilai-tax-insert").val(tax)
-        //         $(".nilai-tax-percent").html('%')
-        //         // $(".nilai-pr").val(rupiah)
-        //         $(".nilai-tax-value").prop('disabled', true)
-        //     }
-        // })
+                $(".nilai-tax").show()
+                $(".nilai-tax-value").val(taxAfterClick)
+                $(".nilai-tax-insert").val(tax)
+                $(".nilai-tax-percent").html('%')
+                // $(".nilai-pr").val(rupiah)
+                $(".nilai-tax-value").prop('disabled', true)
+            }
+        })
     })
 </script>
 @endpush

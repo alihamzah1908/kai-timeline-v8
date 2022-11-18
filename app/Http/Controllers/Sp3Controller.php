@@ -90,6 +90,13 @@ class Sp3Controller extends Controller
                     $file->move(public_path('file/sp3'), $fileName);
                     $data->file_lainya = $fileName;
                 }
+                if ($request->hasFile('file_just_langsung')) {
+                    $file = $request->file('file_just_langsung');
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = 'DOC-JUSTIFIKASI-LANGSUNG' . "-" . now()->format('Y-m-d-H-i-s') . "." . $extension;
+                    $file->move(public_path('file/sp3'), $fileName);
+                    $data->file_justifikasi_langsung = $fileName;
+                }
                 $data->save();
                 if ($data) {
                     foreach ($request["no_pr_ip"] as $key => $val) {
@@ -253,6 +260,7 @@ class Sp3Controller extends Controller
         $notifikasi->type = 'npp';
         $notifikasi->created_by =  Auth::user()->id;
         $notifikasi->transaksi_id =  $data->sp3_id;
+        $notifikasi->user_role = userRole()[0]->role_name;
         $notifikasi->save();
 
         // create notifikasi by email
@@ -344,6 +352,7 @@ class Sp3Controller extends Controller
             $notifikasi->type = 'pbj';
             $notifikasi->created_by =  Auth::user()->id;
             $notifikasi->transaksi_id =  $request["sp3_id"];
+            $notifikasi->user_role = userRole()[0]->role_name;
             $notifikasi->save();
             return response()->json(['status' => '200']);
             

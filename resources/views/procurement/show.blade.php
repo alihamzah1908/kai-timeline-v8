@@ -233,10 +233,10 @@
                                                             <div class="form-group">
                                                                 @if($rks)
                                                                 <label>{{ $rks ? $rks->nomor_rks : '' }}</label>
-                                                                @else 
+                                                                @else
                                                                 <input type="text" name="nomor_rks" class="form-control" placeholder="please insert nomor rks" value="{{ $rks ? $rks->nomor_rks : '' }}">
                                                                 @endif
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -265,7 +265,7 @@
                                                         @if(!$rks)
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <input type="file" name="file_penawaran" class="form-control file-penawaran" id="file-penawaran">
+                                                                <input type="file" name="file_penawaran" class="form-control upload-file" id="file-penawaran">
                                                             </div>
                                                         </div>
                                                         @else
@@ -294,7 +294,7 @@
                                                         @if(!$rks)
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
+                                                                <input type="file" name="file_dokumen" class="form-control upload-file" id="file-dokumen">
                                                             </div>
                                                         </div>
                                                         @else
@@ -326,7 +326,7 @@
                                                                 <label>{{ $rks->metode == '1_sampul' ? '1 Sampul' : '2 Sampul' }}</label>
                                                             </div>
                                                         </div>
-                                                        @else 
+                                                        @else
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <select class="form-control" name="metode_dokumen" id="metode-dokumen">
@@ -393,7 +393,7 @@
                                                                 <label>{{ $undangan ? $undangan->nomor_pengumuman : '' }}</label>
                                                             </div>
                                                         </div>
-                                                        @else 
+                                                        @else
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <input type="text" name="nomor_pengumuman" class="form-control" placeholder="please insert nomor" value="{{ $undangan ? $undangan->nomor_pengumuman : '' }}">
@@ -413,7 +413,7 @@
                                                                 <label>{{ $undangan ? $undangan->tanggal_rks : '' }}</label>
                                                             </div>
                                                         </div>
-                                                        @else 
+                                                        @else
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <input type="text" name="tanggal_rks" class="form-control datepicker" placeholder="please insert tanggal pengadaan" value="{{ $undangan ? $undangan->tanggal_rks : '' }}">
@@ -430,7 +430,7 @@
                                                         @if(!$undangan)
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <input type="file" name="file_penawaran" class="form-control" id="file-penawaran">
+                                                                <input type="file" name="file_penawaran" class="form-control upload-file" id="file-penawaran">
                                                             </div>
                                                         </div>
                                                         @else
@@ -459,7 +459,7 @@
                                                         @if(!$undangan)
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <input type="file" name="file_dokumen" class="form-control" id="file-dokumen">
+                                                                <input type="file" name="file_dokumen" class="form-control upload-file" id="file-dokumen">
                                                             </div>
                                                         </div>
                                                         @else
@@ -491,7 +491,7 @@
                                                                 <textarea name="catatan_rks" id="catatan-rks" class="form-control" placeholder="Please insert RKS note">{{ $undangan ? $undangan->catatan : '' }}</textarea>
                                                             </div>
                                                         </div>
-                                                        @else 
+                                                        @else
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 {{ $undangan ? $undangan->catatan : '' }}
@@ -829,8 +829,8 @@
                                     </div>
                                     @php
                                     $berita = $berita_acara->where('step_process','aanwidjzing')
-                                        ->where('sp3_id', $data->sp3_id)
-                                        ->first();
+                                    ->where('sp3_id', $data->sp3_id)
+                                    ->first();
                                     @endphp
                                     <div class="row">
                                         <div class="col-md-2">
@@ -841,9 +841,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 @if($berita)
-                                                    {{ $berita ? $berita->tanggal_berita_acara : ''}}
-                                                @else 
-                                                    <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita ? $berita->tanggal_berita_acara : ''}}">
+                                                {{ $berita ? $berita->tanggal_berita_acara : ''}}
+                                                @else
+                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita ? $berita->tanggal_berita_acara : ''}}">
                                                 @endif
                                             </div>
                                         </div>
@@ -857,9 +857,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 @if($berita)
-                                                    {{ $berita ? $berita->nomor_spr : '' }}
-                                                @else 
-                                                    <input type="text" name="nomor_aanwidjzing" class="form-control" placeholder="please insert nomor aanwidjzing" value="{{ $berita ? $berita->nomor_spr : ''}}">
+                                                {{ $berita ? $berita->nomor_spr : '' }}
+                                                @else
+                                                <input type="text" name="nomor_aanwidjzing" class="form-control" placeholder="please insert nomor aanwidjzing" value="{{ $berita ? $berita->nomor_spr : ''}}">
                                                 @endif
                                             </div>
                                         </div>
@@ -873,15 +873,15 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 @if(!$berita)
-                                                <input type="file" name="file_berita_acara" class="form-control" id="file-draft">
-                                                @else 
-                                                    @if($berita)
-                                                        @if($berita->file_berita_acara != '')
-                                                        <a href="{{ asset('file/SP3/'. $berita->file_berita_acara) }}" target="_blank">
-                                                            <i class="uil uil-file-alt mt-4"></i> {{ $berita->file_berita_acara }}
-                                                        </a>
-                                                        @endif
-                                                    @endif
+                                                <input type="file" name="file_berita_acara" class="form-control upload-file" id="file-draft">
+                                                @else
+                                                @if($berita)
+                                                @if($berita->file_berita_acara != '')
+                                                <a href="{{ asset('file/SP3/'. $berita->file_berita_acara) }}" target="_blank">
+                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita->file_berita_acara }}
+                                                </a>
+                                                @endif
+                                                @endif
                                                 @endif
                                             </div>
                                         </div>
@@ -918,7 +918,7 @@
                                                             <th width="30%" rowspan="2">DOKUMEN (Admin, Teknis, Harga)</th>
                                                             <th width="30%" rowspan="2">
                                                                 TANGGAL SUBMIT
-                                                                     <!-- TANGGAL JAMLAK -->
+                                                                <!-- TANGGAL JAMLAK -->
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -930,7 +930,7 @@
                                                                 <input type="hidden" id="vendor_code" name="vendor_code[]" value="{{ $val->vendor_code }}" />
                                                             </td>
                                                             <td>
-                                                                <input type="file" name="file_dokumen[]" class="form-control" id="file-dokumen">
+                                                                <input type="file" name="file_dokumen[]" class="form-control upload-file" id="file-dokumen">
                                                             </td>
                                                             <td>
                                                                 <input type="text" id="dok_admin_date" name="dok_admin_date[]" class="form-control datepicker" placeholder="Tanggal Pemasukan Penawaran">
@@ -971,7 +971,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="file" name="file_pembukaan_penawaran" class="form-control">
+                                                            <input type="file" name="file_pembukaan_penawaran" class="form-control upload-file">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
@@ -1029,8 +1029,8 @@
                                             </table>
                                             @php
                                             $berita_sampul_1 = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
-                                                ->where('sp3_id', $data->sp3_id)
-                                                ->first();
+                                            ->where('sp3_id', $data->sp3_id)
+                                            ->first();
                                             @endphp
                                             <div class="row">
                                                 <div class="col-md-3">
@@ -1042,7 +1042,7 @@
                                                     <div class="form-group">
                                                         @if(!$berita_sampul_1)
                                                         <input type="text" name="nomor_pembukaan_penawaran" class="form-control" placeholder="please insert nomor" value="{{ $berita_sampul_1 ? $berita_sampul_1->nomor_spr : '' }}">
-                                                        @else 
+                                                        @else
                                                         {{ $berita_sampul_1 ? $berita_sampul_1->nomor_spr : '' }}
                                                         @endif
                                                     </div>
@@ -1059,13 +1059,13 @@
                                                         @if(!$berita_sampul_1)
                                                         <input type="file" name="file_pembukaan_penawaran" class="form-control">
                                                         @else
-                                                            @if($berita_sampul_1)
-                                                                @if($berita_sampul_1->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $berita_sampul_1->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita_sampul_1->file_berita_acara }}
-                                                                </a>
-                                                                @endif
-                                                            @endif
+                                                        @if($berita_sampul_1)
+                                                        @if($berita_sampul_1->file_berita_acara != '')
+                                                        <a href="{{ asset('file/SP3/'. $berita_sampul_1->file_berita_acara) }}" target="_blank">
+                                                            <i class="uil uil-file-alt mt-4"></i> {{ $berita_sampul_1->file_berita_acara }}
+                                                        </a>
+                                                        @endif
+                                                        @endif
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1085,7 +1085,7 @@
                                                     <div class="form-group">
                                                         @if(!$berita_sampul_1)
                                                         <textarea name="catatan_pembukaan_penawaran" id="catatan_pembukaan_penawaran" class="form-control" placeholder="Penjelasan">{{ $berita_sampul_1 ? $berita_sampul_1->notes : '' }}</textarea>
-                                                        @else 
+                                                        @else
                                                         {{ $berita_sampul_1 ? $berita_sampul_1->notes : '' }}
                                                         @endif
                                                     </div>
@@ -1124,7 +1124,7 @@
                                                                 <th width="20%" rowspan="2">DOKUMEN (Admin, Teknis) <i class="text-danger">*</i></th>
                                                                 <th width="20%" rowspan="2">DOKUMEN (Harga) <i class="text-danger">*</i></th>
                                                                 <th width="30%" rowspan="2">
-                                                                    TANGGAL SUBMIT 
+                                                                    TANGGAL SUBMIT
                                                                     <!-- TANGGAL JAMLAK -->
                                                                     <i class="text-danger">*</i>
                                                                 </th>
@@ -1177,8 +1177,8 @@
                                                     </table>
                                                     @php
                                                     $penawaran = $berita_acara->where('step_process','pemasukan_dokumen_penawaran')
-                                                        ->where('sp3_id', $data->sp3_id)
-                                                        ->first();
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1190,7 +1190,7 @@
                                                             <div class="form-group">
                                                                 @if(!$penawaran)
                                                                 <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $penawaran ? $penawaran->tanggal_berita_acara : '' }}">
-                                                                @else 
+                                                                @else
                                                                 {{ $penawaran ? $penawaran->tanggal_berita_acara : '' }}
                                                                 @endif
                                                             </div>
@@ -1206,7 +1206,7 @@
                                                             <div class="form-group">
                                                                 @if(!$penawaran)
                                                                 <input type="text" name="nomor_pembukaan_penawaran" class="form-control" placeholder="please insert nomor" value="{{ $penawaran ? $penawaran->nomor_spr : '' }}">
-                                                                @else 
+                                                                @else
                                                                 {{ $penawaran ? $penawaran->nomor_spr : ''}}
                                                                 @endif
                                                             </div>
@@ -1224,13 +1224,13 @@
                                                                 <input type="file" name="file_pembukaan_penawaran" class="form-control">
                                                                 <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                                 @else
-                                                                    @if($penawaran)
-                                                                        @if($penawaran->file_berita_acara != '')
-                                                                        <a href="{{ asset('file/SP3/'. $penawaran->file_berita_acara) }}" target="_blank">
-                                                                            <i class="uil uil-file-alt mt-4"></i> {{ $penawaran->file_berita_acara }}
-                                                                        </a>
-                                                                        @endif
-                                                                    @endif
+                                                                @if($penawaran)
+                                                                @if($penawaran->file_berita_acara != '')
+                                                                <a href="{{ asset('file/SP3/'. $penawaran->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $penawaran->file_berita_acara }}
+                                                                </a>
+                                                                @endif
+                                                                @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1245,7 +1245,7 @@
                                                             <div class="form-group">
                                                                 @if(!$penawaran)
                                                                 <textarea name="catatan_pembukaan_penawaran" id="catatan_pembukaan_penawaran" class="form-control" placeholder="Penjelasan">{{ $penawaran ? $penawaran->notes : '' }}</textarea>
-                                                                @else 
+                                                                @else
                                                                 {{ $penawaran ? $penawaran->notes : '' }}
                                                                 @endif
                                                             </div>
@@ -1283,7 +1283,7 @@
                                                             <tr>
                                                                 <td>
                                                                     {{ $val->vendor_name}}
-								                                    <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}"/>
+                                                                    <input type="hidden" name="vendor_code[]" value="{{ $val->vendor_code}}" />
                                                                 </td>
                                                                 <td>
                                                                     <input type="file" name="surat_undangan_pembukaan[]" class="form-control">
@@ -1297,8 +1297,8 @@
                                                     </table>
                                                     @php
                                                     $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
-                                                        ->where('sp3_id', $data->sp3_id)
-                                                        ->first();
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1402,8 +1402,8 @@
                                                 </table>
                                                 @php
                                                 $undangan = $berita_acara->where('step_process','undangan_pembukaan_dokumen_penawaran')
-                                                    ->where('sp3_id', $data->sp3_id)
-                                                    ->first();
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -1415,7 +1415,7 @@
                                                         <div class="form-group">
                                                             @if(!$undangan)
                                                             <input type="text" name="nomor_undangan" class="form-control" placeholder="please insert nomor" value="{{ $undangan ? $undangan->nomor_spr : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $undangan ? $undangan->nomor_spr : '' }}
                                                             @endif
                                                         </div>
@@ -1432,14 +1432,14 @@
                                                             @if(!$undangan)
                                                             <input type="file" name="file_undangan" class="form-control">
                                                             <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
-                                                            @else 
-                                                                @if($undangan)
-                                                                    @if($undangan->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @else
+                                                            @if($undangan)
+                                                            @if($undangan->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $undangan->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $undangan->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -1454,7 +1454,7 @@
                                                         <div class="form-group">
                                                             @if($undangan)
                                                             {{ $undangan ? $undangan->notes : '' }}
-                                                            @else 
+                                                            @else
                                                             <textarea name="catatan_undangan_pembukaan" class="form-control" placeholder="Penjelasan">{{ $undangan ? $undangan->notes : '' }}</textarea>
                                                             @endif
                                                         </div>
@@ -1606,8 +1606,8 @@
                                                     </table>
                                                     @php
                                                     $pembukaan = $berita_acara->where('step_process','pembukaan_dokumen')
-                                                        ->where('sp3_id', $data->sp3_id)
-                                                        ->first();
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -1653,13 +1653,13 @@
                                                                 <input type="file" name="file_pembukaan" class="form-control" id="file-draft">
                                                                 <img src="{{ asset('assets/images/preview.png') }}" alt="" height="25" />
                                                                 @else
-                                                                    @if($pembukaan)
-                                                                        @if($pembukaan->file_berita_acara != '')
-                                                                        <a href="{{ asset('file/SP3/'. $pembukaan->file_berita_acara) }}" target="_blank">
-                                                                            <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan->file_berita_acara }}
-                                                                        </a>
-                                                                        @endif
-                                                                    @endif
+                                                                @if($pembukaan)
+                                                                @if($pembukaan->file_berita_acara != '')
+                                                                <a href="{{ asset('file/SP3/'. $pembukaan->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan->file_berita_acara }}
+                                                                </a>
+                                                                @endif
+                                                                @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -1674,7 +1674,7 @@
                                                             <div class="form-group">
                                                                 @if(!$pembukaan)
                                                                 <textarea name="catatan_undangan_pembukaan" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $pembukaan ? $pembukaan->notes : '' }}</textarea>
-                                                                @else 
+                                                                @else
                                                                 {{ $pembukaan ? $pembukaan->notes : '' }}
                                                                 @endif
                                                             </div>
@@ -1842,8 +1842,8 @@
                                                 </table>
                                                 @php
                                                 $pembukaan_harga = $berita_acara->where('step_process','undangan_pembukaan_harga')
-                                                    ->where('sp3_id', $data->sp3_id)
-                                                    ->first();
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -1854,11 +1854,11 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             @if($pembukaan_harga)
-                                                                {{ $pembukaan_harga ? $pembukaan_harga->tanggal_berita_acara : '' }}
-                                                            @else 
-                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor" value="{{ $pembukaan_harga ? $pembukaan_harga->tanggal_berita_acara : '' }}">
+                                                            {{ $pembukaan_harga ? $pembukaan_harga->tanggal_berita_acara : '' }}
+                                                            @else
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert nomor" value="{{ $pembukaan_harga ? $pembukaan_harga->tanggal_berita_acara : '' }}">
                                                             @endif
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1871,8 +1871,8 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             @if($pembukaan_harga)
-                                                                {{ $pembukaan_harga ? $pembukaan_harga->nomor_spr : '' }}
-                                                            @else 
+                                                            {{ $pembukaan_harga ? $pembukaan_harga->nomor_spr : '' }}
+                                                            @else
                                                             <input type="text" name="nomor_pembukaan_harga" class="form-control" placeholder="please insert nomor" value="{{ $pembukaan_harga ? $pembukaan_harga->nomor_spr : '' }}">
                                                             @endif
                                                         </div>
@@ -1889,13 +1889,13 @@
                                                             @if(!$pembukaan_harga)
                                                             <input type="file" name="file_pembukaan_harga" class="form-control" id="file-draft">
                                                             @else
-                                                                @if($pembukaan_harga)
-                                                                    @if($pembukaan_harga->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $pembukaan_harga->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan_harga->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($pembukaan_harga)
+                                                            @if($pembukaan_harga->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $pembukaan_harga->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $pembukaan_harga->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2079,8 +2079,8 @@
                                                 </table>
                                                 @php
                                                 $doc_harga = $berita_acara->where('step_process','pembukaan_harga')
-                                                    ->where('sp3_id', $data->sp3_id)
-                                                    ->first();
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -2091,9 +2091,9 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             @if(!$doc_harga)
-                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $doc_harga ? $doc_harga->tanggal_berita_acara : ''}}">
-                                                            @else 
-                                                                {{ $doc_harga ? $doc_harga->tanggal_berita_acara : ''}}
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $doc_harga ? $doc_harga->tanggal_berita_acara : ''}}">
+                                                            @else
+                                                            {{ $doc_harga ? $doc_harga->tanggal_berita_acara : ''}}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2107,9 +2107,9 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             @if(!$doc_harga)
-                                                                <input type="text" name="nomor_harga" class="form-control" placeholder="please insert nomor" value="{{ $doc_harga ? $doc_harga->nomor_spr : ''}}">
-                                                            @else 
-                                                                {{ $doc_harga ? $doc_harga->nomor_spr : ''}}
+                                                            <input type="text" name="nomor_harga" class="form-control" placeholder="please insert nomor" value="{{ $doc_harga ? $doc_harga->nomor_spr : ''}}">
+                                                            @else
+                                                            {{ $doc_harga ? $doc_harga->nomor_spr : ''}}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2125,13 +2125,13 @@
                                                             @if(!$doc_harga)
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                             @else
-                                                                @if($doc_harga)
-                                                                    @if($doc_harga->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $doc_harga->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $doc_harga->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($doc_harga)
+                                                            @if($doc_harga->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $doc_harga->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $doc_harga->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2151,7 +2151,7 @@
                                                         <div class="form-group">
                                                             @if(!$doc_harga)
                                                             <textarea name="verif_1_note" id="verif_1_note" class="form-control" placeholder="Penjelasan">{{ $doc_harga ? $doc_harga->notes : '' }}</textarea>
-                                                            @else 
+                                                            @else
                                                             {{ $doc_harga ? $doc_harga->notes : '' }}
                                                             @endif
                                                         </div>
@@ -2259,8 +2259,8 @@
                                                 </table>
                                                 @php
                                                 $eval_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
-                                                    ->where('sp3_id', $data->sp3_id)
-                                                    ->first();
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -2273,9 +2273,9 @@
                                                             @if(!$eval_penawaran)
                                                             <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $eval_penawaran ? $eval_penawaran->tanggal_berita_acara : '' }}">
                                                             @else
-                                                            {{ $eval_penawaran ? $eval_penawaran->tanggal_berita_acara : '' }} 
+                                                            {{ $eval_penawaran ? $eval_penawaran->tanggal_berita_acara : '' }}
                                                             @endif
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2289,7 +2289,7 @@
                                                         <div class="form-group">
                                                             @if(!$eval_penawaran)
                                                             <input type="text" name="nomor_evaluasi_penawaran" class="form-control" placeholder="please insert nomor" value="{{ $eval_penawaran ? $eval_penawaran->nomor_spr : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $eval_penawaran ? $eval_penawaran->nomor_spr : '' }}
                                                             @endif
                                                         </div>
@@ -2304,15 +2304,15 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             @if(!$eval_penawaran)
-                                                            <input type="file" name="file_evaluasi_penawaran" class="form-control" id="file-draft">
+                                                            <input type="file" name="file_evaluasi_penawaran" class="form-control upload-file" id="file-draft">
                                                             @else
-                                                                @if($eval_penawaran)
-                                                                    @if($eval_penawaran->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $eval_penawaran->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $eval_penawaran->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($eval_penawaran)
+                                                            @if($eval_penawaran->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $eval_penawaran->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $eval_penawaran->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2510,8 +2510,8 @@
                                                 </table>
                                                 @php
                                                 $evaluasi_penawaran = $berita_acara->where('step_process','evaluasi_dokumen_penawaran')
-                                                    ->where('sp3_id', $data->sp3_id)
-                                                    ->first();
+                                                ->where('sp3_id', $data->sp3_id)
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -2523,7 +2523,7 @@
                                                         <div class="form-group">
                                                             @if(!$evaluasi_penawaran)
                                                             <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $evaluasi_penawaran ? $evaluasi_penawaran->tanggal_berita_acara : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $evaluasi_penawaran ? $evaluasi_penawaran->tanggal_berita_acara : '' }}
                                                             @endif
                                                         </div>
@@ -2539,7 +2539,7 @@
                                                         <div class="form-group">
                                                             @if(!$evaluasi_penawaran)
                                                             <input type="text" name="nomor_evaluasi_penawaran" class="form-control" placeholder="please insert nomor" value="{{ $evaluasi_penawaran ? $evaluasi_penawaran->nomor_spr : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $evaluasi_penawaran ? $evaluasi_penawaran->nomor_spr : '' }}
                                                             @endif
                                                         </div>
@@ -2556,13 +2556,13 @@
                                                             @if(!$evaluasi_penawaran)
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
                                                             @else
-                                                                @if($evaluasi_penawaran)
-                                                                    @if($evaluasi_penawaran->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $evaluasi_penawaran->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_penawaran->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($evaluasi_penawaran)
+                                                            @if($evaluasi_penawaran->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $evaluasi_penawaran->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_penawaran->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2679,14 +2679,14 @@
                                                         <div class="form-group">
                                                             @if(!$admin_teknis)
                                                             <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                            @else 
-                                                                @if($admin_teknis)
-                                                                    @if($admin_teknis->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $admin_teknis->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $admin_teknis->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @else
+                                                            @if($admin_teknis)
+                                                            @if($admin_teknis->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $admin_teknis->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $admin_teknis->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -2878,8 +2878,8 @@
                                                     </table>
                                                     @php
                                                     $evaluasi_harga = $berita_acara->where('step_process','evaluasi_dokumen_penawaran_harga')
-                                                        ->where('sp3_id', $data->sp3_id)
-                                                        ->first();
+                                                    ->where('sp3_id', $data->sp3_id)
+                                                    ->first();
                                                     @endphp
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -2890,9 +2890,9 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 @if(!$evaluasi_harga)
-                                                                    <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $evaluasi_harga ? $evaluasi_harga->tanggal_berita_acara : '' }}">
-                                                                @else 
-                                                                    {{ $evaluasi_harga ? $evaluasi_harga->tanggal_berita_acara : '' }}
+                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $evaluasi_harga ? $evaluasi_harga->tanggal_berita_acara : '' }}">
+                                                                @else
+                                                                {{ $evaluasi_harga ? $evaluasi_harga->tanggal_berita_acara : '' }}
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -2906,9 +2906,9 @@
                                                         <div class="col-md-2">
                                                             <div class="form-group">
                                                                 @if(!$evaluasi_harga)
-                                                                    <input type="text" name="nomor_evaluasi_penawaran_harga" class="form-control" placeholder="please insert nomor" value="{{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}">
-                                                                @else 
-                                                                    {{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}
+                                                                <input type="text" name="nomor_evaluasi_penawaran_harga" class="form-control" placeholder="please insert nomor" value="{{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}">
+                                                                @else
+                                                                {{ $evaluasi_harga ? $evaluasi_harga->nomor_spr : '' }}
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -2923,14 +2923,14 @@
                                                             <div class="form-group">
                                                                 @if(!$evaluasi_harga)
                                                                 <input type="file" name="file_draft" class="form-control" id="file-draft">
-                                                                @else 
-                                                                    @if($evaluasi_harga)
-                                                                        @if($evaluasi_harga->file_berita_acara != '')
-                                                                        <a href="{{ asset('file/SP3/'. $evaluasi_harga->file_berita_acara) }}" target="_blank">
-                                                                            <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_harga->file_berita_acara }}
-                                                                        </a>
-                                                                        @endif
-                                                                    @endif
+                                                                @else
+                                                                @if($evaluasi_harga)
+                                                                @if($evaluasi_harga->file_berita_acara != '')
+                                                                <a href="{{ asset('file/SP3/'. $evaluasi_harga->file_berita_acara) }}" target="_blank">
+                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $evaluasi_harga->file_berita_acara }}
+                                                                </a>
+                                                                @endif
+                                                                @endif
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -3021,9 +3021,9 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             @if(!$undangan_berita_kkn)
-                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->tanggal_berita_acara : '' }}">
-                                                            @else 
-                                                                {{ $undangan_berita_kkn ? $undangan_berita_kkn->tanggal_berita_acara : '' }}
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->tanggal_berita_acara : '' }}">
+                                                            @else
+                                                            {{ $undangan_berita_kkn ? $undangan_berita_kkn->tanggal_berita_acara : '' }}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -3037,9 +3037,9 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             @if(!$undangan_berita_kkn)
-                                                                <input type="text" name="nomor_undangan_kkn" class="form-control" placeholder="please insert nomor" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->nomor_spr : '' }}">
-                                                            @else 
-                                                                {{ $undangan_berita_kkn ? $undangan_berita_kkn->nomor_spr : '' }}
+                                                            <input type="text" name="nomor_undangan_kkn" class="form-control" placeholder="please insert nomor" value="{{ $undangan_berita_kkn ? $undangan_berita_kkn->nomor_spr : '' }}">
+                                                            @else
+                                                            {{ $undangan_berita_kkn ? $undangan_berita_kkn->nomor_spr : '' }}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -3053,15 +3053,15 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             @if(!$undangan_berita_kkn)
-                                                            <input type="file" name="file_undangan_kkn" class="form-control" id="file-draft">
+                                                            <input type="file" name="file_undangan_kkn" class="form-control upload-file " id="file-draft">
                                                             @else
-                                                                @if($undangan_berita_kkn)
-                                                                    @if($undangan_berita_kkn->file_berita_acara != '')
-                                                                    <a href="{{ asset('file/SP3/'. $undangan_berita_kkn->file_berita_acara) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $undangan_berita_kkn->file_berita_acara }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($undangan_berita_kkn)
+                                                            @if($undangan_berita_kkn->file_berita_acara != '')
+                                                            <a href="{{ asset('file/SP3/'. $undangan_berita_kkn->file_berita_acara) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $undangan_berita_kkn->file_berita_acara }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -3137,7 +3137,7 @@
                                                                 <input type="hidden" class="hps-pagu" value="{{ $pagu }}" />
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="harga_negosiasi[]" class="form-control harga-negosiasi" placeholder="Please insert harga negosiasi">
+                                                                <input type="text" name="harga_negosiasi[]" class="form-control harga-negosiasi money" placeholder="Please insert harga negosiasi">
                                                             </td>
                                                             <td>
                                                                 <textarea name="catatan_kkn[]" id="catatan_kkn" class="form-control" placeholder="Penjelasan"></textarea>
@@ -3162,9 +3162,9 @@
                                                 @php
                                                 $berita_kkn = $berita_acara->where('step_process','kkn')->first();
                                                 $memo_internal = $berita_acara->where('step_process','kkn')
-                                                    ->where('nomor_memo_internal','!=','')
-                                                    ->where('tanggal_memo_internal','!=','')
-                                                    ->first();
+                                                ->where('nomor_memo_internal','!=','')
+                                                ->where('tanggal_memo_internal','!=','')
+                                                ->first();
                                                 @endphp
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -3175,9 +3175,9 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             @if(!$berita_kkn)
-                                                                <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita_kkn ? $berita_kkn->tanggal_berita_acara : '' }}">
-                                                            @else 
-                                                                {{ $berita_kkn ? $berita_kkn->tanggal_berita_acara : '' }}
+                                                            <input type="text" name="tanggal_berita_acara" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita_kkn ? $berita_kkn->tanggal_berita_acara : '' }}">
+                                                            @else
+                                                            {{ $berita_kkn ? $berita_kkn->tanggal_berita_acara : '' }}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -3192,7 +3192,7 @@
                                                         <div class="form-group">
                                                             @if(!$berita_kkn)
                                                             <input type="text" name="nomor_kkn" class="form-control" placeholder="please insert nomor" value="{{ $berita_kkn ? $berita_kkn->nomor_spr : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $berita_kkn ? $berita_kkn->nomor_spr : '' }}
                                                             @endif
                                                         </div>
@@ -3207,7 +3207,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             @if(!$berita_kkn)
-                                                            <input type="file" name="file_kkn" class="form-control" id="file-draft">
+                                                            <input type="file" name="file_kkn" class="form-control upload-file" id="file-draft">
                                                             @else
                                                             @if($berita_kkn)
                                                             @if($berita_kkn->file_berita_acara != '')
@@ -3236,7 +3236,7 @@
                                                         <div class="form-group">
                                                             @if(!$memo_internal)
                                                             <input type="text" name="tanggal_memo_internal" class="form-control datepicker" id="file-draft" placeholder="Please insert tanggal memo" value="{{ $memo_internal ? $memo_internal ->tanggal_memo_internal : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $memo_internal ? $memo_internal ->tanggal_memo_internal : '' }}
                                                             @endif
                                                         </div>
@@ -3252,7 +3252,7 @@
                                                         <div class="form-group">
                                                             @if(!$memo_internal)
                                                             <input type="text" name="nomor_memo_internal" class="form-control" id="file-draft" placeholder="Please insert nomor memo" value="{{ $memo_internal ? $memo_internal->nomor_memo_internal : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $memo_internal ? $memo_internal->nomor_memo_internal : '' }}
                                                             @endif
                                                         </div>
@@ -3269,13 +3269,13 @@
                                                             @if(!$memo_internal)
                                                             <input type="file" name="file_memo_kkn" class="form-control" id="file-draft">
                                                             @else
-                                                                @if($memo_internal)
-                                                                    @if($memo_internal->file_memo_internal != '')
-                                                                    <a href="{{ asset('file/SP3/'. $memo_internal->file_memo_internal) }}" target="_blank">
-                                                                        <i class="uil uil-file-alt mt-4"></i> {{ $memo_internal->file_memo_internal }}
-                                                                    </a>
-                                                                    @endif
-                                                                @endif
+                                                            @if($memo_internal)
+                                                            @if($memo_internal->file_memo_internal != '')
+                                                            <a href="{{ asset('file/SP3/'. $memo_internal->file_memo_internal) }}" target="_blank">
+                                                                <i class="uil uil-file-alt mt-4"></i> {{ $memo_internal->file_memo_internal }}
+                                                            </a>
+                                                            @endif
+                                                            @endif
                                                             @endif
                                                         </div>
                                                     </div>
@@ -3400,7 +3400,7 @@
                                                     <div class="form-group">
                                                         @if(!$berita_bahp)
                                                         <input type="text" name="tanggal_bahp" class="form-control datepicker" placeholder="please insert tanggal" value="{{ $berita_bahp ? $berita_bahp->tanggal_berita_acara : '' }}">
-                                                        @else 
+                                                        @else
                                                         {{ $berita_bahp ? $berita_bahp->tanggal_berita_acara : '' }}
                                                         @endif
                                                     </div>
@@ -3416,7 +3416,7 @@
                                                     <div class="form-group">
                                                         @if(!$berita_bahp)
                                                         <input type="text" name="nomor_bahp" class="form-control" placeholder="please insert nomor" value="{{ $berita_bahp ? $berita_bahp->nomor_spr : '' }}">
-                                                        @else 
+                                                        @else
                                                         {{ $berita_bahp ? $berita_bahp->nomor_spr : '' }}
                                                         @endif
                                                     </div>
@@ -3431,15 +3431,15 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         @if(!$berita_bahp)
-                                                        <input type="file" name="file_bahp" class="form-control">
+                                                        <input type="file" name="file_bahp" class="form-control upload-file">
                                                         @else
-                                                            @if($berita_bahp)
-                                                                @if($berita_bahp->file_berita_acara != '')
-                                                                <a href="{{ asset('file/SP3/'. $berita_bahp->file_berita_acara) }}" target="_blank">
-                                                                    <i class="uil uil-file-alt mt-4"></i> {{ $berita_bahp->file_berita_acara }}
-                                                                </a>
-                                                                @endif
-                                                            @endif
+                                                        @if($berita_bahp)
+                                                        @if($berita_bahp->file_berita_acara != '')
+                                                        <a href="{{ asset('file/SP3/'. $berita_bahp->file_berita_acara) }}" target="_blank">
+                                                            <i class="uil uil-file-alt mt-4"></i> {{ $berita_bahp->file_berita_acara }}
+                                                        </a>
+                                                        @endif
+                                                        @endif
                                                         @endif
                                                     </div>
                                                 </div>
@@ -3477,7 +3477,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mt-2">
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1" class="font-weight-bold">Usulan dan Penetapan Calon Pemenang Nomor: <i class="text-danger">*</i></label>
@@ -3506,7 +3506,7 @@
                                                                 <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                            @else 
+                                                            @else
                                                             @if($pemenang) {{ $pemenang->get_vendor->vendor_name }} @endif
                                                             @endif
                                                         </div>
@@ -3529,7 +3529,7 @@
                                                     @else
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <input type="file" class="form-control" name="berita_acara_pemenang" value="" />
+                                                            <input type="file" class="form-control upload-file" name="berita_acara_pemenang" value="" />
                                                         </div>
                                                     </div>
                                                     @endif
@@ -3544,7 +3544,7 @@
                                                         <div class="form-group">
                                                             @if(!$pemenang)
                                                             <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note">{{ $pemenang ? $pemenang->catatan : '' }}</textarea>
-                                                            @else 
+                                                            @else
                                                             {{ $pemenang ? $pemenang->catatan : '' }}
                                                             @endif
                                                         </div>
@@ -3679,7 +3679,7 @@
                                                                 <option value="{{ $val->vendor_code }}" @if($pemenang) {{ $val->vendor_code == $pemenang->vendor_code ? ' selected' : '' }} @endif>{{ $val->vendor_name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                            @else 
+                                                            @else
                                                             {{ $pemenang ? $pemenang->get_vendor->vendor_name : '' }}
                                                             @endif
                                                         </div>
@@ -3710,8 +3710,8 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         @if(!$spr)
-                                                        <input type="file" class="form-control" name="file_jamlak">
-                                                        @else 
+                                                        <input type="file" class="form-control upload-file" name="file_jamlak">
+                                                        @else
                                                         <label>
                                                             <a href="{{ asset('file/sp3/'. $spr->file_jamlak) }}" target="_blank">
                                                                 <i class="uil uil-file-alt"></i> {{ $spr->file_jamlak }}
@@ -3748,7 +3748,7 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="workDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->total_hari_kerja : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $spr ? $spr->total_hari_kerja : '' }}
                                                             @endif
                                                         </div>
@@ -3763,7 +3763,7 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="uncontrolledDays" class="form-control" placeholder="Please insert days" value="{{ $spr ? $spr->uncontrolled_days : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $spr ? $spr->uncontrolled_days : '' }}
                                                             @endif
                                                         </div>
@@ -3779,7 +3779,7 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="nomor_spr" class="form-control" placeholder="Please insert no spr" value="{{ $spr ? $spr->nomor_spr : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $spr ? $spr->nomor_spr : '' }}
                                                             @endif
                                                         </div>
@@ -3790,7 +3790,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         @if(!$spr)
-                                                        <input type="file" class="form-control" name="file_spr">
+                                                        <input type="file" class="form-control upload-file" name="file_spr">
                                                         @else
                                                         <label>
                                                             <a href="{{ asset('file/sp3/'. $spr->file_spr) }}" target="_blank">
@@ -3810,7 +3810,7 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="nama_ttd" class="form-control" placeholder="Please nama penanda tangan" value="{{ $spr ? $spr->nama_ttd : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $spr ? $spr->nama_ttd : '' }}
                                                             @endif
                                                         </div>
@@ -3840,7 +3840,7 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="start_jamlak" class="form-control datepicker" placeholder="Please insert jamlak" value="{{ $spr ? $spr->start_jamlak : '' }}">
-                                                            @else 
+                                                            @else
                                                             {{ $spr ? $spr->start_jamlak : '' }}
                                                             @endif
                                                         </div>
@@ -3854,31 +3854,29 @@
                                                         <div class="form-group">
                                                             @if(!$spr)
                                                             <input type="text" name="start_mppl" class="form-control datepicker" placeholder="Please start mppl" value="{{ $spr ? $spr->start_mppl : '' }}">
-                                                            @else 
-                                                            {{ $spr ? $spr->start_mppl : '' }}
-                                                            @endif
-                                                        </div>
-                                                    </div>--}}
+                                                    @else
+                                                    {{ $spr ? $spr->start_mppl : '' }}
+                                                    @endif
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            @if(!$spr)
-                                                            <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note" value="{{ $spr ? $spr->jabatan_ttd : '' }}">{{ $spr ? $spr->catatan_spr : '' }}</textarea>
-                                                            @else 
-                                                            {{ $spr ? $spr->catatan_spr : '' }}
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        </div>--}}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1" class="font-weight-bold">Catatan:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                @if(!$spr)
+                                                <textarea name="catatan" class="form-control" placeholder="Please insert Penetapan Pemenang note" value="{{ $spr ? $spr->jabatan_ttd : '' }}">{{ $spr ? $spr->catatan_spr : '' }}</textarea>
+                                                @else
+                                                {{ $spr ? $spr->catatan_spr : '' }}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -3887,7 +3885,9 @@
             </div>
         </div>
     </div>
-    @endif
+</div>
+</div>
+@endif
 </div>
 <input type="hidden" id="undangan-kkn" value="{{ $undangan_kkn->count() }}">
 <input type="hidden" id="pemenang" value="{{ $pemenang }}">
@@ -3909,7 +3909,8 @@
         $('body').on('keyup', '.harga-negosiasi', function() {
             var total = 0;
             $('.harga-negosiasi').each(function(index, element) {
-                total = total + parseFloat($(element).val());
+                var arry = $(element).val().replace('.', '');
+                total = parseFloat(total) + parseFloat(arry);
             });
             console.log(total)
             if (parseInt(total_pagu) < parseInt(total)) {
@@ -4346,6 +4347,20 @@
             body += '</div>'
             $(".add-vendor").append(body)
         })
+    })
+
+    $('body').on('change', '.upload-file', function() {
+        if (this.files[0].size > 20000000) {
+            Swal.fire({
+                title: 'Your file cannot be larger than 20mb !',
+                // text: "File change status to Calon Peserta tender!",
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).val('')
+                }
+            })
+        }
     })
 </script>
 @endpush

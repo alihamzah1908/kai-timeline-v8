@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\KCIMail;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
@@ -49,6 +50,7 @@ class TimelineController extends Controller
         $data->jenis_kontrak = $request["jenis_kontrak"];
         $data->beban_biaya = $request["beban_biaya"];
         $data->pbj = $request["pbj"];
+        $data->tahun_rkap = $request["tahun_rkap"];
         $data->nilai_pr = str_replace('.', '', $request["nilai_pr"]);
         $data->type_tax = $request["type_tax"];
         $data->nilai_tax = $request["nilai_tax"] != 0 || $request["nilai_tax"] != '' ? str_replace('.', '', $request["nilai_tax"]) : str_replace('.', '', $request["nilai_tax_sebagian"]);
@@ -70,6 +72,7 @@ class TimelineController extends Controller
             $notifikasi->type = 'timeline';
             $notifikasi->created_by =  Auth::user()->id;
             $notifikasi->transaksi_id =  $data->timeline_id;
+            $notifikasi->user_role = userRole()[0]->role_name;
             $notifikasi->save();
 
             // create notifikasi by email
@@ -135,7 +138,7 @@ class TimelineController extends Controller
             $timeline = \App\Models\Timeline::find($request["timeline_id"]);
             $timeline->proses_st = 'PROSES_AT';
             $timeline->save();
-            
+
             // create notifikasi
             $notifikasi = new \App\Models\TrxNotifikasi();
             $notifikasi->is_read = 1;
@@ -143,6 +146,7 @@ class TimelineController extends Controller
             $notifikasi->type = 'timeline';
             $notifikasi->created_by =  Auth::user()->id;
             $notifikasi->transaksi_id =  $request["timeline_id"];
+            $notifikasi->user_role = userRole()[0]->role_name;
             $notifikasi->save();
             return response()->json(['status' => '200']);
         } else {
@@ -175,11 +179,9 @@ class TimelineController extends Controller
         if ($request["timeline_type"] == 'approval') {
             if ($request["status"] == 'PROSES_AT') {
                 $timeline->where('proses_st', 'PROSES_AT');
-            } 
-	    else if ($request["status"] == 'PROSES_ST') {
+            } else if ($request["status"] == 'PROSES_ST') {
                 $timeline->where('proses_st', 'PROSES_ST');
-            } 
-	    else if ($request["status"] == 'PROSES_CT') {
+            } else if ($request["status"] == 'PROSES_CT') {
                 $timeline->where('proses_st', 'PROSES_CT');
             } else {
                 $timeline->where('proses_st', 'PROSES_ST');
